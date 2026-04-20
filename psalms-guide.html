@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psalms: A Study Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal-dark:   #0a3d35;
+      --teal-mid:    #0f5c4e;
+      --teal-accent: #1a8a72;
+      --teal-light:  #e8f5f2;
+      --teal-pale:   #f2faf8;
+      --gold:        #c9a84c;
+      --gold-light:  #f5ead0;
+      --text-dark:   #1a2a26;
+      --text-mid:    #3d5c54;
+      --text-light:  #6b8c84;
+      --border:      rgba(10, 61, 53, 0.12);
+      --white:       #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--teal-pale);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--teal-dark);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 80px);
+    }
+    header h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    header p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.7rem;
+    }
+    .gold-rule { width: 48px; height: 1px; background: var(--gold); margin: 1.25rem auto 0; }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .category {
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(10,61,53,0.06);
+    }
+
+    .cat-definition {
+      background: var(--white);
+      padding: 1.5rem 1.5rem 1.25rem;
+    }
+    .cat-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 0.65rem;
+    }
+    .cat-definition p {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text-dark);
+      line-height: 1.55;
+    }
+
+    .cat-trigger {
+      background: var(--white);
+      padding: 0.85rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-top: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .cat-trigger:hover { background: var(--teal-light); }
+    .trigger-hint {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal-accent);
+      flex: 1;
+    }
+    .trigger-arrow { font-size: 11px; color: var(--teal-accent); transition: transform 0.2s; }
+    .category.open .trigger-arrow { transform: rotate(180deg); }
+
+    .cat-title-panel {
+      display: none;
+      background: var(--teal-dark);
+      padding: 1.25rem 1.5rem;
+    }
+    .category.open .cat-title-panel { display: block; }
+    .cat-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .questions-trigger {
+      display: none;
+      background: var(--teal-mid);
+      padding: 0.85rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.15s;
+    }
+    .questions-trigger:hover { background: var(--teal-accent); }
+    .category.open .questions-trigger { display: flex; }
+    .qt-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+    .qt-arrow { font-size: 11px; color: rgba(255,255,255,0.6); transition: transform 0.2s; }
+    .category.questions-open .qt-arrow { transform: rotate(180deg); }
+
+    .questions-list { display: none; background: var(--white); }
+    .category.questions-open .questions-list { display: block; }
+
+    /* ── Q ITEM ── */
+    .q-item { border-top: 1px solid var(--border); }
+
+    .q-trigger {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      transition: background 0.15s;
+    }
+    .q-trigger:hover { background: var(--teal-pale); }
+    .q-item.verse-open .q-trigger { background: var(--teal-pale); }
+
+    .q-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      padding-top: 3px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+    .q-text {
+      font-family: 'Fraunces', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .q-chevron { font-size: 10px; color: var(--text-light); padding-top: 5px; flex-shrink: 0; transition: transform 0.2s; }
+    .q-item.verse-open .q-chevron { transform: rotate(180deg); }
+
+    /* Verse panel — first reveal */
+    .q-verse-panel {
+      display: none;
+      padding: 0.25rem 1.5rem 0 3rem;
+      background: var(--teal-pale);
+      border-top: 1px solid var(--border);
+    }
+    .q-item.verse-open .q-verse-panel { display: block; }
+
+    .verse-block {
+      border-left: 3px solid var(--gold);
+      padding: 0.75rem 0.75rem;
+      background: var(--gold-light);
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0 0.75rem;
+    }
+    .verse-text {
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.65;
+    }
+    .verse-ref {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+
+    /* Answer trigger — second reveal */
+    .answer-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      cursor: pointer;
+      user-select: none;
+      border-top: 1px solid var(--border);
+      margin-top: 0.5rem;
+      transition: opacity 0.15s;
+    }
+    .answer-trigger:hover { opacity: 0.75; }
+    .answer-trigger-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal-accent);
+    }
+    .answer-chevron { font-size: 10px; color: var(--teal-accent); transition: transform 0.2s; }
+    .q-item.answer-open .answer-chevron { transform: rotate(180deg); }
+
+    /* Answer text — second reveal */
+    .q-answer-text {
+      display: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-mid);
+      line-height: 1.7;
+      padding: 0.75rem 0 1.25rem;
+    }
+    .q-item.answer-open .q-answer-text { display: block; }
+
+    @media (max-width: 480px) {
+      header { padding: 2rem 1.25rem; }
+      main { padding: 1.5rem 1rem 3rem; }
+      .cat-name { font-size: 1.5rem; }
+      .cat-definition p { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>The Psalms</h1>
+  <p>Three types and what they give us</p>
+  <div class="gold-rule"></div>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       CATEGORY 1: ROYAL & WISDOM
+       ============================================================ -->
+  <div class="category" id="cat-royal">
+    <div class="cat-definition">
+      <span class="cat-eyebrow">Type 01</span>
+      <p>Songs about Israel's ideal king and the path of blessed living — both pointing ultimately to Jesus.</p>
+    </div>
+    <div class="cat-trigger" onclick="toggleCat('cat-royal')">
+      <span class="trigger-hint">What type of psalm is this?</span>
+      <span class="trigger-arrow">▼</span>
+    </div>
+    <div class="cat-title-panel">
+      <span class="cat-name">Royal &amp; Wisdom</span>
+    </div>
+    <div class="questions-trigger" onclick="toggleQuestions('cat-royal')">
+      <span class="qt-label">Questions this type answers</span>
+      <span class="qt-arrow">▼</span>
+    </div>
+    <div class="questions-list">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">01</span>
+          <span class="q-text">When life feels complicated and overwhelming…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"His delight is in the law of the LORD...He is like a tree planted by streams of water that yields its fruit in its season."</p>
+            <p class="verse-ref">Psalm 1:2–3</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">God's path is simple: delight in His Word + walk in His way = you will flourish.</p>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">02</span>
+          <span class="q-text">When things seem out of control…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"Now therefore, O kings, be wise; be warned, O rulers of the earth. Serve the LORD with fear."</p>
+            <p class="verse-ref">Psalm 2:10–11</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">God's Son is enthroned above every ruler, physical and spiritual. We need to TRUST in him.</p>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">03</span>
+          <span class="q-text">When we see glaring injustice that others miss…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"The LORD says to my Lord: Sit at my right hand, until I make your enemies your footstool."</p>
+            <p class="verse-ref">Psalm 110:1</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">Jesus holds the authority of both King and God — justice is in His hands and he sees ALL things.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       CATEGORY 2: LAMENT & CONFIDENCE
+       ============================================================ -->
+  <div class="category" id="cat-lament">
+    <div class="cat-definition">
+      <span class="cat-eyebrow">Type 02</span>
+      <p>Songs of deep sorrow that lead to worship, and confidence in the Lord to save even when we can't see it.</p>
+    </div>
+    <div class="cat-trigger" onclick="toggleCat('cat-lament')">
+      <span class="trigger-hint">What type of psalm is this?</span>
+      <span class="trigger-arrow">▼</span>
+    </div>
+    <div class="cat-title-panel">
+      <span class="cat-name">Lament &amp; Confidence</span>
+    </div>
+    <div class="questions-trigger" onclick="toggleQuestions('cat-lament')">
+      <span class="qt-label">Questions this type answers</span>
+      <span class="qt-arrow">▼</span>
+    </div>
+    <div class="questions-list">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">01</span>
+          <span class="q-text">When we feel like we shouldn't show God something we're genuinely feeling…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him."</p>
+            <p class="verse-ref">Psalm 42:5</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">Bring your brokenness, your despair, your deepest/darkest questions — and let them lead you back to hope. He can handle them and wants to hear our honest cry.</p>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">02</span>
+          <span class="q-text">When you experience deep doubt and feel your faith is failing…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"For God alone, O my soul, wait in silence, for my hope is from him. He only is my rock and my salvation."</p>
+            <p class="verse-ref">Psalm 62:5–6</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">God is our only refuge. He doesn't need our faith to save us, HE alone is mighty to save and he will carry us until he restores our confidence.</p>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">03</span>
+          <span class="q-text">When we don't know how to grieve without losing hope…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"O Israel, hope in the LORD from this time forth and forevermore."</p>
+            <p class="verse-ref">Psalm 131:3</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">A calm and quieted soul is still a hoping soul. Sorrow and faith are not opposites. Come as you are.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       CATEGORY 3: HYMN & THANKSGIVING
+       ============================================================ -->
+  <div class="category" id="cat-hymn">
+    <div class="cat-definition">
+      <span class="cat-eyebrow">Type 03</span>
+      <p>Corporate praise songs and responses to specific moments of God's grace — written to be sung, memorized, and used everywhere.</p>
+    </div>
+    <div class="cat-trigger" onclick="toggleCat('cat-hymn')">
+      <span class="trigger-hint">What type of psalm is this?</span>
+      <span class="trigger-arrow">▼</span>
+    </div>
+    <div class="cat-title-panel">
+      <span class="cat-name">Hymn &amp; Thanksgiving</span>
+    </div>
+    <div class="questions-trigger" onclick="toggleQuestions('cat-hymn')">
+      <span class="qt-label">Questions this type answers</span>
+      <span class="qt-arrow">▼</span>
+    </div>
+    <div class="questions-list">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">01</span>
+          <span class="q-text">I want to bring my whole life to God, but not sure if I am or how…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"Know that the LORD, he is God! It is he who made us, and we are his; we are his people, and the sheep of his pasture."</p>
+            <p class="verse-ref">Psalm 100:3</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">The hymn psalms show us the way — celebration, trial, despair — by memorizing God's truth in song, we are more easily reminded to bring every moment to Him.</p>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">02</span>
+          <span class="q-text">When we're struggling to find reasons to be grateful…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"Bless the LORD, O my soul, and forget not all his benefits."</p>
+            <p class="verse-ref">Psalm 103:2</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">Look at what He's already done in your lifetime and in history. The God who was faithful to Israel is the same God with you today.</p>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
+          <span class="q-num">03</span>
+          <span class="q-text">When we don't know how to pray or worship…</span>
+          <span class="q-chevron">▼</span>
+        </div>
+        <div class="q-verse-panel">
+          <div class="verse-block">
+            <p class="verse-text">"How precious to me are your thoughts, O God! How vast is the sum of them! If I would count them, they are more than the sand."</p>
+            <p class="verse-ref">Psalm 139:17–18</p>
+          </div>
+          <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
+            <span class="answer-trigger-label">What does this mean for us?</span>
+            <span class="answer-chevron">▼</span>
+          </div>
+          <p class="q-answer-text">The hymn psalms are the church's hymnal — they hand us the words, the posture, and the way in.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleCat(id) {
+    const cat = document.getElementById(id);
+    cat.classList.toggle('open');
+    if (!cat.classList.contains('open')) cat.classList.remove('questions-open');
+  }
+  function toggleQuestions(id) {
+    document.getElementById(id).classList.toggle('questions-open');
+  }
+  function toggleVerse(item) {
+    item.classList.toggle('verse-open');
+    if (!item.classList.contains('verse-open')) item.classList.remove('answer-open');
+  }
+  function toggleAnswer(item) {
+    item.classList.toggle('answer-open');
+  }
+</script>
+
+</body>
+</html>
