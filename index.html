@@ -171,7 +171,7 @@
       user-select: none;
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
+      gap: 0.5rem;
       transition: background 0.15s;
     }
     .q-trigger:hover { background: var(--teal-pale); }
@@ -179,12 +179,13 @@
 
     .q-num {
       font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--gold);
-      padding-top: 3px;
+      padding-top: 2px;
       flex-shrink: 0;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.03em;
+      min-width: 28px;
     }
     .q-text {
       font-family: 'Fraunces', serif;
@@ -200,7 +201,7 @@
     /* Verse panel — first reveal */
     .q-verse-panel {
       display: none;
-      padding: 0.25rem 1.5rem 0 3rem;
+      padding: 0.25rem 1.5rem 0 1.5rem;
       background: var(--teal-pale);
       border-top: 1px solid var(--border);
     }
@@ -236,36 +237,65 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.75rem 0;
+      padding: 0.7rem 0.9rem;
       cursor: pointer;
       user-select: none;
-      border-top: 1px solid var(--border);
-      margin-top: 0.5rem;
-      transition: opacity 0.15s;
+      border-radius: 8px;
+      margin-top: 0.75rem;
+      background: var(--teal-light);
+      border: 1.5px solid var(--teal-accent);
+      transition: background 0.15s, border-color 0.15s;
     }
-    .answer-trigger:hover { opacity: 0.75; }
+    .answer-trigger:hover { background: #d2ede8; border-color: var(--teal-mid); }
+    .q-item.answer-open .answer-trigger { background: var(--teal-accent); border-color: var(--teal-mid); }
+    .q-item.answer-open .answer-trigger .answer-trigger-label { color: #fff; }
+    .q-item.answer-open .answer-trigger .answer-chevron { color: rgba(255,255,255,0.8); }
+    .answer-trigger-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .answer-trigger-emoji {
+      font-size: 16px;
+      line-height: 1;
+    }
     .answer-trigger-label {
       font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--teal-accent);
+      color: var(--teal-mid);
     }
-    .answer-chevron { font-size: 10px; color: var(--teal-accent); transition: transform 0.2s; }
+    .answer-chevron { font-size: 10px; color: var(--teal-mid); transition: transform 0.2s; }
     .q-item.answer-open .answer-chevron { transform: rotate(180deg); }
 
     /* Answer text — second reveal */
-    .q-answer-text {
+    .q-answer-row {
       display: none;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.85rem 0 1.25rem;
+    }
+    .q-item.answer-open .q-answer-row { display: flex; }
+    .q-answer-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal-accent);
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+      padding-top: 2px;
+      min-width: 28px;
+    }
+    .q-answer-text {
       font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       font-weight: 400;
       color: var(--text-mid);
       line-height: 1.7;
-      padding: 0.75rem 0 1.25rem;
+      flex: 1;
     }
-    .q-item.answer-open .q-answer-text { display: block; }
 
     @media (max-width: 480px) {
       header { padding: 2rem 1.25rem; }
@@ -308,7 +338,7 @@
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">01</span>
+          <span class="q-num">Q1</span>
           <span class="q-text">When life feels complicated and overwhelming…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -318,16 +348,19 @@
             <p class="verse-ref">Psalm 1:2–3</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">God's path is simple: delight in His Word + walk in His way = you will flourish.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">God's path is simple: delight in His Word + walk in His way = you will flourish.</p></div>
         </div>
       </div>
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">02</span>
+          <span class="q-num">Q2</span>
           <span class="q-text">When things seem out of control…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -337,16 +370,19 @@
             <p class="verse-ref">Psalm 2:10–11</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">God's Son is enthroned above every ruler, physical and spiritual. We need to TRUST in him.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">God's Son is enthroned above every ruler, physical and spiritual. We need to TRUST in him.</p></div>
         </div>
       </div>
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">03</span>
+          <span class="q-num">Q3</span>
           <span class="q-text">When we see glaring injustice that others miss…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -356,10 +392,13 @@
             <p class="verse-ref">Psalm 110:1</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">Jesus holds the authority of both King and God — justice is in His hands and he sees ALL things.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Jesus holds the authority of both King and God — justice is in His hands and he sees ALL things.</p></div>
         </div>
       </div>
 
@@ -390,7 +429,7 @@
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">01</span>
+          <span class="q-num">Q1</span>
           <span class="q-text">When we feel like we shouldn't show God something we're genuinely feeling…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -400,16 +439,19 @@
             <p class="verse-ref">Psalm 42:5</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">Bring your brokenness, your despair, your deepest/darkest questions — and let them lead you back to hope. He can handle them and wants to hear our honest cry.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Bring your brokenness, your despair, your deepest/darkest questions — and let them lead you back to hope. He can handle them and wants to hear our honest cry.</p></div>
         </div>
       </div>
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">02</span>
+          <span class="q-num">Q2</span>
           <span class="q-text">When you experience deep doubt and feel your faith is failing…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -419,16 +461,19 @@
             <p class="verse-ref">Psalm 62:5–6</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">God is our only refuge. He doesn't need our faith to save us, HE alone is mighty to save and he will carry us until he restores our confidence.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">God is our only refuge. He doesn't need our faith to save us, HE alone is mighty to save and he will carry us until he restores our confidence.</p></div>
         </div>
       </div>
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">03</span>
+          <span class="q-num">Q3</span>
           <span class="q-text">When we don't know how to grieve without losing hope…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -438,10 +483,13 @@
             <p class="verse-ref">Psalm 131:3</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">A calm and quieted soul is still a hoping soul. Sorrow and faith are not opposites. Come as you are.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">A calm and quieted soul is still a hoping soul. Sorrow and faith are not opposites. Come as you are.</p></div>
         </div>
       </div>
 
@@ -472,7 +520,7 @@
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">01</span>
+          <span class="q-num">Q1</span>
           <span class="q-text">I want to worship God with my whole heart, but not sure if I'm doing it right…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -482,16 +530,19 @@
             <p class="verse-ref">Psalm 100:3</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">Hymn psalms remind us to look to God in everything - it is he who enables us to worship him! By memorizing God's truth in song, we more easily remember his words when we need them.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Hymn psalms remind us to look to God in everything - it is he who enables us to worship him! By memorizing God's truth in song, we more easily remember his words when we need them.</p></div>
         </div>
       </div>
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">02</span>
+          <span class="q-num">Q2</span>
           <span class="q-text">When we're struggling to find reasons to be grateful…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -501,16 +552,19 @@
             <p class="verse-ref">Psalm 103:2</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">Remind yourself of all that he's already done in your lifetime and in history. The God who was faithful to Israel is the same God with you today.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Remind yourself of all that he's already done in your lifetime and in history. The God who was faithful to Israel is the same God with you today.</p></div>
         </div>
       </div>
 
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
-          <span class="q-num">03</span>
+          <span class="q-num">Q3</span>
           <span class="q-text">When we don't know what to pray or say in worship…</span>
           <span class="q-chevron">▼</span>
         </div>
@@ -520,10 +574,13 @@
             <p class="verse-ref">Psalm 139:17–18</p>
           </div>
           <div class="answer-trigger" onclick="toggleAnswer(this.parentElement.parentElement)">
-            <span class="answer-trigger-label">What does this mean for us?</span>
+            <div class="answer-trigger-left">
+              <span class="answer-trigger-emoji">💡</span>
+              <span class="answer-trigger-label">What does this mean for us?</span>
+            </div>
             <span class="answer-chevron">▼</span>
           </div>
-          <p class="q-answer-text">Pray or sing the very words of the Psalm — hymn psalms give us the words, the posture, and the heart of worship.</p>
+          <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Pray or sing the very words of the Psalm — hymn psalms give us the words, the posture, and the heart of worship.</p></div>
         </div>
       </div>
 
