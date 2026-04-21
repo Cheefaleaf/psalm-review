@@ -7,69 +7,139 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0a0a0a;--white:#f5f2ec;--gold:#e8b84b;--gold-dark:#c49a2a;--card-bg:#141414;--border:rgba(255,255,255,0.08);--muted:#777}
-body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+:root{
+  --black:#0a0a0a;--white:#f5f2ec;--gold:#e8b84b;--gold-dark:#c49a2a;
+  --card-bg:#141414;--border:rgba(255,255,255,0.08);--muted:#777;
+  --c-active:#5ecf7e;--c-building:#e8b84b;--c-planning:#70b0ff;--c-idea:#c084fc;
+}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:rgba(10,10,10,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--gold);text-decoration:none}
-.nav-back{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(245,242,236,0.5);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.nav-back{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(245,242,236,0.45);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
 .nav-back:hover{color:var(--white)}
-/* PAGE HEADER */
-.page-header{padding:120px 2rem 4rem;background:#0c0c0c;position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(232,184,75,0.06),transparent 70%)}
-.page-header-inner{max-width:860px;position:relative}
-.page-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
-.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,90px);letter-spacing:2px;line-height:0.95;margin-bottom:1rem}
-.page-sub{font-size:14px;color:rgba(245,242,236,0.45);max-width:520px;line-height:1.7;margin-bottom:1.5rem}
-.page-meta{display:flex;gap:1.5rem;flex-wrap:wrap}
-.meta-pill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-.meta-dot{width:6px;height:6px;border-radius:50%}
-/* INITIATIVES */
-.initiatives-wrap{padding:3rem 2rem 5rem}
-.cat-block{max-width:860px;margin-bottom:3.5rem}
-.cat-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
-.cat-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
-.cat-line{flex:1;height:1px;background:var(--border)}
-.cat-count{font-size:9px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.15)}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
-.initiative-card{background:var(--card-bg);padding:1.75rem;display:flex;flex-direction:column;transition:background 0.2s}
-.initiative-card:hover{background:#1a1a1a}
-.init-status{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.85rem}
-.init-status::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.status-active{color:#5ecf7e}.status-active::before{background:#5ecf7e;box-shadow:0 0 6px rgba(94,207,126,0.6)}
-.status-building{color:#e8b84b}.status-building::before{background:#e8b84b;box-shadow:0 0 6px rgba(232,184,75,0.5)}
-.status-planning{color:#70b0ff}.status-planning::before{background:#70b0ff;box-shadow:0 0 6px rgba(112,176,255,0.4)}
-.status-idea{color:#c084fc}.status-idea::before{background:#c084fc;box-shadow:0 0 6px rgba(192,132,252,0.4)}
-.initiative-card h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;line-height:1.1;margin-bottom:0.4rem}
-.init-vision{font-size:12px;color:rgba(245,242,236,0.45);line-height:1.65;margin-bottom:1.1rem;flex-grow:1}
-.init-next-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem}
-.init-next{font-size:12px;color:rgba(245,242,236,0.7);line-height:1.5;padding-left:0.75rem;border-left:2px solid rgba(232,184,75,0.35);margin-bottom:1.1rem}
-.init-footer{margin-top:auto;padding-top:1rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
-.init-link{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(232,184,75,0.3);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
-.init-link.ready{color:var(--gold)}.init-link.ready:hover{color:#fff}
-.init-owner{font-size:10px;color:var(--muted)}
-footer{border-top:1px solid var(--border);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* HERO */
+.hero{padding:100px 2rem 0;background:#0c0c0c;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.hero-glow{position:absolute;top:-120px;right:-60px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,0.07) 0%,transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-80px;left:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(112,176,255,0.04) 0%,transparent 70%);pointer-events:none}
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 90% at 80% 30%,black 20%,transparent 100%)}
+.hero-inner{position:relative;z-index:2;max-width:1100px;width:100%;margin:0 auto;padding-bottom:0}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+.hero-tag{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(232,184,75,0.35);padding:5px 14px;border-radius:2px}
+.hero-tagline{font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(245,242,236,0.25)}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,11vw,140px);letter-spacing:0px;line-height:0.88;margin-bottom:1.75rem}
+.hero-title em{font-style:normal;-webkit-text-stroke:1px var(--gold);color:transparent}
+.hero-sub{font-size:14px;color:rgba(245,242,236,0.38);max-width:460px;line-height:1.8;margin-bottom:2.5rem}
+
+/* STAT BAR */
+.stat-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;max-width:1100px;margin:0 auto;background:#0c0c0c;position:relative;z-index:2}
+.stat-item{flex:1;padding:1.1rem 1.5rem;border-right:1px solid var(--border);display:flex;align-items:center;gap:0.75rem}
+.stat-item:last-child{border-right:none}
+.stat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;letter-spacing:1px}
+.stat-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);line-height:1.2}
+
+/* MAIN LAYOUT */
+.main{display:grid;grid-template-columns:320px 1fr;max-width:1100px;margin:0 auto;min-height:calc(100vh - 60px);border-left:1px solid var(--border);border-right:1px solid var(--border)}
+
+/* LEFT — list */
+.list-col{border-right:1px solid var(--border);position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
+.cat-section{}
+.cat-section-header{padding:0.55rem 1.25rem;background:#0d0d0d;border-bottom:1px solid var(--border);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.cat-section-name{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.cat-section-count{font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:1px}
+.init-row{padding:0.9rem 1.25rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.12s;display:flex;align-items:center;gap:0.85rem;position:relative;overflow:hidden}
+.init-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.15s}
+.init-row:hover{background:#151515}
+.init-row.active{background:#1a1710}
+.init-row.active::after{transform:scaleX(1)}
+.init-row-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:box-shadow 0.2s}
+.init-row.active .init-row-dot{box-shadow:0 0 8px currentColor}
+.init-row-text{min-width:0}
+.init-row-name{font-size:13px;font-weight:600;line-height:1.3;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.init-row-status{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+
+/* RIGHT — detail */
+.detail-col{padding:3rem 2.5rem 5rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
+.detail-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;opacity:0.2;text-align:center}
+.detail-empty-arrow{font-size:32px;margin-bottom:0.5rem}
+.detail-empty p{font-size:13px;line-height:1.6;max-width:200px}
+.detail-panel{display:none}
+.detail-panel.visible{display:block;animation:fadeSlide 0.2s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.detail-breadcrumb{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.detail-breadcrumb span{color:rgba(255,255,255,0.15);margin:0 6px}
+.detail-status-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:2px;margin-bottom:1.5rem}
+.ds-active{background:rgba(94,207,126,0.1);color:var(--c-active)}
+.ds-building{background:rgba(232,184,75,0.1);color:var(--c-building)}
+.ds-planning{background:rgba(112,176,255,0.1);color:var(--c-planning)}
+.ds-idea{background:rgba(192,132,252,0.1);color:var(--c-idea)}
+.ds-dot{width:6px;height:6px;border-radius:50%}
+.ds-active .ds-dot{background:var(--c-active);box-shadow:0 0 8px rgba(94,207,126,0.8)}
+.ds-building .ds-dot{background:var(--c-building);box-shadow:0 0 8px rgba(232,184,75,0.7)}
+.ds-planning .ds-dot{background:var(--c-planning);box-shadow:0 0 8px rgba(112,176,255,0.6)}
+.ds-idea .ds-dot{background:var(--c-idea);box-shadow:0 0 8px rgba(192,132,252,0.6)}
+.detail-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5vw,72px);letter-spacing:1px;line-height:0.92;margin-bottom:2rem}
+.detail-rule{height:1px;background:var(--border);margin-bottom:1.75rem}
+.detail-section-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem}
+.detail-vision{font-size:14px;color:rgba(245,242,236,0.6);line-height:1.8;margin-bottom:2rem}
+.detail-next-box{background:#111;border:1px solid var(--border);border-left:3px solid var(--gold);padding:1.25rem 1.5rem;border-radius:0 4px 4px 0;margin-bottom:2rem}
+.detail-next-text{font-size:13px;color:rgba(245,242,236,0.75);line-height:1.7}
+.detail-meta{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:1.5rem;border-top:1px solid var(--border)}
+.detail-meta-item .detail-meta-key{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.detail-meta-item .detail-meta-val{font-size:13px;font-weight:600}
+
+footer{border-top:1px solid var(--border);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--gold);opacity:0.45}
 footer p{font-size:11px;color:var(--muted)}
-@media(max-width:640px){.cards-grid{grid-template-columns:1fr}.page-meta{gap:1rem}}
+
+@media(max-width:768px){
+  .main{grid-template-columns:1fr}
+  .list-col,.detail-col{position:static;height:auto;overflow-y:visible}
+  .detail-col{border-top:1px solid var(--border);padding:2rem 1.5rem 4rem}
+  .stat-bar{flex-wrap:wrap}
+  .stat-item{min-width:50%}
+  .hero-title{font-size:clamp(60px,16vw,100px)}
+}
 </style>
 </head>
 <body>
 
 <nav>
   <a class="nav-logo" href="index.html">The Fellowship</a>
-  <a class="nav-back" href="index.html">← Back to Home</a>
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Home
+  </a>
 </nav>
 
-<div class="page-header">
-  <div class="page-header-inner">
-    <div class="page-label">The Crew's Work</div>
-    <div class="page-title">Initiatives<br>Hub</div>
-    <p class="page-sub">Everything we're actively building — from the room we meet in, to the trips we're taking, to the culture we're creating. This is your ministry too.</p>
-    <div class="page-meta" id="page-meta"></div>
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="hero-tag">The Crew's Work</span>
+      <span class="hero-tagline">CPC Youth Georgetown</span>
+    </div>
+    <div class="hero-title">Initiatives<br><em>Hub</em></div>
+    <p class="hero-sub">Everything we're actively building — the room, the music, the programs, the summer, the community. This is your ministry too.</p>
   </div>
 </div>
+<div class="stat-bar" id="stat-bar"></div>
 
-<div class="initiatives-wrap" id="initiatives-wrap"></div>
+<div class="main">
+  <div class="list-col" id="list-col"></div>
+  <div class="detail-col" id="detail-col">
+    <div class="detail-empty">
+      <div class="detail-empty-arrow">←</div>
+      <p>Select an initiative to see the full vision and next steps.</p>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-logo">The Fellowship</div>
@@ -78,57 +148,112 @@ footer p{font-size:11px;color:var(--muted)}
 
 <script>
 const initiatives = [
-  {cat:"ROOM & SPACE", title:"Room Makeover", status:"building", vision:"A room that says 'you belong here' the second you walk in. Lounge side for hangout energy, activity side for music and gaming.", next:"Paint + wall feature already approved. Source couch (FB Marketplace / church budget). Hang CPC Youth glow sign — pick wall location.", owner:"James", slug:null},
-  {cat:"ROOM & SPACE", title:"AV & Gaming Setup", status:"building", vision:"Get the Switch 2 in, use both TVs, clean up the AV situation so Wednesday setup is instant. Gaming as legitimate community time.", next:"Map both TV locations and outlet setup. Source Switch 2. Decide on power switch solution (smart or physical).", owner:"James", slug:null},
-  {cat:"ROOM & SPACE", title:"Game Shelf", status:"idea", vision:"Visible, accessible shelf of games ready before the lesson starts. Community starts when they walk in the door.", next:"Inventory existing church games. Add a shelf unit. Stock with Uno, Codenames, Jenga, Wavelength, Exploding Kittens.", owner:"James", slug:null},
-  {cat:"ROOM & SPACE", title:"Student Photo Wall", status:"idea", vision:"A growing gallery near the entrance — photos from Wednesday nights, events, retreats. Visual proof this group has a history and you're part of it.", next:"Pick wall section near entrance. Get parental permission. Print first batch from recent events (~25¢ each at Walgreens).", owner:"James", slug:null},
-  {cat:"MUSIC", title:"Music & Worship Setup", status:"building", vision:"Build out a real worship setup in the youth room — not borrowed, not makeshift. A space where students can play, learn, and lead worship together.", next:"Source e-drum kit. Get a proper speaker stand. Look into mics for vocals. Inventory what's already in the room and what needs a permanent home.", owner:"James", slug:null},
-  {cat:"PROGRAM", title:"Prayer Wall", status:"building", vision:"A living wall where students write real requests and pray over each other. Laments and praises on index cards — right on brand with the Psalms series.", next:"Refresh cards from last semester. Add an anonymous submission box.", owner:"James", slug:null},
-  {cat:"PROGRAM", title:"Memory Verse Program", status:"idea", vision:"Open every Wednesday reciting the current verse together. Tie the Word to the body — make it a ritual, not a task.", next:"Decide cadence (weekly vs. monthly). Build verse list tied to Psalms series. Simple tracking — punch cards or leaderboard.", owner:"James", slug:null},
-  {cat:"PROGRAM", title:"Communication Group", status:"active", vision:"One channel, consistent cadence. Students and parents know what's coming and feel connected between Wednesdays.", next:"GroupMe is underway. Keep it active — post weekly recaps and event reminders consistently.", owner:"James", slug:null},
-  {cat:"SUMMER", title:"Summer Lock-In", status:"planning", vision:"Overnight event that builds memory and deepens relationships. Games, food, late-night conversation, morning devotional.", next:"Set July date. Lock venue and volunteers. Draft parent comms and waiver.", owner:"TBD", slug:null},
-  {cat:"SUMMER", title:"Video Game Tournament", status:"planning", vision:"Bracket-style Mario Kart / Smash. Low barrier, high energy — a great invite event for fringe students.", next:"Confirm venue setup. Build bracket format. Finalize June 14 date and invite list.", owner:"James", slug:null},
-  {cat:"SUMMER", title:"Summer Lineup", status:"planning", vision:"Summer goes fast. Pool day, party night, serve project, worship night — let them tell us what they want and lock it in now.", next:"Open discussion on a Wednesday. Present options, take a show of hands. Michelle Shaffer's place as potential party night host.", owner:"James", slug:null},
-  {cat:"MISSIONS & OUTREACH", title:"Reynosa Mission Trip", status:"active", vision:"This year's trip is already in motion — we're not leading it, but we're praying for the team going and staying close to Ethan as he may be part of it.", next:"Keep up with Ethan. Bring it before the group so they're praying for the team too.", owner:"Ethan + team", slug:null},
-  {cat:"MISSIONS & OUTREACH", title:"Car Wash Outreach", status:"idea", vision:"Get the group out of the building and serving the community. Simple, visible, low-barrier — and a great way to build team chemistry while doing something real.", next:"Pick a date and location. Figure out supplies and logistics. Decide: free or donation-based?", owner:"James", slug:null},
+  {cat:"ROOM & SPACE", title:"Room Makeover",         status:"building", vision:"A room that says 'you belong here' the second you walk in. Lounge side for real hangout energy, activity side for music and gaming. The physical space sends a message before a single word is spoken.", next:"Paint and wall feature already approved by session. Source couch (FB Marketplace or church budget). Hang the CPC Youth glow sign — pick the wall location this week.", owner:"James"},
+  {cat:"ROOM & SPACE", title:"AV & Gaming Setup",     status:"building", vision:"Both TVs in use, Switch 2 in the room, AV situation clean so Wednesday setup takes two minutes not twenty. Gaming isn't a distraction — it's legitimate community time and a real draw for new kids.", next:"Map both TV locations and outlet setup. Source Switch 2. Decide on power switch solution — smart plugs (app-controlled) or simple physical switches at the door.", owner:"James"},
+  {cat:"ROOM & SPACE", title:"Game Shelf",            status:"idea",     vision:"A visible, accessible shelf of games ready before the lesson starts. Community happens before and after the program — give them something to do the second they walk in.", next:"Inventory existing church games. Add a dedicated shelf unit. Stock it: Uno, Codenames, Jenga, Wavelength, Exploding Kittens.", owner:"James"},
+  {cat:"ROOM & SPACE", title:"Student Photo Wall",    status:"idea",     vision:"A growing gallery near the entrance — photos from Wednesday nights, retreats, events. Visual proof this group has a real history and you're part of it. Makes newcomers feel like they're walking into something.", next:"Pick a wall section near the entrance. Draft a parental permission slip. Print first batch from recent events — Walgreens runs about 25¢ per print.", owner:"James"},
+  {cat:"MUSIC",        title:"Music & Worship Setup", status:"building", vision:"A real worship setup in the youth room — not borrowed gear, not makeshift. A space where students can play, learn, and eventually lead worship together. We already have cajon, bass, guitar, piano, and a speaker. That's a foundation worth building on.", next:"Source e-drum kit (used is fine). Get a proper speaker stand — speaker on the floor isn't it. Price out a vocal mic and stand. Map out permanent homes for each instrument in the room.", owner:"James"},
+  {cat:"PROGRAM",      title:"Prayer Wall",           status:"building", vision:"A living wall where students write real requests and pray over each other. Index cards on cork — laments and praises made physical and visible. The Psalms are the original prayer wall. This is that, but in the youth room.", next:"Refresh the cards from last semester. Add an anonymous request box so students who aren't ready to write their name can still participate.", owner:"James"},
+  {cat:"PROGRAM",      title:"Memory Verse Program",  status:"idea",     vision:"Open every Wednesday by reciting the current verse together. Tie the Word to the body — make it a ritual, not a task. If they memorize ten verses this year, that's ten verses they carry for life.", next:"Decide cadence (weekly vs. monthly — monthly is more achievable to start). Build the verse list tied to the Psalms series. Simple accountability: punch cards or a running leaderboard on the wall.", owner:"James"},
+  {cat:"PROGRAM",      title:"Communication Group",   status:"active",   vision:"One channel, consistent cadence. Students and parents know what's coming and feel connected between Wednesdays. GroupMe is already running — the initiative now is staying disciplined about using it well.", next:"Keep it active. Post a weekly recap every Wednesday night or Thursday morning. Drop event reminders 3–4 days out. Don't let it go quiet for two weeks in a row.", owner:"James"},
+  {cat:"SUMMER",       title:"Summer Lock-In",        status:"planning", vision:"An overnight event that builds memory and deepens relationships in a way a two-hour Wednesday can't. Games, food, late-night real conversation, morning devotional. Classic for a reason.", next:"Set a July date and hold it. Lock venue and volunteer count. Draft parent communication and waiver — give 4+ weeks notice.", owner:"TBD"},
+  {cat:"SUMMER",       title:"Video Game Tournament", status:"planning", vision:"Bracket-style Mario Kart or Smash tournament — or both. Low barrier to entry, high energy, and a genuinely great invite event. The kind of thing a kid brings a friend to.", next:"Confirm venue and TV setup. Build the bracket format. Finalize the June 14 date and get the invite list circulating at least two weeks out.", owner:"James"},
+  {cat:"SUMMER",       title:"Summer Lineup",         status:"planning", vision:"Summer goes fast and an unplanned summer is a wasted one. Pool day, party night, serve project, worship night — the students should help decide. Give them real ownership over the calendar.", next:"Open it up on a Wednesday night — present the options on the board, take a literal show of hands. Michelle Shaffer's place is a potential host for a party night.", owner:"James"},
+  {cat:"MISSIONS & OUTREACH", title:"Reynosa Mission Trip", status:"active",  vision:"This year's trip is already in motion and we're not the lead on it — but we're connected through Ethan who may be going. Mission starts in prayer. If the group is praying for the team in Reynosa, they're participating in it.", next:"Stay close to Ethan. Find a Wednesday to bring it before the group and pray specifically for the team going. Make it real, not abstract.", owner:"Ethan + team"},
+  {cat:"MISSIONS & OUTREACH", title:"Car Wash Outreach",   status:"idea",    vision:"Get the group out of the building and into the community doing something visible and simple. Low-barrier, high-unity — it builds team chemistry and puts faces in the neighborhood.", next:"Pick a date and a location. Figure out supplies. Decide the model: completely free as a gift to the community, or donation-based to fund a specific goal.", owner:"James"},
 ];
 
 const statusLabel = {active:"Active",building:"In Progress",planning:"Planning",idea:"On Deck"};
+const statusColor = {active:"var(--c-active)",building:"var(--c-building)",planning:"var(--c-planning)",idea:"var(--c-idea)"};
 const cats = [...new Set(initiatives.map(i=>i.cat))];
 
-// page meta
-const metaEl = document.getElementById('page-meta');
+// STAT BAR
 const statusCounts = {};
-initiatives.forEach(i => statusCounts[i.status] = (statusCounts[i.status]||0)+1);
-const metaColors = {active:"#5ecf7e",building:"#e8b84b",planning:"#70b0ff",idea:"#c084fc"};
-Object.entries(statusCounts).forEach(([s,n])=>{
-  metaEl.innerHTML += `<span class="meta-pill"><span class="meta-dot" style="background:${metaColors[s]}"></span>${n} ${statusLabel[s]}</span>`;
+initiatives.forEach(i => statusCounts[i.status]=(statusCounts[i.status]||0)+1);
+const statBar = document.getElementById('stat-bar');
+['active','building','planning','idea'].forEach(s => {
+  if(!statusCounts[s]) return;
+  const el = document.createElement('div');
+  el.className='stat-item';
+  el.innerHTML=`<div class="stat-dot" style="background:${statusColor[s]}"></div><div><div class="stat-num">${statusCounts[s]}</div><div class="stat-label">${statusLabel[s]}</div></div>`;
+  statBar.appendChild(el);
+});
+const tot = document.createElement('div');
+tot.className='stat-item';
+tot.innerHTML=`<div><div class="stat-num">${initiatives.length}</div><div class="stat-label">Total</div></div>`;
+statBar.appendChild(tot);
+
+// LIST
+const listCol = document.getElementById('list-col');
+const detailCol = document.getElementById('detail-col');
+let activeRow = null;
+
+cats.forEach(cat => {
+  const items = initiatives.filter(i=>i.cat===cat);
+  const sec = document.createElement('div');
+  sec.className='cat-section';
+  const hdr = document.createElement('div');
+  hdr.className='cat-section-header';
+  hdr.innerHTML=`<span class="cat-section-name">${cat}</span><span class="cat-section-count">${items.length}</span>`;
+  sec.appendChild(hdr);
+
+  items.forEach(item => {
+    const row = document.createElement('div');
+    row.className='init-row';
+    row.innerHTML=`
+      <div class="init-row-dot" style="color:${statusColor[item.status]};background:${statusColor[item.status]}"></div>
+      <div class="init-row-text">
+        <div class="init-row-name">${item.title}</div>
+        <div class="init-row-status">${statusLabel[item.status]}</div>
+      </div>
+    `;
+    row.addEventListener('click', () => selectItem(item, row));
+    sec.appendChild(row);
+  });
+  listCol.appendChild(sec);
 });
 
-// render by category
-const wrap = document.getElementById('initiatives-wrap');
-cats.forEach(cat => {
-  const catItems = initiatives.filter(i=>i.cat===cat);
-  const block = document.createElement('div');
-  block.className = 'cat-block';
-  block.innerHTML = `<div class="cat-header"><span class="cat-label">${cat}</span><span class="cat-line"></span><span class="cat-count">${catItems.length} initiative${catItems.length>1?'s':''}</span></div><div class="cards-grid" id="grid-${cat.replace(/\W/g,'_')}"></div>`;
-  wrap.appendChild(block);
-  const grid = block.querySelector('.cards-grid');
-  catItems.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'initiative-card';
-    const linkHtml = item.slug ? `<a class="init-link ready" href="${item.slug}.html">Full Page →</a>` : `<span class="init-link">Page Coming Soon</span>`;
-    card.innerHTML = `
-      <div class="init-status status-${item.status}">${statusLabel[item.status]}</div>
-      <h4>${item.title}</h4>
-      <p class="init-vision">${item.vision}</p>
-      <div class="init-next-label">Next Step</div>
-      <div class="init-next">${item.next}</div>
-      <div class="init-footer">${linkHtml}<span class="init-owner">${item.owner}</span></div>
-    `;
-    grid.appendChild(card);
-  });
-});
+function selectItem(item, row) {
+  if(activeRow) activeRow.classList.remove('active');
+  activeRow = row;
+  row.classList.add('active');
+
+  detailCol.innerHTML = `
+    <div class="detail-panel visible">
+      <div class="detail-breadcrumb">Initiatives <span>›</span> ${item.cat}</div>
+      <div class="detail-status-badge ds-${item.status}">
+        <span class="ds-dot"></span>${statusLabel[item.status]}
+      </div>
+      <div class="detail-title">${item.title}</div>
+      <div class="detail-rule"></div>
+      <div class="detail-section-label">Vision</div>
+      <div class="detail-vision">${item.vision}</div>
+      <div class="detail-section-label">Next Step</div>
+      <div class="detail-next-box">
+        <div class="detail-next-text">${item.next}</div>
+      </div>
+      <div class="detail-meta">
+        <div class="detail-meta-item">
+          <div class="detail-meta-key">Owner</div>
+          <div class="detail-meta-val">${item.owner}</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-key">Category</div>
+          <div class="detail-meta-val">${item.cat}</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-key">Status</div>
+          <div class="detail-meta-val">${statusLabel[item.status]}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  if(window.innerWidth <= 768) detailCol.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// auto-select first on load
+listCol.querySelector('.init-row')?.click();
 </script>
 </body>
 </html>
