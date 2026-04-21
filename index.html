@@ -115,8 +115,8 @@ footer p{font-size:11px;color:var(--muted)}
     <div class="hero-tag">Christ Presbyterian Church · Georgetown TX</div>
     <div class="carousel-wrap"><div class="carousel-track" id="track"></div></div>
     <div class="name-dots" id="dots"></div>
-    <p class="hero-sub">Wednesday nights. Rooted in the Word. Built for community. Come as you are.</p>
-    <a href="#study" class="hero-cta">Join Us Wednesday <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <p class="hero-sub">Wednesday nights - sing hymns 🛐 break bread 🍞 prayer wall 🙏 mario kart ⭐️ Faithfully building community.</p>
+    <a href="#study" class="hero-cta">Join Us Wednesday @ 6:15p<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
   </div>
   <div class="hero-badge"><div class="day">7PM</div>EVERY<br>WEDNESDAY</div>
 </section>
@@ -276,7 +276,7 @@ function goTo(idx) {
   document.querySelectorAll('.carousel-item')[current].classList.add('active');
   document.querySelectorAll('.dot')[current].classList.add('active');
   clearInterval(timer);
-  timer = setInterval(()=>goTo((current+1)%names.length), 3000);
+  timer = setInterval(()=>goTo((current+1)%names.length), 8000);
 }
 
 timer = setInterval(()=>goTo((current+1)%names.length), 3000);
