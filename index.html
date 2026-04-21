@@ -99,7 +99,46 @@ section{padding:4.5rem 2rem}
 footer{border-top:1px solid var(--border);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--gold);opacity:0.45}
 footer p{font-size:11px;color:var(--muted)}
-@media(max-width:640px){.study-card,.prayer-inner{grid-template-columns:1fr}.hero-badge{display:none}nav .nav-links{display:none}.history-row{grid-template-columns:40px 1fr}.wk-date,.wk-notes{display:none}}
+/* INITIATIVES SUMMARY */
+.initiatives-section{background:var(--black)}
+.initiatives-header-row{display:flex;align-items:baseline;justify-content:space-between;max-width:860px;margin-bottom:2rem}
+.init-view-all{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);text-decoration:none;opacity:0.7;transition:opacity 0.2s}
+.init-view-all:hover{opacity:1}
+.init-accordion{max-width:860px;display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+/* category row */
+.init-cat-row{background:var(--card-bg);cursor:pointer;user-select:none}
+.init-cat-header{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:1rem;padding:1.1rem 1.5rem;transition:background 0.2s}
+.init-cat-row:hover .init-cat-header{background:#1a1a1a}
+.init-cat-left{display:flex;align-items:center;gap:1rem}
+.init-cat-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1.5px}
+.init-cat-pills{display:flex;gap:6px;flex-wrap:wrap}
+.init-pill{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:2px}
+.pill-active{background:rgba(94,207,126,0.12);color:#5ecf7e}
+.pill-building{background:rgba(232,184,75,0.12);color:#e8b84b}
+.pill-planning{background:rgba(112,176,255,0.12);color:#70b0ff}
+.pill-idea{background:rgba(192,132,252,0.12);color:#c084fc}
+.init-cat-count{font-size:11px;color:var(--muted)}
+.init-cat-chevron{color:var(--muted);font-size:11px;transition:transform 0.25s}
+.init-cat-row.open .init-cat-chevron{transform:rotate(180deg)}
+/* dropdown panel */
+.init-cat-panel{display:none;border-top:1px solid var(--border)}
+.init-cat-row.open .init-cat-panel{display:block}
+.init-items-list{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.init-item{background:#111;padding:1rem 1.5rem 1rem 2rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;transition:background 0.2s}
+.init-item:hover{background:#161616}
+.init-item-left{}
+.init-item-name{font-size:13px;font-weight:700;margin-bottom:3px}
+.init-item-next{font-size:11px;color:rgba(245,242,236,0.4);line-height:1.5}
+.init-item-status{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;margin-top:3px}
+.init-item-status::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.status-active{color:#5ecf7e}.status-active::before{background:#5ecf7e}
+.status-building{color:#e8b84b}.status-building::before{background:#e8b84b}
+.status-planning{color:#70b0ff}.status-planning::before{background:#70b0ff}
+.status-idea{color:#c084fc}.status-idea::before{background:#c084fc}
+.init-panel-footer{padding:0.75rem 1.5rem;display:flex;justify-content:flex-end;border-top:1px solid var(--border);background:#0e0e0e}
+.init-panel-link{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(232,184,75,0.5);text-decoration:none;transition:color 0.2s}
+.init-panel-link:hover{color:var(--gold)}
+@media(max-width:640px){.study-card,.prayer-inner{grid-template-columns:1fr}.hero-badge{display:none}nav .nav-links{display:none}.history-row{grid-template-columns:40px 1fr}.wk-date,.wk-notes{display:none}.initiatives-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -109,6 +148,7 @@ footer p{font-size:11px;color:var(--muted)}
     <li><a href="#prayer">Prayer</a></li>
     <li><a href="#study">Study</a></li>
     <li><a href="#events">Events</a></li>
+    <li><a href="#initiatives">Initiatives</a></li>
     <li><a href="#history">Archive</a></li>
   </ul>
 </nav>
@@ -195,7 +235,19 @@ footer p{font-size:11px;color:var(--muted)}
   </div>
 </section>
 
-<!-- STUDY ARCHIVE — moved to bottom -->
+<!-- INITIATIVES HUB -->
+<section class="initiatives-section" id="initiatives">
+  <div class="initiatives-header-row">
+    <div>
+      <div class="section-label">The Crew's Work</div>
+      <div class="section-title">Initiatives Hub</div>
+    </div>
+    <a class="init-view-all" href="initiatives.html">View All →</a>
+  </div>
+  <div class="init-accordion" id="init-accordion"></div>
+</section>
+
+<!-- STUDY ARCHIVE -->
 <section class="history-section" id="history">
   <div class="section-label">Previous Weeks</div>
   <div class="section-title">Study Archive</div>
@@ -293,4 +345,71 @@ function goTo(idx) {
 }
 
 timer = setInterval(()=>goTo((current+1)%names.length), 8000);
+
+// INITIATIVES ACCORDION
+const initiatives = [
+  {cat:"ROOM & SPACE", title:"Room Makeover", status:"building", next:"Paint + wall feature approved. Source couch. Hang glow sign.", owner:"James"},
+  {cat:"ROOM & SPACE", title:"AV & Gaming Setup", status:"building", next:"Map both TVs. Source Switch 2. Decide power switch solution.", owner:"James"},
+  {cat:"ROOM & SPACE", title:"Game Shelf", status:"idea", next:"Inventory existing games. Add shelf unit.", owner:"James"},
+  {cat:"ROOM & SPACE", title:"Student Photo Wall", status:"idea", next:"Pick wall section. Get parental permission. Print first batch.", owner:"James"},
+  {cat:"MUSIC", title:"Music & Worship Setup", status:"building", next:"Source e-drum kit. Speaker stand. Look into mics for vocals.", owner:"James"},
+  {cat:"PROGRAM", title:"Prayer Wall", status:"building", next:"Refresh cards. Add anonymous submission box.", owner:"James"},
+  {cat:"PROGRAM", title:"Memory Verse Program", status:"idea", next:"Decide cadence. Build verse list tied to Psalms series.", owner:"James"},
+  {cat:"PROGRAM", title:"Communication Group", status:"active", next:"GroupMe is underway. Keep it active with weekly recaps.", owner:"James"},
+  {cat:"SUMMER", title:"Summer Lock-In", status:"planning", next:"Set July date. Lock venue and volunteers.", owner:"TBD"},
+  {cat:"SUMMER", title:"Video Game Tournament", status:"planning", next:"Confirm setup. Finalize June 14 date and invite list.", owner:"James"},
+  {cat:"SUMMER", title:"Summer Lineup", status:"planning", next:"Open discussion on a Wednesday. Take a show of hands.", owner:"James"},
+  {cat:"MISSIONS & OUTREACH", title:"Reynosa Mission Trip", status:"active", next:"Keep up with Ethan. Bring before the group for prayer.", owner:"Ethan + team"},
+  {cat:"MISSIONS & OUTREACH", title:"Car Wash Outreach", status:"idea", next:"Pick a date. Figure out supplies. Free or donation-based?", owner:"James"},
+];
+
+const statusLabel = {active:"Active",building:"In Progress",planning:"Planning",idea:"On Deck"};
+const cats = [...new Set(initiatives.map(i=>i.cat))];
+const accordion = document.getElementById('init-accordion');
+
+cats.forEach((cat, ci) => {
+  const items = initiatives.filter(i=>i.cat===cat);
+  // count statuses for pills
+  const counts = {};
+  items.forEach(i => counts[i.status]=(counts[i.status]||0)+1);
+  const pillsHtml = Object.entries(counts).map(([s,n])=>
+    `<span class="init-pill pill-${s}">${n} ${statusLabel[s]}</span>`
+  ).join('');
+
+  const row = document.createElement('div');
+  row.className = 'init-cat-row' + (ci===0?' open':'');
+  row.innerHTML = `
+    <div class="init-cat-header">
+      <div class="init-cat-left">
+        <span class="init-cat-name">${cat}</span>
+        <div class="init-cat-pills">${pillsHtml}</div>
+      </div>
+      <span class="init-cat-count">${items.length} initiative${items.length>1?'s':''}</span>
+      <span class="init-cat-chevron">▾</span>
+    </div>
+    <div class="init-cat-panel">
+      <div class="init-items-list">
+        ${items.map(item=>`
+          <div class="init-item">
+            <div class="init-item-left">
+              <div class="init-item-name">${item.title}</div>
+              <div class="init-item-next">${item.next}</div>
+            </div>
+            <div class="init-item-status status-${item.status}">${statusLabel[item.status]}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="init-panel-footer">
+        <a class="init-panel-link" href="initiatives.html">See full detail →</a>
+      </div>
+    </div>
+  `;
+  row.querySelector('.init-cat-header').addEventListener('click', ()=>{
+    row.classList.toggle('open');
+  });
+  accordion.appendChild(row);
+});
+
 </script>
+</body>
+</html>
