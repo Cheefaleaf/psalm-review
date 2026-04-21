@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Initiatives — The Fellowship CPC Youth</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#f5f2ec;--gold:#e8b84b;--gold-dark:#c49a2a;--card-bg:#141414;--border:rgba(255,255,255,0.08);--muted:#777}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--gold);text-decoration:none}
+.nav-back{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(245,242,236,0.5);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.nav-back:hover{color:var(--white)}
+/* PAGE HEADER */
+.page-header{padding:120px 2rem 4rem;background:#0c0c0c;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(232,184,75,0.06),transparent 70%)}
+.page-header-inner{max-width:860px;position:relative}
+.page-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,90px);letter-spacing:2px;line-height:0.95;margin-bottom:1rem}
+.page-sub{font-size:14px;color:rgba(245,242,236,0.45);max-width:520px;line-height:1.7;margin-bottom:1.5rem}
+.page-meta{display:flex;gap:1.5rem;flex-wrap:wrap}
+.meta-pill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.meta-dot{width:6px;height:6px;border-radius:50%}
+/* INITIATIVES */
+.initiatives-wrap{padding:3rem 2rem 5rem}
+.cat-block{max-width:860px;margin-bottom:3.5rem}
+.cat-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.cat-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.cat-line{flex:1;height:1px;background:var(--border)}
+.cat-count{font-size:9px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.15)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.initiative-card{background:var(--card-bg);padding:1.75rem;display:flex;flex-direction:column;transition:background 0.2s}
+.initiative-card:hover{background:#1a1a1a}
+.init-status{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.85rem}
+.init-status::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.status-active{color:#5ecf7e}.status-active::before{background:#5ecf7e;box-shadow:0 0 6px rgba(94,207,126,0.6)}
+.status-building{color:#e8b84b}.status-building::before{background:#e8b84b;box-shadow:0 0 6px rgba(232,184,75,0.5)}
+.status-planning{color:#70b0ff}.status-planning::before{background:#70b0ff;box-shadow:0 0 6px rgba(112,176,255,0.4)}
+.status-idea{color:#c084fc}.status-idea::before{background:#c084fc;box-shadow:0 0 6px rgba(192,132,252,0.4)}
+.initiative-card h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;line-height:1.1;margin-bottom:0.4rem}
+.init-vision{font-size:12px;color:rgba(245,242,236,0.45);line-height:1.65;margin-bottom:1.1rem;flex-grow:1}
+.init-next-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem}
+.init-next{font-size:12px;color:rgba(245,242,236,0.7);line-height:1.5;padding-left:0.75rem;border-left:2px solid rgba(232,184,75,0.35);margin-bottom:1.1rem}
+.init-footer{margin-top:auto;padding-top:1rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
+.init-link{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(232,184,75,0.3);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.init-link.ready{color:var(--gold)}.init-link.ready:hover{color:#fff}
+.init-owner{font-size:10px;color:var(--muted)}
+footer{border-top:1px solid var(--border);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--gold);opacity:0.45}
+footer p{font-size:11px;color:var(--muted)}
+@media(max-width:640px){.cards-grid{grid-template-columns:1fr}.page-meta{gap:1rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">The Fellowship</a>
+  <a class="nav-back" href="index.html">← Back to Home</a>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">The Crew's Work</div>
+    <div class="page-title">Initiatives<br>Hub</div>
+    <p class="page-sub">Everything we're actively building — from the room we meet in, to the trips we're taking, to the culture we're creating. This is your ministry too.</p>
+    <div class="page-meta" id="page-meta"></div>
+  </div>
+</div>
+
+<div class="initiatives-wrap" id="initiatives-wrap"></div>
+
+<footer>
+  <div class="footer-logo">The Fellowship</div>
+  <p>Christ Presbyterian Church</p>
+</footer>
+
+<script>
+const initiatives = [
+  {cat:"ROOM & SPACE", title:"Room Makeover", status:"building", vision:"A room that says 'you belong here' the second you walk in. Lounge side for hangout energy, activity side for music and gaming.", next:"Paint + wall feature already approved. Source couch (FB Marketplace / church budget). Hang CPC Youth glow sign — pick wall location.", owner:"James", slug:null},
+  {cat:"ROOM & SPACE", title:"AV & Gaming Setup", status:"building", vision:"Get the Switch 2 in, use both TVs, clean up the AV situation so Wednesday setup is instant. Gaming as legitimate community time.", next:"Map both TV locations and outlet setup. Source Switch 2. Decide on power switch solution (smart or physical).", owner:"James", slug:null},
+  {cat:"ROOM & SPACE", title:"Game Shelf", status:"idea", vision:"Visible, accessible shelf of games ready before the lesson starts. Community starts when they walk in the door.", next:"Inventory existing church games. Add a shelf unit. Stock with Uno, Codenames, Jenga, Wavelength, Exploding Kittens.", owner:"James", slug:null},
+  {cat:"ROOM & SPACE", title:"Student Photo Wall", status:"idea", vision:"A growing gallery near the entrance — photos from Wednesday nights, events, retreats. Visual proof this group has a history and you're part of it.", next:"Pick wall section near entrance. Get parental permission. Print first batch from recent events (~25¢ each at Walgreens).", owner:"James", slug:null},
+  {cat:"MUSIC", title:"Music & Worship Setup", status:"building", vision:"Build out a real worship setup in the youth room — not borrowed, not makeshift. A space where students can play, learn, and lead worship together.", next:"Source e-drum kit. Get a proper speaker stand. Look into mics for vocals. Inventory what's already in the room and what needs a permanent home.", owner:"James", slug:null},
+  {cat:"PROGRAM", title:"Prayer Wall", status:"building", vision:"A living wall where students write real requests and pray over each other. Laments and praises on index cards — right on brand with the Psalms series.", next:"Refresh cards from last semester. Add an anonymous submission box.", owner:"James", slug:null},
+  {cat:"PROGRAM", title:"Memory Verse Program", status:"idea", vision:"Open every Wednesday reciting the current verse together. Tie the Word to the body — make it a ritual, not a task.", next:"Decide cadence (weekly vs. monthly). Build verse list tied to Psalms series. Simple tracking — punch cards or leaderboard.", owner:"James", slug:null},
+  {cat:"PROGRAM", title:"Communication Group", status:"active", vision:"One channel, consistent cadence. Students and parents know what's coming and feel connected between Wednesdays.", next:"GroupMe is underway. Keep it active — post weekly recaps and event reminders consistently.", owner:"James", slug:null},
+  {cat:"SUMMER", title:"Summer Lock-In", status:"planning", vision:"Overnight event that builds memory and deepens relationships. Games, food, late-night conversation, morning devotional.", next:"Set July date. Lock venue and volunteers. Draft parent comms and waiver.", owner:"TBD", slug:null},
+  {cat:"SUMMER", title:"Video Game Tournament", status:"planning", vision:"Bracket-style Mario Kart / Smash. Low barrier, high energy — a great invite event for fringe students.", next:"Confirm venue setup. Build bracket format. Finalize June 14 date and invite list.", owner:"James", slug:null},
+  {cat:"SUMMER", title:"Summer Lineup", status:"planning", vision:"Summer goes fast. Pool day, party night, serve project, worship night — let them tell us what they want and lock it in now.", next:"Open discussion on a Wednesday. Present options, take a show of hands. Michelle Shaffer's place as potential party night host.", owner:"James", slug:null},
+  {cat:"MISSIONS & OUTREACH", title:"Reynosa Mission Trip", status:"active", vision:"This year's trip is already in motion — we're not leading it, but we're praying for the team going and staying close to Ethan as he may be part of it.", next:"Keep up with Ethan. Bring it before the group so they're praying for the team too.", owner:"Ethan + team", slug:null},
+  {cat:"MISSIONS & OUTREACH", title:"Car Wash Outreach", status:"idea", vision:"Get the group out of the building and serving the community. Simple, visible, low-barrier — and a great way to build team chemistry while doing something real.", next:"Pick a date and location. Figure out supplies and logistics. Decide: free or donation-based?", owner:"James", slug:null},
+];
+
+const statusLabel = {active:"Active",building:"In Progress",planning:"Planning",idea:"On Deck"};
+const cats = [...new Set(initiatives.map(i=>i.cat))];
+
+// page meta
+const metaEl = document.getElementById('page-meta');
+const statusCounts = {};
+initiatives.forEach(i => statusCounts[i.status] = (statusCounts[i.status]||0)+1);
+const metaColors = {active:"#5ecf7e",building:"#e8b84b",planning:"#70b0ff",idea:"#c084fc"};
+Object.entries(statusCounts).forEach(([s,n])=>{
+  metaEl.innerHTML += `<span class="meta-pill"><span class="meta-dot" style="background:${metaColors[s]}"></span>${n} ${statusLabel[s]}</span>`;
+});
+
+// render by category
+const wrap = document.getElementById('initiatives-wrap');
+cats.forEach(cat => {
+  const catItems = initiatives.filter(i=>i.cat===cat);
+  const block = document.createElement('div');
+  block.className = 'cat-block';
+  block.innerHTML = `<div class="cat-header"><span class="cat-label">${cat}</span><span class="cat-line"></span><span class="cat-count">${catItems.length} initiative${catItems.length>1?'s':''}</span></div><div class="cards-grid" id="grid-${cat.replace(/\W/g,'_')}"></div>`;
+  wrap.appendChild(block);
+  const grid = block.querySelector('.cards-grid');
+  catItems.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'initiative-card';
+    const linkHtml = item.slug ? `<a class="init-link ready" href="${item.slug}.html">Full Page →</a>` : `<span class="init-link">Page Coming Soon</span>`;
+    card.innerHTML = `
+      <div class="init-status status-${item.status}">${statusLabel[item.status]}</div>
+      <h4>${item.title}</h4>
+      <p class="init-vision">${item.vision}</p>
+      <div class="init-next-label">Next Step</div>
+      <div class="init-next">${item.next}</div>
+      <div class="init-footer">${linkHtml}<span class="init-owner">${item.owner}</span></div>
+    `;
+    grid.appendChild(card);
+  });
+});
+</script>
+</body>
+</html>
