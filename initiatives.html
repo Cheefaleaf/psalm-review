@@ -158,6 +158,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .cm-cancel{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;padding:13px 20px;border-radius:2px;background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.35);cursor:pointer;transition:all 0.2s}
 .cm-cancel:hover{border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.6)}
 
+
+/* PASSCODE MODAL */
+.passcode-overlay{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:1rem}
+.passcode-overlay.show{display:flex}
+.passcode-box{background:#161616;border:1px solid rgba(232,184,75,0.25);border-radius:6px;padding:2rem;max-width:340px;width:100%;animation:modalIn 0.2s ease;text-align:center}
+.passcode-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--white);margin-bottom:0.4rem}
+.passcode-sub{font-size:12px;color:rgba(255,255,255,0.3);margin-bottom:1.5rem;letter-spacing:0.5px}
+.passcode-input{width:100%;background:#0f0f0f;border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--white);outline:none;transition:border-color 0.2s;margin-bottom:1rem;text-align:center;letter-spacing:3px}
+.passcode-input:focus{border-color:rgba(232,184,75,0.5)}
+.passcode-input::placeholder{letter-spacing:1px;color:rgba(255,255,255,0.2)}
+.passcode-error{font-size:11px;color:#e05050;margin-bottom:1rem;min-height:16px;transition:opacity 0.2s}
+.passcode-confirm{width:100%;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px;border-radius:2px;background:var(--gold);color:var(--black);border:none;cursor:pointer;transition:background 0.2s}
+.passcode-confirm:hover{background:var(--gold-dark)}
+.passcode-cancel{display:block;margin-top:0.75rem;font-size:10px;color:rgba(255,255,255,0.2);cursor:pointer;letter-spacing:1px;text-transform:uppercase;font-weight:700;background:none;border:none;width:100%;transition:color 0.2s}
+.passcode-cancel:hover{color:rgba(255,255,255,0.4)}
+
 /* TOAST */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);border-radius:4px;padding:14px 24px;font-size:13px;z-index:600;display:none;align-items:center;gap:10px;white-space:nowrap;pointer-events:none}
 .toast.show{display:flex;animation:toastIn 0.3s ease forwards}
@@ -226,6 +242,18 @@ footer p{font-size:11px;color:var(--muted)}
     <button class="edit-mode-btn" id="edit-mode-btn" onclick="toggleEditMode()">✏️ Edit</button>
   </div>
   <div id="initiatives-list"></div>
+</div>
+
+<!-- PASSCODE MODAL -->
+<div class="passcode-overlay" id="passcode-modal">
+  <div class="passcode-box">
+    <div class="passcode-title">Edit Mode</div>
+    <div class="passcode-sub">Admin passcode required</div>
+    <input class="passcode-input" id="passcode-input" type="password" placeholder="passcode" maxlength="30" autocomplete="off" />
+    <div class="passcode-error" id="passcode-error"></div>
+    <button class="passcode-confirm" id="passcode-confirm">Unlock Edit Mode</button>
+    <button class="passcode-cancel" id="passcode-cancel">Cancel</button>
+  </div>
 </div>
 
 <!-- CLAIM MODAL -->
@@ -647,13 +675,58 @@ function attachEvents() {
 }
 
 // ─── EDIT MODE ─────────────────────────────────────────────────────────────
+const EDIT_PASSCODE = 'edit';
+let passcodeUnlocked = false;
+
 window.toggleEditMode = function() {
-  editMode = !editMode;
-  document.getElementById('edit-mode-btn').classList.toggle('active', editMode);
-  document.getElementById('edit-banner').classList.toggle('show', editMode);
-  buildList(activeFilter);
-  if (editMode) showToast('Edit mode on — save each step after editing','info');
+  if (editMode) {
+    // Turning OFF — no passcode needed
+    editMode = false;
+    passcodeUnlocked = false;
+    document.getElementById('edit-mode-btn').classList.remove('active');
+    document.getElementById('edit-banner').classList.remove('show');
+    buildList(activeFilter);
+    return;
+  }
+  // Turning ON — require passcode
+  document.getElementById('passcode-modal').classList.add('show');
+  document.getElementById('passcode-input').value = '';
+  document.getElementById('passcode-error').textContent = '';
+  setTimeout(() => document.getElementById('passcode-input').focus(), 100);
 }
+
+function confirmPasscode() {
+  const val = document.getElementById('passcode-input').value.trim();
+  if (val !== EDIT_PASSCODE) {
+    const err = document.getElementById('passcode-error');
+    err.textContent = 'Incorrect passcode';
+    const inp = document.getElementById('passcode-input');
+    inp.style.borderColor = 'rgba(232,50,50,0.5)';
+    inp.select();
+    setTimeout(() => { inp.style.borderColor = ''; err.textContent = ''; }, 1800);
+    return;
+  }
+  document.getElementById('passcode-modal').classList.remove('show');
+  editMode = true;
+  passcodeUnlocked = true;
+  document.getElementById('edit-mode-btn').classList.add('active');
+  document.getElementById('edit-banner').classList.add('show');
+  buildList(activeFilter);
+  showToast('Edit mode on — save each step after editing', 'info');
+}
+
+document.getElementById('passcode-confirm').addEventListener('click', confirmPasscode);
+document.getElementById('passcode-cancel').addEventListener('click', () => {
+  document.getElementById('passcode-modal').classList.remove('show');
+});
+document.getElementById('passcode-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') confirmPasscode();
+  if (e.key === 'Escape') document.getElementById('passcode-modal').classList.remove('show');
+});
+document.getElementById('passcode-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('passcode-modal'))
+    document.getElementById('passcode-modal').classList.remove('show');
+});
 
 // ─── CLAIM MODAL ───────────────────────────────────────────────────────────
 function openClaimModal(initiative, step) {
