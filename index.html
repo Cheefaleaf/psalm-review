@@ -41,6 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-badge{position:absolute;right:3rem;bottom:3rem;width:100px;height:100px;border-radius:50%;border:1px solid rgba(232,184,75,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--gold);opacity:0.65}
 .hero-badge .day{font-size:24px;line-height:1}
 section{padding:4.5rem 2rem}
+#study{padding-bottom:3rem}
 .section-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,54px);letter-spacing:2px;line-height:1;margin-bottom:2.5rem}
 .prayer-section{background:#0c0c0c}
@@ -56,7 +57,7 @@ section{padding:4.5rem 2rem}
 .prayer-form p{font-size:13px;color:rgba(245,242,236,0.5);margin-bottom:1.5rem;line-height:1.6}
 .prayer-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(232,184,75,0.5);color:var(--gold);background:transparent;padding:11px 22px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background 0.2s;width:fit-content}
 .prayer-btn:hover{background:rgba(232,184,75,0.1)}
-.study-card{display:grid;grid-template-columns:220px 1fr;border:1px solid var(--border);border-radius:4px;overflow:hidden;max-width:860px}
+.study-card{display:grid;grid-template-columns:220px 1fr;border:1px solid var(--border);border-radius:4px;overflow:hidden;max-width:860px;width:100%}
 .study-cover{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:260px}
 .study-cover-deco{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(232,184,75,0.18),transparent 70%)}
 .psalm-number{font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:1;color:var(--gold);position:relative;z-index:1}
@@ -79,6 +80,7 @@ section{padding:4.5rem 2rem}
 .event-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-bottom:0.6rem}
 .tag-social{background:rgba(192,69,30,0.2);color:#e07050}
 .tag-study{background:rgba(232,184,75,0.15);color:var(--gold)}
+.tag-next{background:rgba(94,207,126,0.15);color:#5ecf7e}
 .history-section{background:#0c0c0c}
 .history-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;max-width:860px}
 .history-row{background:var(--card-bg);display:grid;grid-template-columns:60px 90px 1fr 140px;align-items:center;padding:1rem 1.25rem;gap:1rem;transition:background 0.2s}
@@ -195,7 +197,8 @@ footer p{font-size:11px;color:var(--muted)}
   <div class="section-title">Prayer Wall</div>
   <div class="prayer-inner">
     <div class="prayer-img">
-      <img alt="Youth fellowship at sunset" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background:#1a1a2e;min-height:280px" />
+      <div style="position:absolute;inset:0;background:linear-gradient(160deg,#0d1b2e 0%,#1a2744 35%,#0f1e35 60%,#07111f 100%);"></div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 40% 40%,rgba(232,184,75,0.07) 0%,transparent 70%);"></div>
       <div class="prayer-img-overlay"></div>
       <div class="prayer-img-text">
         <blockquote>Out of the depths I cry to you, Lord; Lord, hear my voice.</blockquote>
@@ -217,14 +220,14 @@ footer p{font-size:11px;color:var(--muted)}
     <div class="study-cover">
       <div class="study-cover-deco"></div>
       <div style="text-align:center;position:relative;z-index:2">
-        <div class="psalm-number">Apr 22</div>
-        <div class="psalm-label">This Week &middot; Psalm 8</div>
+        <div class="psalm-number">Psalm 103</div>
+        <div class="psalm-label">This Week &middot; Apr 29</div>
       </div>
     </div>
     <div class="study-info">
       <div class="study-series">Section 3 &middot; Hymns &amp; Thanksgiving Psalms</div>
-      <h3>Everything that has breath PRAISE the LORD</h3>
-      <p>Week 9 &mdash; Apr 15. Out of the depths we cry. Psalms 130 and 131 bring us to humble waiting &mdash; trusting God's steadfast love when answers don't come quickly.</p>
+      <h3>Bless the Lord, O My Soul</h3>
+      <p>Week 11 &mdash; Apr 29. Psalm 103 is a full-throated declaration of who God is &mdash; compassionate, slow to anger, abounding in steadfast love. We'll explore what it means to actively bless the Lord rather than wait to feel it.</p>
       <a href="this-week.html" class="study-link">Open Full Study Guide &rarr;</a>
     </div>
   </div>
@@ -235,10 +238,10 @@ footer p{font-size:11px;color:var(--muted)}
   <div class="section-title">Upcoming Events</div>
   <div class="events-grid">
     <div class="event-card">
-      <div class="event-date"><div class="event-day">Apr</div><div class="event-month">22</div></div>
-      <div class="event-tag tag-study">Study Night</div>
-      <h4>Intro to Hymns &amp; Thanksgiving + Psalm 8</h4>
-      <p>Why and How God's People Praise</p>
+      <div class="event-date"><div class="event-day">Apr</div><div class="event-month">29</div></div>
+      <div class="event-tag tag-next">Next Week</div>
+      <h4>Psalm 139 &mdash; You Have Searched Me and Known Me</h4>
+      <p>God's intimate knowledge of us &mdash; and what that means for how we live.</p>
     </div>
     <div class="event-card">
       <div class="event-date"><div class="event-day">Jun</div><div class="event-month">14</div></div>
@@ -289,6 +292,7 @@ const history = [
   {wk:9,date:"Apr 15",psalm:"Psalm 130 / 131",theme:"Waiting on the Lord with Humble Trust",notes:""},
   {section:"SECTION 3: HYMNS & THANKSGIVING PSALMS",badge:"badge-hymn"},
   {wk:10,date:"Apr 22",psalm:"Intro to Hymns & Thanksgiving + Psalm 8",theme:"Why and How God's People Praise",notes:""},
+  {wk:11,date:"Apr 29",psalm:"Psalm 103",theme:"Bless the Lord, O My Soul",notes:""},
 ];
 const grid = document.getElementById('history-grid');
 grid.innerHTML = '<div class="history-row header"><span>WK</span><span>DATE</span><span>PSALM / THEME</span><span style="text-align:right">NOTES</span></div>';
