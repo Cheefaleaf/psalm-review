@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sword of the Spirit | The Fellowship</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #0b0f07;
+      --bg2:     #0f1509;
+      --bg3:     #141c0c;
+      --panel:   #182010;
+      --panel2:  #1e2a14;
+      --border:  #2a3c1a;
+      --border2: #3a5224;
+      --gold:    #c9a84c;
+      --gold2:   #e8c97a;
+      --golddim: #6e5628;
+      --green:   #4a7c3f;
+      --green2:  #5c9e50;
+      --red:     #8b3a2a;
+      --red2:    #b84d38;
+      --text:    #cec8b0;
+      --textdim: #7a7560;
+      --textbright: #f0e8d0;
+      --c-road:  #c97a3a;
+      --c-quest: #4a8abf;
+      --c-inv:   #c9a84c;
+      --c-maint: #9a7abf;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 15% 0%, rgba(74,124,63,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 85% 100%, rgba(201,168,76,0.05) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    body > * { position: relative; z-index: 1; }
+
+    header { text-align: center; padding: 44px 20px 30px; border-bottom: 1px solid var(--border); }
+    .hdr-rule { width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--golddim), transparent); margin: 0 auto 16px; }
+    .hdr-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(20px, 4vw, 38px); color: var(--gold2); letter-spacing: 1px; line-height: 1.15; text-shadow: 0 0 60px rgba(201,168,76,0.18); }
+    .hdr-sub   { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--golddim); margin-top: 8px; }
+    .hdr-verse { margin-top: 10px; font-style: italic; color: var(--textdim); font-size: 13px; }
+
+    nav { display: flex; justify-content: center; padding: 26px 20px 0; }
+    .tab-btn {
+      font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 9px 26px; background: transparent; border: 1px solid var(--border);
+      color: var(--textdim); cursor: pointer; transition: all 0.2s; margin: 0 -0.5px;
+    }
+    .tab-btn:first-child { border-radius: 3px 0 0 3px; }
+    .tab-btn:last-child  { border-radius: 0 3px 3px 0; }
+    .tab-btn:hover { color: var(--text); border-color: var(--border2); }
+    .tab-btn.active { background: var(--panel); border-color: var(--golddim); color: var(--gold2); z-index: 1; }
+
+    main { max-width: 920px; margin: 0 auto; padding: 34px 18px 100px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .sec-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--golddim); margin-bottom: 16px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+
+    .psalm-pills { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
+    .psalm-pill {
+      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 16px; border: 1px solid var(--border); border-radius: 99px;
+      color: var(--textdim); background: transparent; cursor: pointer; transition: all 0.2s;
+    }
+    .psalm-pill:hover { border-color: var(--border2); color: var(--text); }
+    .psalm-pill.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel); }
+
+    .submit-card { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 26px 28px; margin-bottom: 28px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    @media (max-width: 540px) { .form-grid { grid-template-columns: 1fr; } }
+    .field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 5px; }
+    .field input, .field textarea {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
+      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px;
+      padding: 8px 12px; outline: none; transition: border-color 0.2s;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--golddim); }
+    .field textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--textdim); font-style: italic; }
+
+    .btn-primary {
+      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      background: var(--green); color: var(--textbright); border: none; border-radius: 3px;
+      padding: 11px 28px; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--green2); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .psalm-ref-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .psalm-v-row { display: flex; gap: 14px; padding: 9px 16px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    .psalm-v-row:last-child { border-bottom: none; }
+    .psalm-v-row:hover { background: var(--panel2); }
+    .psalm-v-num { font-family: 'Cinzel', serif; font-size: 10px; color: var(--golddim); min-width: 18px; padding-top: 2px; }
+    .psalm-v-text { font-size: 15px; font-style: italic; color: var(--text); line-height: 1.5; }
+
+    .verse-card { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 24px 28px; margin-bottom: 26px; }
+    .verse-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .verse-heroname { font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold2); letter-spacing: 1px; }
+    .verse-ref { font-style: italic; color: var(--textdim); font-size: 14px; }
+    .verse-text { font-size: 19px; line-height: 1.65; color: var(--textbright); font-style: italic; margin: 11px 0 14px; }
+    .quest-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 11px; border: 1px solid; border-radius: 2px; margin-bottom: 18px;
+    }
+    .qb-road  { color: var(--c-road);  border-color: var(--c-road); }
+    .qb-quest { color: var(--c-quest); border-color: var(--c-quest); }
+    .qb-inv   { color: var(--c-inv);   border-color: var(--c-inv); }
+    .qb-maint { color: var(--c-maint); border-color: var(--c-maint); }
+
+    .drill-wrap { border-top: 1px solid var(--border); padding-top: 18px; }
+    .drill-lbl { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 11px; }
+    .drill-modes { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 13px; }
+    .dmb {
+      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 13px; border: 1px solid var(--border); border-radius: 2px;
+      background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s;
+    }
+    .dmb:hover { border-color: var(--border2); color: var(--text); }
+    .dmb.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel2); }
+    .drill-display {
+      font-size: 18px; font-style: italic; line-height: 1.75; color: var(--textbright);
+      min-height: 54px; margin-bottom: 13px; padding: 13px 15px;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
+    }
+    .blank-word { display: inline-block; background: var(--border2); border-radius: 2px; height: 13px; vertical-align: middle; margin: 0 2px; }
+    .recall-area { display: none; margin-bottom: 13px; }
+    .recall-input {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
+      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 17px; font-style: italic;
+      padding: 11px 13px; outline: none; resize: vertical; min-height: 68px;
+      margin-bottom: 9px; line-height: 1.5; transition: border-color 0.2s;
+    }
+    .recall-input:focus { border-color: var(--golddim); }
+    .recall-feedback { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; padding: 9px 13px; border-radius: 3px; display: none; margin-bottom: 10px; }
+    .rf-correct   { background: rgba(74,124,63,0.15); border: 1px solid var(--green); color: var(--green2); }
+    .rf-incorrect { background: rgba(139,58,42,0.15); border: 1px solid var(--red);   color: var(--red2); }
+    .action-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
+    .btn-action {
+      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+      padding: 8px 16px; border: 1px solid var(--border2); border-radius: 2px;
+      background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s;
+    }
+    .btn-action:hover { border-color: var(--golddim); color: var(--gold2); }
+    .btn-action.gold { border-color: var(--golddim); color: var(--gold); }
+    .btn-action.gold:hover { background: var(--panel2); color: var(--gold2); }
+    .btn-action.danger { border-color: var(--red); color: var(--red2); }
+
+    .celebrate {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.35s;
+    }
+    .celebrate.show { opacity: 1; pointer-events: all; }
+    .cel-icon { font-size: 60px; margin-bottom: 18px; animation: cpulse 1s ease-in-out infinite alternate; }
+    @keyframes cpulse { from { transform: scale(1); } to { transform: scale(1.1); } }
+    .cel-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(18px, 4vw, 32px); color: var(--gold2); text-align: center; margin-bottom: 10px; text-shadow: 0 0 40px rgba(232,201,122,0.4); padding: 0 20px; }
+    .cel-sub { font-style: italic; color: var(--textdim); font-size: 15px; margin-bottom: 26px; text-align: center; max-width: 380px; padding: 0 20px; }
+    .cel-close { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; padding: 9px 26px; border: 1px solid var(--golddim); background: transparent; color: var(--gold); cursor: pointer; border-radius: 2px; }
+
+    .journey {
+      display: grid;
+      grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 680px) {
+      .journey { grid-template-columns: 1fr; }
+      .j-arrow { display: none; }
+      .j-station { border-radius: 4px !important; margin-bottom: 8px; border: 1px solid var(--border) !important; }
+    }
+    .j-station { border: 1px solid var(--border); padding: 16px 14px; display: flex; flex-direction: column; min-height: 200px; }
+    .j-station:nth-child(1) { border-radius: 4px 0 0 4px; background: var(--bg3); }
+    .j-station:nth-child(3) { border-left: none; background: var(--panel); border-color: rgba(74,138,191,0.25); }
+    .j-station:nth-child(5) { border-left: none; background: var(--panel2); border-color: rgba(201,168,76,0.3); }
+    .j-station:nth-child(7) { border-left: none; border-radius: 0 4px 4px 0; background: var(--bg3); border-color: rgba(154,122,191,0.25); }
+    .j-arrow { display: flex; align-items: center; justify-content: center; color: var(--golddim); font-size: 14px; }
+    .js-icon { font-size: 17px; margin-bottom: 4px; }
+    .js-name { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 2px; }
+    .js-desc { font-size: 11px; color: var(--textdim); font-style: italic; line-height: 1.4; margin-bottom: 12px; }
+    .js-cards { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .board-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; padding: 9px 11px; }
+    .bc-name { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold2); }
+    .bc-ref  { font-size: 10px; color: var(--textdim); font-style: italic; margin-bottom: 3px; }
+    .bc-text { font-size: 11px; font-style: italic; color: var(--text); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .bc-obj  { font-family: 'Cinzel', serif; font-size: 7px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; opacity: 0.8; }
+    .bc-obj.road  { color: var(--c-road); }
+    .bc-obj.quest { color: var(--c-quest); }
+    .bc-obj.inv   { color: var(--c-inv); }
+    .bc-obj.maint { color: var(--c-maint); }
+    .empty-slot { font-size: 11px; color: var(--textdim); font-style: italic; text-align: center; padding: 14px 6px; border: 1px dashed var(--border); border-radius: 3px; }
+
+    .toast {
+      position: fixed; bottom: 22px; left: 50%;
+      transform: translateX(-50%) translateY(70px);
+      background: var(--panel2); border: 1px solid var(--border2); border-radius: 3px;
+      padding: 9px 20px; font-family: 'Cinzel', serif; font-size: 9px;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+      transition: transform 0.28s; z-index: 200;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .loading { text-align: center; padding: 40px; font-style: italic; color: var(--textdim); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+    .fade-up { animation: fadeUp 0.25s ease forwards; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div style="position:absolute;top:18px;left:20px;">
+    <a href="index.html" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--golddim)'">← Home</a>
+  </div>
+  <div class="hdr-rule"></div>
+  <div class="hdr-title">⚔ Sword of the Spirit ⚔</div>
+  <div class="hdr-sub">Memory Verse Portal · The Fellowship</div>
+  <div class="hdr-verse">"Take the sword of the Spirit, which is the word of God." — Ephesians 6:17 ESV</div>
+</header>
+
+<nav>
+  <button class="tab-btn active" onclick="switchTab('my',this)">My Quest</button>
+  <button class="tab-btn" onclick="switchTab('board',this)">The Fellowship</button>
+</nav>
+
+<main>
+
+  <div id="tab-my" class="tab-panel active">
+    <div id="no-verse">
+      <p class="sec-label">Accept a Quest</p>
+      <div class="psalm-pills">
+        <button class="psalm-pill" onclick="selectPsalm(103,this)">Psalm 103</button>
+        <button class="psalm-pill active" onclick="selectPsalm(121,this)">Psalm 121 · This Week</button>
+      </div>
+      <div class="submit-card">
+        <div class="form-grid">
+          <div class="field">
+            <label>Hero Name</label>
+            <input type="text" id="in-name" placeholder="e.g. Legolas, Eowyn, Strider…" />
+          </div>
+          <div class="field">
+            <label>Reference (ESV)</label>
+            <input type="text" id="in-ref" placeholder="e.g. Psalm 121:3 (ESV)" />
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:14px;">
+          <label>Verse Text (ESV)</label>
+          <textarea id="in-text" placeholder="Type or click a verse below to fill…"></textarea>
+        </div>
+        <button class="btn-primary" id="submit-btn" onclick="submitVerse()">Accept Quest</button>
+      </div>
+      <p class="sec-label" id="psalm-lbl">Psalm 121 — ESV · Click to fill</p>
+      <div class="psalm-ref-wrap" id="psalm-list"></div>
+    </div>
+
+    <div id="my-verse" style="display:none;">
+      <p class="sec-label">Active Quest</p>
+      <div class="verse-card">
+        <div class="verse-top">
+          <span class="verse-heroname" id="dsp-name"></span>
+          <span class="verse-ref"      id="dsp-ref"></span>
+        </div>
+        <div class="verse-text"  id="dsp-text"></div>
+        <div class="quest-badge" id="dsp-badge"></div>
+        <div class="drill-wrap">
+          <div class="drill-lbl">Training Grounds</div>
+          <div class="drill-modes">
+            <button class="dmb active" id="dm-full"   onclick="setDrill('full')">Full Verse</button>
+            <button class="dmb"        id="dm-half"   onclick="setDrill('half')">Half Hidden</button>
+            <button class="dmb"        id="dm-most"   onclick="setDrill('most')">Mostly Hidden</button>
+            <button class="dmb"        id="dm-recall" onclick="setDrill('recall')">Full Recall</button>
+          </div>
+          <div class="drill-display" id="drill-disp"></div>
+          <div class="recall-area" id="recall-area">
+            <textarea class="recall-input" id="recall-in" placeholder="Recite the verse from memory…" rows="3"></textarea>
+            <div class="recall-feedback" id="recall-fb"></div>
+            <button class="btn-action gold" onclick="checkRecall()" style="margin-right:6px;">Check Answer</button>
+            <button class="btn-action" onclick="setDrill('full')">Show Verse</button>
+          </div>
+          <div class="action-row" id="action-row"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-board" class="tab-panel">
+    <p class="sec-label">The Fellowship's Journey</p>
+    <div class="journey" id="journey-board">
+      <div class="loading" style="grid-column:1/-1;">Loading the quest board…</div>
+    </div>
+  </div>
+
+</main>
+
+<div class="celebrate" id="celebrate">
+  <div class="cel-icon"  id="cel-icon">⚔️</div>
+  <div class="cel-title" id="cel-title"></div>
+  <div class="cel-sub"   id="cel-sub"></div>
+  <button class="cel-close" onclick="document.getElementById('celebrate').classList.remove('show')">Continue the Journey</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const app = initializeApp({
+  apiKey:            "AIzaSyCeNzMSGSjKJyE8i3sugDYd_kaLeU6fMBc",
+  authDomain:        "youth-262fc.firebaseapp.com",
+  databaseURL:       "https://youth-262fc-default-rtdb.firebaseio.com",
+  projectId:         "youth-262fc",
+  storageBucket:     "youth-262fc.firebasestorage.app",
+  messagingSenderId: "886474552762",
+  appId:             "1:886474552762:web:db68add41a7240748d5983",
+  measurementId:     "G-CCF3B9Z370"
+});
+const db = getDatabase(app);
+
+// ── OBJECTIVES ───────────────────────────────────────
+const ACTIVE_OBJ = [
+  "Slay the Defias Footpads",
+  "Collect the Zhevra Hooves",
+  "Bring Fuel to Everlook",
+  "Slay Razorclaw the Butcher",
+  "Collect the Bloodscalp Tusks",
+  "Report to Sentinel Dawnstrider",
+  "Escort Erland McGee to Refuge Pointe",
+  "Slay the Mor'Ladim",
+  "Collect the Venture Co. Uniforms",
+  "Speak with Watcher Backus"
+];
+const MAINT_OBJ = [
+  "Bring the Mithril Bars to Tog'thar",
+  "Collect the Thick Leather from the Highlands",
+  "Deliver the Cracked Hammer to Calain",
+  "Bring the Elixirs of Fortitude to Dawnstar",
+  "Smelt the Truesilver Bars for Marvon",
+  "Collect the Iron Rivets from the Slag Pit",
+  "Deliver the Battered Shield to Irondeep",
+  "Bring the Dull Blade to Wiley the Black",
+  "Collect the Enchanted Thorium Bars",
+  "Return the Worn Axe to Belgrom Rockmaul"
+];
+
+// ── PSALMS ───────────────────────────────────────────
+const PSALMS = {
+  103: [
+    [1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],
+    [2,"Bless the LORD, O my soul, and forget not all his benefits,"],
+    [3,"who forgives all your iniquity, who heals all your diseases,"],
+    [4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],
+    [5,"who satisfies you with good so that your youth is renewed like the eagle's."],
+    [6,"The LORD works righteousness and justice for all who are oppressed."],
+    [7,"He made known his ways to Moses, his acts to the people of Israel."],
+    [8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],
+    [9,"He will not always chide, nor will he keep his anger forever."],
+    [10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],
+    [11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],
+    [12,"as far as the east is from the west, so far does he remove our transgressions from us."],
+    [13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],
+    [14,"For he knows our frame; he remembers that we are dust."],
+    [15,"As for man, his days are like grass; he flourishes like a flower of the field;"],
+    [16,"for the wind passes over it, and it is gone, and its place knows it no more."],
+    [17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],
+    [18,"to those who keep his covenant and remember to do his commandments."],
+    [19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],
+    [20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],
+    [21,"Bless the LORD, all his hosts, his ministers, who do his will!"],
+    [22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]
+  ],
+  121: [
+    [1,"I lift up my eyes to the hills. From where does my help come?"],
+    [2,"My help comes from the LORD, who made heaven and earth."],
+    [3,"He will not let your foot be moved; he who keeps you will not slumber."],
+    [4,"Behold, he who keeps Israel will neither slumber nor sleep."],
+    [5,"The LORD is your keeper; the LORD is your shade on your right hand."],
+    [6,"The sun shall not strike you by day, nor the moon by night."],
+    [7,"The LORD will keep you from all evil; he will keep your life."],
+    [8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]
+  ]
+};
+
+const LOCAL_KEY = 'sword_my_id_v2';
+let myVerse = null;
+let selectedPsalm = 121;
+
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+function toast(msg, ms=2400) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), ms);
+}
+function celebrate(icon, title, sub) {
+  document.getElementById('cel-icon').textContent  = icon;
+  document.getElementById('cel-title').textContent = title;
+  document.getElementById('cel-sub').textContent   = sub;
+  document.getElementById('celebrate').classList.add('show');
+}
+
+window.switchTab = (name, el) => {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+  if (name === 'board') renderBoard();
+};
+
+window.selectPsalm = (num, el) => {
+  selectedPsalm = num;
+  document.querySelectorAll('.psalm-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  renderPsalmList();
+};
+
+function renderPsalmList() {
+  document.getElementById('psalm-lbl').textContent = `Psalm ${selectedPsalm} — ESV · Click to fill`;
+  document.getElementById('psalm-list').innerHTML = PSALMS[selectedPsalm].map(([n,t]) =>
+    `<div class="psalm-v-row" onclick="prefill(${n},\`${t.replace(/`/g,"'")}\`)">
+      <span class="psalm-v-num">${n}</span>
+      <span class="psalm-v-text">${t}</span>
+    </div>`
+  ).join('');
+}
+
+window.prefill = (n, t) => {
+  document.getElementById('in-ref').value  = `Psalm ${selectedPsalm}:${n} (ESV)`;
+  document.getElementById('in-text').value = t;
+};
+
+window.submitVerse = async () => {
+  const name = document.getElementById('in-name').value.trim();
+  const ref2 = document.getElementById('in-ref').value.trim();
+  const text = document.getElementById('in-text').value.trim();
+  if (!name || !text) { toast('Enter your hero name and verse text'); return; }
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Accepting Quest…';
+  const id = `v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
+  const verse = { id, name, ref: ref2, text, status: 'road', obj: pick(ACTIVE_OBJ), created: Date.now() };
+  try {
+    await set(ref(db, `sword/verses/${id}`), verse);
+    localStorage.setItem(LOCAL_KEY, id);
+    myVerse = verse;
+    showMyVerse();
+    toast('Quest accepted — begin your training!');
+  } catch(e) {
+    toast('Error — check connection');
+    btn.disabled = false; btn.textContent = 'Accept Quest';
+  }
+};
+
+async function loadMyVerse() {
+  const id = localStorage.getItem(LOCAL_KEY);
+  if (!id) { showNoVerse(); return; }
+  try {
+    const snap = await get(ref(db, `sword/verses/${id}`));
+    if (snap.exists()) { myVerse = snap.val(); showMyVerse(); }
+    else { localStorage.removeItem(LOCAL_KEY); showNoVerse(); }
+  } catch(e) { showNoVerse(); }
+}
+
+function showNoVerse() {
+  document.getElementById('no-verse').style.display  = 'block';
+  document.getElementById('my-verse').style.display  = 'none';
+  renderPsalmList();
+}
+
+function showMyVerse() {
+  document.getElementById('no-verse').style.display  = 'none';
+  document.getElementById('my-verse').style.display  = 'block';
+  const v = myVerse;
+  document.getElementById('dsp-name').textContent = v.name;
+  document.getElementById('dsp-ref').textContent  = v.ref || '';
+  document.getElementById('dsp-text').textContent = '\u201c' + v.text + '\u201d';
+
+  const badge = document.getElementById('dsp-badge');
+  const label = v.status === 'road'  ? 'Quest Acquired'
+              : v.status === 'quest' ? (v.obj || pick(ACTIVE_OBJ))
+              : v.status === 'inv'   ? 'In the Inventory'
+              : (v.maintObj || pick(MAINT_OBJ));
+  const icon  = v.status === 'road' ? '🗺️' : v.status === 'quest' ? '⚔️' : v.status === 'inv' ? '🏆' : '🔧';
+  const cls   = 'qb-' + v.status;
+  badge.className = 'quest-badge ' + cls;
+  badge.innerHTML = `<span>${icon}</span><span>${label}</span>`;
+
+  const ar = document.getElementById('action-row');
+  ar.innerHTML = '';
+  const mkBtn = (lbl, cls, fn) => {
+    const b = document.createElement('button');
+    b.className = 'btn-action ' + (cls||''); b.textContent = lbl; b.onclick = fn;
+    ar.appendChild(b);
+  };
+  if      (v.status==='road')  mkBtn('Mark as Memorized →','gold', () => advance('quest'));
+  else if (v.status==='quest') mkBtn('I Can Recite It! →', 'gold', () => advance('inv'));
+  else if (v.status==='inv')   mkBtn('Sharpen the Blade ↺','',     () => advance('maint'));
+  else if (v.status==='maint') mkBtn('Blade is Sharp ✓',   'gold', () => advance('inv'));
+  mkBtn('Abandon Quest','danger', clearVerse);
+
+  setDrill('full');
+}
+
+window.advance = async (newStatus) => {
+  if (!myVerse) return;
+  const updates = { status: newStatus };
+  if (newStatus === 'quest') {
+    updates.obj = pick(ACTIVE_OBJ);
+    celebrate('⚔️', 'Quest Updated!', 'Keep pressing forward, ' + myVerse.name + '.');
+  } else if (newStatus === 'inv' && myVerse.status === 'quest') {
+    celebrate('🏆', 'Added to Inventory!', 'The verse is yours, ' + myVerse.name + '. It is now part of your arsenal.');
+  } else if (newStatus === 'inv' && myVerse.status === 'maint') {
+    celebrate('✨', 'Blade Re-Sharpened!', 'Well done, ' + myVerse.name + '. The edge is keen again.');
+  } else if (newStatus === 'maint') {
+    updates.maintObj = pick(MAINT_OBJ);
+    toast('Maintenance quest assigned!');
+  }
+  try {
+    await update(ref(db, `sword/verses/${myVerse.id}`), updates);
+    Object.assign(myVerse, updates);
+    showMyVerse();
+  } catch(e) { toast('Error saving'); }
+};
+
+window.clearVerse = async () => {
+  if (!confirm('Abandon this quest? Your entry stays on the board.')) return;
+  localStorage.removeItem(LOCAL_KEY);
+  myVerse = null;
+  showNoVerse();
+};
+
+window.setDrill = (mode) => {
+  ['full','half','most','recall'].forEach(m =>
+    document.getElementById('dm-'+m)?.classList.toggle('active', m===mode)
+  );
+  const disp   = document.getElementById('drill-disp');
+  const recall = document.getElementById('recall-area');
+  if (mode === 'recall') {
+    disp.style.display = 'none'; recall.style.display = 'block';
+    document.getElementById('recall-in').value = '';
+    document.getElementById('recall-fb').style.display = 'none';
+    return;
+  }
+  disp.style.display = 'block'; recall.style.display = 'none';
+  if (!myVerse) return;
+  const words = myVerse.text.split(' ');
+  let hideCount = 0;
+  if (mode==='half') hideCount = Math.floor(words.length * 0.45);
+  if (mode==='most') hideCount = Math.floor(words.length * 0.8);
+  const toHide = new Set();
+  if (hideCount > 0) {
+    const step = words.length / hideCount;
+    for (let i=0; i<hideCount; i++) toHide.add(Math.floor(i*step));
+  }
+  disp.innerHTML = '\u201c' + words.map((w,i) => {
+    if (toHide.has(i)) {
+      const len = Math.max(w.replace(/[^a-zA-Z]/g,'').length, 3);
+      return `<span class="blank-word" style="width:${len*8}px;"></span>`;
+    }
+    return `<span>${w}</span>`;
+  }).join(' ') + '\u201d';
+};
+
+window.checkRecall = () => {
+  const inp = document.getElementById('recall-in').value.trim();
+  const fb  = document.getElementById('recall-fb');
+  const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+  fb.style.display = 'block';
+  if (norm(inp) === norm(myVerse.text)) {
+    fb.className = 'recall-feedback rf-correct';
+    fb.textContent = '✓ You have it. The blade is forged.';
+  } else {
+    fb.className = 'recall-feedback rf-incorrect';
+    fb.textContent = 'Not yet — keep training. Click "Show Verse" to review.';
+  }
+};
+
+function renderBoard() {
+  onValue(ref(db, 'sword/verses'), snap => {
+    const all   = snap.exists() ? Object.values(snap.val()) : [];
+    const road  = all.filter(v => v.status==='road');
+    const quest = all.filter(v => v.status==='quest');
+    const inv   = all.filter(v => v.status==='inv');
+    const maint = all.filter(v => v.status==='maint');
+
+    const card = v => {
+      const objText = v.status==='road'  ? 'Quest Acquired'
+                    : v.status==='quest' ? (v.obj||'')
+                    : v.status==='inv'   ? 'In the Inventory'
+                    : (v.maintObj||'');
+      return `<div class="board-card fade-up">
+        <div class="bc-name">${v.name}</div>
+        <div class="bc-ref">${v.ref||''}</div>
+        <div class="bc-text">\u201c${v.text}\u201d</div>
+        <div class="bc-obj ${v.status}">${objText}</div>
+      </div>`;
+    };
+    const col = list => list.length ? list.map(card).join('') : '<div class="empty-slot">None yet</div>';
+
+    const stations = [
+      { status:'road',  icon:'🗺️', name:'Quest Acquired',  desc:'The word is new — still learning its shape',          list: road },
+      { status:'quest', icon:'⚔️', name:'On the Quest',     desc:'In the thick of it — pressing toward mastery',        list: quest },
+      { status:'inv',   icon:'🏆', name:'In the Inventory', desc:'Word is yours — spoken before the Fellowship',        list: inv },
+      { status:'maint', icon:'🔧', name:'Maintenance',       desc:"Keeping the blade sharp — don't let it go dull",     list: maint },
+    ];
+
+    document.getElementById('journey-board').innerHTML = stations.map((s, i) =>
+      (i > 0 ? '<div class="j-arrow">›</div>' : '') +
+      `<div class="j-station">
+        <div class="js-icon">${s.icon}</div>
+        <div class="js-name">${s.name}</div>
+        <div class="js-desc">${s.desc}</div>
+        <div class="js-cards">${col(s.list)}</div>
+      </div>`
+    ).join('');
+  }, { onlyOnce: true });
+}
+
+renderPsalmList();
+loadMyVerse();
+</script>
+</body>
+</html>
