@@ -15,9 +15,11 @@
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--gold)}
-.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center}
 .nav-links a{color:var(--white);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;opacity:0.6;transition:opacity 0.2s}
 .nav-links a:hover{opacity:1}
+.nav-links .nav-sword{opacity:1;color:var(--gold);border:1px solid rgba(232,184,75,0.4);padding:4px 12px;border-radius:2px;transition:background 0.2s}
+.nav-links .nav-sword:hover{background:rgba(232,184,75,0.1)}
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:100px 2rem 4rem;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(232,184,75,0.1) 0%,transparent 70%),var(--black)}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 100%)}
@@ -153,7 +155,7 @@ footer p{font-size:11px;color:var(--muted)}
     <li><a href="#study">Study</a></li>
     <li><a href="#events">Events</a></li>
     <li><a href="initiatives.html">Initiatives</a></li>
-    <li><a href="#history">Archive</a></li>
+    <li><a href="sword.html" class="nav-sword">⚔ Memory Verse</a></li>
   </ul>
 </nav>
 
@@ -167,14 +169,13 @@ footer p{font-size:11px;color:var(--muted)}
     <p class="hero-sub">Wednesday nights -<br>sing hymns &#x1F6D0; break bread &#x1F35E;<br>prayer wall &#x1F64F; mario kart &#x2B50;<br>Faithfully building community.</p>
     <div class="hero-ctas">
       <a href="this-week.html" class="hero-cta">This Week's Study Guide <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-      <a href="psalm.html" class="hero-cta-secondary">Last Week's Review <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a href="sword.html" class="hero-cta-secondary">⚔ Memory Verse Portal <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
   </div>
   <div class="hero-badge"><div class="day">6:15PM</div>EVERY<br>WEDNESDAY</div>
 </section>
 
 <section class="initiatives-section" id="initiatives" style="background:#0c0c0c">
-  <!-- CTA BANNER -->
   <div class="init-cta-banner">
     <div class="init-cta-left">
       <span class="init-cta-eyebrow">Don't just read it &mdash; do it</span>
@@ -220,14 +221,14 @@ footer p{font-size:11px;color:var(--muted)}
     <div class="study-cover">
       <div class="study-cover-deco"></div>
       <div style="text-align:center;position:relative;z-index:2">
-        <div class="psalm-number">Psalm 103</div>
-        <div class="psalm-label">This Week &middot; Apr 29</div>
+        <div class="psalm-number">Psalm 121</div>
+        <div class="psalm-label">This Week &middot; May 6</div>
       </div>
     </div>
     <div class="study-info">
       <div class="study-series">Section 3 &middot; Hymns &amp; Thanksgiving Psalms</div>
-      <h3>Bless the Lord, O My Soul</h3>
-      <p>Week 11 &mdash; Apr 29. Psalm 103 is a full-throated declaration of who God is &mdash; compassionate, slow to anger, abounding in steadfast love. We'll explore what it means to actively bless the Lord rather than wait to feel it.</p>
+      <h3>I Lift Up My Eyes</h3>
+      <p>Week 12 &mdash; May 6. Psalm 121 is a song of ascents — a pilgrim's psalm for the journey. We'll look at what it means that God neither slumbers nor sleeps, and how that changes how we face what's ahead.</p>
       <a href="this-week.html" class="study-link">Open Full Study Guide &rarr;</a>
     </div>
   </div>
@@ -238,7 +239,7 @@ footer p{font-size:11px;color:var(--muted)}
   <div class="section-title">Upcoming Events</div>
   <div class="events-grid">
     <div class="event-card">
-      <div class="event-date"><div class="event-day">Apr</div><div class="event-month">29</div></div>
+      <div class="event-date"><div class="event-day">May</div><div class="event-month">13</div></div>
       <div class="event-tag tag-next">Next Week</div>
       <h4>Psalm 139 &mdash; You Have Searched Me and Known Me</h4>
       <p>God's intimate knowledge of us &mdash; and what that means for how we live.</p>
@@ -259,8 +260,13 @@ footer p{font-size:11px;color:var(--muted)}
 </section>
 
 <section class="history-section" id="history">
-  <div class="section-label">Previous Weeks</div>
-  <div class="section-title">Study Archive</div>
+  <div style="display:flex;align-items:baseline;justify-content:space-between;max-width:860px;margin-bottom:0;">
+    <div>
+      <div class="section-label">Previous Weeks</div>
+      <div class="section-title">Study Archive</div>
+    </div>
+    <a href="psalm.html" style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);text-decoration:none;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Open Study Guide →</a>
+  </div>
   <div class="history-grid" id="history-grid"></div>
 </section>
 
@@ -293,6 +299,8 @@ const history = [
   {section:"SECTION 3: HYMNS & THANKSGIVING PSALMS",badge:"badge-hymn"},
   {wk:10,date:"Apr 22",psalm:"Intro to Hymns & Thanksgiving + Psalm 8",theme:"Why and How God's People Praise",notes:""},
   {wk:11,date:"Apr 29",psalm:"Psalm 103",theme:"Bless the Lord, O My Soul",notes:""},
+  {wk:12,date:"May 6",psalm:"Psalm 121",theme:"I Lift Up My Eyes",notes:""},
+  {wk:13,date:"May 13",psalm:"Psalm 139",theme:"You Have Searched Me and Known Me",notes:""},
 ];
 const grid = document.getElementById('history-grid');
 grid.innerHTML = '<div class="history-row header"><span>WK</span><span>DATE</span><span>PSALM / THEME</span><span style="text-align:right">NOTES</span></div>';
@@ -309,16 +317,17 @@ function goTo(idx){document.querySelectorAll('.carousel-item')[current].classLis
 timer=setInterval(()=>goTo((current+1)%names.length),8000);
 const initiatives=[
   {cat:"FAVORITES",title:"Room Makeover",status:"building",next:"Paint + wall feature approved. Source couch. Hang glow sign."},
-  {cat:"FAVORITES",title:"Communication Group",status:"active",next:"GroupMe is underway. Keep it active with weekly recaps."},
-  {cat:"FAVORITES",title:"Reynosa Mission Trip",status:"active",next:"Keep up with Ethan. Bring before the group for prayer."},
-  {cat:"FAVORITES",title:"Music & Worship Setup",status:"building",next:"Source e-drum kit. Speaker stand. Look into mics for vocals."},
+  {cat:"FAVORITES",title:"Prayer Wall",status:"building",next:"Refresh cards. Add anonymous submission box."},
+  {cat:"FAVORITES",title:"Game Shelf",status:"idea",next:"Inventory existing games. Add shelf unit."},
+  {cat:"FAVORITES",title:"Video Game Tournament",status:"planning",next:"Confirm setup. Finalize June 14 date and invite list."},
+  {cat:"FAVORITES",title:"Summer Lock-In",status:"planning",next:"Set July date. Lock venue and volunteers."},
   {cat:"ROOM & SPACE",title:"Room Makeover",status:"building",next:"Paint + wall feature approved. Source couch. Hang glow sign."},
   {cat:"ROOM & SPACE",title:"AV & Gaming Setup",status:"building",next:"Map both TVs. Source Switch 2. Decide power switch solution."},
   {cat:"ROOM & SPACE",title:"Game Shelf",status:"idea",next:"Inventory existing games. Add shelf unit."},
   {cat:"ROOM & SPACE",title:"Student Photo Wall",status:"idea",next:"Pick wall section. Get parental permission. Print first batch."},
   {cat:"MUSIC",title:"Music & Worship Setup",status:"building",next:"Source e-drum kit. Speaker stand. Look into mics for vocals."},
   {cat:"PROGRAM",title:"Prayer Wall",status:"building",next:"Refresh cards. Add anonymous submission box."},
-  {cat:"PROGRAM",title:"Memory Verse Program",status:"idea",next:"Decide cadence. Build verse list tied to Psalms series."},
+  {cat:"PROGRAM",title:"Memory Verse Program",status:"active",next:"Live at sword.html — quest-based verse memorization portal."},
   {cat:"PROGRAM",title:"Communication Group",status:"active",next:"GroupMe is underway. Keep it active with weekly recaps."},
   {cat:"SUMMER",title:"Summer Lock-In",status:"planning",next:"Set July date. Lock venue and volunteers."},
   {cat:"SUMMER",title:"Video Game Tournament",status:"planning",next:"Confirm setup. Finalize June 14 date and invite list."},
