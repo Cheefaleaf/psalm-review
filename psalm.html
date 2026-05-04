@@ -28,7 +28,23 @@
       background: var(--teal-pale);
       color: var(--text-dark);
       min-height: 100vh;
+      position: relative;
     }
+
+    /* ── BACK HOME ── */
+    .back-home {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+      z-index: 10;
+    }
+    .back-home:hover { color: rgba(255,255,255,1); }
 
     header {
       background: var(--teal-dark);
@@ -162,7 +178,6 @@
     .questions-list { display: none; background: var(--white); }
     .category.questions-open .questions-list { display: block; }
 
-    /* ── Q ITEM ── */
     .q-item { border-top: 1px solid var(--border); }
 
     .q-trigger {
@@ -198,7 +213,6 @@
     .q-chevron { font-size: 10px; color: var(--text-light); padding-top: 5px; flex-shrink: 0; transition: transform 0.2s; }
     .q-item.verse-open .q-chevron { transform: rotate(180deg); }
 
-    /* Verse panel — first reveal */
     .q-verse-panel {
       display: none;
       padding: 0.25rem 1.5rem 0 1.5rem;
@@ -232,7 +246,6 @@
       text-transform: uppercase;
     }
 
-    /* Answer trigger — second reveal */
     .answer-trigger {
       display: flex;
       align-items: center;
@@ -250,15 +263,8 @@
     .q-item.answer-open .answer-trigger { background: var(--teal-accent); border-color: var(--teal-mid); }
     .q-item.answer-open .answer-trigger .answer-trigger-label { color: #fff; }
     .q-item.answer-open .answer-trigger .answer-chevron { color: rgba(255,255,255,0.8); }
-    .answer-trigger-left {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .answer-trigger-emoji {
-      font-size: 16px;
-      line-height: 1;
-    }
+    .answer-trigger-left { display: flex; align-items: center; gap: 0.5rem; }
+    .answer-trigger-emoji { font-size: 16px; line-height: 1; }
     .answer-trigger-label {
       font-family: 'DM Sans', sans-serif;
       font-size: 12px;
@@ -270,7 +276,6 @@
     .answer-chevron { font-size: 10px; color: var(--teal-mid); transition: transform 0.2s; }
     .q-item.answer-open .answer-chevron { transform: rotate(180deg); }
 
-    /* Answer text — second reveal */
     .q-answer-row {
       display: none;
       align-items: flex-start;
@@ -304,13 +309,15 @@
       .cat-definition p { font-size: 16px; }
     }
   </style>
-<meta property="og:title" content="Psalms: A Study Guide" />
-<meta property="og:description" content="A Reformed study of the Psalms for Wednesday night youth" />
-<meta property="og:image" content="https://www.thefellowshipcpc.org/preview.png" />
-<meta property="og:url" content="https://www.thefellowshipcpc.org" />
-<meta property="og:type" content="website" />
+  <meta property="og:title" content="Psalms: A Study Guide" />
+  <meta property="og:description" content="A Reformed study of the Psalms for Wednesday night youth" />
+  <meta property="og:image" content="https://www.thefellowshipcpc.org/preview.png" />
+  <meta property="og:url" content="https://www.thefellowshipcpc.org" />
+  <meta property="og:type" content="website" />
 </head>
 <body>
+
+<a href="index.html" class="back-home">← Home</a>
 
 <header>
   <h1>Types of Psalms</h1>
@@ -320,9 +327,7 @@
 
 <main>
 
-  <!-- ============================================================
-       CATEGORY 1: ROYAL & WISDOM
-       ============================================================ -->
+  <!-- CATEGORY 1: ROYAL & WISDOM -->
   <div class="category" id="cat-royal">
     <div class="cat-definition">
       <span class="cat-eyebrow">Type 01</span>
@@ -340,7 +345,6 @@
       <span class="qt-arrow">▼</span>
     </div>
     <div class="questions-list">
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q1</span>
@@ -362,7 +366,6 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">God's path is simple: delight in His Word + walk in His way = you will flourish.</p></div>
         </div>
       </div>
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q2</span>
@@ -384,7 +387,6 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">The Son of God is SOVEREIGN over all things and enthroned above every ruler, physical and spiritual. We have nothing to fear as long as our trust is in HIM.</p></div>
         </div>
       </div>
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q3</span>
@@ -406,14 +408,10 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">God reigns over all and is the judge that sees all things — justice is in His hands.</p></div>
         </div>
       </div>
-
     </div>
   </div>
 
-
-  <!-- ============================================================
-       CATEGORY 2: LAMENT & CONFIDENCE
-       ============================================================ -->
+  <!-- CATEGORY 2: LAMENT & CONFIDENCE -->
   <div class="category" id="cat-lament">
     <div class="cat-definition">
       <span class="cat-eyebrow">Type 02</span>
@@ -431,7 +429,6 @@
       <span class="qt-arrow">▼</span>
     </div>
     <div class="questions-list">
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q1</span>
@@ -453,7 +450,6 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Bring your brokenness, your despair, your deepest/darkest questions — and let them lead you back to hope. He can handle them and wants to hear our honest cry.</p></div>
         </div>
       </div>
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q2</span>
@@ -475,7 +471,6 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">God is our only refuge. He doesn't need our faith to save us, HE alone is mighty to save and he will carry us until he restores our confidence.</p></div>
         </div>
       </div>
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q3</span>
@@ -497,14 +492,10 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">A calm and quieted soul is still a hoping soul. Sorrow and faith are not opposites. Come as you are.</p></div>
         </div>
       </div>
-
     </div>
   </div>
 
-
-  <!-- ============================================================
-       CATEGORY 3: HYMN & THANKSGIVING
-       ============================================================ -->
+  <!-- CATEGORY 3: HYMN & THANKSGIVING -->
   <div class="category" id="cat-hymn">
     <div class="cat-definition">
       <span class="cat-eyebrow">Type 03</span>
@@ -522,7 +513,6 @@
       <span class="qt-arrow">▼</span>
     </div>
     <div class="questions-list">
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q1</span>
@@ -544,7 +534,6 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Hymn psalms remind us to look to God in everything - it is he who enables us to worship him! By memorizing God's truth in song, we more easily remember his words when we need them.</p></div>
         </div>
       </div>
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q2</span>
@@ -566,7 +555,6 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Remind yourself of all that he's already done in your lifetime and in history. The God who was faithful to Israel is the same God with you today.</p></div>
         </div>
       </div>
-
       <div class="q-item">
         <div class="q-trigger" onclick="toggleVerse(this.parentElement)">
           <span class="q-num">Q3</span>
@@ -588,7 +576,6 @@
           <div class="q-answer-row"><span class="q-answer-label">A.</span><p class="q-answer-text">Pray or sing the very words of the Psalm — hymn psalms give us the words, the posture, and the heart of worship.</p></div>
         </div>
       </div>
-
     </div>
   </div>
 
