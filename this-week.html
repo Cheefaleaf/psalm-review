@@ -21,6 +21,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
+    position: relative;
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
     color: var(--ink);
@@ -160,7 +161,19 @@
     margin-bottom: 20px;
     cursor: pointer;
   }
-
+/* ── BACK HOME ── */
+  .back-home {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .back-home:hover { color: var(--teal); }
   .card-inner {
     position: relative;
     width: 100%;
@@ -442,7 +455,8 @@
   }
 </style>
 </head>
-<body>
+<body> 
+  <a href="index.html" class="back-home">← Home</a>
 
 <!-- PSALM 103 CARD -->
 <div class="psalm-highlight" style="padding-top: 32px;">
