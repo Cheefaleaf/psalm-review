@@ -7,343 +7,232 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:      #0b0f07;
-      --bg2:     #0f1509;
-      --bg3:     #141c0c;
-      --panel:   #182010;
-      --panel2:  #1e2a14;
-      --border:  #2a3c1a;
-      --border2: #3a5224;
-      --gold:    #c9a84c;
-      --gold2:   #e8c97a;
-      --golddim: #6e5628;
-      --parch:   #2a1f0a;
-      --parch2:  #332509;
-      --parch-border: #5a3e10;
-      --parch-text: #e8d9b0;
-      --parch-dim:  #a89060;
-      --green:   #4a7c3f;
-      --green2:  #5c9e50;
-      --red:     #8b3a2a;
-      --red2:    #b84d38;
-      --text:    #cec8b0;
-      --textdim: #7a7560;
-      --textbright: #f0e8d0;
-      --c-road:  #c97a3a;
-      --c-quest: #4a8abf;
-      --c-inv:   #c9a84c;
-      --c-maint: #9a7abf;
+      --bg:#0b0f07;--bg2:#0f1509;--bg3:#141c0c;--panel:#182010;--panel2:#1e2a14;
+      --border:#2a3c1a;--border2:#3a5224;--gold:#c9a84c;--gold2:#e8c97a;--golddim:#6e5628;
+      --parch:#2a1f0a;--parch-border:#5a3e10;--parch-text:#e8d9b0;--parch-dim:#a89060;
+      --green:#4a7c3f;--green2:#5c9e50;--red:#8b3a2a;--red2:#b84d38;
+      --text:#cec8b0;--textdim:#7a7560;--textbright:#f0e8d0;
+      --c-road:#c97a3a;--c-quest:#4a8abf;--c-inv:#c9a84c;--c-maint:#9a7abf;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', Georgia, serif; font-size: 17px; min-height: 100vh; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 60% 40% at 15% 0%, rgba(74,124,63,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 85% 100%, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; z-index: 0; }
-    body > * { position: relative; z-index: 1; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'EB Garamond',Georgia,serif;font-size:17px;min-height:100vh;overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 15% 0%,rgba(74,124,63,0.08) 0%,transparent 70%),radial-gradient(ellipse 50% 50% at 85% 100%,rgba(201,168,76,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;}
+    body>*{position:relative;z-index:1;}
+    header{text-align:center;padding:44px 20px 30px;border-bottom:1px solid var(--border);position:relative;}
+    .hdr-home{position:absolute;top:18px;left:20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);text-decoration:none;transition:color 0.2s;}
+    .hdr-home:hover{color:var(--gold);}
+    .hdr-rule{width:48px;height:1px;background:linear-gradient(to right,transparent,var(--golddim),transparent);margin:0 auto 16px;}
+    .hdr-title{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,4vw,38px);color:var(--gold2);letter-spacing:1px;line-height:1.15;text-shadow:0 0 60px rgba(201,168,76,0.18);}
+    .hdr-sub{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--golddim);margin-top:8px;}
+    .hdr-verse{margin-top:10px;font-style:italic;color:var(--textdim);font-size:13px;}
+    nav{display:flex;justify-content:center;padding:26px 20px 0;}
+    .tab-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:9px 26px;background:transparent;border:1px solid var(--border);color:var(--textdim);cursor:pointer;transition:all 0.2s;margin:0 -0.5px;}
+    .tab-btn:first-child{border-radius:3px 0 0 3px;}.tab-btn:last-child{border-radius:0 3px 3px 0;}
+    .tab-btn:hover{color:var(--text);border-color:var(--border2);}
+    .tab-btn.active{background:var(--panel);border-color:var(--golddim);color:var(--gold2);z-index:1;}
+    main{max-width:980px;margin:0 auto;padding:28px 16px 100px;}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+    .sec-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--golddim);margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--border);}
 
-    /* HEADER */
-    header { text-align: center; padding: 44px 20px 30px; border-bottom: 1px solid var(--border); position: relative; }
-    .hdr-home { position: absolute; top: 18px; left: 20px; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); text-decoration: none; transition: color 0.2s; }
-    .hdr-home:hover { color: var(--gold); }
-    .hdr-rule { width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--golddim), transparent); margin: 0 auto 16px; }
-    .hdr-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(20px, 4vw, 38px); color: var(--gold2); letter-spacing: 1px; line-height: 1.15; text-shadow: 0 0 60px rgba(201,168,76,0.18); }
-    .hdr-sub { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--golddim); margin-top: 8px; }
-    .hdr-verse { margin-top: 10px; font-style: italic; color: var(--textdim); font-size: 13px; }
+    /* QUEST LOG */
+    .quest-log-wrap{display:grid;grid-template-columns:280px 1fr;border:1px solid var(--border);border-radius:4px;overflow:hidden;min-height:520px;}
+    @media(max-width:680px){.quest-log-wrap{grid-template-columns:1fr;}.quest-panel-right{display:none;}.quest-panel-right.mobile-show{display:flex;}.quest-panel-left.mobile-hide{display:none;}}
+    .quest-panel-left{background:var(--bg3);border-right:1px solid var(--border);display:flex;flex-direction:column;}
+    .qpl-header{padding:12px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .qpl-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+    .qpl-count{font-family:'Cinzel',serif;font-size:9px;color:var(--textdim);}
+    .qpl-filter{padding:8px 14px;border-bottom:1px solid var(--border);display:flex;gap:6px;flex-wrap:wrap;}
+    .filter-pill{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border:1px solid var(--border);border-radius:99px;color:var(--textdim);background:transparent;cursor:pointer;transition:all 0.15s;}
+    .filter-pill:hover{color:var(--text);border-color:var(--border2);}
+    .filter-pill.active{border-color:var(--golddim);color:var(--gold2);background:var(--panel);}
+    .quest-list{flex:1;overflow-y:auto;}
+    .quest-group-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);padding:8px 14px 4px;background:rgba(0,0,0,0.2);border-bottom:1px solid var(--border);}
+    .quest-list-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.15s;}
+    .quest-list-item:hover{background:var(--panel);}
+    .quest-list-item.selected{background:var(--panel2);border-left:3px solid var(--gold);}
+    .quest-list-item.is-mine{border-left:2px solid rgba(201,168,76,0.4);}
+    .quest-list-item.selected.is-mine{border-left:3px solid var(--gold);}
+    .ql-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+    .ql-info{flex:1;min-width:0;}
+    .ql-hero{font-family:'Cinzel',serif;font-size:11px;color:var(--gold2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ql-quest-name{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ql-ref{font-size:10px;color:var(--textdim);font-style:italic;}
+    .ql-edit-btn{font-size:11px;color:var(--textdim);background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:2px;transition:color 0.15s;flex-shrink:0;}
+    .ql-edit-btn:hover{color:var(--gold);}
+    .dot-road{background:var(--c-road);}.dot-quest{background:var(--c-quest);}.dot-inv{background:var(--c-inv);}.dot-maint{background:var(--c-maint);}
+    .qpl-add{padding:10px 14px;border-top:1px solid var(--border);}
+    .btn-add-quest{width:100%;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:var(--textbright);border:none;border-radius:3px;padding:9px;cursor:pointer;transition:background 0.2s;}
+    .btn-add-quest:hover{background:var(--green2);}
 
-    /* NAV */
-    nav { display: flex; justify-content: center; padding: 26px 20px 0; }
-    .tab-btn { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; padding: 9px 26px; background: transparent; border: 1px solid var(--border); color: var(--textdim); cursor: pointer; transition: all 0.2s; margin: 0 -0.5px; }
-    .tab-btn:first-child { border-radius: 3px 0 0 3px; }
-    .tab-btn:last-child  { border-radius: 0 3px 3px 0; }
-    .tab-btn:hover { color: var(--text); border-color: var(--border2); }
-    .tab-btn.active { background: var(--panel); border-color: var(--golddim); color: var(--gold2); z-index: 1; }
+    /* PARCHMENT */
+    .quest-panel-right{background:linear-gradient(160deg,#2a1f0a 0%,#241a08 40%,#1e1506 100%);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+    .quest-panel-right::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;opacity:0.5;}
+    .parch-content{position:relative;z-index:1;padding:28px 28px 20px;flex:1;overflow-y:auto;display:flex;flex-direction:column;}
+    .parch-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
+    .parch-empty-icon{font-size:40px;margin-bottom:16px;opacity:0.4;}
+    .parch-empty-text{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-dim);}
+    .parch-back{display:none;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-dim);background:none;border:none;cursor:pointer;padding:0 0 16px;transition:color 0.15s;}
+    .parch-back:hover{color:var(--gold);}
+    @media(max-width:680px){.parch-back{display:block;}}
+    .parch-status-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+    .parch-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+    .parch-status-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;}
+    .status-lbl-road{color:var(--c-road);}.status-lbl-quest{color:var(--c-quest);}.status-lbl-inv{color:var(--c-inv);}.status-lbl-maint{color:var(--c-maint);}
+    .parch-quest-name{font-family:'Cinzel Decorative',serif;font-size:clamp(16px,2.5vw,22px);color:var(--gold2);line-height:1.2;margin-bottom:6px;text-shadow:0 0 30px rgba(201,168,76,0.2);}
+    .parch-hero-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-dim);margin-bottom:20px;}
+    .parch-divider{height:1px;background:linear-gradient(to right,var(--parch-border),transparent);margin:16px 0;}
+    .parch-section-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--parch-dim);margin-bottom:8px;}
+    .parch-flavor{font-size:13px;color:var(--parch-dim);font-style:italic;line-height:1.6;border-left:2px solid var(--parch-border);padding-left:12px;margin-bottom:20px;}
+    .parch-progress{margin-bottom:20px;}
+    .progress-modes{display:flex;flex-direction:column;gap:6px;}
+    .progress-mode-row{display:flex;align-items:center;gap:10px;}
+    .progress-mode-name{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--parch-dim);min-width:100px;}
+    .progress-mode-bar{flex:1;height:3px;background:var(--parch-border);border-radius:99px;overflow:hidden;}
+    .progress-mode-fill{height:100%;border-radius:99px;transition:width 0.4s;}
+    .progress-mode-check{font-size:12px;width:16px;text-align:center;}
+    .parch-actions{margin-top:auto;padding-top:20px;display:flex;gap:10px;flex-wrap:wrap;}
+    .btn-parch-primary{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:var(--textbright);border:none;border-radius:3px;padding:11px 22px;cursor:pointer;transition:background 0.2s;}
+    .btn-parch-primary:hover{background:var(--green2);}
+    .btn-parch-gold{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--gold);color:#1a0f00;border:none;border-radius:3px;padding:11px 22px;cursor:pointer;transition:background 0.2s;font-weight:700;}
+    .btn-parch-gold:hover{background:var(--gold2);}
+    .passage-line{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+    .passage-vnum{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--golddim);min-width:28px;padding-top:4px;flex-shrink:0;text-align:right;}
+    .passage-vtext{font-size:19px;font-style:italic;line-height:1.7;color:var(--textbright);}
 
-    main { max-width: 980px; margin: 0 auto; padding: 28px 16px 100px; }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-    .sec-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--golddim); margin-bottom: 14px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+    /* INVENTORY */
+    .inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+    .inv-card{background:linear-gradient(160deg,#2a1f0a 0%,#1e1506 100%);border:1px solid var(--golddim);border-radius:4px;padding:20px;position:relative;}
+    .inv-card::before{content:'';position:absolute;inset:0;border-radius:4px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;}
+    .inv-card-inner{position:relative;z-index:1;}
+    .inv-avatar{width:48px;height:48px;border-radius:50%;background:var(--panel2);border:2px solid var(--golddim);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;}
+    .inv-hero{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-dim);margin-bottom:4px;}
+    .inv-item-name{font-family:'Cinzel Decorative',serif;font-size:15px;color:var(--gold2);line-height:1.2;margin-bottom:2px;text-shadow:0 0 20px rgba(201,168,76,0.2);}
+    .inv-item-type{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--c-inv);margin-bottom:10px;}
+    .inv-ref{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--golddim);margin-bottom:8px;}
+    .inv-divider{height:1px;background:linear-gradient(to right,var(--parch-border),transparent);margin:12px 0;}
+    .inv-verse{font-size:13px;font-style:italic;color:var(--parch-dim);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+    .inv-name-label{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--textdim);margin-bottom:4px;}
+    .inv-name-edit{width:100%;background:transparent;border:none;border-bottom:1px solid var(--golddim);color:var(--gold2);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;padding:4px 0;outline:none;transition:border-color 0.2s;}
+    .inv-name-edit:focus{border-color:var(--gold);}
+    .inv-empty{text-align:center;padding:60px 20px;font-style:italic;color:var(--textdim);font-size:15px;}
 
-    /* ── QUEST LOG SPLIT PANEL ── */
-    .quest-log-wrap {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      min-height: 520px;
-    }
-    @media (max-width: 680px) {
-      .quest-log-wrap { grid-template-columns: 1fr; }
-      .quest-panel-right { display: none; }
-      .quest-panel-right.mobile-show { display: flex; }
-      .quest-panel-left { display: block; }
-      .quest-panel-left.mobile-hide { display: none; }
-    }
+    /* JOURNEY BOARD */
+    .journey{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr 24px 1fr;margin-bottom:36px;}
+    @media(max-width:680px){.journey{grid-template-columns:1fr;}.j-arrow{display:none;}.j-station{border-radius:4px !important;margin-bottom:8px;border:1px solid var(--border) !important;}}
+    .j-station{border:1px solid var(--border);padding:16px 14px;display:flex;flex-direction:column;min-height:180px;}
+    .j-station:nth-child(1){border-radius:4px 0 0 4px;background:var(--bg3);}
+    .j-station:nth-child(3){border-left:none;background:var(--panel);border-color:rgba(74,138,191,0.25);}
+    .j-station:nth-child(5){border-left:none;background:var(--panel2);border-color:rgba(154,122,191,0.25);}
+    .j-station:nth-child(7){border-left:none;border-radius:0 4px 4px 0;background:var(--panel2);border-color:rgba(201,168,76,0.3);}
+    .j-arrow{display:flex;align-items:center;justify-content:center;color:var(--golddim);font-size:14px;}
+    .js-icon{font-size:17px;margin-bottom:4px;}.js-name{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);margin-bottom:2px;}
+    .js-desc{font-size:11px;color:var(--textdim);font-style:italic;line-height:1.4;margin-bottom:12px;}
+    .js-cards{display:flex;flex-direction:column;gap:7px;flex:1;}
+    .board-card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:9px 11px;}
+    .bc-name{font-family:'Cinzel',serif;font-size:11px;color:var(--gold2);}
+    .bc-qname{font-size:11px;color:var(--text);font-style:italic;margin-bottom:2px;}
+    .bc-ref{font-size:10px;color:var(--textdim);font-style:italic;margin-bottom:3px;}
+    .bc-text{font-size:11px;font-style:italic;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .empty-slot{font-size:11px;color:var(--textdim);font-style:italic;text-align:center;padding:14px 6px;border:1px dashed var(--border);border-radius:3px;}
 
-    /* LEFT PANEL */
-    .quest-panel-left { background: var(--bg3); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-    .qpl-header { padding: 12px 14px 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .qpl-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
-    .qpl-count { font-family: 'Cinzel', serif; font-size: 9px; color: var(--textdim); }
-    .qpl-filter { padding: 8px 14px; border-bottom: 1px solid var(--border); display: flex; gap: 6px; flex-wrap: wrap; }
-    .filter-pill { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--border); border-radius: 99px; color: var(--textdim); background: transparent; cursor: pointer; transition: all 0.15s; }
-    .filter-pill:hover { color: var(--text); border-color: var(--border2); }
-    .filter-pill.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel); }
-    .quest-list { flex: 1; overflow-y: auto; }
-    .quest-group-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); padding: 8px 14px 4px; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border); }
-    .quest-list-item {
-      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
-      cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s;
-    }
-    .quest-list-item:hover { background: var(--panel); }
-    .quest-list-item.selected { background: var(--panel2); border-left: 3px solid var(--gold); }
-    .quest-list-item.is-mine { border-left: 2px solid rgba(201,168,76,0.4); }
-    .quest-list-item.selected.is-mine { border-left: 3px solid var(--gold); }
-    .ql-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .ql-info { flex: 1; min-width: 0; }
-    .ql-hero { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ql-ref  { font-size: 11px; color: var(--textdim); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ql-edit-btn { font-size: 11px; color: var(--textdim); background: none; border: none; cursor: pointer; padding: 2px 6px; border-radius: 2px; transition: color 0.15s; flex-shrink: 0; }
-    .ql-edit-btn:hover { color: var(--gold); }
-    .dot-road  { background: var(--c-road); }
-    .dot-quest { background: var(--c-quest); }
-    .dot-inv   { background: var(--c-inv); }
-    .dot-maint { background: var(--c-maint); }
-
-    /* ADD BUTTON in left panel */
-    .qpl-add { padding: 10px 14px; border-top: 1px solid var(--border); }
-    .btn-add-quest { width: 100%; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 9px; cursor: pointer; transition: background 0.2s; }
-    .btn-add-quest:hover { background: var(--green2); }
-
-    /* RIGHT PANEL — PARCHMENT */
-    .quest-panel-right {
-      background: linear-gradient(160deg, #2a1f0a 0%, #241a08 40%, #1e1506 100%);
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-    }
-    .quest-panel-right::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; opacity: 0.5;
-    }
-    .parch-content { position: relative; z-index: 1; padding: 28px 28px 20px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
-
-    /* Empty state */
-    .parch-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
-    .parch-empty-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.4; }
-    .parch-empty-text { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); }
-
-    /* Quest detail */
-    .parch-back { display: none; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); background: none; border: none; cursor: pointer; padding: 0 0 16px; transition: color 0.15s; }
-    .parch-back:hover { color: var(--gold); }
-    @media (max-width: 680px) { .parch-back { display: block; } }
-
-    .parch-status-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .parch-status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .parch-status-lbl { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
-    .status-lbl-road  { color: var(--c-road); }
-    .status-lbl-quest { color: var(--c-quest); }
-    .status-lbl-inv   { color: var(--c-inv); }
-    .status-lbl-maint { color: var(--c-maint); }
-
-    .parch-quest-name { font-family: 'Cinzel Decorative', serif; font-size: clamp(16px, 2.5vw, 22px); color: var(--gold2); line-height: 1.2; margin-bottom: 6px; text-shadow: 0 0 30px rgba(201,168,76,0.2); }
-    .parch-hero-name  { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); margin-bottom: 20px; }
-
-    .parch-divider { height: 1px; background: linear-gradient(to right, var(--parch-border), transparent); margin: 16px 0; }
-
-    .parch-section-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--parch-dim); margin-bottom: 8px; }
-    .parch-verse { font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; color: var(--parch-text); line-height: 1.7; margin-bottom: 4px; }
-    .parch-ref   { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); margin-bottom: 20px; }
-
-    .parch-flavor { font-size: 13px; color: var(--parch-dim); font-style: italic; line-height: 1.6; border-left: 2px solid var(--parch-border); padding-left: 12px; margin-bottom: 20px; }
-
-    /* PROGRESS BARS */
-    .parch-progress { margin-bottom: 20px; }
-    .progress-modes { display: flex; flex-direction: column; gap: 6px; }
-    .progress-mode-row { display: flex; align-items: center; gap: 10px; }
-    .progress-mode-name { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--parch-dim); min-width: 100px; }
-    .progress-mode-bar { flex: 1; height: 3px; background: var(--parch-border); border-radius: 99px; overflow: hidden; }
-    .progress-mode-fill { height: 100%; border-radius: 99px; transition: width 0.4s; }
-    .progress-mode-check { font-size: 12px; width: 16px; text-align: center; }
-
-    /* PARCHMENT ACTIONS */
-    .parch-actions { margin-top: auto; padding-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-parch-primary { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 11px 22px; cursor: pointer; transition: background 0.2s; }
-    .btn-parch-primary:hover { background: var(--green2); }
-    .btn-parch-gold { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--gold); color: #1a0f00; border: none; border-radius: 3px; padding: 11px 22px; cursor: pointer; transition: background 0.2s; font-weight: 700; }
-    .btn-parch-gold:hover { background: var(--gold2); }
-    .btn-parch-outline { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: transparent; color: var(--parch-dim); border: 1px solid var(--parch-border); border-radius: 3px; padding: 10px 18px; cursor: pointer; transition: all 0.2s; }
-    .btn-parch-outline:hover { color: var(--gold); border-color: var(--golddim); }
-
-    /* ── TRAINING MODAL ── */
-    .train-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 120; display: none; flex-direction: column; overflow-y: auto; }
-    .train-overlay.show { display: flex; }
-    .train-inner { max-width: 680px; margin: 0 auto; width: 100%; padding: 32px 20px 80px; flex: 1; display: flex; flex-direction: column; }
-
-    .train-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-    .train-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); }
-    .train-close { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: transparent; border: 1px solid var(--border2); color: var(--textdim); padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.15s; }
-    .train-close:hover { color: var(--text); border-color: var(--border2); }
-
-    /* mode tabs */
-    .train-mode-tabs { display: flex; gap: 4px; margin-bottom: 24px; flex-wrap: wrap; }
-    .train-mode-tab { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 14px; border: 1px solid var(--border); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
-    .train-mode-tab:hover { border-color: var(--border2); color: var(--text); }
-    .train-mode-tab.active { border-color: var(--gold); color: var(--gold2); background: var(--panel2); }
-    .train-mode-tab.done { border-color: var(--green); color: var(--green2); }
-    .train-mode-tab .tab-check { font-size: 10px; }
-
-    /* passage reference indicator */
-    .train-passage-ref { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--textdim); margin-bottom: 10px; }
-
-    /* display area */
-    .train-verse-ref { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 8px; }
-    .train-display { font-size: 20px; font-style: italic; line-height: 1.75; color: var(--textbright); min-height: 80px; padding: 16px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 16px; }
-
-    /* passage verse lines */
-    .passage-line { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
-    .passage-vnum { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px; color: var(--golddim); min-width: 28px; padding-top: 4px; flex-shrink: 0; text-align: right; }
-    .passage-vtext { font-size: 19px; font-style: italic; line-height: 1.7; color: var(--textbright); }
-
-    .blank-word { display: inline-block; background: var(--border2); border-radius: 2px; height: 15px; vertical-align: middle; margin: 0 2px; }
-    .first-letter { color: var(--gold); font-weight: 500; }
-    .first-letter-blank { color: var(--textdim); letter-spacing: 2px; }
-
-    /* SCRAMBLE */
-    .scramble-wrap { margin-bottom: 16px; }
-    .scramble-sentence-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 8px; }
-    .scramble-target { min-height: 60px; border: 1px solid var(--golddim); border-radius: 3px; padding: 12px 14px; background: var(--panel2); margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
-    .scramble-target-empty { font-style: italic; color: var(--textdim); font-size: 14px; align-self: center; }
-    .scramble-pool { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0; }
-    .word-chip {
-      font-family: 'EB Garamond', serif; font-size: 15px; font-style: italic;
-      padding: 5px 10px; border: 1px solid var(--border2); border-radius: 3px;
-      background: var(--panel); color: var(--textbright); cursor: pointer;
-      transition: all 0.15s; user-select: none;
-    }
-    .word-chip:hover { border-color: var(--gold); color: var(--gold2); background: var(--panel2); }
-    .word-chip.placed { background: var(--panel2); border-color: var(--golddim); cursor: pointer; }
-    .word-chip.placed:hover { border-color: var(--red); color: var(--red2); }
-
-    /* RECALL */
-    .recall-textarea { width: 100%; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; padding: 14px 16px; outline: none; resize: vertical; min-height: 120px; margin-bottom: 12px; line-height: 1.65; transition: border-color 0.2s; }
-    .recall-textarea:focus { border-color: var(--golddim); }
-
-    /* DIFF display */
-    .diff-display { font-size: 16px; line-height: 1.8; padding: 14px 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px; }
-    .diff-ok   { color: var(--textbright); }
-    .diff-miss { color: var(--red2); text-decoration: underline; background: rgba(139,58,42,0.2); padding: 0 2px; border-radius: 2px; }
-    .diff-add  { color: var(--green2); }
-
-    .recall-feedback { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; padding: 9px 13px; border-radius: 3px; margin-bottom: 12px; }
-    .rf-correct   { background: rgba(74,124,63,0.15); border: 1px solid var(--green); color: var(--green2); }
-    .rf-close     { background: rgba(201,168,76,0.1); border: 1px solid var(--golddim); color: var(--gold2); }
-    .rf-incorrect { background: rgba(139,58,42,0.15); border: 1px solid var(--red); color: var(--red2); }
-
-    .train-btn-row { display: flex; gap: 9px; flex-wrap: wrap; }
-    .btn-train { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s; }
-    .btn-train:hover { border-color: var(--golddim); color: var(--gold); }
-    .btn-train.gold { border-color: var(--golddim); color: var(--gold); }
-    .btn-train.gold:hover { background: var(--panel2); color: var(--gold2); }
-    .btn-train.success { border-color: var(--green); color: var(--green2); background: rgba(74,124,63,0.1); }
-    .btn-train.danger  { border-color: var(--red); color: var(--red2); }
-
-    /* CELEBRATE */
-    .celebrate { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
-    .celebrate.show { opacity: 1; pointer-events: all; }
-    .cel-icon  { font-size: 64px; margin-bottom: 18px; animation: cpulse 1s ease-in-out infinite alternate; }
-    @keyframes cpulse { from { transform: scale(1); } to { transform: scale(1.12); } }
-    .cel-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(18px, 4vw, 32px); color: var(--gold2); text-align: center; margin-bottom: 10px; text-shadow: 0 0 40px rgba(232,201,122,0.4); padding: 0 20px; }
-    .cel-sub   { font-style: italic; color: var(--textdim); font-size: 15px; margin-bottom: 28px; text-align: center; max-width: 380px; padding: 0 20px; line-height: 1.6; }
-    .cel-close { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; padding: 10px 28px; border: 1px solid var(--golddim); background: transparent; color: var(--gold); cursor: pointer; border-radius: 2px; }
-
-    /* BOARD */
-    .journey { display: grid; grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr; margin-bottom: 36px; }
-    @media (max-width: 680px) { .journey { grid-template-columns: 1fr; } .j-arrow { display: none; } .j-station { border-radius: 4px !important; margin-bottom: 8px; border: 1px solid var(--border) !important; } }
-    .j-station { border: 1px solid var(--border); padding: 16px 14px; display: flex; flex-direction: column; min-height: 180px; }
-    .j-station:nth-child(1) { border-radius: 4px 0 0 4px; background: var(--bg3); }
-    .j-station:nth-child(3) { border-left: none; background: var(--panel); border-color: rgba(74,138,191,0.25); }
-    .j-station:nth-child(5) { border-left: none; background: var(--panel2); border-color: rgba(201,168,76,0.3); }
-    .j-station:nth-child(7) { border-left: none; border-radius: 0 4px 4px 0; background: var(--bg3); border-color: rgba(154,122,191,0.25); }
-    .j-arrow { display: flex; align-items: center; justify-content: center; color: var(--golddim); font-size: 14px; }
-    .js-icon { font-size: 17px; margin-bottom: 4px; }
-    .js-name { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 2px; }
-    .js-desc { font-size: 11px; color: var(--textdim); font-style: italic; line-height: 1.4; margin-bottom: 12px; }
-    .js-cards { display: flex; flex-direction: column; gap: 7px; flex: 1; }
-    .board-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; padding: 9px 11px; }
-    .bc-name { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold2); }
-    .bc-ref  { font-size: 10px; color: var(--textdim); font-style: italic; margin-bottom: 3px; }
-    .bc-text { font-size: 11px; font-style: italic; color: var(--text); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .bc-obj  { font-family: 'Cinzel', serif; font-size: 7px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; opacity: 0.8; }
-    .bc-obj.road { color: var(--c-road); } .bc-obj.quest { color: var(--c-quest); } .bc-obj.inv { color: var(--c-inv); } .bc-obj.maint { color: var(--c-maint); }
-    .empty-slot { font-size: 11px; color: var(--textdim); font-style: italic; text-align: center; padding: 14px 6px; border: 1px dashed var(--border); border-radius: 3px; }
-
+    /* TRAINING MODAL */
+    .train-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:120;display:none;flex-direction:column;overflow-y:auto;}
+    .train-overlay.show{display:flex;}
+    .train-inner{max-width:680px;margin:0 auto;width:100%;padding:32px 20px 80px;flex:1;display:flex;flex-direction:column;}
+    .train-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+    .train-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);}
+    .train-close{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:transparent;border:1px solid var(--border2);color:var(--textdim);padding:6px 14px;border-radius:2px;cursor:pointer;}
+    .train-mode-tabs{display:flex;gap:4px;margin-bottom:24px;flex-wrap:wrap;}
+    .train-mode-tab{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border);border-radius:2px;background:transparent;color:var(--textdim);cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:6px;}
+    .train-mode-tab:hover{border-color:var(--border2);color:var(--text);}
+    .train-mode-tab.active{border-color:var(--gold);color:var(--gold2);background:var(--panel2);}
+    .train-mode-tab.done{border-color:var(--green);color:var(--green2);}
+    .train-mode-tab .tab-check{font-size:10px;}
+    .train-passage-ref{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--textdim);margin-bottom:10px;}
+    .train-display{font-size:17px;font-style:italic;line-height:1.75;color:var(--textbright);min-height:80px;padding:16px 18px;background:var(--panel);border:1px solid var(--border);border-radius:3px;margin-bottom:16px;}
+    .blank-word{display:inline-block;background:var(--border2);border-radius:2px;height:15px;vertical-align:middle;margin:0 2px;}
+    .first-letter{color:var(--gold);font-weight:500;}.first-letter-blank{color:var(--textdim);letter-spacing:2px;}
+    .scramble-wrap{margin-bottom:16px;}
+    .scramble-sentence-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);margin-bottom:8px;}
+    .scramble-target{min-height:60px;border:1px solid var(--golddim);border-radius:3px;padding:12px 14px;background:var(--panel2);margin-bottom:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;}
+    .scramble-target-empty{font-style:italic;color:var(--textdim);font-size:14px;align-self:center;}
+    .scramble-pool{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0;}
+    .word-chip{font-family:'EB Garamond',serif;font-size:15px;font-style:italic;padding:5px 10px;border:1px solid var(--border2);border-radius:3px;background:var(--panel);color:var(--textbright);cursor:pointer;transition:all 0.15s;user-select:none;}
+    .word-chip:hover{border-color:var(--gold);color:var(--gold2);background:var(--panel2);}
+    .word-chip.placed:hover{border-color:var(--red);color:var(--red2);}
+    .recall-textarea{width:100%;background:var(--panel);border:1px solid var(--border);border-radius:3px;color:var(--textbright);font-family:'EB Garamond',serif;font-size:18px;font-style:italic;padding:14px 16px;outline:none;resize:vertical;min-height:120px;margin-bottom:12px;line-height:1.65;transition:border-color 0.2s;}
+    .recall-textarea:focus{border-color:var(--golddim);}
+    .diff-display{font-size:16px;line-height:1.8;padding:14px 16px;background:var(--panel);border:1px solid var(--border);border-radius:3px;margin-bottom:12px;}
+    .diff-ok{color:var(--textbright);}.diff-miss{color:var(--red2);text-decoration:underline;background:rgba(139,58,42,0.2);padding:0 2px;border-radius:2px;}.diff-add{color:var(--green2);}
+    .recall-feedback{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;padding:9px 13px;border-radius:3px;margin-bottom:12px;}
+    .rf-correct{background:rgba(74,124,63,0.15);border:1px solid var(--green);color:var(--green2);}
+    .rf-close{background:rgba(201,168,76,0.1);border:1px solid var(--golddim);color:var(--gold2);}
+    .rf-incorrect{background:rgba(139,58,42,0.15);border:1px solid var(--red);color:var(--red2);}
+    .train-btn-row{display:flex;gap:9px;flex-wrap:wrap;}
+    .btn-train{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;border:1px solid var(--border2);border-radius:2px;background:transparent;color:var(--textdim);cursor:pointer;transition:all 0.15s;}
+    .btn-train:hover{border-color:var(--golddim);color:var(--gold);}
+    .btn-train.gold{border-color:var(--golddim);color:var(--gold);}.btn-train.gold:hover{background:var(--panel2);color:var(--gold2);}
+    .btn-train.success{border-color:var(--green);color:var(--green2);background:rgba(74,124,63,0.1);}
+    .btn-train.danger{border-color:var(--red);color:var(--red2);}
+    .celebrate{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;opacity:0;pointer-events:none;transition:opacity 0.35s;}
+    .celebrate.show{opacity:1;pointer-events:all;}
+    .cel-icon{font-size:64px;margin-bottom:18px;animation:cpulse 1s ease-in-out infinite alternate;}
+    @keyframes cpulse{from{transform:scale(1);}to{transform:scale(1.12);}}
+    .cel-title{font-family:'Cinzel Decorative',serif;font-size:clamp(18px,4vw,32px);color:var(--gold2);text-align:center;margin-bottom:10px;text-shadow:0 0 40px rgba(232,201,122,0.4);padding:0 20px;}
+    .cel-sub{font-style:italic;color:var(--textdim);font-size:15px;margin-bottom:28px;text-align:center;max-width:380px;padding:0 20px;line-height:1.6;}
+    .cel-close{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:10px 28px;border:1px solid var(--golddim);background:transparent;color:var(--gold);cursor:pointer;border-radius:2px;}
     /* ADD FORM */
-    .add-form-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 24px 26px; margin-bottom: 24px; }
-    .field { margin-bottom: 14px; }
-    .field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 5px; }
-    .field input, .field select, .field textarea { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px; padding: 8px 12px; outline: none; transition: border-color 0.2s; appearance: none; }
-    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--golddim); }
-    .field textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
-    .field input::placeholder, .field textarea::placeholder { color: var(--textdim); font-style: italic; }
-    .field select option { background: #1a2412; color: var(--textbright); }
-    .new-name-row { display: none; margin-top: 8px; }
-    .psalm-pills { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-    .psalm-pill { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border: 1px solid var(--border); border-radius: 99px; color: var(--textdim); background: transparent; cursor: pointer; transition: all 0.2s; }
-    .psalm-pill:hover { border-color: var(--border2); color: var(--text); }
-    .psalm-pill.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel); }
-    .psalm-ref-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; max-height: 240px; overflow-y: auto; margin-bottom: 12px; }
-    .psalm-v-row { display: flex; gap: 10px; padding: 8px 14px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; align-items: flex-start; }
-    .psalm-v-row:last-child { border-bottom: none; }
-    .psalm-v-row:hover { background: var(--panel); }
-    .psalm-v-row.selected { background: rgba(74,124,63,0.15); }
-    .psalm-v-check { width: 13px; height: 13px; border: 1px solid var(--border2); border-radius: 2px; background: var(--bg2); flex-shrink: 0; margin-top: 3px; display: flex; align-items: center; justify-content: center; }
-    .psalm-v-row.selected .psalm-v-check { background: var(--green); border-color: var(--green); }
-    .psalm-v-check-mark { color: white; font-size: 9px; display: none; }
-    .psalm-v-row.selected .psalm-v-check-mark { display: block; }
-    .psalm-v-num { font-family: 'Cinzel', serif; font-size: 10px; color: var(--golddim); min-width: 16px; padding-top: 1px; flex-shrink: 0; }
-    .psalm-v-text { font-size: 14px; font-style: italic; color: var(--text); line-height: 1.45; }
-    .selected-count { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--green2); margin-bottom: 12px; min-height: 16px; }
-    .btn-submit-quest { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 11px 26px; cursor: pointer; transition: background 0.2s; margin-right: 10px; }
-    .btn-submit-quest:hover { background: var(--green2); }
-    .btn-submit-quest:disabled { opacity: 0.5; cursor: not-allowed; }
-    .btn-cancel-form { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; }
-    .btn-cancel-form:hover { color: var(--text); }
-
-    /* EDIT MODAL */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); display: flex; align-items: center; justify-content: center; z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.25s; padding: 20px; }
-    .modal-overlay.show { opacity: 1; pointer-events: all; }
-    .modal-box { background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px; padding: 26px 26px 22px; width: 100%; max-width: 500px; }
-    .modal-title { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 18px; }
-    .modal-field { margin-bottom: 12px; }
-    .modal-field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 4px; }
-    .modal-field input, .modal-field select, .modal-field textarea { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px; padding: 8px 12px; outline: none; transition: border-color 0.2s; appearance: none; }
-    .modal-field input:focus, .modal-field select:focus, .modal-field textarea:focus { border-color: var(--golddim); }
-    .modal-field textarea { resize: vertical; min-height: 68px; line-height: 1.5; }
-    .modal-field select option { background: #1a2412; color: var(--textbright); }
-    .modal-btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 18px; align-items: center; }
-    .modal-save { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 10px 22px; cursor: pointer; transition: background 0.2s; }
-    .modal-save:hover { background: var(--green2); }
-    .modal-cancel { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 14px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; }
-    .modal-delete { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 14px; border: 1px solid var(--red); border-radius: 2px; background: transparent; color: var(--red2); cursor: pointer; margin-left: auto; }
-
-    /* PIN */
-    .pin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 160; opacity: 0; pointer-events: none; transition: opacity 0.25s; padding: 20px; }
-    .pin-overlay.show { opacity: 1; pointer-events: all; }
-    .pin-box { background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px; padding: 28px; width: 100%; max-width: 320px; text-align: center; }
-    .pin-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 16px; }
-    .pin-input { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 24px; padding: 10px 12px; outline: none; text-align: center; letter-spacing: 10px; margin-bottom: 12px; transition: border-color 0.2s; }
-    .pin-input:focus { border-color: var(--golddim); }
-    .pin-error { font-family: 'Cinzel', serif; font-size: 9px; color: var(--red2); margin-bottom: 10px; min-height: 16px; }
-
-    .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(70px); background: var(--panel2); border: 1px solid var(--border2); border-radius: 3px; padding: 9px 20px; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); transition: transform 0.28s; z-index: 300; }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-    .loading { text-align: center; padding: 40px; font-style: italic; color: var(--textdim); }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
-    .fade-up { animation: fadeUp 0.25s ease forwards; }
+    .add-form-wrap{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:24px 26px;margin-bottom:24px;}
+    .field{margin-bottom:14px;}.field label{display:block;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--golddim);margin-bottom:5px;}
+    .field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:3px;color:var(--textbright);font-family:'EB Garamond',serif;font-size:16px;padding:8px 12px;outline:none;transition:border-color 0.2s;appearance:none;}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--golddim);}
+    .field textarea{resize:vertical;min-height:76px;line-height:1.5;}
+    .field input::placeholder,.field textarea::placeholder{color:var(--textdim);font-style:italic;}
+    .field select option{background:#1a2412;color:var(--textbright);}
+    .new-name-row{display:none;margin-top:8px;}
+    .psalm-pills{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+    .psalm-pill{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border:1px solid var(--border);border-radius:99px;color:var(--textdim);background:transparent;cursor:pointer;transition:all 0.2s;}
+    .psalm-pill:hover{border-color:var(--border2);color:var(--text);}.psalm-pill.active{border-color:var(--golddim);color:var(--gold2);background:var(--panel);}
+    .psalm-ref-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;max-height:240px;overflow-y:auto;margin-bottom:12px;}
+    .psalm-v-row{display:flex;gap:10px;padding:8px 14px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.15s;align-items:flex-start;}
+    .psalm-v-row:last-child{border-bottom:none;}.psalm-v-row:hover{background:var(--panel);}.psalm-v-row.selected{background:rgba(74,124,63,0.15);}
+    .psalm-v-check{width:13px;height:13px;border:1px solid var(--border2);border-radius:2px;background:var(--bg2);flex-shrink:0;margin-top:3px;display:flex;align-items:center;justify-content:center;}
+    .psalm-v-row.selected .psalm-v-check{background:var(--green);border-color:var(--green);}
+    .psalm-v-check-mark{color:white;font-size:9px;display:none;}.psalm-v-row.selected .psalm-v-check-mark{display:block;}
+    .psalm-v-num{font-family:'Cinzel',serif;font-size:10px;color:var(--golddim);min-width:16px;padding-top:1px;flex-shrink:0;}
+    .psalm-v-text{font-size:14px;font-style:italic;color:var(--text);line-height:1.45;}
+    .selected-count{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green2);margin-bottom:12px;min-height:16px;}
+    .btn-submit-quest{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;background:var(--green);color:var(--textbright);border:none;border-radius:3px;padding:11px 26px;cursor:pointer;transition:background 0.2s;margin-right:10px;}
+    .btn-submit-quest:hover{background:var(--green2);}.btn-submit-quest:disabled{opacity:0.5;cursor:not-allowed;}
+    .btn-cancel-form{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:9px 16px;border:1px solid var(--border2);border-radius:2px;background:transparent;color:var(--textdim);cursor:pointer;}
+    /* MODALS */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);display:flex;align-items:center;justify-content:center;z-index:150;opacity:0;pointer-events:none;transition:opacity 0.25s;padding:20px;}
+    .modal-overlay.show{opacity:1;pointer-events:all;}
+    .modal-box{background:var(--panel);border:1px solid var(--golddim);border-radius:4px;padding:26px 26px 22px;width:100%;max-width:500px;}
+    .modal-title{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);margin-bottom:18px;}
+    .modal-field{margin-bottom:12px;}.modal-field label{display:block;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--golddim);margin-bottom:4px;}
+    .modal-field input,.modal-field select,.modal-field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:3px;color:var(--textbright);font-family:'EB Garamond',serif;font-size:16px;padding:8px 12px;outline:none;transition:border-color 0.2s;appearance:none;}
+    .modal-field input:focus,.modal-field select:focus,.modal-field textarea:focus{border-color:var(--golddim);}
+    .modal-field textarea{resize:vertical;min-height:68px;line-height:1.5;}
+    .modal-field select option{background:#1a2412;color:var(--textbright);}
+    .modal-btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;align-items:center;}
+    .modal-save{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:var(--textbright);border:none;border-radius:3px;padding:10px 22px;cursor:pointer;transition:background 0.2s;}
+    .modal-save:hover{background:var(--green2);}
+    .modal-cancel{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:9px 14px;border:1px solid var(--border2);border-radius:2px;background:transparent;color:var(--textdim);cursor:pointer;}
+    .modal-delete{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:9px 14px;border:1px solid var(--red);border-radius:2px;background:transparent;color:var(--red2);cursor:pointer;margin-left:auto;}
+    .pin-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:160;opacity:0;pointer-events:none;transition:opacity 0.25s;padding:20px;}
+    .pin-overlay.show{opacity:1;pointer-events:all;}
+    .pin-box{background:var(--panel);border:1px solid var(--golddim);border-radius:4px;padding:28px;width:100%;max-width:320px;text-align:center;}
+    .pin-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);margin-bottom:16px;}
+    .pin-input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:3px;color:var(--textbright);font-family:'EB Garamond',serif;font-size:24px;padding:10px 12px;outline:none;text-align:center;letter-spacing:10px;margin-bottom:12px;transition:border-color 0.2s;}
+    .pin-input:focus{border-color:var(--golddim);}
+    .pin-error{font-family:'Cinzel',serif;font-size:9px;color:var(--red2);margin-bottom:10px;min-height:16px;}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--panel2);border:1px solid var(--border2);border-radius:3px;padding:9px 20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);transition:transform 0.28s;z-index:300;}
+    .toast.show{transform:translateX(-50%) translateY(0);}
+    .loading{text-align:center;padding:40px;font-style:italic;color:var(--textdim);}
   </style>
 </head>
 <body>
-
 <header>
   <a href="index.html" class="hdr-home">← Home</a>
   <div class="hdr-rule"></div>
@@ -355,13 +244,12 @@
 <nav>
   <button class="tab-btn active" onclick="switchTab('log',this)">Quest Log</button>
   <button class="tab-btn" onclick="switchTab('board',this)">Journey Board</button>
+  <button class="tab-btn" onclick="switchTab('inventory',this)">Inventory</button>
 </nav>
 
 <main>
-  <!-- QUEST LOG TAB -->
+  <!-- QUEST LOG -->
   <div id="tab-log" class="tab-panel active">
-
-    <!-- ADD FORM -->
     <div id="add-form" style="display:none;">
       <p class="sec-label">Accept a New Quest</p>
       <div class="add-form-wrap">
@@ -392,42 +280,36 @@
         </div>
       </div>
     </div>
-
-    <!-- SPLIT PANEL -->
-    <div class="quest-log-wrap" id="quest-log-wrap">
-      <!-- LEFT -->
+    <div class="quest-log-wrap">
       <div class="quest-panel-left" id="panel-left">
         <div class="qpl-header">
-          <span class="qpl-title">Classic Quest Log</span>
+          <span class="qpl-title">Quest Log</span>
           <span class="qpl-count" id="quest-count">0 quests</span>
         </div>
         <div class="qpl-filter" id="filter-bar">
           <button class="filter-pill active" onclick="setFilter('all',this)">All</button>
         </div>
         <div class="quest-list" id="quest-list"><div class="loading">Loading…</div></div>
-        <div class="qpl-add">
-          <button class="btn-add-quest" onclick="showAddForm()">+ Add a Quest</button>
-        </div>
+        <div class="qpl-add"><button class="btn-add-quest" onclick="showAddForm()">+ Accept a Quest</button></div>
       </div>
-      <!-- RIGHT -->
       <div class="quest-panel-right" id="panel-right">
         <div class="parch-content" id="parch-content">
-          <div class="parch-empty">
-            <div class="parch-empty-icon">📜</div>
-            <div class="parch-empty-text">Select a quest to view</div>
-          </div>
+          <div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- JOURNEY BOARD TAB -->
+  <!-- JOURNEY BOARD -->
   <div id="tab-board" class="tab-panel">
     <p class="sec-label">The Fellowship's Journey</p>
-    <div class="journey" id="journey-board">
-      <div class="loading" style="grid-column:1/-1;">Loading…</div>
-    </div>
+    <div class="journey" id="journey-board"><div class="loading" style="grid-column:1/-1;">Loading…</div></div>
+  </div>
+
+  <!-- INVENTORY -->
+  <div id="tab-inventory" class="tab-panel">
+    <p class="sec-label">The Inventory — Verses Mastered</p>
+    <div id="inv-grid-wrap"><div class="loading">Loading…</div></div>
   </div>
 </main>
 
@@ -446,9 +328,9 @@
 
 <!-- CELEBRATE -->
 <div class="celebrate" id="celebrate">
-  <div class="cel-icon"  id="cel-icon">⚔️</div>
+  <div class="cel-icon" id="cel-icon">⚔️</div>
   <div class="cel-title" id="cel-title"></div>
-  <div class="cel-sub"   id="cel-sub"></div>
+  <div class="cel-sub" id="cel-sub"></div>
   <button class="cel-close" onclick="document.getElementById('celebrate').classList.remove('show')">Continue the Journey</button>
 </div>
 
@@ -475,18 +357,15 @@
   </div>
 </div>
 
-<!-- PIN OVERLAY -->
+<!-- PIN -->
 <div class="pin-overlay" id="pin-overlay">
   <div class="pin-box">
     <div class="pin-title">Leader Access</div>
     <input type="password" class="pin-input" id="pin-input" maxlength="4" placeholder="••••" oninput="handlePinInput()" />
     <div class="pin-error" id="pin-error"></div>
-    <div style="display:flex;justify-content:center;">
-      <button class="modal-cancel" onclick="closePinOverlay()">Cancel</button>
-    </div>
+    <div style="display:flex;justify-content:center;"><button class="modal-cancel" onclick="closePinOverlay()">Cancel</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script type="module">
@@ -494,14 +373,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const app = initializeApp({
-  apiKey: "AIzaSyCeNzMSGSjKJyE8i3sugDYd_kaLeU6fMBc",
-  authDomain: "youth-262fc.firebaseapp.com",
-  databaseURL: "https://youth-262fc-default-rtdb.firebaseio.com",
-  projectId: "youth-262fc",
-  storageBucket: "youth-262fc.firebasestorage.app",
-  messagingSenderId: "886474552762",
-  appId: "1:886474552762:web:db68add41a7240748d5983",
-  measurementId: "G-CCF3B9Z370"
+  apiKey:"AIzaSyCeNzMSGSjKJyE8i3sugDYd_kaLeU6fMBc",authDomain:"youth-262fc.firebaseapp.com",
+  databaseURL:"https://youth-262fc-default-rtdb.firebaseio.com",projectId:"youth-262fc",
+  storageBucket:"youth-262fc.firebasestorage.app",messagingSenderId:"886474552762",
+  appId:"1:886474552762:web:db68add41a7240748d5983",measurementId:"G-CCF3B9Z370"
 });
 const db = getDatabase(app);
 
@@ -510,8 +385,37 @@ const LEADER_PIN = '1957';
 const HERO_KEY   = 'sword_hero_v5';
 const MY_IDS_KEY = 'sword_ids_v5';
 
-const ACTIVE_OBJ = ["Slay the Defias Footpads","Collect the Zhevra Hooves","Bring Fuel to Everlook","Slay Razorclaw the Butcher","Collect the Bloodscalp Tusks","Report to Sentinel Dawnstrider","Escort Erland McGee to Refuge Pointe","Slay the Mor'Ladim","Collect the Venture Co. Uniforms","Speak with Watcher Backus"];
-const MAINT_OBJ  = ["Bring the Mithril Bars to Tog'thar","Collect the Thick Leather from the Highlands","Deliver the Cracked Hammer to Calain","Bring the Elixirs of Fortitude to Dawnstar","Smelt the Truesilver Bars for Marvon","Collect the Iron Rivets from the Slag Pit","Deliver the Battered Shield to Irondeep","Bring the Dull Blade to Wiley the Black","Collect the Enchanted Thorium Bars","Return the Worn Axe to Belgrom Rockmaul"];
+const QUEST_NAMES = [
+  "Test of Faith","In the Name of the Light","The Ties That Bind",
+  "Mythology of the Titans","Compendium of the Fallen","Rituals of Power",
+  "Test of Endurance","Test of Strength","Words of the Ancients",
+  "The Ancient Egg","Pamela's Doll","It's Dangerous To Go Alone",
+  "Hidden Enemies","Collecting Memories","Dead Man's Plea",
+  "The Challenge","The Prodigal Lich","Sully Ballou",
+  "Into The Scarlet Monastery","Legends of Maraudon"
+];
+
+const ITEM_NAMES = [
+  "Sword of Serenity","Shadowfang","Blade of the Titans",
+  "Sword of Omen","Bonebiter","Krol Blade",
+  "Warmonger","Night Reaver","Assassin's Blade",
+  "Stonecutting Glaive","Darkstone Claymore","Soulrender",
+  "Stoneraven","Frenzied Striker","Blade of Hanna",
+  "The Butcher","Tainted Pierce","Steelclaw Reaver",
+  "Sliverblade","Black Menace"
+];
+
+const ITEM_TYPES = [
+  "One-Hand Sword","Main Hand Sword","Two-Hand Sword",
+  "One-Hand Sword","Two-Hand Axe","Main Hand Sword",
+  "Two-Hand Sword","Two-Hand Axe","One-Hand Dagger",
+  "Two-Hand Polearm","Two-Hand Sword","One-Hand Axe",
+  "Two-Hand Polearm","Two-Hand Polearm","Two-Hand Sword",
+  "One-Hand Sword","One-Hand Sword","One-Hand Axe",
+  "One-Hand Dagger","One-Hand Sword"
+];
+
+const HERO_AVATARS = ['⚔️','🛡️','🏹','🔮','🌿','🔥','❄️','⚡','🌟','🗡️'];
 
 const FLAVOR = [
   "A word once hidden in the heart becomes a blade that never dulls.",
@@ -524,748 +428,359 @@ const FLAVOR = [
 ];
 
 const PSALMS = {
-  103: [[1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],[2,"Bless the LORD, O my soul, and forget not all his benefits,"],[3,"who forgives all your iniquity, who heals all your diseases,"],[4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],[5,"who satisfies you with good so that your youth is renewed like the eagle's."],[6,"The LORD works righteousness and justice for all who are oppressed."],[7,"He made known his ways to Moses, his acts to the people of Israel."],[8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],[9,"He will not always chide, nor will he keep his anger forever."],[10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],[11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],[12,"as far as the east is from the west, so far does he remove our transgressions from us."],[13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],[14,"For he knows our frame; he remembers that we are dust."],[15,"As for man, his days are like grass; he flourishes like a flower of the field;"],[16,"for the wind passes over it, and it is gone, and its place knows it no more."],[17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],[18,"to those who keep his covenant and remember to do his commandments."],[19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],[20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],[21,"Bless the LORD, all his hosts, his ministers, who do his will!"],[22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]],
-  121: [[1,"I lift up my eyes to the hills. From where does my help come?"],[2,"My help comes from the LORD, who made heaven and earth."],[3,"He will not let your foot be moved; he who keeps you will not slumber."],[4,"Behold, he who keeps Israel will neither slumber nor sleep."],[5,"The LORD is your keeper; the LORD is your shade on your right hand."],[6,"The sun shall not strike you by day, nor the moon by night."],[7,"The LORD will keep you from all evil; he will keep your life."],[8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]]
+  103:[[1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],[2,"Bless the LORD, O my soul, and forget not all his benefits,"],[3,"who forgives all your iniquity, who heals all your diseases,"],[4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],[5,"who satisfies you with good so that your youth is renewed like the eagle's."],[6,"The LORD works righteousness and justice for all who are oppressed."],[7,"He made known his ways to Moses, his acts to the people of Israel."],[8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],[9,"He will not always chide, nor will he keep his anger forever."],[10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],[11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],[12,"as far as the east is from the west, so far does he remove our transgressions from us."],[13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],[14,"For he knows our frame; he remembers that we are dust."],[15,"As for man, his days are like grass; he flourishes like a flower of the field;"],[16,"for the wind passes over it, and it is gone, and its place knows it no more."],[17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],[18,"to those who keep his covenant and remember to do his commandments."],[19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],[20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],[21,"Bless the LORD, all his hosts, his ministers, who do his will!"],[22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]],
+  121:[[1,"I lift up my eyes to the hills. From where does my help come?"],[2,"My help comes from the LORD, who made heaven and earth."],[3,"He will not let your foot be moved; he who keeps you will not slumber."],[4,"Behold, he who keeps Israel will neither slumber nor sleep."],[5,"The LORD is your keeper; the LORD is your shade on your right hand."],[6,"The sun shall not strike you by day, nor the moon by night."],[7,"The LORD will keep you from all evil; he will keep your life."],[8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]]
 };
 
 const TRAIN_MODES = ['read','blank','firstletter','scramble','recall'];
-const MODE_LABELS = { read:'Read', blank:'Fill Blank', firstletter:'First Letters', scramble:'Scramble', recall:'Recall' };
+const MODE_LABELS = {read:'Read',blank:'Fill Blank',firstletter:'First Letters',scramble:'Scramble',recall:'Recall'};
+
+// Deterministic pick — same questId always yields same name/item
+function hashPick(arr, key) {
+  let h = 0;
+  for (let i=0;i<key.length;i++) h=(Math.imul(31,h)+key.charCodeAt(i))|0;
+  return arr[Math.abs(h)%arr.length];
+}
 
 // ── STATE ─────────────────────────────────────────────
-let allVerses      = [];
-let myIds          = JSON.parse(localStorage.getItem(MY_IDS_KEY) || '[]');
-let myHero         = localStorage.getItem(HERO_KEY) || '';
-let heroFilter     = 'all';
-let selectedId     = null;
-let leaderUnlocked = false;
-let editingId      = null;
-let pendingEditId  = null;
-let selectedPsalm  = 121;
-let selectedVerses = new Map();
+let allVerses=[],myIds=JSON.parse(localStorage.getItem(MY_IDS_KEY)||'[]'),myHero=localStorage.getItem(HERO_KEY)||'';
+let heroFilter='all',selectedQid=null,leaderUnlocked=false,editingId=null,pendingEditId=null;
+let selectedPsalm=121,selectedVerses=new Map();
+let trainVerses=[],trainMode='read',trainProgress={};
+let scrambleState={sentenceIdx:0,pool:[],built:[],usedIdx:new Set()};
 
-// ── TRAINING STATE ────────────────────────────────────
-// trainQuest: the single verse object being trained (training is now per-quest/verse doc,
-//             but a quest doc may represent multiple verses stored as one)
-// For multi-verse quests (same hero, same session), we load them grouped.
-let trainVerses   = []; // all verse objects in this training session (the quest's verses)
-let trainMode     = 'read';
-let trainProgress = {}; // { questKey: { read, blank, firstletter, scramble, recall } }
-
-// Scramble sub-state — sentence by sentence within scramble mode
-let scrambleState = {
-  sentenceIdx: 0,   // which verse/sentence we're on
-  pool: [],         // shuffled words for current sentence
-  built: [],        // placed words (by pool index)
-  usedIdx: new Set()
-};
-
-function resetScrambleState(sentenceIdx) {
-  const v = trainVerses[sentenceIdx];
-  if (!v) return;
-  const words = v.text.split(' ');
-  const pool  = [...words].sort(() => Math.random() - 0.5);
-  scrambleState = { sentenceIdx, pool, built: [], usedIdx: new Set() };
+function resetScramble(idx){
+  const v=trainVerses[idx]; if(!v) return;
+  scrambleState={sentenceIdx:idx,pool:[...v.text.split(' ')].sort(()=>Math.random()-0.5),built:[],usedIdx:new Set()};
 }
 
 // ── HELPERS ───────────────────────────────────────────
-const pick     = arr => arr[Math.floor(Math.random() * arr.length)];
-const normText = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+const normText=s=>s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+function toast(msg,ms=2400){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}
+function celebrate(icon,title,sub){document.getElementById('cel-icon').textContent=icon;document.getElementById('cel-title').textContent=title;document.getElementById('cel-sub').textContent=sub;document.getElementById('celebrate').classList.add('show');}
+function similarity(a,b){a=normText(a);b=normText(b);if(a===b)return 1;const wa=a.split(' '),wb=b.split(' ');return wa.filter(w=>wb.includes(w)).length/Math.max(wa.length,wb.length);}
+function diffWords(input,target){const wi=normText(input).split(' '),tw=target.split(' ');return tw.map((w,i)=>{const c=normText(w);if(wi[i]&&normText(wi[i])===c)return`<span class="diff-ok">${w}</span>`;if(wi.includes(c))return`<span class="diff-add">${w}</span>`;return`<span class="diff-miss">${w}</span>`;}).join(' ');}
+function passageRefLabel(verses){const g={};verses.forEach(v=>{const m=v.ref&&v.ref.match(/Psalm\s*(\d+):(\d+)/i);if(m){const pn=m[1],vn=parseInt(m[2]);if(!g[pn])g[pn]=[];g[pn].push(vn);}});return Object.entries(g).map(([pn,vnums])=>{vnums.sort((a,b)=>a-b);const f=vnums[0],l=vnums[vnums.length-1];return f===l?`Psalm ${pn}:${f}`:`Psalm ${pn}:${f}–${l}`;}).join(', ');}
+function vnum(v){return v.ref?v.ref.split(':')[1]||'':'';}
 
-function toast(msg, ms=2400) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), ms);
+// Group verses by questId (fallback: verse's own id)
+function groupByQuest(verses){
+  const map=new Map();
+  verses.forEach(v=>{const k=v.questId||v.id;if(!map.has(k))map.set(k,[]);map.get(k).push(v);});
+  map.forEach(arr=>arr.sort((a,b)=>(a.ref||'').localeCompare(b.ref||'')));
+  return map;
 }
-function celebrate(icon, title, sub) {
-  document.getElementById('cel-icon').textContent  = icon;
-  document.getElementById('cel-title').textContent = title;
-  document.getElementById('cel-sub').textContent   = sub;
-  document.getElementById('celebrate').classList.add('show');
-}
-
-function similarity(a, b) {
-  a = normText(a); b = normText(b);
-  if (a === b) return 1;
-  const wa = a.split(' '), wb = b.split(' ');
-  const matches = wa.filter(w => wb.includes(w)).length;
-  return matches / Math.max(wa.length, wb.length);
-}
-function diffWords(input, target) {
-  const wi = normText(input).split(' ');
-  const wt = normText(target).split(' ');
-  const tw = target.split(' ');
-  return tw.map((w, i) => {
-    const clean = normText(w);
-    if (wi[i] && normText(wi[i]) === clean) return `<span class="diff-ok">${w}</span>`;
-    if (wi.includes(clean)) return `<span class="diff-add">${w}</span>`;
-    return `<span class="diff-miss">${w}</span>`;
-  }).join(' ');
-}
-
-// Build a readable passage reference label from an array of verse objects
-function passageRefLabel(verses) {
-  if (!verses.length) return '';
-  // Group by psalm number
-  const groups = {};
-  verses.forEach(v => {
-    const m = v.ref && v.ref.match(/Psalm\s*(\d+):(\d+)/i);
-    if (m) {
-      const pn = parseInt(m[1]), vn = parseInt(m[2]);
-      if (!groups[pn]) groups[pn] = [];
-      groups[pn].push(vn);
-    }
-  });
-  return Object.entries(groups).map(([pn, vnums]) => {
-    vnums.sort((a,b)=>a-b);
-    const first = vnums[0], last = vnums[vnums.length-1];
-    return first === last ? `Psalm ${pn}:${first}` : `Psalm ${pn}:${first}–${last}`;
-  }).join(', ');
-}
-
-// Training progress key — keyed to the hero name so multiple heroes don't share progress
-function trainKey() {
-  return trainVerses.map(v => v.id).sort().join('|');
-}
+function questStatus(verses){const p={road:0,quest:1,maint:2,inv:3};return verses.reduce((b,v)=>p[v.status]<p[b]?v.status:b,'inv');}
+function passageLines(){return trainVerses.map(v=>`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${v.text}</span></div>`).join('');}
 
 // ── TABS ─────────────────────────────────────────────
-window.switchTab = (name, el) => {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
+window.switchTab=(name,el)=>{
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
   el.classList.add('active');
-  if (name === 'board') renderBoard();
+  if(name==='board')renderBoard();
+  if(name==='inventory')renderInventory();
 };
+window.setFilter=(hero,el)=>{heroFilter=hero;document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderQuestList();};
 
-// ── FILTER ───────────────────────────────────────────
-window.setFilter = (hero, el) => {
-  heroFilter = hero;
-  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  renderQuestList();
-};
-
-// ── FIREBASE LOAD ─────────────────────────────────────
-function loadAll() {
-  onValue(ref(db, 'sword/verses'), snap => {
-    allVerses = snap.exists() ? Object.values(snap.val()) : [];
-    allVerses.sort((a,b) => (b.created||0) - (a.created||0));
-    updateFilterBar();
-    renderQuestList();
-    if (selectedId) renderParchment(selectedId);
-    document.getElementById('quest-count').textContent = allVerses.length + ' quest' + (allVerses.length !== 1 ? 's' : '');
+// ── FIREBASE ──────────────────────────────────────────
+function loadAll(){
+  onValue(ref(db,'sword/verses'),snap=>{
+    allVerses=snap.exists()?Object.values(snap.val()):[];
+    allVerses.sort((a,b)=>(b.created||0)-(a.created||0));
+    updateFilterBar();renderQuestList();
+    if(selectedQid)renderParchment(selectedQid);
+    const activeGroups=groupByQuest(allVerses.filter(v=>v.status!=='inv'));
+    const n=activeGroups.size;
+    document.getElementById('quest-count').textContent=n+' quest'+(n!==1?'s':'');
   });
 }
-
-function updateFilterBar() {
-  const heroes = [...new Set(allVerses.map(v => v.name))].sort();
-  const bar = document.getElementById('filter-bar');
-  bar.innerHTML = `<button class="filter-pill${heroFilter==='all'?' active':''}" onclick="setFilter('all',this)">All</button>` +
-    heroes.map(h => `<button class="filter-pill${heroFilter===h?' active':''}" onclick="setFilter('${h}',this)">${h}</button>`).join('');
-  const sel = document.getElementById('name-select');
-  if (sel) {
-    sel.innerHTML = `<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>` +
-      heroes.map(h => `<option value="${h}">${h}</option>`).join('');
-    if (myHero) sel.value = myHero;
-  }
+function updateFilterBar(){
+  const heroes=[...new Set(allVerses.map(v=>v.name))].sort();
+  document.getElementById('filter-bar').innerHTML=`<button class="filter-pill${heroFilter==='all'?' active':''}" onclick="setFilter('all',this)">All</button>`+heroes.map(h=>`<button class="filter-pill${heroFilter===h?' active':''}" onclick="setFilter('${h}',this)">${h}</button>`).join('');
+  const sel=document.getElementById('name-select');
+  if(sel){sel.innerHTML=`<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>`+heroes.map(h=>`<option value="${h}">${h}</option>`).join('');if(myHero)sel.value=myHero;}
 }
 
 // ── QUEST LIST ────────────────────────────────────────
-function renderQuestList() {
-  const list = document.getElementById('quest-list');
-  let verses = heroFilter === 'all' ? allVerses : allVerses.filter(v => v.name === heroFilter);
-  if (verses.length === 0) { list.innerHTML = '<div class="loading" style="padding:20px;font-size:13px;">No quests yet.</div>'; return; }
-
-  const mine   = verses.filter(v => myIds.includes(v.id));
-  const others = verses.filter(v => !myIds.includes(v.id));
-
-  let html = '';
-  if (mine.length > 0) {
-    html += `<div class="quest-group-label">Your Quests</div>`;
-    html += mine.map(v => questListItem(v, true)).join('');
-  }
-  if (others.length > 0) {
-    html += `<div class="quest-group-label">The Fellowship</div>`;
-    html += others.map(v => questListItem(v, false)).join('');
-  }
-  list.innerHTML = html;
+function renderQuestList(){
+  const list=document.getElementById('quest-list');
+  const filtered=heroFilter==='all'?allVerses:allVerses.filter(v=>v.name===heroFilter);
+  const active=filtered.filter(v=>v.status!=='inv');
+  const groups=groupByQuest(active);
+  if(!groups.size){list.innerHTML='<div class="loading" style="padding:20px;font-size:13px;">No active quests — check the Inventory tab.</div>';return;}
+  const mine=[],others=[];
+  groups.forEach((verses,qid)=>{(verses.some(v=>myIds.includes(v.id))?mine:others).push({qid,verses});});
+  let html='';
+  if(mine.length){html+=`<div class="quest-group-label">Your Quests</div>`+mine.map(({qid,verses})=>questListItem(qid,verses,true)).join('');}
+  if(others.length){html+=`<div class="quest-group-label">The Fellowship</div>`+others.map(({qid,verses})=>questListItem(qid,verses,false)).join('');}
+  list.innerHTML=html;
 }
-
-function questListItem(v, isMine) {
-  const sel = v.id === selectedId;
-  return `<div class="quest-list-item${sel?' selected':''}${isMine?' is-mine':''}" onclick="selectQuest('${v.id}')">
-    <div class="ql-dot dot-${v.status}"></div>
+function questListItem(qid,verses,isMine){
+  const sel=qid===selectedQid,status=questStatus(verses);
+  const qname=hashPick(QUEST_NAMES,qid),refLbl=passageRefLabel(verses);
+  return `<div class="quest-list-item${sel?' selected':''}${isMine?' is-mine':''}" onclick="selectQuest('${qid}')">
+    <div class="ql-dot dot-${status}"></div>
     <div class="ql-info">
-      <div class="ql-hero">${v.name}</div>
-      <div class="ql-ref">${v.ref||''}</div>
+      <div class="ql-hero">${verses[0].name}</div>
+      <div class="ql-quest-name">${qname}</div>
+      <div class="ql-ref">${refLbl}</div>
     </div>
-    <button class="ql-edit-btn" onclick="event.stopPropagation();handleEditClick('${v.id}')">⋯</button>
+    <button class="ql-edit-btn" onclick="event.stopPropagation();handleEditClick('${verses[0].id}')">⋯</button>
   </div>`;
 }
 
-// ── PARCHMENT DETAIL ──────────────────────────────────
-window.selectQuest = (id) => {
-  selectedId = id;
-  renderQuestList();
-  renderParchment(id);
-  const isMobile = window.innerWidth <= 680;
-  if (isMobile) {
-    document.getElementById('panel-left').classList.add('mobile-hide');
-    document.getElementById('panel-right').classList.add('mobile-show');
-  }
-};
+// ── PARCHMENT ─────────────────────────────────────────
+window.selectQuest=(qid)=>{selectedQid=qid;renderQuestList();renderParchment(qid);if(window.innerWidth<=680){document.getElementById('panel-left').classList.add('mobile-hide');document.getElementById('panel-right').classList.add('mobile-show');}};
+window.parchBack=()=>{document.getElementById('panel-left').classList.remove('mobile-hide');document.getElementById('panel-right').classList.remove('mobile-show');selectedQid=null;};
 
-window.parchBack = () => {
-  document.getElementById('panel-left').classList.remove('mobile-hide');
-  document.getElementById('panel-right').classList.remove('mobile-show');
-  selectedId = null;
-};
-
-function renderParchment(id) {
-  const v = allVerses.find(v => v.id === id);
-  if (!v) return;
-  const isMine = myIds.includes(id);
-
-  // Gather all my verses that belong to same hero & psalm session for passage display
-  const questVerses = getQuestVerses(id);
-
-  const statusLabels = { road:'Quest Acquired', quest:'On the Quest', inv:'In the Inventory', maint:'Maintenance' };
-  const obj = v.status === 'road' ? 'Quest Acquired'
-            : v.status === 'quest' ? (v.obj||'')
-            : v.status === 'inv'   ? 'In the Inventory'
-            : (v.maintObj||'');
-
-  const key  = questVerses.map(qv => qv.id).sort().join('|');
-  const prog = trainProgress[key] || {};
-  const allModeDone = TRAIN_MODES.every(m => prog[m]);
-
-  const modesHtml = TRAIN_MODES.map(m => {
-    const done = !!prog[m];
-    return `<div class="progress-mode-row">
-      <span class="progress-mode-name">${MODE_LABELS[m]}</span>
-      <div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${done?100:0}%;background:${done?'var(--green)':'var(--c-quest)'};"></div></div>
-      <span class="progress-mode-check">${done ? '✓' : ''}</span>
-    </div>`;
-  }).join('');
-
-  const canTurnIn = allModeDone && isMine && v.status !== 'inv';
-  const flavorText = FLAVOR[Math.abs(id.charCodeAt(2) || 0) % FLAVOR.length];
-
-  // Show passage text in parchment
-  const passageHtml = questVerses.map(qv =>
-    `<div class="passage-line">
-      <span class="passage-vnum">${qv.ref ? qv.ref.split(':')[1] || '' : ''}</span>
-      <span class="passage-vtext" style="font-size:15px;color:var(--parch-text);">\u201c${qv.text}\u201d</span>
-    </div>`
-  ).join('');
-
-  document.getElementById('parch-content').innerHTML = `
+function renderParchment(qid){
+  const groups=groupByQuest(allVerses);const verses=groups.get(qid);if(!verses)return;
+  const isMine=verses.some(v=>myIds.includes(v.id)),status=questStatus(verses);
+  const qname=hashPick(QUEST_NAMES,qid),refLbl=passageRefLabel(verses);
+  const flavor=FLAVOR[Math.abs((qid.charCodeAt(2)||0))%FLAVOR.length];
+  const prog=trainProgress[qid]||{};const allDone=TRAIN_MODES.every(m=>prog[m]);
+  const statusLabels={road:'Quest Acquired',quest:'On the Quest',inv:'In the Inventory',maint:'Maintenance'};
+  const modesHtml=TRAIN_MODES.map(m=>{const done=!!prog[m];return`<div class="progress-mode-row"><span class="progress-mode-name">${MODE_LABELS[m]}</span><div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${done?100:0}%;background:${done?'var(--green)':'var(--c-quest)'};"></div></div><span class="progress-mode-check">${done?'✓':''}</span></div>`;}).join('');
+  const passageHtml=verses.map(v=>`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext" style="font-size:15px;color:var(--parch-text);">\u201c${v.text}\u201d</span></div>`).join('');
+  const canTurnIn=allDone&&isMine&&status!=='inv';
+  document.getElementById('parch-content').innerHTML=`
     <button class="parch-back" onclick="parchBack()">← Back to Log</button>
-    <div class="parch-status-row">
-      <div class="parch-status-dot dot-${v.status}"></div>
-      <span class="parch-status-lbl status-lbl-${v.status}">${statusLabels[v.status]}</span>
-    </div>
-    <div class="parch-quest-name">${obj || 'Quest Acquired'}</div>
-    <div class="parch-hero-name">${v.name} · ${passageRefLabel(questVerses)}</div>
+    <div class="parch-status-row"><div class="parch-status-dot dot-${status}"></div><span class="parch-status-lbl status-lbl-${status}">${statusLabels[status]}</span></div>
+    <div class="parch-quest-name">${qname}</div>
+    <div class="parch-hero-name">${verses[0].name} · ${refLbl}</div>
     <div class="parch-divider"></div>
     <div class="parch-section-label">The Passage</div>
     <div style="margin-bottom:20px;">${passageHtml}</div>
-    <div class="parch-flavor">${flavorText}</div>
+    <div class="parch-flavor">${flavor}</div>
     <div class="parch-divider"></div>
     <div class="parch-section-label">Training Progress</div>
     <div class="parch-progress"><div class="progress-modes">${modesHtml}</div></div>
     <div class="parch-actions">
-      ${isMine ? `<button class="btn-parch-primary" onclick="startTraining('${id}')">⚔ Begin Training</button>` : ''}
-      ${canTurnIn ? `<button class="btn-parch-gold" onclick="turnInQuest('${id}')">✦ Turn In Quest</button>` : ''}
-      ${allModeDone && !canTurnIn && isMine ? `<span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--c-inv);">✦ Quest turned in — ready to recite!</span>` : ''}
+      ${isMine?`<button class="btn-parch-primary" onclick="startTraining('${qid}')">⚔ Begin Training</button>`:''}
+      ${canTurnIn?`<button class="btn-parch-gold" onclick="turnInQuest('${qid}')">✦ Turn In Quest</button>`:''}
+      ${allDone&&!canTurnIn&&isMine?`<span style="font-family:'Cinzel',serif;font-size:9px;color:var(--c-inv);">✦ In the Inventory — ready to recite!</span>`:''}
     </div>`;
 }
 
-// Get all verses that belong to the same "quest" as this id.
-// For now: same hero name + same psalm (inferred from ref). In practice
-// the student selects multiple verses at once and they share a hero + psalm session.
-// We group by hero name only — if a hero has multiple psalms they train together.
-function getQuestVerses(id) {
-  const v = allVerses.find(v => v.id === id);
-  if (!v) return [v].filter(Boolean);
-  // All my verses for this hero, sorted by ref
-  const group = allVerses
-    .filter(qv => myIds.includes(qv.id) && qv.name === v.name)
-    .sort((a,b) => (a.ref||'').localeCompare(b.ref||''));
-  return group.length ? group : [v];
-}
+// ── TURN IN — all verses in quest ────────────────────
+window.turnInQuest=async(qid)=>{
+  const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
+  try{for(const v of verses)await update(ref(db,`sword/verses/${v.id}`),{status:'inv'});
+    celebrate('🏆','Quest Turned In!',hashPick(ITEM_NAMES,qid)+' added to your inventory.');}
+  catch(e){toast('Error — check connection');}
+};
 
 // ── TRAINING ──────────────────────────────────────────
-window.startTraining = (id) => {
-  const questVerses = getQuestVerses(id);
-  if (!questVerses.length) return;
-
-  trainVerses  = questVerses;
-  trainMode    = 'read';
-  resetScrambleState(0);
-
+window.startTraining=(qid)=>{
+  const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
+  trainVerses=verses;trainMode='read';resetScramble(0);
   document.getElementById('train-overlay').classList.add('show');
-  renderTrainMode();
+  renderTrainMode(qid);
 };
+window.closeTrain=()=>{document.getElementById('train-overlay').classList.remove('show');if(selectedQid)renderParchment(selectedQid);};
+function currentQid(){return trainVerses[0]?.questId||trainVerses[0]?.id||'';}
 
-window.closeTrain = () => {
-  document.getElementById('train-overlay').classList.remove('show');
-  if (selectedId) renderParchment(selectedId);
-};
-
-// ── RENDER TRAIN MODE ─────────────────────────────────
-function renderTrainMode() {
-  const key  = trainKey();
-  const prog = trainProgress[key] || {};
-  const ref  = passageRefLabel(trainVerses);
-
-  document.getElementById('train-title').textContent = `Training — ${trainVerses[0]?.name || ''}`;
-  document.getElementById('train-passage-ref').textContent = ref;
-
-  // Mode tabs
-  document.getElementById('train-mode-tabs').innerHTML = TRAIN_MODES.map(m => {
-    const done   = !!prog[m];
-    const active = m === trainMode;
-    return `<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">
-      ${done ? '<span class="tab-check">✓</span>' : ''}${MODE_LABELS[m]}
-    </button>`;
+function renderTrainMode(qidOverride){
+  const qid=qidOverride||currentQid(),prog=trainProgress[qid]||{};
+  document.getElementById('train-title').textContent=`Training — ${trainVerses[0]?.name||''}`;
+  document.getElementById('train-passage-ref').textContent=passageRefLabel(trainVerses);
+  document.getElementById('train-mode-tabs').innerHTML=TRAIN_MODES.map(m=>{
+    const done=!!prog[m],active=m===trainMode;
+    return`<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">${done?'<span class="tab-check">✓</span>':''}${MODE_LABELS[m]}</button>`;
   }).join('');
+  const body=document.getElementById('train-body');
 
-  const body = document.getElementById('train-body');
-
-  // ── READ ──
-  if (trainMode === 'read') {
-    const passageHtml = trainVerses.map(v =>
-      `<div class="passage-line">
-        <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
-        <span class="passage-vtext">${v.text}</span>
-      </div>`
-    ).join('');
-    body.innerHTML = `
-      <div class="train-display" style="font-size:17px;">${passageHtml}</div>
-      <div class="train-btn-row">
-        <button class="btn-train gold" onclick="completeMode('read')">Got it →</button>
-      </div>`;
+  if(trainMode==='read'){
+    body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${passageLines()}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('read')">Got it →</button></div>`;
   }
-
-  // ── FILL BLANK ──
-  else if (trainMode === 'blank') {
-    const passageHtml = trainVerses.map(v => {
-      const words = v.text.split(' ');
-      const hideCount = Math.max(1, Math.floor(words.length * 0.5));
-      const toHide = new Set();
-      const step = words.length / hideCount;
-      for (let i=0; i<hideCount; i++) toHide.add(Math.floor(i*step));
-      const lineHtml = words.map((w,i) =>
-        toHide.has(i)
-          ? `<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>`
-          : `<span>${w}</span>`
-      ).join(' ');
-      return `<div class="passage-line">
-        <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
-        <span class="passage-vtext">${lineHtml}</span>
-      </div>`;
+  else if(trainMode==='blank'){
+    const html=trainVerses.map(v=>{
+      const words=v.text.split(' '),hideCount=Math.max(1,Math.floor(words.length*0.5)),toHide=new Set(),step=words.length/hideCount;
+      for(let i=0;i<hideCount;i++)toHide.add(Math.floor(i*step));
+      const lineHtml=words.map((w,i)=>toHide.has(i)?`<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>`:`<span>${w}</span>`).join(' ');
+      return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;
     }).join('');
-    body.innerHTML = `
-      <div class="train-display" id="train-display" style="font-size:17px;">${passageHtml}</div>
-      <div class="train-btn-row">
-        <button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button>
-        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-      </div>`;
+    body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button></div>`;
   }
-
-  // ── FIRST LETTERS ──
-  else if (trainMode === 'firstletter') {
-    const passageHtml = trainVerses.map(v => {
-      const words = v.text.split(' ');
-      const lineHtml = words.map(w => {
-        const letters = w.replace(/[^a-zA-Z]/g,'');
-        if (!letters) return w;
-        const rest    = '_'.repeat(Math.max(letters.length - 1, 1));
-        const trail   = w.match(/[^a-zA-Z]$/) ? w.slice(-1) : '';
-        return `<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${trail}`;
-      }).join(' ');
-      return `<div class="passage-line">
-        <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
-        <span class="passage-vtext">${lineHtml}</span>
-      </div>`;
+  else if(trainMode==='firstletter'){
+    const html=trainVerses.map(v=>{
+      const lineHtml=v.text.split(' ').map(w=>{const letters=w.replace(/[^a-zA-Z]/g,'');if(!letters)return w;const rest='_'.repeat(Math.max(letters.length-1,1)),trail=w.match(/[^a-zA-Z]$/)?w.slice(-1):'';return`<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${trail}`;}).join(' ');
+      return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;
     }).join('');
-    body.innerHTML = `
-      <div class="train-display" id="train-display" style="font-size:17px;">${passageHtml}</div>
-      <div class="train-btn-row">
-        <button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button>
-        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-      </div>`;
+    body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button></div>`;
   }
-
-  // ── SCRAMBLE ──
-  else if (trainMode === 'scramble') {
-    // If scramble state is stale (different verse set), reset to sentence 0
-    if (scrambleState.sentenceIdx >= trainVerses.length) {
-      resetScrambleState(0);
-    }
-    renderScrambleSentence();
-  }
-
-  // ── RECALL ──
-  else if (trainMode === 'recall') {
-    body.innerHTML = `
-      <div style="margin-bottom:10px;font-style:italic;color:var(--textdim);font-size:14px;">Type the full passage from memory.</div>
-      <textarea class="recall-textarea" id="recall-ta" placeholder="Type the passage…"></textarea>
-      <div class="train-btn-row">
-        <button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button>
-        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-      </div>`;
+  else if(trainMode==='scramble'){if(scrambleState.sentenceIdx>=trainVerses.length)resetScramble(0);renderScrambleSentence();}
+  else if(trainMode==='recall'){
+    body.innerHTML=`<div style="margin-bottom:10px;font-style:italic;color:var(--textdim);font-size:14px;">Type the full passage from memory.</div><textarea class="recall-textarea" id="recall-ta" placeholder="Type the passage…"></textarea><div class="train-btn-row"><button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button><button class="btn-train" onclick="showFullPassage()">Show passage</button></div>`;
   }
 }
-
-// Show the full passage text in whatever display area exists
-window.showFullPassage = () => {
-  const el = document.getElementById('train-display');
-  if (!el) return;
-  el.innerHTML = trainVerses.map(v =>
-    `<div class="passage-line">
-      <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
-      <span class="passage-vtext">${v.text}</span>
-    </div>`
-  ).join('');
+window.showFullPassage=()=>{const el=document.getElementById('train-display');if(el)el.innerHTML=passageLines();};
+window.setTrainMode=(mode)=>{trainMode=mode;if(mode==='scramble')resetScramble(0);renderTrainMode();};
+window.completeMode=(mode)=>{
+  const qid=currentQid();if(!trainProgress[qid])trainProgress[qid]={};trainProgress[qid][mode]=true;
+  const next=TRAIN_MODES.find(m=>!trainProgress[qid][m]);if(next)trainMode=next;
+  if(trainMode==='scramble')resetScramble(0);renderTrainMode();
 };
 
-window.setTrainMode = (mode) => {
-  trainMode = mode;
-  if (mode === 'scramble') resetScrambleState(0);
-  renderTrainMode();
-};
-
-window.completeMode = (mode) => {
-  const key = trainKey();
-  if (!trainProgress[key]) trainProgress[key] = {};
-  trainProgress[key][mode] = true;
-  // auto-advance to next incomplete mode
-  const next = TRAIN_MODES.find(m => !trainProgress[key][m]);
-  if (next) trainMode = next;
-  if (trainMode === 'scramble') resetScrambleState(0);
-  renderTrainMode();
-};
-
-// ── SCRAMBLE — sentence by sentence ───────────────────
-function renderScrambleSentence() {
-  const body = document.getElementById('train-body');
-  const sIdx = scrambleState.sentenceIdx;
-  const v    = trainVerses[sIdx];
-  const total= trainVerses.length;
-
-  const sentenceLabel = total > 1
-    ? `Verse ${sIdx + 1} of ${total} — ${v.ref || ''}`
-    : (v.ref || '');
-
-  const targetHtml = scrambleState.built.length === 0
-    ? '<span class="scramble-target-empty">Tap words below to build the verse…</span>'
-    : scrambleState.built.map((entry, bi) =>
-        `<span class="word-chip placed" data-built-idx="${bi}" onclick="scrambleUnplace(${bi})">${entry.word}</span>`
-      ).join('');
-
-  const poolHtml = scrambleState.pool.map((w, pi) => {
-    const used = scrambleState.usedIdx.has(pi);
-    return `<span class="word-chip" id="spool-${pi}" style="${used?'opacity:0.25;pointer-events:none;':''}" onclick="scramblePlace(${pi})">${w}</span>`;
-  }).join('');
-
-  body.innerHTML = `
-    <div class="scramble-sentence-label">${sentenceLabel}</div>
-    <div class="scramble-wrap">
-      <div class="scramble-target" id="scramble-target">${targetHtml}</div>
-      <div class="scramble-pool"   id="scramble-pool">${poolHtml}</div>
-    </div>
-    <div class="train-btn-row">
-      <button class="btn-train gold" onclick="checkScrambleSentence()">Check Order</button>
-      <button class="btn-train" onclick="clearScrambleSentence()">Clear</button>
-      <button class="btn-train" onclick="showCurrentSentence()">Show verse</button>
-    </div>`;
+// SCRAMBLE
+function renderScrambleSentence(){
+  const body=document.getElementById('train-body'),sIdx=scrambleState.sentenceIdx,v=trainVerses[sIdx];
+  const label=trainVerses.length>1?`Verse ${sIdx+1} of ${trainVerses.length} — ${v.ref||''}`:(v.ref||'');
+  const targetHtml=scrambleState.built.length===0?'<span class="scramble-target-empty">Tap words below to build the verse…</span>':scrambleState.built.map((e,bi)=>`<span class="word-chip placed" data-bi="${bi}" onclick="scrambleUnplace(${bi})">${e.word}</span>`).join('');
+  const poolHtml=scrambleState.pool.map((w,pi)=>`<span class="word-chip" id="spool-${pi}" style="${scrambleState.usedIdx.has(pi)?'opacity:0.25;pointer-events:none;':''}" onclick="scramblePlace(${pi})">${w}</span>`).join('');
+  body.innerHTML=`<div class="scramble-sentence-label">${label}</div><div class="scramble-wrap"><div class="scramble-target" id="scramble-target">${targetHtml}</div><div class="scramble-pool">${poolHtml}</div></div><div class="train-btn-row"><button class="btn-train gold" onclick="checkScrambleSentence()">Check Order</button><button class="btn-train" onclick="clearScrambleSentence()">Clear</button><button class="btn-train" onclick="showCurrentSentence()">Show verse</button></div>`;
 }
-
-window.scramblePlace = (pi) => {
-  if (scrambleState.usedIdx.has(pi)) return;
-  const word = scrambleState.pool[pi];
-  scrambleState.usedIdx.add(pi);
-  scrambleState.built.push({ word, pi });
-
-  // update pool chip
-  const chip = document.getElementById(`spool-${pi}`);
-  if (chip) { chip.style.opacity = '0.25'; chip.style.pointerEvents = 'none'; }
-
-  // update target
-  const target = document.getElementById('scramble-target');
-  const empty  = target.querySelector('.scramble-target-empty');
-  if (empty) empty.remove();
-  const el = document.createElement('span');
-  el.className = 'word-chip placed';
-  el.textContent = word;
-  el.dataset.builtIdx = scrambleState.built.length - 1;
-  el.onclick = () => scrambleUnplace(parseInt(el.dataset.builtIdx));
-  target.appendChild(el);
+window.scramblePlace=(pi)=>{
+  if(scrambleState.usedIdx.has(pi))return;
+  const word=scrambleState.pool[pi];scrambleState.usedIdx.add(pi);scrambleState.built.push({word,pi});
+  const chip=document.getElementById(`spool-${pi}`);if(chip){chip.style.opacity='0.25';chip.style.pointerEvents='none';}
+  const target=document.getElementById('scramble-target');target.querySelector('.scramble-target-empty')?.remove();
+  const el=document.createElement('span');el.className='word-chip placed';el.textContent=word;
+  const bi=scrambleState.built.length-1;el.dataset.bi=bi;el.onclick=()=>scrambleUnplace(parseInt(el.dataset.bi));target.appendChild(el);
+};
+window.scrambleUnplace=(bi)=>{
+  const entry=scrambleState.built[bi];if(!entry)return;
+  scrambleState.built.splice(bi,1);scrambleState.usedIdx.delete(entry.pi);
+  const target=document.getElementById('scramble-target');
+  if(target)target.querySelectorAll('.word-chip.placed').forEach((c,i)=>{c.dataset.bi=i;c.onclick=()=>scrambleUnplace(i);});
+  const pc=document.getElementById(`spool-${entry.pi}`);if(pc){pc.style.opacity='';pc.style.pointerEvents='';}
+  if(scrambleState.built.length===0&&target)target.innerHTML='<span class="scramble-target-empty">Tap words below to build the verse…</span>';
+};
+window.clearScrambleSentence=()=>{resetScramble(scrambleState.sentenceIdx);renderScrambleSentence();};
+window.showCurrentSentence=()=>{
+  const v=trainVerses[scrambleState.sentenceIdx],body=document.getElementById('train-body');
+  document.getElementById('show-verse-reveal')?.remove();
+  const div=document.createElement('div');div.id='show-verse-reveal';div.style.cssText='font-style:italic;color:var(--parch-dim);font-size:16px;padding:10px 0 6px;line-height:1.6;';div.textContent='\u201c'+v.text+'\u201d';
+  const btnRow=body.querySelector('.train-btn-row');if(btnRow)body.insertBefore(div,btnRow);
+};
+window.checkScrambleSentence=()=>{
+  const v=trainVerses[scrambleState.sentenceIdx],built=scrambleState.built.map(e=>e.word).join(' ');
+  if(similarity(built,v.text)>=0.9){const next=scrambleState.sentenceIdx+1;if(next<trainVerses.length){toast(`Verse ${scrambleState.sentenceIdx+1} ✓ — next sentence`);resetScramble(next);renderScrambleSentence();}else completeMode('scramble');}
+  else toast('Not quite — keep rearranging!');
 };
 
-window.scrambleUnplace = (bi) => {
-  const entry = scrambleState.built[bi];
-  if (!entry) return;
-  // remove from built
-  scrambleState.built.splice(bi, 1);
-  scrambleState.usedIdx.delete(entry.pi);
-  // fix built-idx references on remaining placed chips
-  const target = document.getElementById('scramble-target');
-  if (target) {
-    const chips = target.querySelectorAll('.word-chip.placed');
-    chips.forEach((c, i) => { c.dataset.builtIdx = i; c.onclick = () => scrambleUnplace(i); });
-  }
-  // re-enable pool chip
-  const poolChip = document.getElementById(`spool-${entry.pi}`);
-  if (poolChip) { poolChip.style.opacity = ''; poolChip.style.pointerEvents = ''; }
-  if (scrambleState.built.length === 0 && target) {
-    target.innerHTML = '<span class="scramble-target-empty">Tap words below to build the verse…</span>';
-  }
+// RECALL
+window.checkRecallMode=()=>{
+  const fullText=trainVerses.map(v=>v.text).join(' '),inp=document.getElementById('recall-ta').value.trim(),sim=similarity(inp,fullText);
+  const body=document.getElementById('train-body');
+  if(sim>=0.9){body.innerHTML=`<div class="recall-feedback rf-correct">✓ Perfect. The blade is forged.</div><div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Mark Complete →</button></div>`;}
+  else if(sim>=0.65){body.innerHTML=`<div class="recall-feedback rf-close">Close — review the highlighted words</div><div class="diff-display">${diffWords(inp,fullText)}</div><div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Still counts ✓</button><button class="btn-train danger" onclick="setTrainMode('recall')">Try again</button></div>`;}
+  else{body.innerHTML=`<div class="recall-feedback rf-incorrect">Not quite — keep training</div><div class="diff-display">${diffWords(inp,fullText)}</div><div class="train-btn-row"><button class="btn-train danger" onclick="setTrainMode('recall')">Try again</button><button class="btn-train" onclick="showFullPassage()">Show passage</button></div>`;}
 };
 
-window.clearScrambleSentence = () => {
-  resetScrambleState(scrambleState.sentenceIdx);
-  renderScrambleSentence();
-};
-
-window.showCurrentSentence = () => {
-  const v = trainVerses[scrambleState.sentenceIdx];
-  const body = document.getElementById('train-body');
-  // inject a small show-verse block above buttons
-  const existing = document.getElementById('show-verse-reveal');
-  if (existing) { existing.remove(); }
-  const div = document.createElement('div');
-  div.id = 'show-verse-reveal';
-  div.style.cssText = 'font-style:italic;color:var(--parch-dim);font-size:16px;padding:10px 0 6px;line-height:1.6;';
-  div.textContent = '\u201c' + v.text + '\u201d';
-  const btnRow = body.querySelector('.train-btn-row');
-  if (btnRow) body.insertBefore(div, btnRow);
-};
-
-window.checkScrambleSentence = () => {
-  const v     = trainVerses[scrambleState.sentenceIdx];
-  const built = scrambleState.built.map(e => e.word).join(' ');
-  const sim   = similarity(built, v.text);
-
-  if (sim >= 0.9) {
-    const nextIdx = scrambleState.sentenceIdx + 1;
-    if (nextIdx < trainVerses.length) {
-      // Advance to next sentence
-      toast(`Verse ${scrambleState.sentenceIdx + 1} ✓ — next sentence`);
-      resetScrambleState(nextIdx);
-      renderScrambleSentence();
-    } else {
-      // All sentences done — complete the mode
-      completeMode('scramble');
-    }
-  } else {
-    toast('Not quite — keep rearranging!');
-  }
-};
-
-// ── RECALL ────────────────────────────────────────────
-window.checkRecallMode = () => {
-  const fullText = trainVerses.map(v => v.text).join(' ');
-  const inp      = document.getElementById('recall-ta').value.trim();
-  const sim      = similarity(inp, fullText);
-  const body     = document.getElementById('train-body');
-
-  if (sim >= 0.9) {
-    body.innerHTML = `
-      <div class="recall-feedback rf-correct">✓ Perfect. The blade is forged.</div>
-      <div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Mark Complete →</button></div>`;
-  } else if (sim >= 0.65) {
-    const diffHtml = diffWords(inp, fullText);
-    body.innerHTML = `
-      <div class="recall-feedback rf-close">Close — review the highlighted words</div>
-      <div class="diff-display">${diffHtml}</div>
-      <div class="train-btn-row">
-        <button class="btn-train success" onclick="completeMode('recall')">Still counts ✓</button>
-        <button class="btn-train danger"  onclick="setTrainMode('recall')">Try again</button>
-      </div>`;
-  } else {
-    const diffHtml = diffWords(inp, fullText);
-    body.innerHTML = `
-      <div class="recall-feedback rf-incorrect">Not quite — keep training</div>
-      <div class="diff-display">${diffHtml}</div>
-      <div class="train-btn-row">
-        <button class="btn-train danger" onclick="setTrainMode('recall')">Try again</button>
-        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-      </div>`;
-  }
-};
-
-// ── TURN IN QUEST ─────────────────────────────────────
-window.turnInQuest = async (id) => {
-  const v = allVerses.find(v => v.id === id);
-  if (!v) return;
-  try {
-    await update(ref(db, `sword/verses/${id}`), { status: 'inv' });
-    celebrate('🏆', 'Quest Turned In!', '"' + v.text.slice(0, 80) + (v.text.length > 80 ? '…' : '') + '"');
-  } catch(e) { toast('Error — check connection'); }
-};
-
-// ── ADD FORM ─────────────────────────────────────────
-window.showAddForm = () => {
-  document.getElementById('add-form').style.display = 'block';
-  updateFilterBar();
-  selectedVerses.clear();
-  renderPsalmList();
-  updateSelCount();
-};
-window.hideAddForm = () => {
-  document.getElementById('add-form').style.display = 'none';
-  selectedVerses.clear();
-};
-window.handleNameSelect = () => {
-  const val = document.getElementById('name-select').value;
-  document.getElementById('new-name-row').style.display = val === '__new__' ? 'block' : 'none';
-};
-window.selectPsalm = (num, el) => {
-  selectedPsalm = num;
-  document.querySelectorAll('.psalm-pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  renderPsalmList();
-};
-function renderPsalmList() {
-  document.getElementById('psalm-lbl').textContent = `Psalm ${selectedPsalm} — Click verses to select`;
-  document.getElementById('psalm-list').innerHTML = PSALMS[selectedPsalm].map(([n,t]) => {
-    const key = `${selectedPsalm}:${n}`;
-    const sel = selectedVerses.has(key);
-    return `<div class="psalm-v-row${sel?' selected':''}" onclick="toggleVerse(${selectedPsalm},${n},\`${t.replace(/`/g,"'")}\`)">
-      <div class="psalm-v-check"><span class="psalm-v-check-mark">✓</span></div>
-      <span class="psalm-v-num">${n}</span>
-      <span class="psalm-v-text">${t}</span>
-    </div>`;
-  }).join('');
+// ── INVENTORY ─────────────────────────────────────────
+function renderInventory(){
+  const wrap=document.getElementById('inv-grid-wrap');
+  const inv=allVerses.filter(v=>v.status==='inv');
+  if(!inv.length){wrap.innerHTML='<div class="inv-empty">No verses in the inventory yet.<br>Complete a quest and turn it in to add items here.</div>';return;}
+  const groups=groupByQuest(inv);let html='<div class="inv-grid">';
+  groups.forEach((verses,qid)=>{
+    const isMine=verses.some(v=>myIds.includes(v.id));
+    const itemName=hashPick(ITEM_NAMES,qid),itemIdx=ITEM_NAMES.indexOf(itemName),itemType=ITEM_TYPES[itemIdx]||'One-Hand Sword';
+    const refLbl=passageRefLabel(verses),heroName=verses[0].name;
+    const avatar=HERO_AVATARS[Math.abs(qid.charCodeAt(0)||0)%HERO_AVATARS.length];
+    const savedName=verses[0].itemName||itemName;
+    const fullText=verses.map(v=>`\u201c${v.text}\u201d`).join(' ');
+    html+=`<div class="inv-card"><div class="inv-card-inner">
+      <div class="inv-avatar">${avatar}</div>
+      <div class="inv-hero">${heroName}</div>
+      <div class="inv-item-name">${savedName}</div>
+      <div class="inv-item-type">${itemType}</div>
+      <div class="inv-ref">${refLbl}</div>
+      <div class="inv-divider"></div>
+      <div class="inv-verse">${fullText}</div>
+      ${isMine?`<div class="inv-divider"></div><div class="inv-name-label">Rename item</div><input class="inv-name-edit" type="text" value="${savedName}" data-vid="${verses[0].id}" onchange="saveItemName(this)" />`:''}
+    </div></div>`;
+  });
+  wrap.innerHTML=html+'</div>';
 }
-window.toggleVerse = (pn, vn, text) => {
-  const key = `${pn}:${vn}`;
-  if (selectedVerses.has(key)) selectedVerses.delete(key);
-  else selectedVerses.set(key, { ref:`Psalm ${pn}:${vn}`, text });
-  renderPsalmList(); updateSelCount();
-};
-function updateSelCount() {
-  const n = selectedVerses.size;
-  document.getElementById('selected-count').textContent = n===0?'':n+' verse'+(n>1?'s':'')+' selected';
-}
-window.handleManualRef = () => {
-  const val = document.getElementById('manual-ref').value.trim();
-  const match = val.match(/(?:psalm\s*)?(\d+):(\d+)/i);
-  if (!match) return;
-  const pn = parseInt(match[1]), vn = parseInt(match[2]);
-  if (!PSALMS[pn]) return;
-  const vd = PSALMS[pn].find(([n])=>n===vn);
-  if (!vd) return;
-  selectedPsalm = pn;
-  document.querySelectorAll('.psalm-pill').forEach(p => p.classList.toggle('active', p.textContent.includes(String(pn))));
-  renderPsalmList();
-  const key = `${pn}:${vn}`;
-  if (!selectedVerses.has(key)) { selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text:vd[1]}); renderPsalmList(); updateSelCount(); }
-};
-window.submitVerses = async () => {
-  const sel   = document.getElementById('name-select');
-  const isNew = sel.value === '__new__';
-  const name  = isNew ? document.getElementById('new-name-input').value.trim() : sel.value;
-  if (!name) { toast('Choose or create a hero name'); return; }
-  if (selectedVerses.size === 0) { toast('Select at least one verse'); return; }
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true; btn.textContent = 'Accepting…';
-  myHero = name; localStorage.setItem(HERO_KEY, name);
-  const newIds = [];
-  try {
-    for (const [key, v] of selectedVerses) {
-      const id = `v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-      await set(ref(db,`sword/verses/${id}`), {id,name,ref:v.ref,text:v.text,status:'road',obj:pick(ACTIVE_OBJ),created:Date.now()});
-      newIds.push(id);
-      await new Promise(r=>setTimeout(r,50));
-    }
-    myIds = [...myIds,...newIds];
-    localStorage.setItem(MY_IDS_KEY, JSON.stringify(myIds));
-    btn.disabled=false; btn.textContent='Accept Quest';
-    hideAddForm();
-    toast(`${newIds.length} quest${newIds.length>1?'s':''} accepted!`);
-  } catch(e) { toast('Error — check connection'); btn.disabled=false; btn.textContent='Accept Quest'; }
+window.saveItemName=async(input)=>{
+  const name=input.value.trim(),vid=input.dataset.vid;if(!name||!vid)return;
+  try{await update(ref(db,`sword/verses/${vid}`),{itemName:name});toast('Item renamed');}catch(e){toast('Error saving');}
 };
 
-// ── EDIT ─────────────────────────────────────────────
-window.handleEditClick = (id) => {
-  if (myIds.includes(id) || leaderUnlocked) openEditModal(id);
-  else { pendingEditId=id; openPinOverlay(); }
-};
-function openEditModal(id) {
-  editingId=id;
-  const v=allVerses.find(v=>v.id===id); if(!v) return;
-  document.getElementById('edit-ref').value=v.ref||'';
-  document.getElementById('edit-text').value=v.text||'';
-  document.getElementById('edit-status').value=v.status||'road';
-  document.getElementById('edit-modal').classList.add('show');
-}
-window.closeEditModal = () => { document.getElementById('edit-modal').classList.remove('show'); editingId=null; };
-window.saveEdit = async () => {
-  if (!editingId) return;
-  const newRef=document.getElementById('edit-ref').value.trim();
-  const newText=document.getElementById('edit-text').value.trim();
-  const newStatus=document.getElementById('edit-status').value;
-  if (!newText) { toast('Verse text cannot be empty'); return; }
-  const updates={ref:newRef,text:newText,status:newStatus};
-  if (newStatus==='quest') updates.obj=pick(ACTIVE_OBJ);
-  if (newStatus==='maint') updates.maintObj=pick(MAINT_OBJ);
-  try { await update(ref(db,`sword/verses/${editingId}`),updates); closeEditModal(); toast('Quest updated'); }
-  catch(e) { toast('Error saving'); }
-};
-window.confirmDelete = async () => {
-  if (!editingId) return;
-  if (!confirm('Delete this quest permanently?')) return;
-  try {
-    await set(ref(db,`sword/verses/${editingId}`),null);
-    myIds=myIds.filter(i=>i!==editingId); localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
-    if (selectedId===editingId) {
-      selectedId=null;
-      document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>';
-    }
-    closeEditModal(); toast('Quest deleted');
-  } catch(e) { toast('Error deleting'); }
-};
-function openPinOverlay() {
-  document.getElementById('pin-input').value='';
-  document.getElementById('pin-error').textContent='';
-  document.getElementById('pin-overlay').classList.add('show');
-  setTimeout(()=>document.getElementById('pin-input').focus(),100);
-}
-window.closePinOverlay = () => { document.getElementById('pin-overlay').classList.remove('show'); pendingEditId=null; };
-window.handlePinInput = () => {
-  const val=document.getElementById('pin-input').value;
-  if (val.length<4) return;
-  if (val===LEADER_PIN) {
-    leaderUnlocked=true;
-    document.getElementById('pin-overlay').classList.remove('show');
-    if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;}
-    toast('Leader access granted');
-  } else {
-    document.getElementById('pin-error').textContent='Incorrect PIN';
-    document.getElementById('pin-input').value='';
-  }
-};
-
-// ── BOARD ─────────────────────────────────────────────
-function renderBoard() {
-  // Use get() instead of onValue to avoid accumulating listeners
-  get(ref(db,'sword/verses')).then(snap => {
+// ── JOURNEY BOARD ─────────────────────────────────────
+function renderBoard(){
+  get(ref(db,'sword/verses')).then(snap=>{
     const all=snap.exists()?Object.values(snap.val()):[];
-    const cols={road:[],quest:[],inv:[],maint:[]};
-    all.forEach(v=>cols[v.status]&&cols[v.status].push(v));
-    const card=v=>`<div class="board-card"><div class="bc-name">${v.name}</div><div class="bc-ref">${v.ref||''}</div><div class="bc-text">\u201c${v.text}\u201d</div><div class="bc-obj ${v.status}">${v.status==='road'?'Quest Acquired':v.status==='quest'?(v.obj||''):v.status==='inv'?'In the Inventory':(v.maintObj||'')}</div></div>`;
+    const active=all.filter(v=>v.status!=='inv');
+    const groups=groupByQuest(active);
+    const cols={road:[],quest:[],maint:[]};
+    groups.forEach((verses,qid)=>{const s=questStatus(verses);if(cols[s])cols[s].push({qid,verses});});
+    const card=({qid,verses})=>`<div class="board-card"><div class="bc-name">${verses[0].name}</div><div class="bc-qname">${hashPick(QUEST_NAMES,qid)}</div><div class="bc-ref">${passageRefLabel(verses)}</div><div class="bc-text">\u201c${verses.map(v=>v.text).join(' ')}\u201d</div></div>`;
     const col=list=>list.length?list.map(card).join(''):'<div class="empty-slot">None yet</div>';
-    const stations=[{s:'road',icon:'🗺️',n:'Quest Acquired',d:'The word is new'},{s:'quest',icon:'⚔️',n:'On the Quest',d:'Pressing toward mastery'},{s:'inv',icon:'🏆',n:'In the Inventory',d:'Spoken before the Fellowship'},{s:'maint',icon:'🔧',n:'Maintenance',d:'Keeping the blade sharp'}];
-    document.getElementById('journey-board').innerHTML=stations.map((st,i)=>
-      (i>0?'<div class="j-arrow">›</div>':'')+`<div class="j-station"><div class="js-icon">${st.icon}</div><div class="js-name">${st.n}</div><div class="js-desc">${st.d}</div><div class="js-cards">${col(cols[st.s])}</div></div>`
-    ).join('');
+    const invCount=groupByQuest(all.filter(v=>v.status==='inv')).size;
+    const stations=[{s:'road',icon:'🗺️',n:'Quest Acquired',d:'The word is new'},{s:'quest',icon:'⚔️',n:'On the Quest',d:'Pressing toward mastery'},{s:'maint',icon:'🔧',n:'Maintenance',d:'Keeping the blade sharp'}];
+    document.getElementById('journey-board').innerHTML=stations.map((st,i)=>(i>0?'<div class="j-arrow">›</div>':'')+`<div class="j-station"><div class="js-icon">${st.icon}</div><div class="js-name">${st.n}</div><div class="js-desc">${st.d}</div><div class="js-cards">${col(cols[st.s])}</div></div>`).join('')+
+    `<div class="j-arrow">›</div><div class="j-station" style="border-color:rgba(201,168,76,0.3);background:var(--panel2);">
+      <div class="js-icon">🏆</div><div class="js-name">Inventory</div><div class="js-desc">Spoken before the Fellowship</div>
+      <div class="js-cards">${invCount>0?`<div class="board-card"><div class="bc-name" style="color:var(--gold);">${invCount} quest${invCount!==1?'s':''} mastered</div><div class="bc-ref" style="font-style:italic;color:var(--textdim);">See Inventory tab →</div></div>`:'<div class="empty-slot">None yet</div>'}</div>
+    </div>`;
   });
 }
 
-// ── INIT ──────────────────────────────────────────────
+// ── ADD FORM ─────────────────────────────────────────
+window.showAddForm=()=>{document.getElementById('add-form').style.display='block';updateFilterBar();selectedVerses.clear();renderPsalmList();updateSelCount();};
+window.hideAddForm=()=>{document.getElementById('add-form').style.display='none';selectedVerses.clear();};
+window.handleNameSelect=()=>{document.getElementById('new-name-row').style.display=document.getElementById('name-select').value==='__new__'?'block':'none';};
+window.selectPsalm=(num,el)=>{selectedPsalm=num;document.querySelectorAll('.psalm-pill').forEach(p=>p.classList.remove('active'));el.classList.add('active');renderPsalmList();};
+function renderPsalmList(){
+  document.getElementById('psalm-lbl').textContent=`Psalm ${selectedPsalm} — Click verses to select`;
+  document.getElementById('psalm-list').innerHTML=PSALMS[selectedPsalm].map(([n,t])=>{const key=`${selectedPsalm}:${n}`,sel=selectedVerses.has(key);return`<div class="psalm-v-row${sel?' selected':''}" onclick="toggleVerse(${selectedPsalm},${n},\`${t.replace(/`/g,"'")}\`)"><div class="psalm-v-check"><span class="psalm-v-check-mark">✓</span></div><span class="psalm-v-num">${n}</span><span class="psalm-v-text">${t}</span></div>`;}).join('');
+}
+window.toggleVerse=(pn,vn,text)=>{const key=`${pn}:${vn}`;if(selectedVerses.has(key))selectedVerses.delete(key);else selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text});renderPsalmList();updateSelCount();};
+function updateSelCount(){const n=selectedVerses.size;document.getElementById('selected-count').textContent=n===0?'':n+' verse'+(n>1?'s':'')+' selected';}
+window.handleManualRef=()=>{
+  const val=document.getElementById('manual-ref').value.trim(),match=val.match(/(?:psalm\s*)?(\d+):(\d+)/i);if(!match)return;
+  const pn=parseInt(match[1]),vn=parseInt(match[2]);if(!PSALMS[pn])return;
+  const vd=PSALMS[pn].find(([n])=>n===vn);if(!vd)return;
+  selectedPsalm=pn;document.querySelectorAll('.psalm-pill').forEach(p=>p.classList.toggle('active',p.textContent.includes(String(pn))));renderPsalmList();
+  const key=`${pn}:${vn}`;if(!selectedVerses.has(key)){selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text:vd[1]});renderPsalmList();updateSelCount();}
+};
+window.submitVerses=async()=>{
+  const sel=document.getElementById('name-select'),isNew=sel.value==='__new__';
+  const name=isNew?document.getElementById('new-name-input').value.trim():sel.value;
+  if(!name){toast('Choose or create a hero name');return;}if(!selectedVerses.size){toast('Select at least one verse');return;}
+  const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='Accepting…';
+  myHero=name;localStorage.setItem(HERO_KEY,name);
+  const questId=`q_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
+  const newIds=[];
+  try{
+    for(const[key,v] of selectedVerses){
+      const id=`v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
+      await set(ref(db,`sword/verses/${id}`),{id,questId,name,ref:v.ref,text:v.text,status:'road',created:Date.now()});
+      newIds.push(id);await new Promise(r=>setTimeout(r,50));
+    }
+    myIds=[...myIds,...newIds];localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
+    btn.disabled=false;btn.textContent='Accept Quest';hideAddForm();toast(`Quest accepted — ${newIds.length} verse${newIds.length>1?'s':''}`);
+  }catch(e){toast('Error — check connection');btn.disabled=false;btn.textContent='Accept Quest';}
+};
+
+// ── EDIT ─────────────────────────────────────────────
+window.handleEditClick=(id)=>{if(myIds.includes(id)||leaderUnlocked)openEditModal(id);else{pendingEditId=id;openPinOverlay();}};
+function openEditModal(id){editingId=id;const v=allVerses.find(v=>v.id===id);if(!v)return;document.getElementById('edit-ref').value=v.ref||'';document.getElementById('edit-text').value=v.text||'';document.getElementById('edit-status').value=v.status||'road';document.getElementById('edit-modal').classList.add('show');}
+window.closeEditModal=()=>{document.getElementById('edit-modal').classList.remove('show');editingId=null;};
+window.saveEdit=async()=>{
+  if(!editingId)return;const newRef=document.getElementById('edit-ref').value.trim(),newText=document.getElementById('edit-text').value.trim(),newStatus=document.getElementById('edit-status').value;
+  if(!newText){toast('Verse text cannot be empty');return;}
+  try{await update(ref(db,`sword/verses/${editingId}`),{ref:newRef,text:newText,status:newStatus});closeEditModal();toast('Quest updated');}catch(e){toast('Error saving');}
+};
+window.confirmDelete=async()=>{
+  if(!editingId)return;if(!confirm('Delete this quest permanently?'))return;
+  try{await set(ref(db,`sword/verses/${editingId}`),null);myIds=myIds.filter(i=>i!==editingId);localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
+    if(selectedQid){selectedQid=null;document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>';}
+    closeEditModal();toast('Quest deleted');}catch(e){toast('Error deleting');}
+};
+function openPinOverlay(){document.getElementById('pin-input').value='';document.getElementById('pin-error').textContent='';document.getElementById('pin-overlay').classList.add('show');setTimeout(()=>document.getElementById('pin-input').focus(),100);}
+window.closePinOverlay=()=>{document.getElementById('pin-overlay').classList.remove('show');pendingEditId=null;};
+window.handlePinInput=()=>{
+  const val=document.getElementById('pin-input').value;if(val.length<4)return;
+  if(val===LEADER_PIN){leaderUnlocked=true;document.getElementById('pin-overlay').classList.remove('show');if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;}toast('Leader access granted');}
+  else{document.getElementById('pin-error').textContent='Incorrect PIN';document.getElementById('pin-input').value='';}
+};
+
 loadAll();
 </script>
 </body>
