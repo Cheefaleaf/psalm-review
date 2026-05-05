@@ -268,6 +268,69 @@
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
     .fade-up { animation: fadeUp 0.25s ease forwards; }
+
+    /* EDIT BUTTON ON QUEST ROW */
+    .quest-edit-btn {
+      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px;
+      background: transparent; border: 1px solid var(--border); border-radius: 2px;
+      color: var(--textdim); padding: 4px 9px; cursor: pointer; flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .quest-edit-btn:hover { border-color: var(--golddim); color: var(--gold); }
+
+    /* EDIT MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.82);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+      padding: 20px;
+    }
+    .modal-overlay.show { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px;
+      padding: 28px 28px 24px; width: 100%; max-width: 520px;
+    }
+    .modal-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 20px; }
+    .modal-field { margin-bottom: 14px; }
+    .modal-field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 5px; }
+    .modal-field input, .modal-field select, .modal-field textarea {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
+      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px;
+      padding: 8px 12px; outline: none; transition: border-color 0.2s; appearance: none;
+    }
+    .modal-field input:focus, .modal-field select:focus, .modal-field textarea:focus { border-color: var(--golddim); }
+    .modal-field textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
+    .modal-field select option { background: #1a2412; color: var(--textbright); }
+    .modal-btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 20px; align-items: center; }
+    .modal-save { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 10px 24px; cursor: pointer; transition: background 0.2s; }
+    .modal-save:hover { background: var(--green2); }
+    .modal-cancel { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s; }
+    .modal-cancel:hover { color: var(--text); border-color: var(--border2); }
+    .modal-delete { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--red); border-radius: 2px; background: transparent; color: var(--red2); cursor: pointer; transition: all 0.15s; margin-left: auto; }
+    .modal-delete:hover { background: rgba(139,58,42,0.15); }
+
+    /* LEADER PIN PROMPT */
+    .pin-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.82);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 160; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+      padding: 20px;
+    }
+    .pin-overlay.show { opacity: 1; pointer-events: all; }
+    .pin-box {
+      background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px;
+      padding: 28px; width: 100%; max-width: 340px; text-align: center;
+    }
+    .pin-title { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 16px; }
+    .pin-input {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
+      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 22px;
+      padding: 10px 12px; outline: none; text-align: center; letter-spacing: 8px;
+      margin-bottom: 14px; transition: border-color 0.2s;
+    }
+    .pin-input:focus { border-color: var(--golddim); }
+    .pin-error { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px; color: var(--red2); margin-bottom: 10px; min-height: 16px; }
+    .pin-btn-row { display: flex; gap: 9px; justify-content: center; }
   </style>
 </head>
 <body>
@@ -375,6 +438,47 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal-box">
+    <div class="modal-title">Edit Quest</div>
+    <div class="modal-field">
+      <label>Reference</label>
+      <input type="text" id="edit-ref" />
+    </div>
+    <div class="modal-field">
+      <label>Verse Text</label>
+      <textarea id="edit-text" rows="3"></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Status</label>
+      <select id="edit-status">
+        <option value="road">Quest Acquired (Road)</option>
+        <option value="quest">On the Quest</option>
+        <option value="inv">In the Inventory</option>
+        <option value="maint">Maintenance</option>
+      </select>
+    </div>
+    <div class="modal-btn-row">
+      <button class="modal-save" onclick="saveEdit()">Save Changes</button>
+      <button class="modal-cancel" onclick="closeEditModal()">Cancel</button>
+      <button class="modal-delete" onclick="confirmDelete()">Delete Quest</button>
+    </div>
+  </div>
+</div>
+
+<!-- LEADER PIN OVERLAY -->
+<div class="pin-overlay" id="pin-overlay">
+  <div class="pin-box">
+    <div class="pin-title">Leader Access</div>
+    <input type="password" class="pin-input" id="pin-input" maxlength="4" placeholder="••••" oninput="handlePinInput()" />
+    <div class="pin-error" id="pin-error"></div>
+    <div class="pin-btn-row">
+      <button class="modal-cancel" onclick="closePinOverlay()">Cancel</button>
+    </div>
+  </div>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -540,6 +644,7 @@ function renderQuestLog() {
               : v.status === 'inv'   ? 'In the Inventory'
               : (v.maintObj || '');
     const action = isMine ? (v.status === 'inv' ? 'Sharpen →' : 'Train →') : '';
+    const canEdit = isMine || leaderUnlocked;
     return `<div class="quest-row${isMine?' is-mine':''}${isActive?' active-drill':''}" onclick="openDrill('${v.id}')">
       <div class="quest-dot ${dotClass}"></div>
       <div class="quest-info">
@@ -548,6 +653,7 @@ function renderQuestLog() {
         <div class="quest-verseref">${v.ref||''}</div>
       </div>
       ${action ? `<div class="quest-action">${action}</div>` : ''}
+      <button class="quest-edit-btn" onclick="event.stopPropagation();handleEditClick('${v.id}')">⋯</button>
     </div>`;
   }).join('');
 }
@@ -866,6 +972,93 @@ function renderBoard() {
     ).join('');
   }, { onlyOnce: true });
 }
+
+// ── EDIT & PIN ────────────────────────────────────────
+const LEADER_PIN = '1957';
+let leaderUnlocked = false;
+let editingId      = null;
+let pendingEditId  = null;
+
+window.handleEditClick = (id) => {
+  const v = allVerses.find(v => v.id === id);
+  if (!v) return;
+  if (myIds.includes(id) || leaderUnlocked) {
+    openEditModal(id);
+  } else {
+    pendingEditId = id;
+    openPinOverlay();
+  }
+};
+
+function openEditModal(id) {
+  editingId = id;
+  const v = allVerses.find(v => v.id === id);
+  if (!v) return;
+  document.getElementById('edit-ref').value    = v.ref  || '';
+  document.getElementById('edit-text').value   = v.text || '';
+  document.getElementById('edit-status').value = v.status || 'road';
+  document.getElementById('edit-modal').classList.add('show');
+}
+
+window.closeEditModal = () => {
+  document.getElementById('edit-modal').classList.remove('show');
+  editingId = null;
+};
+
+window.saveEdit = async () => {
+  if (!editingId) return;
+  const newRef    = document.getElementById('edit-ref').value.trim();
+  const newText   = document.getElementById('edit-text').value.trim();
+  const newStatus = document.getElementById('edit-status').value;
+  if (!newText) { toast('Verse text cannot be empty'); return; }
+  try {
+    const updates = { ref: newRef, text: newText, status: newStatus };
+    // if status changed to quest/maint, assign a new objective
+    if (newStatus === 'quest')  updates.obj      = pick(ACTIVE_OBJ);
+    if (newStatus === 'maint')  updates.maintObj = pick(MAINT_OBJ);
+    await update(ref(db, `sword/verses/${editingId}`), updates);
+    closeEditModal();
+    toast('Quest updated');
+  } catch(e) { toast('Error saving — check connection'); }
+};
+
+window.confirmDelete = async () => {
+  if (!editingId) return;
+  if (!confirm('Delete this quest permanently? This cannot be undone.')) return;
+  try {
+    await set(ref(db, `sword/verses/${editingId}`), null);
+    // remove from local ids if mine
+    myIds = myIds.filter(i => i !== editingId);
+    localStorage.setItem(MY_IDS_KEY, JSON.stringify(myIds));
+    closeEditModal();
+    toast('Quest deleted');
+  } catch(e) { toast('Error deleting'); }
+};
+
+// PIN
+function openPinOverlay() {
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-error').textContent = '';
+  document.getElementById('pin-overlay').classList.add('show');
+  setTimeout(() => document.getElementById('pin-input').focus(), 100);
+}
+window.closePinOverlay = () => {
+  document.getElementById('pin-overlay').classList.remove('show');
+  pendingEditId = null;
+};
+window.handlePinInput = () => {
+  const val = document.getElementById('pin-input').value;
+  if (val.length < 4) return;
+  if (val === LEADER_PIN) {
+    leaderUnlocked = true;
+    document.getElementById('pin-overlay').classList.remove('show');
+    if (pendingEditId) { openEditModal(pendingEditId); pendingEditId = null; }
+    toast('Leader access granted');
+  } else {
+    document.getElementById('pin-error').textContent = 'Incorrect PIN';
+    document.getElementById('pin-input').value = '';
+  }
+};
 
 // ── INIT ──────────────────────────────────────────────
 loadAllVerses();
