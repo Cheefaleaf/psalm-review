@@ -10,6 +10,18 @@
       --bg:      #0b0f07;
       --bg2:     #0f1509;
       --bg3:     #141c0c;
+      --panel:<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sword of the Spirit | The Fellowship</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #0b0f07;
+      --bg2:     #0f1509;
+      --bg3:     #141c0c;
       --panel:   #182010;
       --panel2:  #1e2a14;
       --border:  #2a3c1a;
@@ -192,18 +204,25 @@
     .train-mode-tab.done { border-color: var(--green); color: var(--green2); }
     .train-mode-tab .tab-check { font-size: 10px; }
 
-    /* verse progress indicator */
-    .train-verse-progress { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--textdim); margin-bottom: 10px; }
+    /* passage reference indicator */
+    .train-passage-ref { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--textdim); margin-bottom: 10px; }
 
     /* display area */
     .train-verse-ref { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 8px; }
     .train-display { font-size: 20px; font-style: italic; line-height: 1.75; color: var(--textbright); min-height: 80px; padding: 16px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 16px; }
+
+    /* passage verse lines */
+    .passage-line { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+    .passage-vnum { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px; color: var(--golddim); min-width: 28px; padding-top: 4px; flex-shrink: 0; text-align: right; }
+    .passage-vtext { font-size: 19px; font-style: italic; line-height: 1.7; color: var(--textbright); }
+
     .blank-word { display: inline-block; background: var(--border2); border-radius: 2px; height: 15px; vertical-align: middle; margin: 0 2px; }
     .first-letter { color: var(--gold); font-weight: 500; }
     .first-letter-blank { color: var(--textdim); letter-spacing: 2px; }
 
     /* SCRAMBLE */
     .scramble-wrap { margin-bottom: 16px; }
+    .scramble-sentence-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 8px; }
     .scramble-target { min-height: 60px; border: 1px solid var(--golddim); border-radius: 3px; padding: 12px 14px; background: var(--panel2); margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
     .scramble-target-empty { font-style: italic; color: var(--textdim); font-size: 14px; align-self: center; }
     .scramble-pool { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0; }
@@ -218,7 +237,7 @@
     .word-chip.placed:hover { border-color: var(--red); color: var(--red2); }
 
     /* RECALL */
-    .recall-textarea { width: 100%; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; padding: 14px 16px; outline: none; resize: vertical; min-height: 100px; margin-bottom: 12px; line-height: 1.65; transition: border-color 0.2s; }
+    .recall-textarea { width: 100%; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; padding: 14px 16px; outline: none; resize: vertical; min-height: 120px; margin-bottom: 12px; line-height: 1.65; transition: border-color 0.2s; }
     .recall-textarea:focus { border-color: var(--golddim); }
 
     /* DIFF display */
@@ -231,10 +250,6 @@
     .rf-correct   { background: rgba(74,124,63,0.15); border: 1px solid var(--green); color: var(--green2); }
     .rf-close     { background: rgba(201,168,76,0.1); border: 1px solid var(--golddim); color: var(--gold2); }
     .rf-incorrect { background: rgba(139,58,42,0.15); border: 1px solid var(--red); color: var(--red2); }
-
-    /* PASSAGE (final step) */
-    .passage-all { font-size: 17px; font-style: italic; line-height: 1.8; color: var(--parch-dim); padding: 14px 16px; background: var(--parch); border: 1px solid var(--parch-border); border-radius: 3px; margin-bottom: 16px; }
-    .passage-ref-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 3px; }
 
     .train-btn-row { display: flex; gap: 9px; flex-wrap: wrap; }
     .btn-train { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s; }
@@ -436,7 +451,7 @@
       <button class="train-close" onclick="closeTrain()">✕ Close</button>
     </div>
     <div class="train-mode-tabs" id="train-mode-tabs"></div>
-    <div class="train-verse-progress" id="train-verse-progress"></div>
+    <div class="train-passage-ref" id="train-passage-ref"></div>
     <div id="train-body"></div>
   </div>
 </div>
@@ -529,26 +544,43 @@ const TRAIN_MODES = ['read','blank','firstletter','scramble','recall'];
 const MODE_LABELS = { read:'Read', blank:'Fill Blank', firstletter:'First Letters', scramble:'Scramble', recall:'Recall' };
 
 // ── STATE ─────────────────────────────────────────────
-let allVerses     = [];
-let myIds         = JSON.parse(localStorage.getItem(MY_IDS_KEY) || '[]');
-let myHero        = localStorage.getItem(HERO_KEY) || '';
-let heroFilter    = 'all';
-let selectedId    = null;
-let leaderUnlocked= false;
-let editingId     = null;
-let pendingEditId = null;
-let selectedPsalm = 121;
-let selectedVerses= new Map();
+let allVerses      = [];
+let myIds          = JSON.parse(localStorage.getItem(MY_IDS_KEY) || '[]');
+let myHero         = localStorage.getItem(HERO_KEY) || '';
+let heroFilter     = 'all';
+let selectedId     = null;
+let leaderUnlocked = false;
+let editingId      = null;
+let pendingEditId  = null;
+let selectedPsalm  = 121;
+let selectedVerses = new Map();
 
-// Training state
-let trainVerses   = []; // array of verse objects being trained
-let trainVIdx     = 0;  // current verse index
+// ── TRAINING STATE ────────────────────────────────────
+// trainQuest: the single verse object being trained (training is now per-quest/verse doc,
+//             but a quest doc may represent multiple verses stored as one)
+// For multi-verse quests (same hero, same session), we load them grouped.
+let trainVerses   = []; // all verse objects in this training session (the quest's verses)
 let trainMode     = 'read';
-let trainProgress = {}; // { verseId: Set of completed modes }
-let scrambleBuilt = [];
-let scramblePool  = [];
+let trainProgress = {}; // { questKey: { read, blank, firstletter, scramble, recall } }
 
-const pick  = arr => arr[Math.floor(Math.random() * arr.length)];
+// Scramble sub-state — sentence by sentence within scramble mode
+let scrambleState = {
+  sentenceIdx: 0,   // which verse/sentence we're on
+  pool: [],         // shuffled words for current sentence
+  built: [],        // placed words (by pool index)
+  usedIdx: new Set()
+};
+
+function resetScrambleState(sentenceIdx) {
+  const v = trainVerses[sentenceIdx];
+  if (!v) return;
+  const words = v.text.split(' ');
+  const pool  = [...words].sort(() => Math.random() - 0.5);
+  scrambleState = { sentenceIdx, pool, built: [], usedIdx: new Set() };
+}
+
+// ── HELPERS ───────────────────────────────────────────
+const pick     = arr => arr[Math.floor(Math.random() * arr.length)];
 const normText = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
 
 function toast(msg, ms=2400) {
@@ -563,7 +595,6 @@ function celebrate(icon, title, sub) {
   document.getElementById('celebrate').classList.add('show');
 }
 
-// ── FUZZY MATCH ───────────────────────────────────────
 function similarity(a, b) {
   a = normText(a); b = normText(b);
   if (a === b) return 1;
@@ -574,13 +605,38 @@ function similarity(a, b) {
 function diffWords(input, target) {
   const wi = normText(input).split(' ');
   const wt = normText(target).split(' ');
-  const tw = target.split(' '); // original casing
+  const tw = target.split(' ');
   return tw.map((w, i) => {
     const clean = normText(w);
     if (wi[i] && normText(wi[i]) === clean) return `<span class="diff-ok">${w}</span>`;
     if (wi.includes(clean)) return `<span class="diff-add">${w}</span>`;
     return `<span class="diff-miss">${w}</span>`;
   }).join(' ');
+}
+
+// Build a readable passage reference label from an array of verse objects
+function passageRefLabel(verses) {
+  if (!verses.length) return '';
+  // Group by psalm number
+  const groups = {};
+  verses.forEach(v => {
+    const m = v.ref && v.ref.match(/Psalm\s*(\d+):(\d+)/i);
+    if (m) {
+      const pn = parseInt(m[1]), vn = parseInt(m[2]);
+      if (!groups[pn]) groups[pn] = [];
+      groups[pn].push(vn);
+    }
+  });
+  return Object.entries(groups).map(([pn, vnums]) => {
+    vnums.sort((a,b)=>a-b);
+    const first = vnums[0], last = vnums[vnums.length-1];
+    return first === last ? `Psalm ${pn}:${first}` : `Psalm ${pn}:${first}–${last}`;
+  }).join(', ');
+}
+
+// Training progress key — keyed to the hero name so multiple heroes don't share progress
+function trainKey() {
+  return trainVerses.map(v => v.id).sort().join('|');
 }
 
 // ── TABS ─────────────────────────────────────────────
@@ -617,7 +673,6 @@ function updateFilterBar() {
   const bar = document.getElementById('filter-bar');
   bar.innerHTML = `<button class="filter-pill${heroFilter==='all'?' active':''}" onclick="setFilter('all',this)">All</button>` +
     heroes.map(h => `<button class="filter-pill${heroFilter===h?' active':''}" onclick="setFilter('${h}',this)">${h}</button>`).join('');
-  // update name dropdown
   const sel = document.getElementById('name-select');
   if (sel) {
     sel.innerHTML = `<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>` +
@@ -664,7 +719,6 @@ window.selectQuest = (id) => {
   selectedId = id;
   renderQuestList();
   renderParchment(id);
-  // mobile: show right panel
   const isMobile = window.innerWidth <= 680;
   if (isMobile) {
     document.getElementById('panel-left').classList.add('mobile-hide');
@@ -683,36 +737,38 @@ function renderParchment(id) {
   if (!v) return;
   const isMine = myIds.includes(id);
 
+  // Gather all my verses that belong to same hero & psalm session for passage display
+  const questVerses = getQuestVerses(id);
+
   const statusLabels = { road:'Quest Acquired', quest:'On the Quest', inv:'In the Inventory', maint:'Maintenance' };
   const obj = v.status === 'road' ? 'Quest Acquired'
             : v.status === 'quest' ? (v.obj||'')
             : v.status === 'inv'   ? 'In the Inventory'
             : (v.maintObj||'');
 
-  // progress
-  const prog = trainProgress[id] || {};
+  const key  = questVerses.map(qv => qv.id).sort().join('|');
+  const prog = trainProgress[key] || {};
   const allModeDone = TRAIN_MODES.every(m => prog[m]);
-  const passageDone = prog['passage'];
 
   const modesHtml = TRAIN_MODES.map(m => {
     const done = !!prog[m];
-    const pct  = done ? 100 : 0;
-    const color = done ? 'var(--green)' : 'var(--c-quest)';
     return `<div class="progress-mode-row">
       <span class="progress-mode-name">${MODE_LABELS[m]}</span>
-      <div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${pct}%;background:${color};"></div></div>
+      <div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${done?100:0}%;background:${done?'var(--green)':'var(--c-quest)'};"></div></div>
       <span class="progress-mode-check">${done ? '✓' : ''}</span>
     </div>`;
-  }).join('') + `<div class="progress-mode-row">
-    <span class="progress-mode-name">Put It Together</span>
-    <div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${passageDone?100:0}%;background:${passageDone?'var(--gold)':'var(--golddim)'};"></div></div>
-    <span class="progress-mode-check">${passageDone ? '✦' : ''}</span>
-  </div>`;
+  }).join('');
 
-  const readyToTurnIn = allModeDone && passageDone && isMine;
-  const canTurnIn     = v.status !== 'inv' && readyToTurnIn;
-
+  const canTurnIn = allModeDone && isMine && v.status !== 'inv';
   const flavorText = FLAVOR[Math.abs(id.charCodeAt(2) || 0) % FLAVOR.length];
+
+  // Show passage text in parchment
+  const passageHtml = questVerses.map(qv =>
+    `<div class="passage-line">
+      <span class="passage-vnum">${qv.ref ? qv.ref.split(':')[1] || '' : ''}</span>
+      <span class="passage-vtext" style="font-size:15px;color:var(--parch-text);">\u201c${qv.text}\u201d</span>
+    </div>`
+  ).join('');
 
   document.getElementById('parch-content').innerHTML = `
     <button class="parch-back" onclick="parchBack()">← Back to Log</button>
@@ -721,11 +777,10 @@ function renderParchment(id) {
       <span class="parch-status-lbl status-lbl-${v.status}">${statusLabels[v.status]}</span>
     </div>
     <div class="parch-quest-name">${obj || 'Quest Acquired'}</div>
-    <div class="parch-hero-name">${v.name}</div>
+    <div class="parch-hero-name">${v.name} · ${passageRefLabel(questVerses)}</div>
     <div class="parch-divider"></div>
-    <div class="parch-section-label">The Verse</div>
-    <div class="parch-verse">\u201c${v.text}\u201d</div>
-    <div class="parch-ref">${v.ref||''}</div>
+    <div class="parch-section-label">The Passage</div>
+    <div style="margin-bottom:20px;">${passageHtml}</div>
     <div class="parch-flavor">${flavorText}</div>
     <div class="parch-divider"></div>
     <div class="parch-section-label">Training Progress</div>
@@ -733,22 +788,33 @@ function renderParchment(id) {
     <div class="parch-actions">
       ${isMine ? `<button class="btn-parch-primary" onclick="startTraining('${id}')">⚔ Begin Training</button>` : ''}
       ${canTurnIn ? `<button class="btn-parch-gold" onclick="turnInQuest('${id}')">✦ Turn In Quest</button>` : ''}
-      ${readyToTurnIn && !canTurnIn ? `<span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--c-inv);">✦ Quest turned in — ready to recite!</span>` : ''}
+      ${allModeDone && !canTurnIn && isMine ? `<span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--c-inv);">✦ Quest turned in — ready to recite!</span>` : ''}
     </div>`;
+}
+
+// Get all verses that belong to the same "quest" as this id.
+// For now: same hero name + same psalm (inferred from ref). In practice
+// the student selects multiple verses at once and they share a hero + psalm session.
+// We group by hero name only — if a hero has multiple psalms they train together.
+function getQuestVerses(id) {
+  const v = allVerses.find(v => v.id === id);
+  if (!v) return [v].filter(Boolean);
+  // All my verses for this hero, sorted by ref
+  const group = allVerses
+    .filter(qv => myIds.includes(qv.id) && qv.name === v.name)
+    .sort((a,b) => (a.ref||'').localeCompare(b.ref||''));
+  return group.length ? group : [v];
 }
 
 // ── TRAINING ──────────────────────────────────────────
 window.startTraining = (id) => {
-  const v = allVerses.find(v => v.id === id);
-  if (!v) return;
-  // gather all my active verses (road/quest/maint) — queue them
-  const myActive = allVerses.filter(v => myIds.includes(v.id) && v.status !== 'inv');
-  // put selected verse first
-  const others = myActive.filter(v => v.id !== id);
-  trainVerses = [v, ...others];
-  trainVIdx   = 0;
-  trainMode   = 'read';
-  scrambleBuilt = []; scramblePool = [];
+  const questVerses = getQuestVerses(id);
+  if (!questVerses.length) return;
+
+  trainVerses  = questVerses;
+  trainMode    = 'read';
+  resetScrambleState(0);
+
   document.getElementById('train-overlay').classList.add('show');
   renderTrainMode();
 };
@@ -758,305 +824,288 @@ window.closeTrain = () => {
   if (selectedId) renderParchment(selectedId);
 };
 
-function currentTrainVerse() { return trainVerses[trainVIdx]; }
-
+// ── RENDER TRAIN MODE ─────────────────────────────────
 function renderTrainMode() {
-  const v = currentTrainVerse();
-  if (!v) { renderPassageStep(); return; }
+  const key  = trainKey();
+  const prog = trainProgress[key] || {};
+  const ref  = passageRefLabel(trainVerses);
 
-  document.getElementById('train-title').textContent = `Training — ${v.name}`;
-  document.getElementById('train-verse-progress').textContent =
-    `Verse ${trainVIdx + 1} of ${trainVerses.length} — ${v.ref||''}`;
+  document.getElementById('train-title').textContent = `Training — ${trainVerses[0]?.name || ''}`;
+  document.getElementById('train-passage-ref').textContent = ref;
 
-  // mode tabs
-  const prog = trainProgress[v.id] || {};
+  // Mode tabs
   document.getElementById('train-mode-tabs').innerHTML = TRAIN_MODES.map(m => {
     const done   = !!prog[m];
     const active = m === trainMode;
     return `<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">
       ${done ? '<span class="tab-check">✓</span>' : ''}${MODE_LABELS[m]}
     </button>`;
-  }).join('') + (trainVerses.length > 1 ? `<button class="train-mode-tab" onclick="nextTrainVerse()" style="margin-left:auto;">Next Verse →</button>` : '');
+  }).join('');
 
   const body = document.getElementById('train-body');
 
+  // ── READ ──
   if (trainMode === 'read') {
+    const passageHtml = trainVerses.map(v =>
+      `<div class="passage-line">
+        <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
+        <span class="passage-vtext">${v.text}</span>
+      </div>`
+    ).join('');
     body.innerHTML = `
-      <div class="train-verse-ref">${v.ref||''}</div>
-      <div class="train-display">\u201c${v.text}\u201d</div>
+      <div class="train-display" style="font-size:17px;">${passageHtml}</div>
       <div class="train-btn-row">
         <button class="btn-train gold" onclick="completeMode('read')">Got it →</button>
       </div>`;
   }
 
+  // ── FILL BLANK ──
   else if (trainMode === 'blank') {
-    const words = v.text.split(' ');
-    const hideCount = Math.floor(words.length * 0.5);
-    const toHide = new Set();
-    const step = words.length / hideCount;
-    for (let i=0; i<hideCount; i++) toHide.add(Math.floor(i*step));
-    const display = '\u201c' + words.map((w,i) =>
-      toHide.has(i) ? `<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>` : `<span>${w}</span>`
-    ).join(' ') + '\u201d';
+    const passageHtml = trainVerses.map(v => {
+      const words = v.text.split(' ');
+      const hideCount = Math.max(1, Math.floor(words.length * 0.5));
+      const toHide = new Set();
+      const step = words.length / hideCount;
+      for (let i=0; i<hideCount; i++) toHide.add(Math.floor(i*step));
+      const lineHtml = words.map((w,i) =>
+        toHide.has(i)
+          ? `<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>`
+          : `<span>${w}</span>`
+      ).join(' ');
+      return `<div class="passage-line">
+        <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
+        <span class="passage-vtext">${lineHtml}</span>
+      </div>`;
+    }).join('');
     body.innerHTML = `
-      <div class="train-verse-ref">${v.ref||''}</div>
-      <div class="train-display">${display}</div>
+      <div class="train-display" id="train-display" style="font-size:17px;">${passageHtml}</div>
       <div class="train-btn-row">
         <button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button>
-        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
       </div>`;
   }
 
+  // ── FIRST LETTERS ──
   else if (trainMode === 'firstletter') {
-    const words = v.text.split(' ');
-    const display = '\u201c' + words.map(w => {
-      const letters = w.replace(/[^a-zA-Z]/g,'');
-      if (!letters) return w;
-      const rest = '_'.repeat(Math.max(letters.length - 1, 1));
-      return `<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${w.match(/[^a-zA-Z]$/) ? w.slice(-1) : ''}`;
-    }).join(' ') + '\u201d';
+    const passageHtml = trainVerses.map(v => {
+      const words = v.text.split(' ');
+      const lineHtml = words.map(w => {
+        const letters = w.replace(/[^a-zA-Z]/g,'');
+        if (!letters) return w;
+        const rest    = '_'.repeat(Math.max(letters.length - 1, 1));
+        const trail   = w.match(/[^a-zA-Z]$/) ? w.slice(-1) : '';
+        return `<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${trail}`;
+      }).join(' ');
+      return `<div class="passage-line">
+        <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
+        <span class="passage-vtext">${lineHtml}</span>
+      </div>`;
+    }).join('');
     body.innerHTML = `
-      <div class="train-verse-ref">${v.ref||''}</div>
-      <div class="train-display">${display}</div>
+      <div class="train-display" id="train-display" style="font-size:17px;">${passageHtml}</div>
       <div class="train-btn-row">
         <button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button>
-        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
       </div>`;
   }
 
+  // ── SCRAMBLE ──
   else if (trainMode === 'scramble') {
-    if (!scramblePool.length || scramblePool._vid !== v.id) {
-      const words = v.text.split(' ');
-      scramblePool = [...words].sort(() => Math.random() - 0.5);
-      scramblePool._vid = v.id;
-      scrambleBuilt = [];
+    // If scramble state is stale (different verse set), reset to sentence 0
+    if (scrambleState.sentenceIdx >= trainVerses.length) {
+      resetScrambleState(0);
     }
-    renderScramble(v);
+    renderScrambleSentence();
   }
 
+  // ── RECALL ──
   else if (trainMode === 'recall') {
     body.innerHTML = `
-      <div class="train-verse-ref">${v.ref||''}</div>
-      <textarea class="recall-textarea" id="recall-ta" placeholder="Type the verse from memory…"></textarea>
+      <div style="margin-bottom:10px;font-style:italic;color:var(--textdim);font-size:14px;">Type the full passage from memory.</div>
+      <textarea class="recall-textarea" id="recall-ta" placeholder="Type the passage…"></textarea>
       <div class="train-btn-row">
         <button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button>
-        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
       </div>`;
   }
 }
+
+// Show the full passage text in whatever display area exists
+window.showFullPassage = () => {
+  const el = document.getElementById('train-display');
+  if (!el) return;
+  el.innerHTML = trainVerses.map(v =>
+    `<div class="passage-line">
+      <span class="passage-vnum">${v.ref ? v.ref.split(':')[1] || '' : ''}</span>
+      <span class="passage-vtext">${v.text}</span>
+    </div>`
+  ).join('');
+};
 
 window.setTrainMode = (mode) => {
   trainMode = mode;
-  scrambleBuilt = []; scramblePool = [];
+  if (mode === 'scramble') resetScrambleState(0);
   renderTrainMode();
-};
-
-window.showFullInDrill = () => {
-  const v = currentTrainVerse();
-  document.getElementById('train-display') && (document.getElementById('train-display').innerHTML = '\u201c' + v.text + '\u201d');
 };
 
 window.completeMode = (mode) => {
-  const v = currentTrainVerse();
-  if (!trainProgress[v.id]) trainProgress[v.id] = {};
-  trainProgress[v.id][mode] = true;
-  // auto advance to next incomplete mode
-  const next = TRAIN_MODES.find(m => !trainProgress[v.id][m]);
-  if (next) { trainMode = next; }
+  const key = trainKey();
+  if (!trainProgress[key]) trainProgress[key] = {};
+  trainProgress[key][mode] = true;
+  // auto-advance to next incomplete mode
+  const next = TRAIN_MODES.find(m => !trainProgress[key][m]);
+  if (next) trainMode = next;
+  if (trainMode === 'scramble') resetScrambleState(0);
   renderTrainMode();
 };
 
-window.nextTrainVerse = () => {
-  trainVIdx = (trainVIdx + 1) % trainVerses.length;
-  trainMode = 'read'; scrambleBuilt = []; scramblePool = [];
-  // check if all verses done — go to passage
-  const allDone = trainVerses.every(v => {
-    const p = trainProgress[v.id] || {};
-    return TRAIN_MODES.every(m => p[m]);
-  });
-  if (allDone && trainVIdx === 0) { renderPassageStep(); return; }
-  renderTrainMode();
-};
-
-// SCRAMBLE render
-function renderScramble(v) {
+// ── SCRAMBLE — sentence by sentence ───────────────────
+function renderScrambleSentence() {
   const body = document.getElementById('train-body');
-  const targetHtml = scrambleBuilt.length === 0
+  const sIdx = scrambleState.sentenceIdx;
+  const v    = trainVerses[sIdx];
+  const total= trainVerses.length;
+
+  const sentenceLabel = total > 1
+    ? `Verse ${sIdx + 1} of ${total} — ${v.ref || ''}`
+    : (v.ref || '');
+
+  const targetHtml = scrambleState.built.length === 0
     ? '<span class="scramble-target-empty">Tap words below to build the verse…</span>'
-    : scrambleBuilt.map((w,i) =>
-        `<span class="word-chip placed" onclick="unplaceWord(${i})">${w}</span>`
+    : scrambleState.built.map((entry, bi) =>
+        `<span class="word-chip placed" data-built-idx="${bi}" onclick="scrambleUnplace(${bi})">${entry.word}</span>`
       ).join('');
 
-  const poolHtml = scramblePool.filter((_,i) => !scrambleBuilt.includes(scramblePool[i]) || true)
-    .map((w,i) => {
-      const used = scrambleBuilt.includes(w) && scrambleBuilt.indexOf(w) >= 0;
-      // track by index to allow duplicates
-      return `<span class="word-chip" id="sp-${i}" onclick="placeWord(${i},'${w.replace(/'/g,"\\'")}',this)">${w}</span>`;
-    }).join('');
+  const poolHtml = scrambleState.pool.map((w, pi) => {
+    const used = scrambleState.usedIdx.has(pi);
+    return `<span class="word-chip" id="spool-${pi}" style="${used?'opacity:0.25;pointer-events:none;':''}" onclick="scramblePlace(${pi})">${w}</span>`;
+  }).join('');
 
   body.innerHTML = `
-    <div class="train-verse-ref">${v.ref||''}</div>
+    <div class="scramble-sentence-label">${sentenceLabel}</div>
     <div class="scramble-wrap">
       <div class="scramble-target" id="scramble-target">${targetHtml}</div>
-      <div class="scramble-pool" id="scramble-pool">${poolHtml}</div>
+      <div class="scramble-pool"   id="scramble-pool">${poolHtml}</div>
     </div>
     <div class="train-btn-row">
-      <button class="btn-train gold" onclick="checkScramble()">Check Order</button>
-      <button class="btn-train" onclick="clearScramble()">Clear</button>
-      <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+      <button class="btn-train gold" onclick="checkScrambleSentence()">Check Order</button>
+      <button class="btn-train" onclick="clearScrambleSentence()">Clear</button>
+      <button class="btn-train" onclick="showCurrentSentence()">Show verse</button>
     </div>`;
-
-  // grey out placed words
-  scrambleBuilt.forEach(w => {
-    // find first matching unhidden chip
-    const chips = document.querySelectorAll('#scramble-pool .word-chip');
-    for (const c of chips) {
-      if (c.textContent === w && !c.style.opacity) { c.style.opacity = '0.25'; c.style.pointerEvents = 'none'; break; }
-    }
-  });
 }
 
-// track which pool indices are used
-let usedPoolIdx = new Set();
+window.scramblePlace = (pi) => {
+  if (scrambleState.usedIdx.has(pi)) return;
+  const word = scrambleState.pool[pi];
+  scrambleState.usedIdx.add(pi);
+  scrambleState.built.push({ word, pi });
 
-window.placeWord = (idx, word, el) => {
-  if (usedPoolIdx.has(idx)) return;
-  usedPoolIdx.add(idx);
-  scrambleBuilt.push(word);
-  el.style.opacity = '0.25'; el.style.pointerEvents = 'none';
+  // update pool chip
+  const chip = document.getElementById(`spool-${pi}`);
+  if (chip) { chip.style.opacity = '0.25'; chip.style.pointerEvents = 'none'; }
+
   // update target
   const target = document.getElementById('scramble-target');
-  const empty = target.querySelector('.scramble-target-empty');
+  const empty  = target.querySelector('.scramble-target-empty');
   if (empty) empty.remove();
-  const chip = document.createElement('span');
-  chip.className = 'word-chip placed';
-  chip.textContent = word;
-  chip.dataset.poolIdx = idx;
-  chip.onclick = () => {
-    usedPoolIdx.delete(parseInt(chip.dataset.poolIdx));
-    scrambleBuilt.splice(scrambleBuilt.indexOf(word), 1);
-    chip.remove();
-    const poolEl = document.getElementById('sp-' + idx);
-    if (poolEl) { poolEl.style.opacity = ''; poolEl.style.pointerEvents = ''; }
-    if (scrambleBuilt.length === 0) {
-      target.innerHTML = '<span class="scramble-target-empty">Tap words below to build the verse…</span>';
-    }
-  };
-  target.appendChild(chip);
+  const el = document.createElement('span');
+  el.className = 'word-chip placed';
+  el.textContent = word;
+  el.dataset.builtIdx = scrambleState.built.length - 1;
+  el.onclick = () => scrambleUnplace(parseInt(el.dataset.builtIdx));
+  target.appendChild(el);
 };
 
-window.unplaceWord = () => {}; // handled inline above
-
-window.clearScramble = () => {
-  usedPoolIdx = new Set(); scrambleBuilt = [];
-  renderScramble(currentTrainVerse());
+window.scrambleUnplace = (bi) => {
+  const entry = scrambleState.built[bi];
+  if (!entry) return;
+  // remove from built
+  scrambleState.built.splice(bi, 1);
+  scrambleState.usedIdx.delete(entry.pi);
+  // fix built-idx references on remaining placed chips
+  const target = document.getElementById('scramble-target');
+  if (target) {
+    const chips = target.querySelectorAll('.word-chip.placed');
+    chips.forEach((c, i) => { c.dataset.builtIdx = i; c.onclick = () => scrambleUnplace(i); });
+  }
+  // re-enable pool chip
+  const poolChip = document.getElementById(`spool-${entry.pi}`);
+  if (poolChip) { poolChip.style.opacity = ''; poolChip.style.pointerEvents = ''; }
+  if (scrambleState.built.length === 0 && target) {
+    target.innerHTML = '<span class="scramble-target-empty">Tap words below to build the verse…</span>';
+  }
 };
 
-window.checkScramble = () => {
-  const v = currentTrainVerse();
-  const built = scrambleBuilt.join(' ');
+window.clearScrambleSentence = () => {
+  resetScrambleState(scrambleState.sentenceIdx);
+  renderScrambleSentence();
+};
+
+window.showCurrentSentence = () => {
+  const v = trainVerses[scrambleState.sentenceIdx];
+  const body = document.getElementById('train-body');
+  // inject a small show-verse block above buttons
+  const existing = document.getElementById('show-verse-reveal');
+  if (existing) { existing.remove(); }
+  const div = document.createElement('div');
+  div.id = 'show-verse-reveal';
+  div.style.cssText = 'font-style:italic;color:var(--parch-dim);font-size:16px;padding:10px 0 6px;line-height:1.6;';
+  div.textContent = '\u201c' + v.text + '\u201d';
+  const btnRow = body.querySelector('.train-btn-row');
+  if (btnRow) body.insertBefore(div, btnRow);
+};
+
+window.checkScrambleSentence = () => {
+  const v     = trainVerses[scrambleState.sentenceIdx];
+  const built = scrambleState.built.map(e => e.word).join(' ');
   const sim   = similarity(built, v.text);
+
   if (sim >= 0.9) {
-    completeMode('scramble');
+    const nextIdx = scrambleState.sentenceIdx + 1;
+    if (nextIdx < trainVerses.length) {
+      // Advance to next sentence
+      toast(`Verse ${scrambleState.sentenceIdx + 1} ✓ — next sentence`);
+      resetScrambleState(nextIdx);
+      renderScrambleSentence();
+    } else {
+      // All sentences done — complete the mode
+      completeMode('scramble');
+    }
   } else {
     toast('Not quite — keep rearranging!');
   }
 };
 
-// RECALL check
+// ── RECALL ────────────────────────────────────────────
 window.checkRecallMode = () => {
-  const v   = currentTrainVerse();
-  const inp = document.getElementById('recall-ta').value.trim();
-  const sim = similarity(inp, v.text);
-  const body = document.getElementById('train-body');
+  const fullText = trainVerses.map(v => v.text).join(' ');
+  const inp      = document.getElementById('recall-ta').value.trim();
+  const sim      = similarity(inp, fullText);
+  const body     = document.getElementById('train-body');
 
   if (sim >= 0.9) {
     body.innerHTML = `
       <div class="recall-feedback rf-correct">✓ Perfect. The blade is forged.</div>
       <div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Mark Complete →</button></div>`;
   } else if (sim >= 0.65) {
-    const diffHtml = diffWords(inp, v.text);
+    const diffHtml = diffWords(inp, fullText);
     body.innerHTML = `
       <div class="recall-feedback rf-close">Close — review the highlighted words</div>
       <div class="diff-display">${diffHtml}</div>
       <div class="train-btn-row">
         <button class="btn-train success" onclick="completeMode('recall')">Still counts ✓</button>
-        <button class="btn-train danger" onclick="setTrainMode('recall')">Try again</button>
+        <button class="btn-train danger"  onclick="setTrainMode('recall')">Try again</button>
       </div>`;
   } else {
-    const diffHtml = diffWords(inp, v.text);
+    const diffHtml = diffWords(inp, fullText);
     body.innerHTML = `
       <div class="recall-feedback rf-incorrect">Not quite — keep training</div>
       <div class="diff-display">${diffHtml}</div>
       <div class="train-btn-row">
         <button class="btn-train danger" onclick="setTrainMode('recall')">Try again</button>
-        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+        <button class="btn-train" onclick="showFullPassage()">Show passage</button>
       </div>`;
   }
-};
-
-// PASSAGE STEP — final "put it all together"
-function renderPassageStep() {
-  document.getElementById('train-title').textContent = 'Put It All Together';
-  document.getElementById('train-verse-progress').textContent = 'Final step — recite the full passage';
-  document.getElementById('train-mode-tabs').innerHTML = '';
-
-  const passageDisplay = trainVerses.map(v =>
-    `<div class="passage-ref-label">${v.ref||''}</div>
-     <div style="font-size:16px;font-style:italic;color:var(--parch-dim);line-height:1.7;margin-bottom:16px;">\u201c${v.text}\u201d</div>`
-  ).join('');
-
-  document.getElementById('train-body').innerHTML = `
-    <div style="margin-bottom:14px;font-style:italic;color:var(--textdim);font-size:14px;">Type out the entire passage from memory.</div>
-    <div style="background:var(--parch);border:1px solid var(--parch-border);border-radius:3px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:var(--parch-dim);">
-      ${trainVerses.map(v=>`<span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--golddim);">${v.ref||''}</span><br>`).join('')}
-    </div>
-    <textarea class="recall-textarea" id="passage-ta" placeholder="Type the full passage…" rows="5"></textarea>
-    <div id="passage-feedback"></div>
-    <div class="train-btn-row">
-      <button class="btn-train gold" onclick="checkPassage()">Check Passage</button>
-      <button class="btn-train" onclick="document.getElementById('passage-display').style.display='block'">Show passage</button>
-    </div>
-    <div id="passage-display" style="display:none;margin-top:16px;">${passageDisplay}</div>`;
-}
-
-window.checkPassage = () => {
-  const inp = document.getElementById('passage-ta').value.trim();
-  const fullText = trainVerses.map(v => v.text).join(' ');
-  const sim = similarity(inp, fullText);
-  const fb  = document.getElementById('passage-feedback');
-
-  if (sim >= 0.85) {
-    fb.innerHTML = '<div class="recall-feedback rf-correct" style="margin:12px 0;">✦ Passage complete. The sword is yours.</div>';
-    trainVerses.forEach(v => {
-      if (!trainProgress[v.id]) trainProgress[v.id] = {};
-      trainProgress[v.id]['passage'] = true;
-    });
-    document.getElementById('train-body').querySelector('.train-btn-row').innerHTML =
-      `<button class="btn-train success" onclick="finishTraining()">✦ Quest Complete!</button>
-       <button class="btn-train danger" onclick="closeTrain()">Close</button>`;
-  } else if (sim >= 0.6) {
-    const diffHtml = diffWords(inp, fullText);
-    fb.innerHTML = `<div class="recall-feedback rf-close" style="margin:12px 0;">Close — check highlighted words</div><div class="diff-display">${diffHtml}</div>`;
-    document.getElementById('train-body').querySelector('.train-btn-row').innerHTML =
-      `<button class="btn-train success" onclick="passPassage()">Still counts ✓</button>
-       <button class="btn-train danger" onclick="document.getElementById('passage-ta').value='';document.getElementById('passage-feedback').innerHTML='';">Try again</button>`;
-  } else {
-    fb.innerHTML = '<div class="recall-feedback rf-incorrect" style="margin:12px 0;">Keep going — you\'re getting there.</div>';
-  }
-};
-
-window.passPassage = () => {
-  trainVerses.forEach(v => {
-    if (!trainProgress[v.id]) trainProgress[v.id] = {};
-    trainProgress[v.id]['passage'] = true;
-  });
-  finishTraining();
-};
-
-window.finishTraining = () => {
-  closeTrain();
-  celebrate('✦', 'Quest Complete!', 'All modes and the full passage mastered. You are ready to recite before the Fellowship.');
 };
 
 // ── TURN IN QUEST ─────────────────────────────────────
@@ -1065,7 +1114,7 @@ window.turnInQuest = async (id) => {
   if (!v) return;
   try {
     await update(ref(db, `sword/verses/${id}`), { status: 'inv' });
-    celebrate('🏆', 'Quest Turned In!', '"' + v.text + '"');
+    celebrate('🏆', 'Quest Turned In!', '"' + v.text.slice(0, 80) + (v.text.length > 80 ? '…' : '') + '"');
   } catch(e) { toast('Error — check connection'); }
 };
 
@@ -1184,22 +1233,38 @@ window.confirmDelete = async () => {
   try {
     await set(ref(db,`sword/verses/${editingId}`),null);
     myIds=myIds.filter(i=>i!==editingId); localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
-    if (selectedId===editingId) { selectedId=null; document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>'; }
+    if (selectedId===editingId) {
+      selectedId=null;
+      document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>';
+    }
     closeEditModal(); toast('Quest deleted');
   } catch(e) { toast('Error deleting'); }
 };
-function openPinOverlay() { document.getElementById('pin-input').value=''; document.getElementById('pin-error').textContent=''; document.getElementById('pin-overlay').classList.add('show'); setTimeout(()=>document.getElementById('pin-input').focus(),100); }
+function openPinOverlay() {
+  document.getElementById('pin-input').value='';
+  document.getElementById('pin-error').textContent='';
+  document.getElementById('pin-overlay').classList.add('show');
+  setTimeout(()=>document.getElementById('pin-input').focus(),100);
+}
 window.closePinOverlay = () => { document.getElementById('pin-overlay').classList.remove('show'); pendingEditId=null; };
 window.handlePinInput = () => {
   const val=document.getElementById('pin-input').value;
   if (val.length<4) return;
-  if (val===LEADER_PIN) { leaderUnlocked=true; document.getElementById('pin-overlay').classList.remove('show'); if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;} toast('Leader access granted'); }
-  else { document.getElementById('pin-error').textContent='Incorrect PIN'; document.getElementById('pin-input').value=''; }
+  if (val===LEADER_PIN) {
+    leaderUnlocked=true;
+    document.getElementById('pin-overlay').classList.remove('show');
+    if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;}
+    toast('Leader access granted');
+  } else {
+    document.getElementById('pin-error').textContent='Incorrect PIN';
+    document.getElementById('pin-input').value='';
+  }
 };
 
 // ── BOARD ─────────────────────────────────────────────
 function renderBoard() {
-  onValue(ref(db,'sword/verses'), snap => {
+  // Use get() instead of onValue to avoid accumulating listeners
+  get(ref(db,'sword/verses')).then(snap => {
     const all=snap.exists()?Object.values(snap.val()):[];
     const cols={road:[],quest:[],inv:[],maint:[]};
     all.forEach(v=>cols[v.status]&&cols[v.status].push(v));
@@ -1209,7 +1274,7 @@ function renderBoard() {
     document.getElementById('journey-board').innerHTML=stations.map((st,i)=>
       (i>0?'<div class="j-arrow">›</div>':'')+`<div class="j-station"><div class="js-icon">${st.icon}</div><div class="js-name">${st.n}</div><div class="js-desc">${st.d}</div><div class="js-cards">${col(cols[st.s])}</div></div>`
     ).join('');
-  },{onlyOnce:true});
+  });
 }
 
 // ── INIT ──────────────────────────────────────────────
