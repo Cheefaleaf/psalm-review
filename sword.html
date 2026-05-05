@@ -17,6 +17,11 @@
       --gold:    #c9a84c;
       --gold2:   #e8c97a;
       --golddim: #6e5628;
+      --parch:   #2a1f0a;
+      --parch2:  #332509;
+      --parch-border: #5a3e10;
+      --parch-text: #e8d9b0;
+      --parch-dim:  #a89060;
       --green:   #4a7c3f;
       --green2:  #5c9e50;
       --red:     #8b3a2a;
@@ -30,22 +35,8 @@
       --c-maint: #9a7abf;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 17px;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 15% 0%, rgba(74,124,63,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 85% 100%, rgba(201,168,76,0.05) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', Georgia, serif; font-size: 17px; min-height: 100vh; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 60% 40% at 15% 0%, rgba(74,124,63,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 85% 100%, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; z-index: 0; }
     body > * { position: relative; z-index: 1; }
 
     /* HEADER */
@@ -54,184 +45,217 @@
     .hdr-home:hover { color: var(--gold); }
     .hdr-rule { width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--golddim), transparent); margin: 0 auto 16px; }
     .hdr-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(20px, 4vw, 38px); color: var(--gold2); letter-spacing: 1px; line-height: 1.15; text-shadow: 0 0 60px rgba(201,168,76,0.18); }
-    .hdr-sub   { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--golddim); margin-top: 8px; }
+    .hdr-sub { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--golddim); margin-top: 8px; }
     .hdr-verse { margin-top: 10px; font-style: italic; color: var(--textdim); font-size: 13px; }
 
     /* NAV */
     nav { display: flex; justify-content: center; padding: 26px 20px 0; }
-    .tab-btn {
-      font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-      padding: 9px 26px; background: transparent; border: 1px solid var(--border);
-      color: var(--textdim); cursor: pointer; transition: all 0.2s; margin: 0 -0.5px;
-    }
+    .tab-btn { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; padding: 9px 26px; background: transparent; border: 1px solid var(--border); color: var(--textdim); cursor: pointer; transition: all 0.2s; margin: 0 -0.5px; }
     .tab-btn:first-child { border-radius: 3px 0 0 3px; }
     .tab-btn:last-child  { border-radius: 0 3px 3px 0; }
     .tab-btn:hover { color: var(--text); border-color: var(--border2); }
     .tab-btn.active { background: var(--panel); border-color: var(--golddim); color: var(--gold2); z-index: 1; }
 
-    main { max-width: 920px; margin: 0 auto; padding: 34px 18px 100px; }
+    main { max-width: 980px; margin: 0 auto; padding: 28px 16px 100px; }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
+    .sec-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--golddim); margin-bottom: 14px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
 
-    .sec-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--golddim); margin-bottom: 16px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
-
-    /* HERO FILTER BAR */
-    .filter-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-    .filter-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); }
-    .hero-filter-btn {
-      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 5px 14px; border: 1px solid var(--border); border-radius: 99px;
-      color: var(--textdim); background: transparent; cursor: pointer; transition: all 0.15s;
+    /* ── QUEST LOG SPLIT PANEL ── */
+    .quest-log-wrap {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 520px;
     }
-    .hero-filter-btn:hover { border-color: var(--border2); color: var(--text); }
-    .hero-filter-btn.active { border-color: var(--gold); color: var(--gold2); background: var(--panel2); }
-
-    /* QUEST LOG — shared board */
-    .quest-log { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
-
-    .quest-row {
-      background: var(--panel); border: 1px solid var(--border); border-radius: 4px;
-      padding: 13px 16px; display: flex; align-items: center; gap: 14px;
-      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    @media (max-width: 680px) {
+      .quest-log-wrap { grid-template-columns: 1fr; }
+      .quest-panel-right { display: none; }
+      .quest-panel-right.mobile-show { display: flex; }
+      .quest-panel-left { display: block; }
+      .quest-panel-left.mobile-hide { display: none; }
     }
-    .quest-row:hover { border-color: var(--border2); }
-    .quest-row.is-mine { border-color: rgba(201,168,76,0.35); background: var(--panel2); }
-    .quest-row.is-mine:hover { border-color: var(--golddim); }
-    .quest-row.active-drill { border-color: var(--golddim) !important; background: #222e16 !important; }
 
-    .quest-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    /* LEFT PANEL */
+    .quest-panel-left { background: var(--bg3); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+    .qpl-header { padding: 12px 14px 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .qpl-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+    .qpl-count { font-family: 'Cinzel', serif; font-size: 9px; color: var(--textdim); }
+    .qpl-filter { padding: 8px 14px; border-bottom: 1px solid var(--border); display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-pill { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--border); border-radius: 99px; color: var(--textdim); background: transparent; cursor: pointer; transition: all 0.15s; }
+    .filter-pill:hover { color: var(--text); border-color: var(--border2); }
+    .filter-pill.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel); }
+    .quest-list { flex: 1; overflow-y: auto; }
+    .quest-group-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); padding: 8px 14px 4px; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border); }
+    .quest-list-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s;
+    }
+    .quest-list-item:hover { background: var(--panel); }
+    .quest-list-item.selected { background: var(--panel2); border-left: 3px solid var(--gold); }
+    .quest-list-item.is-mine { border-left: 2px solid rgba(201,168,76,0.4); }
+    .quest-list-item.selected.is-mine { border-left: 3px solid var(--gold); }
+    .ql-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .ql-info { flex: 1; min-width: 0; }
+    .ql-hero { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ql-ref  { font-size: 11px; color: var(--textdim); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ql-edit-btn { font-size: 11px; color: var(--textdim); background: none; border: none; cursor: pointer; padding: 2px 6px; border-radius: 2px; transition: color 0.15s; flex-shrink: 0; }
+    .ql-edit-btn:hover { color: var(--gold); }
     .dot-road  { background: var(--c-road); }
     .dot-quest { background: var(--c-quest); }
     .dot-inv   { background: var(--c-inv); }
     .dot-maint { background: var(--c-maint); }
 
-    .quest-info { flex: 1; min-width: 0; }
-    .quest-hero {
-      font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold2); letter-spacing: 0.5px;
-      margin-bottom: 1px;
+    /* ADD BUTTON in left panel */
+    .qpl-add { padding: 10px 14px; border-top: 1px solid var(--border); }
+    .btn-add-quest { width: 100%; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 9px; cursor: pointer; transition: background 0.2s; }
+    .btn-add-quest:hover { background: var(--green2); }
+
+    /* RIGHT PANEL — PARCHMENT */
+    .quest-panel-right {
+      background: linear-gradient(160deg, #2a1f0a 0%, #241a08 40%, #1e1506 100%);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
     }
-    .quest-hero.mine { color: var(--gold2); }
-    .quest-objective { font-size: 13px; color: var(--textbright); margin-bottom: 1px; }
-    .quest-verseref  { font-size: 12px; color: var(--textdim); font-style: italic; }
-
-    .quest-action { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--green2); white-space: nowrap; flex-shrink: 0; }
-
-    /* DRILL PANEL */
-    .drill-panel { background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px; padding: 24px 28px; margin-bottom: 24px; }
-    .drill-verse-header { margin-bottom: 16px; }
-    .drill-hero { font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold2); margin-bottom: 2px; }
-    .drill-ref  { font-size: 13px; font-style: italic; color: var(--textdim); }
-
-    .step-bar { display: flex; gap: 6px; margin-bottom: 8px; }
-    .step-pip { flex: 1; height: 3px; border-radius: 99px; background: var(--border2); transition: background 0.3s; }
-    .step-pip.done   { background: var(--green); }
-    .step-pip.active { background: var(--gold); }
-    .step-lbl { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 14px; }
-
-    .drill-display {
-      font-size: 19px; font-style: italic; line-height: 1.75; color: var(--textbright);
-      min-height: 60px; margin-bottom: 14px; padding: 13px 15px;
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
+    .quest-panel-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; opacity: 0.5;
     }
-    .blank-word { display: inline-block; background: var(--border2); border-radius: 2px; height: 14px; vertical-align: middle; margin: 0 2px; }
+    .parch-content { position: relative; z-index: 1; padding: 28px 28px 20px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
 
-    .recall-area { display: none; }
-    .recall-input {
-      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
-      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 17px; font-style: italic;
-      padding: 11px 13px; outline: none; resize: vertical; min-height: 68px;
-      margin-bottom: 9px; line-height: 1.5; transition: border-color 0.2s;
+    /* Empty state */
+    .parch-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
+    .parch-empty-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.4; }
+    .parch-empty-text { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); }
+
+    /* Quest detail */
+    .parch-back { display: none; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); background: none; border: none; cursor: pointer; padding: 0 0 16px; transition: color 0.15s; }
+    .parch-back:hover { color: var(--gold); }
+    @media (max-width: 680px) { .parch-back { display: block; } }
+
+    .parch-status-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .parch-status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .parch-status-lbl { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
+    .status-lbl-road  { color: var(--c-road); }
+    .status-lbl-quest { color: var(--c-quest); }
+    .status-lbl-inv   { color: var(--c-inv); }
+    .status-lbl-maint { color: var(--c-maint); }
+
+    .parch-quest-name { font-family: 'Cinzel Decorative', serif; font-size: clamp(16px, 2.5vw, 22px); color: var(--gold2); line-height: 1.2; margin-bottom: 6px; text-shadow: 0 0 30px rgba(201,168,76,0.2); }
+    .parch-hero-name  { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); margin-bottom: 20px; }
+
+    .parch-divider { height: 1px; background: linear-gradient(to right, var(--parch-border), transparent); margin: 16px 0; }
+
+    .parch-section-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--parch-dim); margin-bottom: 8px; }
+    .parch-verse { font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; color: var(--parch-text); line-height: 1.7; margin-bottom: 4px; }
+    .parch-ref   { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--parch-dim); margin-bottom: 20px; }
+
+    .parch-flavor { font-size: 13px; color: var(--parch-dim); font-style: italic; line-height: 1.6; border-left: 2px solid var(--parch-border); padding-left: 12px; margin-bottom: 20px; }
+
+    /* PROGRESS BARS */
+    .parch-progress { margin-bottom: 20px; }
+    .progress-modes { display: flex; flex-direction: column; gap: 6px; }
+    .progress-mode-row { display: flex; align-items: center; gap: 10px; }
+    .progress-mode-name { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--parch-dim); min-width: 100px; }
+    .progress-mode-bar { flex: 1; height: 3px; background: var(--parch-border); border-radius: 99px; overflow: hidden; }
+    .progress-mode-fill { height: 100%; border-radius: 99px; transition: width 0.4s; }
+    .progress-mode-check { font-size: 12px; width: 16px; text-align: center; }
+
+    /* PARCHMENT ACTIONS */
+    .parch-actions { margin-top: auto; padding-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-parch-primary { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 11px 22px; cursor: pointer; transition: background 0.2s; }
+    .btn-parch-primary:hover { background: var(--green2); }
+    .btn-parch-gold { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--gold); color: #1a0f00; border: none; border-radius: 3px; padding: 11px 22px; cursor: pointer; transition: background 0.2s; font-weight: 700; }
+    .btn-parch-gold:hover { background: var(--gold2); }
+    .btn-parch-outline { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: transparent; color: var(--parch-dim); border: 1px solid var(--parch-border); border-radius: 3px; padding: 10px 18px; cursor: pointer; transition: all 0.2s; }
+    .btn-parch-outline:hover { color: var(--gold); border-color: var(--golddim); }
+
+    /* ── TRAINING MODAL ── */
+    .train-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 120; display: none; flex-direction: column; overflow-y: auto; }
+    .train-overlay.show { display: flex; }
+    .train-inner { max-width: 680px; margin: 0 auto; width: 100%; padding: 32px 20px 80px; flex: 1; display: flex; flex-direction: column; }
+
+    .train-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .train-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); }
+    .train-close { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: transparent; border: 1px solid var(--border2); color: var(--textdim); padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.15s; }
+    .train-close:hover { color: var(--text); border-color: var(--border2); }
+
+    /* mode tabs */
+    .train-mode-tabs { display: flex; gap: 4px; margin-bottom: 24px; flex-wrap: wrap; }
+    .train-mode-tab { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 14px; border: 1px solid var(--border); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
+    .train-mode-tab:hover { border-color: var(--border2); color: var(--text); }
+    .train-mode-tab.active { border-color: var(--gold); color: var(--gold2); background: var(--panel2); }
+    .train-mode-tab.done { border-color: var(--green); color: var(--green2); }
+    .train-mode-tab .tab-check { font-size: 10px; }
+
+    /* verse progress indicator */
+    .train-verse-progress { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--textdim); margin-bottom: 10px; }
+
+    /* display area */
+    .train-verse-ref { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 8px; }
+    .train-display { font-size: 20px; font-style: italic; line-height: 1.75; color: var(--textbright); min-height: 80px; padding: 16px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 16px; }
+    .blank-word { display: inline-block; background: var(--border2); border-radius: 2px; height: 15px; vertical-align: middle; margin: 0 2px; }
+    .first-letter { color: var(--gold); font-weight: 500; }
+    .first-letter-blank { color: var(--textdim); letter-spacing: 2px; }
+
+    /* SCRAMBLE */
+    .scramble-wrap { margin-bottom: 16px; }
+    .scramble-target { min-height: 60px; border: 1px solid var(--golddim); border-radius: 3px; padding: 12px 14px; background: var(--panel2); margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+    .scramble-target-empty { font-style: italic; color: var(--textdim); font-size: 14px; align-self: center; }
+    .scramble-pool { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0; }
+    .word-chip {
+      font-family: 'EB Garamond', serif; font-size: 15px; font-style: italic;
+      padding: 5px 10px; border: 1px solid var(--border2); border-radius: 3px;
+      background: var(--panel); color: var(--textbright); cursor: pointer;
+      transition: all 0.15s; user-select: none;
     }
-    .recall-input:focus { border-color: var(--golddim); }
-    .recall-feedback { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; padding: 9px 13px; border-radius: 3px; display: none; margin-bottom: 10px; }
+    .word-chip:hover { border-color: var(--gold); color: var(--gold2); background: var(--panel2); }
+    .word-chip.placed { background: var(--panel2); border-color: var(--golddim); cursor: pointer; }
+    .word-chip.placed:hover { border-color: var(--red); color: var(--red2); }
+
+    /* RECALL */
+    .recall-textarea { width: 100%; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; padding: 14px 16px; outline: none; resize: vertical; min-height: 100px; margin-bottom: 12px; line-height: 1.65; transition: border-color 0.2s; }
+    .recall-textarea:focus { border-color: var(--golddim); }
+
+    /* DIFF display */
+    .diff-display { font-size: 16px; line-height: 1.8; padding: 14px 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px; }
+    .diff-ok   { color: var(--textbright); }
+    .diff-miss { color: var(--red2); text-decoration: underline; background: rgba(139,58,42,0.2); padding: 0 2px; border-radius: 2px; }
+    .diff-add  { color: var(--green2); }
+
+    .recall-feedback { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; padding: 9px 13px; border-radius: 3px; margin-bottom: 12px; }
     .rf-correct   { background: rgba(74,124,63,0.15); border: 1px solid var(--green); color: var(--green2); }
+    .rf-close     { background: rgba(201,168,76,0.1); border: 1px solid var(--golddim); color: var(--gold2); }
     .rf-incorrect { background: rgba(139,58,42,0.15); border: 1px solid var(--red); color: var(--red2); }
 
-    .drill-btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
-    .btn-drill {
-      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-      padding: 9px 18px; border: 1px solid var(--border2); border-radius: 2px;
-      background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s;
-    }
-    .btn-drill:hover { border-color: var(--golddim); color: var(--gold); }
-    .btn-drill.gold    { border-color: var(--golddim); color: var(--gold); }
-    .btn-drill.gold:hover { background: var(--panel2); color: var(--gold2); }
-    .btn-drill.success { border-color: var(--green); color: var(--green2); }
-    .btn-drill.danger  { border-color: var(--red); color: var(--red2); }
+    /* PASSAGE (final step) */
+    .passage-all { font-size: 17px; font-style: italic; line-height: 1.8; color: var(--parch-dim); padding: 14px 16px; background: var(--parch); border: 1px solid var(--parch-border); border-radius: 3px; margin-bottom: 16px; }
+    .passage-ref-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 3px; }
 
-    /* ADD VERSE FORM */
-    .add-btn {
-      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-      background: var(--green); color: var(--textbright); border: none; border-radius: 3px;
-      padding: 11px 28px; cursor: pointer; transition: background 0.2s; margin-bottom: 28px;
-    }
-    .add-btn:hover { background: var(--green2); }
+    .train-btn-row { display: flex; gap: 9px; flex-wrap: wrap; }
+    .btn-train { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s; }
+    .btn-train:hover { border-color: var(--golddim); color: var(--gold); }
+    .btn-train.gold { border-color: var(--golddim); color: var(--gold); }
+    .btn-train.gold:hover { background: var(--panel2); color: var(--gold2); }
+    .btn-train.success { border-color: var(--green); color: var(--green2); background: rgba(74,124,63,0.1); }
+    .btn-train.danger  { border-color: var(--red); color: var(--red2); }
 
-    .submit-card { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 26px 28px; margin-bottom: 28px; }
-
-    .field { margin-bottom: 14px; }
-    .field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 5px; }
-    .field input, .field select, .field textarea {
-      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
-      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px;
-      padding: 8px 12px; outline: none; transition: border-color 0.2s; appearance: none;
-    }
-    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--golddim); }
-    .field textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
-    .field input::placeholder, .field textarea::placeholder { color: var(--textdim); font-style: italic; }
-    .field select option { background: #1a2412; color: var(--textbright); }
-
-    .new-name-row { display: none; margin-top: 8px; }
-
-    .btn-primary {
-      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-      background: var(--green); color: var(--textbright); border: none; border-radius: 3px;
-      padding: 11px 28px; cursor: pointer; transition: background 0.2s; margin-right: 10px;
-    }
-    .btn-primary:hover { background: var(--green2); }
-    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-    .btn-cancel {
-      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-      padding: 9px 18px; border: 1px solid var(--border2); border-radius: 2px;
-      background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s;
-    }
-    .btn-cancel:hover { color: var(--text); border-color: var(--border2); }
-
-    /* PSALM SELECTOR */
-    .psalm-pills { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-    .psalm-pill {
-      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-      padding: 6px 16px; border: 1px solid var(--border); border-radius: 99px;
-      color: var(--textdim); background: transparent; cursor: pointer; transition: all 0.2s;
-    }
-    .psalm-pill:hover { border-color: var(--border2); color: var(--text); }
-    .psalm-pill.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel); }
-
-    /* MULTI-VERSE CHECKBOXES */
-    .psalm-ref-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
-    .psalm-v-row {
-      display: flex; gap: 12px; padding: 9px 16px; cursor: pointer;
-      border-bottom: 1px solid var(--border); transition: background 0.15s; align-items: flex-start;
-    }
-    .psalm-v-row:last-child { border-bottom: none; }
-    .psalm-v-row:hover { background: var(--panel2); }
-    .psalm-v-row.selected { background: rgba(74,124,63,0.15); border-left: 3px solid var(--green); }
-    .psalm-v-check { width: 14px; height: 14px; border: 1px solid var(--border2); border-radius: 2px; background: var(--bg2); flex-shrink: 0; margin-top: 3px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-    .psalm-v-row.selected .psalm-v-check { background: var(--green); border-color: var(--green); }
-    .psalm-v-check-mark { color: var(--textbright); font-size: 10px; display: none; }
-    .psalm-v-row.selected .psalm-v-check-mark { display: block; }
-    .psalm-v-num { font-family: 'Cinzel', serif; font-size: 10px; color: var(--golddim); min-width: 18px; padding-top: 2px; flex-shrink: 0; }
-    .psalm-v-text { font-size: 15px; font-style: italic; color: var(--text); line-height: 1.5; }
-
-    .selected-count { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--green2); margin-bottom: 14px; min-height: 18px; }
+    /* CELEBRATE */
+    .celebrate { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
+    .celebrate.show { opacity: 1; pointer-events: all; }
+    .cel-icon  { font-size: 64px; margin-bottom: 18px; animation: cpulse 1s ease-in-out infinite alternate; }
+    @keyframes cpulse { from { transform: scale(1); } to { transform: scale(1.12); } }
+    .cel-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(18px, 4vw, 32px); color: var(--gold2); text-align: center; margin-bottom: 10px; text-shadow: 0 0 40px rgba(232,201,122,0.4); padding: 0 20px; }
+    .cel-sub   { font-style: italic; color: var(--textdim); font-size: 15px; margin-bottom: 28px; text-align: center; max-width: 380px; padding: 0 20px; line-height: 1.6; }
+    .cel-close { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; padding: 10px 28px; border: 1px solid var(--golddim); background: transparent; color: var(--gold); cursor: pointer; border-radius: 2px; }
 
     /* BOARD */
     .journey { display: grid; grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr; margin-bottom: 36px; }
-    @media (max-width: 680px) {
-      .journey { grid-template-columns: 1fr; }
-      .j-arrow { display: none; }
-      .j-station { border-radius: 4px !important; margin-bottom: 8px; border: 1px solid var(--border) !important; }
-    }
+    @media (max-width: 680px) { .journey { grid-template-columns: 1fr; } .j-arrow { display: none; } .j-station { border-radius: 4px !important; margin-bottom: 8px; border: 1px solid var(--border) !important; } }
     .j-station { border: 1px solid var(--border); padding: 16px 14px; display: flex; flex-direction: column; min-height: 180px; }
     .j-station:nth-child(1) { border-radius: 4px 0 0 4px; background: var(--bg3); }
     .j-station:nth-child(3) { border-left: none; background: var(--panel); border-color: rgba(74,138,191,0.25); }
@@ -247,90 +271,72 @@
     .bc-ref  { font-size: 10px; color: var(--textdim); font-style: italic; margin-bottom: 3px; }
     .bc-text { font-size: 11px; font-style: italic; color: var(--text); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .bc-obj  { font-family: 'Cinzel', serif; font-size: 7px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; opacity: 0.8; }
-    .bc-obj.road  { color: var(--c-road); }
-    .bc-obj.quest { color: var(--c-quest); }
-    .bc-obj.inv   { color: var(--c-inv); }
-    .bc-obj.maint { color: var(--c-maint); }
+    .bc-obj.road { color: var(--c-road); } .bc-obj.quest { color: var(--c-quest); } .bc-obj.inv { color: var(--c-inv); } .bc-obj.maint { color: var(--c-maint); }
     .empty-slot { font-size: 11px; color: var(--textdim); font-style: italic; text-align: center; padding: 14px 6px; border: 1px dashed var(--border); border-radius: 3px; }
 
-    .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(70px); background: var(--panel2); border: 1px solid var(--border2); border-radius: 3px; padding: 9px 20px; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); transition: transform 0.28s; z-index: 200; }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-    .loading { text-align: center; padding: 40px; font-style: italic; color: var(--textdim); }
-    .empty-log { text-align: center; padding: 40px 20px; font-style: italic; color: var(--textdim); border: 1px dashed var(--border); border-radius: 4px; margin-bottom: 20px; }
-
-    .celebrate { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
-    .celebrate.show { opacity: 1; pointer-events: all; }
-    .cel-icon  { font-size: 60px; margin-bottom: 18px; animation: cpulse 1s ease-in-out infinite alternate; }
-    @keyframes cpulse { from { transform: scale(1); } to { transform: scale(1.1); } }
-    .cel-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(18px, 4vw, 32px); color: var(--gold2); text-align: center; margin-bottom: 10px; text-shadow: 0 0 40px rgba(232,201,122,0.4); padding: 0 20px; }
-    .cel-sub   { font-style: italic; color: var(--textdim); font-size: 15px; margin-bottom: 26px; text-align: center; max-width: 380px; padding: 0 20px; }
-    .cel-close { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; padding: 9px 26px; border: 1px solid var(--golddim); background: transparent; color: var(--gold); cursor: pointer; border-radius: 2px; }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
-    .fade-up { animation: fadeUp 0.25s ease forwards; }
-
-    /* EDIT BUTTON ON QUEST ROW */
-    .quest-edit-btn {
-      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px;
-      background: transparent; border: 1px solid var(--border); border-radius: 2px;
-      color: var(--textdim); padding: 4px 9px; cursor: pointer; flex-shrink: 0;
-      transition: all 0.15s;
-    }
-    .quest-edit-btn:hover { border-color: var(--golddim); color: var(--gold); }
+    /* ADD FORM */
+    .add-form-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 24px 26px; margin-bottom: 24px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 5px; }
+    .field input, .field select, .field textarea { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px; padding: 8px 12px; outline: none; transition: border-color 0.2s; appearance: none; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--golddim); }
+    .field textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--textdim); font-style: italic; }
+    .field select option { background: #1a2412; color: var(--textbright); }
+    .new-name-row { display: none; margin-top: 8px; }
+    .psalm-pills { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .psalm-pill { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border: 1px solid var(--border); border-radius: 99px; color: var(--textdim); background: transparent; cursor: pointer; transition: all 0.2s; }
+    .psalm-pill:hover { border-color: var(--border2); color: var(--text); }
+    .psalm-pill.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel); }
+    .psalm-ref-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; max-height: 240px; overflow-y: auto; margin-bottom: 12px; }
+    .psalm-v-row { display: flex; gap: 10px; padding: 8px 14px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; align-items: flex-start; }
+    .psalm-v-row:last-child { border-bottom: none; }
+    .psalm-v-row:hover { background: var(--panel); }
+    .psalm-v-row.selected { background: rgba(74,124,63,0.15); }
+    .psalm-v-check { width: 13px; height: 13px; border: 1px solid var(--border2); border-radius: 2px; background: var(--bg2); flex-shrink: 0; margin-top: 3px; display: flex; align-items: center; justify-content: center; }
+    .psalm-v-row.selected .psalm-v-check { background: var(--green); border-color: var(--green); }
+    .psalm-v-check-mark { color: white; font-size: 9px; display: none; }
+    .psalm-v-row.selected .psalm-v-check-mark { display: block; }
+    .psalm-v-num { font-family: 'Cinzel', serif; font-size: 10px; color: var(--golddim); min-width: 16px; padding-top: 1px; flex-shrink: 0; }
+    .psalm-v-text { font-size: 14px; font-style: italic; color: var(--text); line-height: 1.45; }
+    .selected-count { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--green2); margin-bottom: 12px; min-height: 16px; }
+    .btn-submit-quest { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 11px 26px; cursor: pointer; transition: background 0.2s; margin-right: 10px; }
+    .btn-submit-quest:hover { background: var(--green2); }
+    .btn-submit-quest:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-cancel-form { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; }
+    .btn-cancel-form:hover { color: var(--text); }
 
     /* EDIT MODAL */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.82);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.25s;
-      padding: 20px;
-    }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); display: flex; align-items: center; justify-content: center; z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.25s; padding: 20px; }
     .modal-overlay.show { opacity: 1; pointer-events: all; }
-    .modal-box {
-      background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px;
-      padding: 28px 28px 24px; width: 100%; max-width: 520px;
-    }
-    .modal-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 20px; }
-    .modal-field { margin-bottom: 14px; }
-    .modal-field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 5px; }
-    .modal-field input, .modal-field select, .modal-field textarea {
-      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
-      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px;
-      padding: 8px 12px; outline: none; transition: border-color 0.2s; appearance: none;
-    }
+    .modal-box { background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px; padding: 26px 26px 22px; width: 100%; max-width: 500px; }
+    .modal-title { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 18px; }
+    .modal-field { margin-bottom: 12px; }
+    .modal-field label { display: block; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 4px; }
+    .modal-field input, .modal-field select, .modal-field textarea { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 16px; padding: 8px 12px; outline: none; transition: border-color 0.2s; appearance: none; }
     .modal-field input:focus, .modal-field select:focus, .modal-field textarea:focus { border-color: var(--golddim); }
-    .modal-field textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
+    .modal-field textarea { resize: vertical; min-height: 68px; line-height: 1.5; }
     .modal-field select option { background: #1a2412; color: var(--textbright); }
-    .modal-btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 20px; align-items: center; }
-    .modal-save { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 10px 24px; cursor: pointer; transition: background 0.2s; }
+    .modal-btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 18px; align-items: center; }
+    .modal-save { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--green); color: var(--textbright); border: none; border-radius: 3px; padding: 10px 22px; cursor: pointer; transition: background 0.2s; }
     .modal-save:hover { background: var(--green2); }
-    .modal-cancel { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s; }
-    .modal-cancel:hover { color: var(--text); border-color: var(--border2); }
-    .modal-delete { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--red); border-radius: 2px; background: transparent; color: var(--red2); cursor: pointer; transition: all 0.15s; margin-left: auto; }
-    .modal-delete:hover { background: rgba(139,58,42,0.15); }
+    .modal-cancel { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 14px; border: 1px solid var(--border2); border-radius: 2px; background: transparent; color: var(--textdim); cursor: pointer; }
+    .modal-delete { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 14px; border: 1px solid var(--red); border-radius: 2px; background: transparent; color: var(--red2); cursor: pointer; margin-left: auto; }
 
-    /* LEADER PIN PROMPT */
-    .pin-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.82);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 160; opacity: 0; pointer-events: none; transition: opacity 0.25s;
-      padding: 20px;
-    }
+    /* PIN */
+    .pin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 160; opacity: 0; pointer-events: none; transition: opacity 0.25s; padding: 20px; }
     .pin-overlay.show { opacity: 1; pointer-events: all; }
-    .pin-box {
-      background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px;
-      padding: 28px; width: 100%; max-width: 340px; text-align: center;
-    }
-    .pin-title { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 16px; }
-    .pin-input {
-      width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
-      color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 22px;
-      padding: 10px 12px; outline: none; text-align: center; letter-spacing: 8px;
-      margin-bottom: 14px; transition: border-color 0.2s;
-    }
+    .pin-box { background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px; padding: 28px; width: 100%; max-width: 320px; text-align: center; }
+    .pin-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2); margin-bottom: 16px; }
+    .pin-input { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 24px; padding: 10px 12px; outline: none; text-align: center; letter-spacing: 10px; margin-bottom: 12px; transition: border-color 0.2s; }
     .pin-input:focus { border-color: var(--golddim); }
-    .pin-error { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px; color: var(--red2); margin-bottom: 10px; min-height: 16px; }
-    .pin-btn-row { display: flex; gap: 9px; justify-content: center; }
+    .pin-error { font-family: 'Cinzel', serif; font-size: 9px; color: var(--red2); margin-bottom: 10px; min-height: 16px; }
+
+    .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(70px); background: var(--panel2); border: 1px solid var(--border2); border-radius: 3px; padding: 9px 20px; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); transition: transform 0.28s; z-index: 300; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .loading { text-align: center; padding: 40px; font-style: italic; color: var(--textdim); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+    .fade-up { animation: fadeUp 0.25s ease forwards; }
   </style>
 </head>
 <body>
@@ -349,43 +355,13 @@
 </nav>
 
 <main>
-
   <!-- QUEST LOG TAB -->
   <div id="tab-log" class="tab-panel active">
-
-    <!-- DRILL PANEL -->
-    <div id="drill-panel" class="drill-panel" style="display:none;">
-      <div class="drill-verse-header">
-        <div class="drill-hero" id="dp-hero"></div>
-        <div class="drill-ref"  id="dp-ref"></div>
-      </div>
-      <div class="step-bar" id="step-bar"></div>
-      <div class="step-lbl"  id="step-lbl"></div>
-      <div class="drill-display" id="drill-disp"></div>
-      <div class="recall-area" id="recall-area">
-        <textarea class="recall-input" id="recall-in" placeholder="Recite the verse from memory…" rows="3"></textarea>
-        <div class="recall-feedback" id="recall-fb"></div>
-      </div>
-      <div class="drill-btn-row" id="drill-btns"></div>
-    </div>
-
-    <!-- FILTER BAR -->
-    <div class="filter-bar" id="filter-bar">
-      <span class="filter-label">Jump to:</span>
-      <button class="hero-filter-btn active" onclick="setFilter('all',this)">All</button>
-    </div>
-
-    <p class="sec-label">The Fellowship's Quest Log</p>
-    <div class="quest-log" id="quest-log"><div class="loading">Loading quests…</div></div>
-
-    <!-- ADD VERSE -->
-    <button class="add-btn" id="add-btn" onclick="showAddForm()">+ Add a Quest</button>
 
     <!-- ADD FORM -->
     <div id="add-form" style="display:none;">
       <p class="sec-label">Accept a New Quest</p>
-      <div class="submit-card">
-
+      <div class="add-form-wrap">
         <div class="field">
           <label>Hero Name</label>
           <select id="name-select" onchange="handleNameSelect()">
@@ -396,24 +372,47 @@
             <input type="text" id="new-name-input" placeholder="e.g. Legolas, Eowyn, Strider…" />
           </div>
         </div>
-
         <div class="psalm-pills">
           <button class="psalm-pill" onclick="selectPsalm(103,this)">Psalm 103</button>
           <button class="psalm-pill active" onclick="selectPsalm(121,this)">Psalm 121 · This Week</button>
         </div>
-
         <div class="field">
           <label>Or type a reference</label>
           <input type="text" id="manual-ref" placeholder="e.g. Psalm 121:3" oninput="handleManualRef()" />
         </div>
-
         <div class="selected-count" id="selected-count"></div>
-        <p class="sec-label" id="psalm-lbl" style="margin-bottom:10px;">Psalm 121 — Click verses to select</p>
+        <p style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);margin-bottom:8px;" id="psalm-lbl">Psalm 121 — Click verses to select</p>
         <div class="psalm-ref-wrap" id="psalm-list"></div>
+        <div style="margin-top:16px;">
+          <button class="btn-submit-quest" id="submit-btn" onclick="submitVerses()">Accept Quest</button>
+          <button class="btn-cancel-form" onclick="hideAddForm()">Cancel</button>
+        </div>
+      </div>
+    </div>
 
-        <div style="margin-top:18px;">
-          <button class="btn-primary" id="submit-btn" onclick="submitVerses()">Accept Quest</button>
-          <button class="btn-cancel" onclick="hideAddForm()">Cancel</button>
+    <!-- SPLIT PANEL -->
+    <div class="quest-log-wrap" id="quest-log-wrap">
+      <!-- LEFT -->
+      <div class="quest-panel-left" id="panel-left">
+        <div class="qpl-header">
+          <span class="qpl-title">Classic Quest Log</span>
+          <span class="qpl-count" id="quest-count">0 quests</span>
+        </div>
+        <div class="qpl-filter" id="filter-bar">
+          <button class="filter-pill active" onclick="setFilter('all',this)">All</button>
+        </div>
+        <div class="quest-list" id="quest-list"><div class="loading">Loading…</div></div>
+        <div class="qpl-add">
+          <button class="btn-add-quest" onclick="showAddForm()">+ Add a Quest</button>
+        </div>
+      </div>
+      <!-- RIGHT -->
+      <div class="quest-panel-right" id="panel-right">
+        <div class="parch-content" id="parch-content">
+          <div class="parch-empty">
+            <div class="parch-empty-icon">📜</div>
+            <div class="parch-empty-text">Select a quest to view</div>
+          </div>
         </div>
       </div>
     </div>
@@ -427,9 +426,22 @@
       <div class="loading" style="grid-column:1/-1;">Loading…</div>
     </div>
   </div>
-
 </main>
 
+<!-- TRAINING MODAL -->
+<div class="train-overlay" id="train-overlay">
+  <div class="train-inner">
+    <div class="train-header">
+      <span class="train-title" id="train-title">Training Grounds</span>
+      <button class="train-close" onclick="closeTrain()">✕ Close</button>
+    </div>
+    <div class="train-mode-tabs" id="train-mode-tabs"></div>
+    <div class="train-verse-progress" id="train-verse-progress"></div>
+    <div id="train-body"></div>
+  </div>
+</div>
+
+<!-- CELEBRATE -->
 <div class="celebrate" id="celebrate">
   <div class="cel-icon"  id="cel-icon">⚔️</div>
   <div class="cel-title" id="cel-title"></div>
@@ -437,130 +449,107 @@
   <button class="cel-close" onclick="document.getElementById('celebrate').classList.remove('show')">Continue the Journey</button>
 </div>
 
-<div class="toast" id="toast"></div>
-
 <!-- EDIT MODAL -->
 <div class="modal-overlay" id="edit-modal">
   <div class="modal-box">
     <div class="modal-title">Edit Quest</div>
-    <div class="modal-field">
-      <label>Reference</label>
-      <input type="text" id="edit-ref" />
-    </div>
-    <div class="modal-field">
-      <label>Verse Text</label>
-      <textarea id="edit-text" rows="3"></textarea>
-    </div>
+    <div class="modal-field"><label>Reference</label><input type="text" id="edit-ref" /></div>
+    <div class="modal-field"><label>Verse Text</label><textarea id="edit-text" rows="3"></textarea></div>
     <div class="modal-field">
       <label>Status</label>
       <select id="edit-status">
-        <option value="road">Quest Acquired (Road)</option>
+        <option value="road">Quest Acquired</option>
         <option value="quest">On the Quest</option>
         <option value="inv">In the Inventory</option>
         <option value="maint">Maintenance</option>
       </select>
     </div>
     <div class="modal-btn-row">
-      <button class="modal-save" onclick="saveEdit()">Save Changes</button>
+      <button class="modal-save" onclick="saveEdit()">Save</button>
       <button class="modal-cancel" onclick="closeEditModal()">Cancel</button>
-      <button class="modal-delete" onclick="confirmDelete()">Delete Quest</button>
+      <button class="modal-delete" onclick="confirmDelete()">Delete</button>
     </div>
   </div>
 </div>
 
-<!-- LEADER PIN OVERLAY -->
+<!-- PIN OVERLAY -->
 <div class="pin-overlay" id="pin-overlay">
   <div class="pin-box">
     <div class="pin-title">Leader Access</div>
     <input type="password" class="pin-input" id="pin-input" maxlength="4" placeholder="••••" oninput="handlePinInput()" />
     <div class="pin-error" id="pin-error"></div>
-    <div class="pin-btn-row">
+    <div style="display:flex;justify-content:center;">
       <button class="modal-cancel" onclick="closePinOverlay()">Cancel</button>
     </div>
   </div>
 </div>
+
+<div class="toast" id="toast"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const app = initializeApp({
-  apiKey:            "AIzaSyCeNzMSGSjKJyE8i3sugDYd_kaLeU6fMBc",
-  authDomain:        "youth-262fc.firebaseapp.com",
-  databaseURL:       "https://youth-262fc-default-rtdb.firebaseio.com",
-  projectId:         "youth-262fc",
-  storageBucket:     "youth-262fc.firebasestorage.app",
+  apiKey: "AIzaSyCeNzMSGSjKJyE8i3sugDYd_kaLeU6fMBc",
+  authDomain: "youth-262fc.firebaseapp.com",
+  databaseURL: "https://youth-262fc-default-rtdb.firebaseio.com",
+  projectId: "youth-262fc",
+  storageBucket: "youth-262fc.firebasestorage.app",
   messagingSenderId: "886474552762",
-  appId:             "1:886448552762:web:db68add41a7240748d5983",
-  measurementId:     "G-CCF3B9Z370"
+  appId: "1:886474552762:web:db68add41a7240748d5983",
+  measurementId: "G-CCF3B9Z370"
 });
 const db = getDatabase(app);
 
-const ACTIVE_OBJ = [
-  "Slay the Defias Footpads","Collect the Zhevra Hooves","Bring Fuel to Everlook",
-  "Slay Razorclaw the Butcher","Collect the Bloodscalp Tusks","Report to Sentinel Dawnstrider",
-  "Escort Erland McGee to Refuge Pointe","Slay the Mor'Ladim",
-  "Collect the Venture Co. Uniforms","Speak with Watcher Backus"
-];
-const MAINT_OBJ = [
-  "Bring the Mithril Bars to Tog'thar","Collect the Thick Leather from the Highlands",
-  "Deliver the Cracked Hammer to Calain","Bring the Elixirs of Fortitude to Dawnstar",
-  "Smelt the Truesilver Bars for Marvon","Collect the Iron Rivets from the Slag Pit",
-  "Deliver the Battered Shield to Irondeep","Bring the Dull Blade to Wiley the Black",
-  "Collect the Enchanted Thorium Bars","Return the Worn Axe to Belgrom Rockmaul"
+// ── CONSTANTS ─────────────────────────────────────────
+const LEADER_PIN = '1957';
+const HERO_KEY   = 'sword_hero_v5';
+const MY_IDS_KEY = 'sword_ids_v5';
+
+const ACTIVE_OBJ = ["Slay the Defias Footpads","Collect the Zhevra Hooves","Bring Fuel to Everlook","Slay Razorclaw the Butcher","Collect the Bloodscalp Tusks","Report to Sentinel Dawnstrider","Escort Erland McGee to Refuge Pointe","Slay the Mor'Ladim","Collect the Venture Co. Uniforms","Speak with Watcher Backus"];
+const MAINT_OBJ  = ["Bring the Mithril Bars to Tog'thar","Collect the Thick Leather from the Highlands","Deliver the Cracked Hammer to Calain","Bring the Elixirs of Fortitude to Dawnstar","Smelt the Truesilver Bars for Marvon","Collect the Iron Rivets from the Slag Pit","Deliver the Battered Shield to Irondeep","Bring the Dull Blade to Wiley the Black","Collect the Enchanted Thorium Bars","Return the Worn Axe to Belgrom Rockmaul"];
+
+const FLAVOR = [
+  "A word once hidden in the heart becomes a blade that never dulls.",
+  "The enemy fears the warrior who can speak truth in the dark.",
+  "What is memorized is owned. What is owned cannot be taken.",
+  "Inscribe it not only on tablets, but on the walls of your mind.",
+  "The pilgrim who knows the song needs no lantern on the road.",
+  "Carry the word like a sword — sheathed until the moment of need.",
+  "A verse known by heart is a covenant renewed with every recitation."
 ];
 
 const PSALMS = {
-  103: [
-    [1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],
-    [2,"Bless the LORD, O my soul, and forget not all his benefits,"],
-    [3,"who forgives all your iniquity, who heals all your diseases,"],
-    [4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],
-    [5,"who satisfies you with good so that your youth is renewed like the eagle's."],
-    [6,"The LORD works righteousness and justice for all who are oppressed."],
-    [7,"He made known his ways to Moses, his acts to the people of Israel."],
-    [8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],
-    [9,"He will not always chide, nor will he keep his anger forever."],
-    [10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],
-    [11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],
-    [12,"as far as the east is from the west, so far does he remove our transgressions from us."],
-    [13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],
-    [14,"For he knows our frame; he remembers that we are dust."],
-    [15,"As for man, his days are like grass; he flourishes like a flower of the field;"],
-    [16,"for the wind passes over it, and it is gone, and its place knows it no more."],
-    [17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],
-    [18,"to those who keep his covenant and remember to do his commandments."],
-    [19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],
-    [20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],
-    [21,"Bless the LORD, all his hosts, his ministers, who do his will!"],
-    [22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]
-  ],
-  121: [
-    [1,"I lift up my eyes to the hills. From where does my help come?"],
-    [2,"My help comes from the LORD, who made heaven and earth."],
-    [3,"He will not let your foot be moved; he who keeps you will not slumber."],
-    [4,"Behold, he who keeps Israel will neither slumber nor sleep."],
-    [5,"The LORD is your keeper; the LORD is your shade on your right hand."],
-    [6,"The sun shall not strike you by day, nor the moon by night."],
-    [7,"The LORD will keep you from all evil; he will keep your life."],
-    [8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]
-  ]
+  103: [[1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],[2,"Bless the LORD, O my soul, and forget not all his benefits,"],[3,"who forgives all your iniquity, who heals all your diseases,"],[4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],[5,"who satisfies you with good so that your youth is renewed like the eagle's."],[6,"The LORD works righteousness and justice for all who are oppressed."],[7,"He made known his ways to Moses, his acts to the people of Israel."],[8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],[9,"He will not always chide, nor will he keep his anger forever."],[10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],[11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],[12,"as far as the east is from the west, so far does he remove our transgressions from us."],[13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],[14,"For he knows our frame; he remembers that we are dust."],[15,"As for man, his days are like grass; he flourishes like a flower of the field;"],[16,"for the wind passes over it, and it is gone, and its place knows it no more."],[17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],[18,"to those who keep his covenant and remember to do his commandments."],[19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],[20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],[21,"Bless the LORD, all his hosts, his ministers, who do his will!"],[22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]],
+  121: [[1,"I lift up my eyes to the hills. From where does my help come?"],[2,"My help comes from the LORD, who made heaven and earth."],[3,"He will not let your foot be moved; he who keeps you will not slumber."],[4,"Behold, he who keeps Israel will neither slumber nor sleep."],[5,"The LORD is your keeper; the LORD is your shade on your right hand."],[6,"The sun shall not strike you by day, nor the moon by night."],[7,"The LORD will keep you from all evil; he will keep your life."],[8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]]
 };
 
-const HERO_KEY = 'sword_hero_v4';
-const MY_IDS_KEY = 'sword_ids_v4';
+const TRAIN_MODES = ['read','blank','firstletter','scramble','recall'];
+const MODE_LABELS = { read:'Read', blank:'Fill Blank', firstletter:'First Letters', scramble:'Scramble', recall:'Recall' };
 
-let allVerses    = [];
-let myHero       = localStorage.getItem(HERO_KEY) || '';
-let myIds        = JSON.parse(localStorage.getItem(MY_IDS_KEY) || '[]');
-let activeId     = null;
-let drillStep    = 0;
-let heroFilter   = 'all';
+// ── STATE ─────────────────────────────────────────────
+let allVerses     = [];
+let myIds         = JSON.parse(localStorage.getItem(MY_IDS_KEY) || '[]');
+let myHero        = localStorage.getItem(HERO_KEY) || '';
+let heroFilter    = 'all';
+let selectedId    = null;
+let leaderUnlocked= false;
+let editingId     = null;
+let pendingEditId = null;
 let selectedPsalm = 121;
-let selectedVerses = new Set(); // for multi-select: "psalmNum:verseNum"
+let selectedVerses= new Map();
 
-const STEPS = ['Full verse','Half hidden','Mostly hidden','Full recall'];
+// Training state
+let trainVerses   = []; // array of verse objects being trained
+let trainVIdx     = 0;  // current verse index
+let trainMode     = 'read';
+let trainProgress = {}; // { verseId: Set of completed modes }
+let scrambleBuilt = [];
+let scramblePool  = [];
+
 const pick  = arr => arr[Math.floor(Math.random() * arr.length)];
+const normText = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
 
 function toast(msg, ms=2400) {
   const t = document.getElementById('toast');
@@ -572,6 +561,26 @@ function celebrate(icon, title, sub) {
   document.getElementById('cel-title').textContent = title;
   document.getElementById('cel-sub').textContent   = sub;
   document.getElementById('celebrate').classList.add('show');
+}
+
+// ── FUZZY MATCH ───────────────────────────────────────
+function similarity(a, b) {
+  a = normText(a); b = normText(b);
+  if (a === b) return 1;
+  const wa = a.split(' '), wb = b.split(' ');
+  const matches = wa.filter(w => wb.includes(w)).length;
+  return matches / Math.max(wa.length, wb.length);
+}
+function diffWords(input, target) {
+  const wi = normText(input).split(' ');
+  const wt = normText(target).split(' ');
+  const tw = target.split(' '); // original casing
+  return tw.map((w, i) => {
+    const clean = normText(w);
+    if (wi[i] && normText(wi[i]) === clean) return `<span class="diff-ok">${w}</span>`;
+    if (wi.includes(clean)) return `<span class="diff-add">${w}</span>`;
+    return `<span class="diff-miss">${w}</span>`;
+  }).join(' ');
 }
 
 // ── TABS ─────────────────────────────────────────────
@@ -586,112 +595,502 @@ window.switchTab = (name, el) => {
 // ── FILTER ───────────────────────────────────────────
 window.setFilter = (hero, el) => {
   heroFilter = hero;
-  document.querySelectorAll('.hero-filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
-  renderQuestLog();
+  renderQuestList();
 };
 
-// ── LOAD ALL VERSES ───────────────────────────────────
-function loadAllVerses() {
+// ── FIREBASE LOAD ─────────────────────────────────────
+function loadAll() {
   onValue(ref(db, 'sword/verses'), snap => {
     allVerses = snap.exists() ? Object.values(snap.val()) : [];
     allVerses.sort((a,b) => (b.created||0) - (a.created||0));
     updateFilterBar();
-    renderQuestLog();
+    renderQuestList();
+    if (selectedId) renderParchment(selectedId);
+    document.getElementById('quest-count').textContent = allVerses.length + ' quest' + (allVerses.length !== 1 ? 's' : '');
   });
 }
 
 function updateFilterBar() {
   const heroes = [...new Set(allVerses.map(v => v.name))].sort();
   const bar = document.getElementById('filter-bar');
-  bar.innerHTML = `<span class="filter-label">Jump to:</span>
-    <button class="hero-filter-btn${heroFilter==='all'?' active':''}" onclick="setFilter('all',this)">All</button>` +
-    heroes.map(h =>
-      `<button class="hero-filter-btn${heroFilter===h?' active':''}" onclick="setFilter('${h}',this)">${h}</button>`
-    ).join('');
-
-  // also update name dropdown
+  bar.innerHTML = `<button class="filter-pill${heroFilter==='all'?' active':''}" onclick="setFilter('all',this)">All</button>` +
+    heroes.map(h => `<button class="filter-pill${heroFilter===h?' active':''}" onclick="setFilter('${h}',this)">${h}</button>`).join('');
+  // update name dropdown
   const sel = document.getElementById('name-select');
   if (sel) {
-    const current = sel.value;
-    sel.innerHTML = `<option value="">— choose or create —</option>
-      <option value="__new__">+ Create new hero</option>` +
-      heroes.map(h => `<option value="${h}"${h===current?' selected':''}>${h}</option>`).join('');
+    sel.innerHTML = `<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>` +
+      heroes.map(h => `<option value="${h}">${h}</option>`).join('');
+    if (myHero) sel.value = myHero;
   }
 }
 
-// ── RENDER QUEST LOG ──────────────────────────────────
-function renderQuestLog() {
-  const log = document.getElementById('quest-log');
+// ── QUEST LIST ────────────────────────────────────────
+function renderQuestList() {
+  const list = document.getElementById('quest-list');
   let verses = heroFilter === 'all' ? allVerses : allVerses.filter(v => v.name === heroFilter);
+  if (verses.length === 0) { list.innerHTML = '<div class="loading" style="padding:20px;font-size:13px;">No quests yet.</div>'; return; }
 
-  if (verses.length === 0) {
-    log.innerHTML = '<div class="empty-log">No quests yet — be the first to accept one.</div>';
-    return;
-  }
-
-  // Sort: mine first, then others
   const mine   = verses.filter(v => myIds.includes(v.id));
   const others = verses.filter(v => !myIds.includes(v.id));
-  const sorted = [...mine, ...others];
 
-  log.innerHTML = sorted.map(v => {
-    const isMine   = myIds.includes(v.id);
-    const isActive = v.id === activeId;
-    const dotClass = `dot-${v.status}`;
-    const obj = v.status === 'road'  ? 'Quest Acquired'
-              : v.status === 'quest' ? (v.obj || '')
-              : v.status === 'inv'   ? 'In the Inventory'
-              : (v.maintObj || '');
-    const action = isMine ? (v.status === 'inv' ? 'Sharpen →' : 'Train →') : '';
-    const canEdit = isMine || leaderUnlocked;
-    return `<div class="quest-row${isMine?' is-mine':''}${isActive?' active-drill':''}" onclick="openDrill('${v.id}')">
-      <div class="quest-dot ${dotClass}"></div>
-      <div class="quest-info">
-        <div class="quest-hero${isMine?' mine':''}">${v.name}</div>
-        <div class="quest-objective">${obj}</div>
-        <div class="quest-verseref">${v.ref||''}</div>
-      </div>
-      ${action ? `<div class="quest-action">${action}</div>` : ''}
-      <button class="quest-edit-btn" onclick="event.stopPropagation();handleEditClick('${v.id}')">⋯</button>
-    </div>`;
-  }).join('');
+  let html = '';
+  if (mine.length > 0) {
+    html += `<div class="quest-group-label">Your Quests</div>`;
+    html += mine.map(v => questListItem(v, true)).join('');
+  }
+  if (others.length > 0) {
+    html += `<div class="quest-group-label">The Fellowship</div>`;
+    html += others.map(v => questListItem(v, false)).join('');
+  }
+  list.innerHTML = html;
 }
+
+function questListItem(v, isMine) {
+  const sel = v.id === selectedId;
+  return `<div class="quest-list-item${sel?' selected':''}${isMine?' is-mine':''}" onclick="selectQuest('${v.id}')">
+    <div class="ql-dot dot-${v.status}"></div>
+    <div class="ql-info">
+      <div class="ql-hero">${v.name}</div>
+      <div class="ql-ref">${v.ref||''}</div>
+    </div>
+    <button class="ql-edit-btn" onclick="event.stopPropagation();handleEditClick('${v.id}')">⋯</button>
+  </div>`;
+}
+
+// ── PARCHMENT DETAIL ──────────────────────────────────
+window.selectQuest = (id) => {
+  selectedId = id;
+  renderQuestList();
+  renderParchment(id);
+  // mobile: show right panel
+  const isMobile = window.innerWidth <= 680;
+  if (isMobile) {
+    document.getElementById('panel-left').classList.add('mobile-hide');
+    document.getElementById('panel-right').classList.add('mobile-show');
+  }
+};
+
+window.parchBack = () => {
+  document.getElementById('panel-left').classList.remove('mobile-hide');
+  document.getElementById('panel-right').classList.remove('mobile-show');
+  selectedId = null;
+};
+
+function renderParchment(id) {
+  const v = allVerses.find(v => v.id === id);
+  if (!v) return;
+  const isMine = myIds.includes(id);
+
+  const statusLabels = { road:'Quest Acquired', quest:'On the Quest', inv:'In the Inventory', maint:'Maintenance' };
+  const obj = v.status === 'road' ? 'Quest Acquired'
+            : v.status === 'quest' ? (v.obj||'')
+            : v.status === 'inv'   ? 'In the Inventory'
+            : (v.maintObj||'');
+
+  // progress
+  const prog = trainProgress[id] || {};
+  const allModeDone = TRAIN_MODES.every(m => prog[m]);
+  const passageDone = prog['passage'];
+
+  const modesHtml = TRAIN_MODES.map(m => {
+    const done = !!prog[m];
+    const pct  = done ? 100 : 0;
+    const color = done ? 'var(--green)' : 'var(--c-quest)';
+    return `<div class="progress-mode-row">
+      <span class="progress-mode-name">${MODE_LABELS[m]}</span>
+      <div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${pct}%;background:${color};"></div></div>
+      <span class="progress-mode-check">${done ? '✓' : ''}</span>
+    </div>`;
+  }).join('') + `<div class="progress-mode-row">
+    <span class="progress-mode-name">Put It Together</span>
+    <div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${passageDone?100:0}%;background:${passageDone?'var(--gold)':'var(--golddim)'};"></div></div>
+    <span class="progress-mode-check">${passageDone ? '✦' : ''}</span>
+  </div>`;
+
+  const readyToTurnIn = allModeDone && passageDone && isMine;
+  const canTurnIn     = v.status !== 'inv' && readyToTurnIn;
+
+  const flavorText = FLAVOR[Math.abs(id.charCodeAt(2) || 0) % FLAVOR.length];
+
+  document.getElementById('parch-content').innerHTML = `
+    <button class="parch-back" onclick="parchBack()">← Back to Log</button>
+    <div class="parch-status-row">
+      <div class="parch-status-dot dot-${v.status}"></div>
+      <span class="parch-status-lbl status-lbl-${v.status}">${statusLabels[v.status]}</span>
+    </div>
+    <div class="parch-quest-name">${obj || 'Quest Acquired'}</div>
+    <div class="parch-hero-name">${v.name}</div>
+    <div class="parch-divider"></div>
+    <div class="parch-section-label">The Verse</div>
+    <div class="parch-verse">\u201c${v.text}\u201d</div>
+    <div class="parch-ref">${v.ref||''}</div>
+    <div class="parch-flavor">${flavorText}</div>
+    <div class="parch-divider"></div>
+    <div class="parch-section-label">Training Progress</div>
+    <div class="parch-progress"><div class="progress-modes">${modesHtml}</div></div>
+    <div class="parch-actions">
+      ${isMine ? `<button class="btn-parch-primary" onclick="startTraining('${id}')">⚔ Begin Training</button>` : ''}
+      ${canTurnIn ? `<button class="btn-parch-gold" onclick="turnInQuest('${id}')">✦ Turn In Quest</button>` : ''}
+      ${readyToTurnIn && !canTurnIn ? `<span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--c-inv);">✦ Quest turned in — ready to recite!</span>` : ''}
+    </div>`;
+}
+
+// ── TRAINING ──────────────────────────────────────────
+window.startTraining = (id) => {
+  const v = allVerses.find(v => v.id === id);
+  if (!v) return;
+  // gather all my active verses (road/quest/maint) — queue them
+  const myActive = allVerses.filter(v => myIds.includes(v.id) && v.status !== 'inv');
+  // put selected verse first
+  const others = myActive.filter(v => v.id !== id);
+  trainVerses = [v, ...others];
+  trainVIdx   = 0;
+  trainMode   = 'read';
+  scrambleBuilt = []; scramblePool = [];
+  document.getElementById('train-overlay').classList.add('show');
+  renderTrainMode();
+};
+
+window.closeTrain = () => {
+  document.getElementById('train-overlay').classList.remove('show');
+  if (selectedId) renderParchment(selectedId);
+};
+
+function currentTrainVerse() { return trainVerses[trainVIdx]; }
+
+function renderTrainMode() {
+  const v = currentTrainVerse();
+  if (!v) { renderPassageStep(); return; }
+
+  document.getElementById('train-title').textContent = `Training — ${v.name}`;
+  document.getElementById('train-verse-progress').textContent =
+    `Verse ${trainVIdx + 1} of ${trainVerses.length} — ${v.ref||''}`;
+
+  // mode tabs
+  const prog = trainProgress[v.id] || {};
+  document.getElementById('train-mode-tabs').innerHTML = TRAIN_MODES.map(m => {
+    const done   = !!prog[m];
+    const active = m === trainMode;
+    return `<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">
+      ${done ? '<span class="tab-check">✓</span>' : ''}${MODE_LABELS[m]}
+    </button>`;
+  }).join('') + (trainVerses.length > 1 ? `<button class="train-mode-tab" onclick="nextTrainVerse()" style="margin-left:auto;">Next Verse →</button>` : '');
+
+  const body = document.getElementById('train-body');
+
+  if (trainMode === 'read') {
+    body.innerHTML = `
+      <div class="train-verse-ref">${v.ref||''}</div>
+      <div class="train-display">\u201c${v.text}\u201d</div>
+      <div class="train-btn-row">
+        <button class="btn-train gold" onclick="completeMode('read')">Got it →</button>
+      </div>`;
+  }
+
+  else if (trainMode === 'blank') {
+    const words = v.text.split(' ');
+    const hideCount = Math.floor(words.length * 0.5);
+    const toHide = new Set();
+    const step = words.length / hideCount;
+    for (let i=0; i<hideCount; i++) toHide.add(Math.floor(i*step));
+    const display = '\u201c' + words.map((w,i) =>
+      toHide.has(i) ? `<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>` : `<span>${w}</span>`
+    ).join(' ') + '\u201d';
+    body.innerHTML = `
+      <div class="train-verse-ref">${v.ref||''}</div>
+      <div class="train-display">${display}</div>
+      <div class="train-btn-row">
+        <button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button>
+        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+      </div>`;
+  }
+
+  else if (trainMode === 'firstletter') {
+    const words = v.text.split(' ');
+    const display = '\u201c' + words.map(w => {
+      const letters = w.replace(/[^a-zA-Z]/g,'');
+      if (!letters) return w;
+      const rest = '_'.repeat(Math.max(letters.length - 1, 1));
+      return `<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${w.match(/[^a-zA-Z]$/) ? w.slice(-1) : ''}`;
+    }).join(' ') + '\u201d';
+    body.innerHTML = `
+      <div class="train-verse-ref">${v.ref||''}</div>
+      <div class="train-display">${display}</div>
+      <div class="train-btn-row">
+        <button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button>
+        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+      </div>`;
+  }
+
+  else if (trainMode === 'scramble') {
+    if (!scramblePool.length || scramblePool._vid !== v.id) {
+      const words = v.text.split(' ');
+      scramblePool = [...words].sort(() => Math.random() - 0.5);
+      scramblePool._vid = v.id;
+      scrambleBuilt = [];
+    }
+    renderScramble(v);
+  }
+
+  else if (trainMode === 'recall') {
+    body.innerHTML = `
+      <div class="train-verse-ref">${v.ref||''}</div>
+      <textarea class="recall-textarea" id="recall-ta" placeholder="Type the verse from memory…"></textarea>
+      <div class="train-btn-row">
+        <button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button>
+        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+      </div>`;
+  }
+}
+
+window.setTrainMode = (mode) => {
+  trainMode = mode;
+  scrambleBuilt = []; scramblePool = [];
+  renderTrainMode();
+};
+
+window.showFullInDrill = () => {
+  const v = currentTrainVerse();
+  document.getElementById('train-display') && (document.getElementById('train-display').innerHTML = '\u201c' + v.text + '\u201d');
+};
+
+window.completeMode = (mode) => {
+  const v = currentTrainVerse();
+  if (!trainProgress[v.id]) trainProgress[v.id] = {};
+  trainProgress[v.id][mode] = true;
+  // auto advance to next incomplete mode
+  const next = TRAIN_MODES.find(m => !trainProgress[v.id][m]);
+  if (next) { trainMode = next; }
+  renderTrainMode();
+};
+
+window.nextTrainVerse = () => {
+  trainVIdx = (trainVIdx + 1) % trainVerses.length;
+  trainMode = 'read'; scrambleBuilt = []; scramblePool = [];
+  // check if all verses done — go to passage
+  const allDone = trainVerses.every(v => {
+    const p = trainProgress[v.id] || {};
+    return TRAIN_MODES.every(m => p[m]);
+  });
+  if (allDone && trainVIdx === 0) { renderPassageStep(); return; }
+  renderTrainMode();
+};
+
+// SCRAMBLE render
+function renderScramble(v) {
+  const body = document.getElementById('train-body');
+  const targetHtml = scrambleBuilt.length === 0
+    ? '<span class="scramble-target-empty">Tap words below to build the verse…</span>'
+    : scrambleBuilt.map((w,i) =>
+        `<span class="word-chip placed" onclick="unplaceWord(${i})">${w}</span>`
+      ).join('');
+
+  const poolHtml = scramblePool.filter((_,i) => !scrambleBuilt.includes(scramblePool[i]) || true)
+    .map((w,i) => {
+      const used = scrambleBuilt.includes(w) && scrambleBuilt.indexOf(w) >= 0;
+      // track by index to allow duplicates
+      return `<span class="word-chip" id="sp-${i}" onclick="placeWord(${i},'${w.replace(/'/g,"\\'")}',this)">${w}</span>`;
+    }).join('');
+
+  body.innerHTML = `
+    <div class="train-verse-ref">${v.ref||''}</div>
+    <div class="scramble-wrap">
+      <div class="scramble-target" id="scramble-target">${targetHtml}</div>
+      <div class="scramble-pool" id="scramble-pool">${poolHtml}</div>
+    </div>
+    <div class="train-btn-row">
+      <button class="btn-train gold" onclick="checkScramble()">Check Order</button>
+      <button class="btn-train" onclick="clearScramble()">Clear</button>
+      <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+    </div>`;
+
+  // grey out placed words
+  scrambleBuilt.forEach(w => {
+    // find first matching unhidden chip
+    const chips = document.querySelectorAll('#scramble-pool .word-chip');
+    for (const c of chips) {
+      if (c.textContent === w && !c.style.opacity) { c.style.opacity = '0.25'; c.style.pointerEvents = 'none'; break; }
+    }
+  });
+}
+
+// track which pool indices are used
+let usedPoolIdx = new Set();
+
+window.placeWord = (idx, word, el) => {
+  if (usedPoolIdx.has(idx)) return;
+  usedPoolIdx.add(idx);
+  scrambleBuilt.push(word);
+  el.style.opacity = '0.25'; el.style.pointerEvents = 'none';
+  // update target
+  const target = document.getElementById('scramble-target');
+  const empty = target.querySelector('.scramble-target-empty');
+  if (empty) empty.remove();
+  const chip = document.createElement('span');
+  chip.className = 'word-chip placed';
+  chip.textContent = word;
+  chip.dataset.poolIdx = idx;
+  chip.onclick = () => {
+    usedPoolIdx.delete(parseInt(chip.dataset.poolIdx));
+    scrambleBuilt.splice(scrambleBuilt.indexOf(word), 1);
+    chip.remove();
+    const poolEl = document.getElementById('sp-' + idx);
+    if (poolEl) { poolEl.style.opacity = ''; poolEl.style.pointerEvents = ''; }
+    if (scrambleBuilt.length === 0) {
+      target.innerHTML = '<span class="scramble-target-empty">Tap words below to build the verse…</span>';
+    }
+  };
+  target.appendChild(chip);
+};
+
+window.unplaceWord = () => {}; // handled inline above
+
+window.clearScramble = () => {
+  usedPoolIdx = new Set(); scrambleBuilt = [];
+  renderScramble(currentTrainVerse());
+};
+
+window.checkScramble = () => {
+  const v = currentTrainVerse();
+  const built = scrambleBuilt.join(' ');
+  const sim   = similarity(built, v.text);
+  if (sim >= 0.9) {
+    completeMode('scramble');
+  } else {
+    toast('Not quite — keep rearranging!');
+  }
+};
+
+// RECALL check
+window.checkRecallMode = () => {
+  const v   = currentTrainVerse();
+  const inp = document.getElementById('recall-ta').value.trim();
+  const sim = similarity(inp, v.text);
+  const body = document.getElementById('train-body');
+
+  if (sim >= 0.9) {
+    body.innerHTML = `
+      <div class="recall-feedback rf-correct">✓ Perfect. The blade is forged.</div>
+      <div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Mark Complete →</button></div>`;
+  } else if (sim >= 0.65) {
+    const diffHtml = diffWords(inp, v.text);
+    body.innerHTML = `
+      <div class="recall-feedback rf-close">Close — review the highlighted words</div>
+      <div class="diff-display">${diffHtml}</div>
+      <div class="train-btn-row">
+        <button class="btn-train success" onclick="completeMode('recall')">Still counts ✓</button>
+        <button class="btn-train danger" onclick="setTrainMode('recall')">Try again</button>
+      </div>`;
+  } else {
+    const diffHtml = diffWords(inp, v.text);
+    body.innerHTML = `
+      <div class="recall-feedback rf-incorrect">Not quite — keep training</div>
+      <div class="diff-display">${diffHtml}</div>
+      <div class="train-btn-row">
+        <button class="btn-train danger" onclick="setTrainMode('recall')">Try again</button>
+        <button class="btn-train" onclick="showFullInDrill()">Show verse</button>
+      </div>`;
+  }
+};
+
+// PASSAGE STEP — final "put it all together"
+function renderPassageStep() {
+  document.getElementById('train-title').textContent = 'Put It All Together';
+  document.getElementById('train-verse-progress').textContent = 'Final step — recite the full passage';
+  document.getElementById('train-mode-tabs').innerHTML = '';
+
+  const passageDisplay = trainVerses.map(v =>
+    `<div class="passage-ref-label">${v.ref||''}</div>
+     <div style="font-size:16px;font-style:italic;color:var(--parch-dim);line-height:1.7;margin-bottom:16px;">\u201c${v.text}\u201d</div>`
+  ).join('');
+
+  document.getElementById('train-body').innerHTML = `
+    <div style="margin-bottom:14px;font-style:italic;color:var(--textdim);font-size:14px;">Type out the entire passage from memory.</div>
+    <div style="background:var(--parch);border:1px solid var(--parch-border);border-radius:3px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:var(--parch-dim);">
+      ${trainVerses.map(v=>`<span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--golddim);">${v.ref||''}</span><br>`).join('')}
+    </div>
+    <textarea class="recall-textarea" id="passage-ta" placeholder="Type the full passage…" rows="5"></textarea>
+    <div id="passage-feedback"></div>
+    <div class="train-btn-row">
+      <button class="btn-train gold" onclick="checkPassage()">Check Passage</button>
+      <button class="btn-train" onclick="document.getElementById('passage-display').style.display='block'">Show passage</button>
+    </div>
+    <div id="passage-display" style="display:none;margin-top:16px;">${passageDisplay}</div>`;
+}
+
+window.checkPassage = () => {
+  const inp = document.getElementById('passage-ta').value.trim();
+  const fullText = trainVerses.map(v => v.text).join(' ');
+  const sim = similarity(inp, fullText);
+  const fb  = document.getElementById('passage-feedback');
+
+  if (sim >= 0.85) {
+    fb.innerHTML = '<div class="recall-feedback rf-correct" style="margin:12px 0;">✦ Passage complete. The sword is yours.</div>';
+    trainVerses.forEach(v => {
+      if (!trainProgress[v.id]) trainProgress[v.id] = {};
+      trainProgress[v.id]['passage'] = true;
+    });
+    document.getElementById('train-body').querySelector('.train-btn-row').innerHTML =
+      `<button class="btn-train success" onclick="finishTraining()">✦ Quest Complete!</button>
+       <button class="btn-train danger" onclick="closeTrain()">Close</button>`;
+  } else if (sim >= 0.6) {
+    const diffHtml = diffWords(inp, fullText);
+    fb.innerHTML = `<div class="recall-feedback rf-close" style="margin:12px 0;">Close — check highlighted words</div><div class="diff-display">${diffHtml}</div>`;
+    document.getElementById('train-body').querySelector('.train-btn-row').innerHTML =
+      `<button class="btn-train success" onclick="passPassage()">Still counts ✓</button>
+       <button class="btn-train danger" onclick="document.getElementById('passage-ta').value='';document.getElementById('passage-feedback').innerHTML='';">Try again</button>`;
+  } else {
+    fb.innerHTML = '<div class="recall-feedback rf-incorrect" style="margin:12px 0;">Keep going — you\'re getting there.</div>';
+  }
+};
+
+window.passPassage = () => {
+  trainVerses.forEach(v => {
+    if (!trainProgress[v.id]) trainProgress[v.id] = {};
+    trainProgress[v.id]['passage'] = true;
+  });
+  finishTraining();
+};
+
+window.finishTraining = () => {
+  closeTrain();
+  celebrate('✦', 'Quest Complete!', 'All modes and the full passage mastered. You are ready to recite before the Fellowship.');
+};
+
+// ── TURN IN QUEST ─────────────────────────────────────
+window.turnInQuest = async (id) => {
+  const v = allVerses.find(v => v.id === id);
+  if (!v) return;
+  try {
+    await update(ref(db, `sword/verses/${id}`), { status: 'inv' });
+    celebrate('🏆', 'Quest Turned In!', '"' + v.text + '"');
+  } catch(e) { toast('Error — check connection'); }
+};
 
 // ── ADD FORM ─────────────────────────────────────────
 window.showAddForm = () => {
   document.getElementById('add-form').style.display = 'block';
-  document.getElementById('add-btn').style.display  = 'none';
   updateFilterBar();
-  // pre-select saved hero
-  if (myHero) {
-    const sel = document.getElementById('name-select');
-    if (sel) sel.value = myHero;
-  }
   selectedVerses.clear();
   renderPsalmList();
-  updateSelectedCount();
+  updateSelCount();
 };
 window.hideAddForm = () => {
   document.getElementById('add-form').style.display = 'none';
-  document.getElementById('add-btn').style.display  = 'inline-block';
   selectedVerses.clear();
 };
-
 window.handleNameSelect = () => {
   const val = document.getElementById('name-select').value;
-  const nr  = document.getElementById('new-name-row');
-  nr.style.display = val === '__new__' ? 'block' : 'none';
+  document.getElementById('new-name-row').style.display = val === '__new__' ? 'block' : 'none';
 };
-
-// ── PSALM SELECT ──────────────────────────────────────
 window.selectPsalm = (num, el) => {
   selectedPsalm = num;
   document.querySelectorAll('.psalm-pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   renderPsalmList();
 };
-
 function renderPsalmList() {
   document.getElementById('psalm-lbl').textContent = `Psalm ${selectedPsalm} — Click verses to select`;
   document.getElementById('psalm-list').innerHTML = PSALMS[selectedPsalm].map(([n,t]) => {
@@ -704,364 +1103,117 @@ function renderPsalmList() {
     </div>`;
   }).join('');
 }
-
-window.toggleVerse = (psalmNum, verseNum, text) => {
-  const key = `${psalmNum}:${verseNum}`;
-  if (selectedVerses.has(key)) {
-    selectedVerses.delete(key);
-  } else {
-    selectedVerses.set ? selectedVerses.add(key) : (selectedVerses = new Set([...selectedVerses, key]));
-    // also store text for submission
-    selectedVerses[key] = { ref: `Psalm ${psalmNum}:${verseNum}`, text };
-  }
-  renderPsalmList();
-  updateSelectedCount();
+window.toggleVerse = (pn, vn, text) => {
+  const key = `${pn}:${vn}`;
+  if (selectedVerses.has(key)) selectedVerses.delete(key);
+  else selectedVerses.set(key, { ref:`Psalm ${pn}:${vn}`, text });
+  renderPsalmList(); updateSelCount();
 };
-
-function updateSelectedCount() {
+function updateSelCount() {
   const n = selectedVerses.size;
-  document.getElementById('selected-count').textContent =
-    n === 0 ? '' : `${n} verse${n>1?'s':''} selected`;
+  document.getElementById('selected-count').textContent = n===0?'':n+' verse'+(n>1?'s':'')+' selected';
 }
-
-// ── MANUAL REF LOOKUP ─────────────────────────────────
 window.handleManualRef = () => {
   const val = document.getElementById('manual-ref').value.trim();
-  // match "psalm 121:3" or "121:3"
   const match = val.match(/(?:psalm\s*)?(\d+):(\d+)/i);
   if (!match) return;
-  const psalmNum = parseInt(match[1]);
-  const verseNum = parseInt(match[2]);
-  const psalmData = PSALMS[psalmNum];
-  if (!psalmData) return;
-  const verseData = psalmData.find(([n]) => n === verseNum);
-  if (!verseData) return;
-
-  // switch to that psalm tab if available
-  if (PSALMS[psalmNum]) {
-    selectedPsalm = psalmNum;
-    document.querySelectorAll('.psalm-pill').forEach(p => {
-      const matches = p.textContent.includes(String(psalmNum));
-      p.classList.toggle('active', matches);
-    });
-    renderPsalmList();
-  }
-
-  // auto-select that verse
-  const key = `${psalmNum}:${verseNum}`;
-  if (!selectedVerses.has(key)) {
-    selectedVerses.add(key);
-    selectedVerses[key] = { ref: `Psalm ${psalmNum}:${verseNum}`, text: verseData[1] };
-    renderPsalmList();
-    updateSelectedCount();
-  }
-
-  // scroll to it
-  setTimeout(() => {
-    const rows = document.querySelectorAll('.psalm-v-row');
-    const idx  = psalmData.findIndex(([n]) => n === verseNum);
-    if (rows[idx]) rows[idx].scrollIntoView({ behavior:'smooth', block:'nearest' });
-  }, 100);
+  const pn = parseInt(match[1]), vn = parseInt(match[2]);
+  if (!PSALMS[pn]) return;
+  const vd = PSALMS[pn].find(([n])=>n===vn);
+  if (!vd) return;
+  selectedPsalm = pn;
+  document.querySelectorAll('.psalm-pill').forEach(p => p.classList.toggle('active', p.textContent.includes(String(pn))));
+  renderPsalmList();
+  const key = `${pn}:${vn}`;
+  if (!selectedVerses.has(key)) { selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text:vd[1]}); renderPsalmList(); updateSelCount(); }
 };
-
-// ── SUBMIT ────────────────────────────────────────────
 window.submitVerses = async () => {
   const sel   = document.getElementById('name-select');
   const isNew = sel.value === '__new__';
-  const name  = isNew
-    ? document.getElementById('new-name-input').value.trim()
-    : sel.value;
-
+  const name  = isNew ? document.getElementById('new-name-input').value.trim() : sel.value;
   if (!name) { toast('Choose or create a hero name'); return; }
   if (selectedVerses.size === 0) { toast('Select at least one verse'); return; }
-
   const btn = document.getElementById('submit-btn');
-  btn.disabled = true; btn.textContent = 'Accepting Quest…';
-
-  myHero = name;
-  localStorage.setItem(HERO_KEY, name);
-
-  const toSubmit = [...selectedVerses].map(key => ({
-    key,
-    ref:  selectedVerses[key]?.ref  || key,
-    text: selectedVerses[key]?.text || ''
-  })).filter(v => v.text);
-
+  btn.disabled = true; btn.textContent = 'Accepting…';
+  myHero = name; localStorage.setItem(HERO_KEY, name);
   const newIds = [];
   try {
-    for (const v of toSubmit) {
+    for (const [key, v] of selectedVerses) {
       const id = `v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-      const verse = { id, name, ref: v.ref, text: v.text, status: 'road', obj: pick(ACTIVE_OBJ), created: Date.now() };
-      await set(ref(db, `sword/verses/${id}`), verse);
+      await set(ref(db,`sword/verses/${id}`), {id,name,ref:v.ref,text:v.text,status:'road',obj:pick(ACTIVE_OBJ),created:Date.now()});
       newIds.push(id);
-      await new Promise(r => setTimeout(r, 50));
+      await new Promise(r=>setTimeout(r,50));
     }
-    myIds = [...myIds, ...newIds];
+    myIds = [...myIds,...newIds];
     localStorage.setItem(MY_IDS_KEY, JSON.stringify(myIds));
-    btn.disabled = false; btn.textContent = 'Accept Quest';
+    btn.disabled=false; btn.textContent='Accept Quest';
     hideAddForm();
     toast(`${newIds.length} quest${newIds.length>1?'s':''} accepted!`);
-  } catch(e) {
-    toast('Error — check connection');
-    btn.disabled = false; btn.textContent = 'Accept Quest';
-  }
+  } catch(e) { toast('Error — check connection'); btn.disabled=false; btn.textContent='Accept Quest'; }
 };
 
-// ── DRILL ─────────────────────────────────────────────
-window.openDrill = (id) => {
-  if (!myIds.includes(id)) return; // only drill own verses
-  activeId  = id;
-  drillStep = 0;
-  renderQuestLog();
-  renderDrillPanel();
-  document.getElementById('drill-panel').style.display = 'block';
-  document.getElementById('drill-panel').scrollIntoView({ behavior:'smooth', block:'nearest' });
+// ── EDIT ─────────────────────────────────────────────
+window.handleEditClick = (id) => {
+  if (myIds.includes(id) || leaderUnlocked) openEditModal(id);
+  else { pendingEditId=id; openPinOverlay(); }
 };
-
-function getActive() { return allVerses.find(v => v.id === activeId); }
-
-function renderDrillPanel() {
-  const v = getActive();
-  if (!v) return;
-
-  document.getElementById('dp-hero').textContent = v.name;
-  document.getElementById('dp-ref').textContent  = v.ref || '';
-
-  const bar = document.getElementById('step-bar');
-  bar.innerHTML = STEPS.map((_,i) =>
-    `<div class="step-pip ${i < drillStep ? 'done' : i === drillStep ? 'active' : ''}"></div>`
-  ).join('');
-  document.getElementById('step-lbl').textContent = `Step ${drillStep+1} of ${STEPS.length} — ${STEPS[drillStep]}`;
-
-  const disp   = document.getElementById('drill-disp');
-  const recall = document.getElementById('recall-area');
-  const btns   = document.getElementById('drill-btns');
-
-  if (drillStep === 3) {
-    disp.style.display   = 'none';
-    recall.style.display = 'block';
-    document.getElementById('recall-in').value = '';
-    document.getElementById('recall-fb').style.display = 'none';
-    btns.innerHTML = `
-      <button class="btn-drill gold" onclick="checkRecall()">Check Answer</button>
-      <button class="btn-drill" onclick="showFull()">Show Verse</button>
-      <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
-    return;
-  }
-
-  disp.style.display   = 'block';
-  recall.style.display = 'none';
-
-  const words = v.text.split(' ');
-  let hideCount = 0;
-  if (drillStep === 1) hideCount = Math.floor(words.length * 0.45);
-  if (drillStep === 2) hideCount = Math.floor(words.length * 0.8);
-  const toHide = new Set();
-  if (hideCount > 0) {
-    const step = words.length / hideCount;
-    for (let i=0; i<hideCount; i++) toHide.add(Math.floor(i*step));
-  }
-  disp.innerHTML = '\u201c' + words.map((w,i) => {
-    if (toHide.has(i)) {
-      const len = Math.max(w.replace(/[^a-zA-Z]/g,'').length,3);
-      return `<span class="blank-word" style="width:${len*8}px;"></span>`;
-    }
-    return `<span>${w}</span>`;
-  }).join(' ') + '\u201d';
-
-  btns.innerHTML = `
-    <button class="btn-drill gold" onclick="nextStep()">I got it →</button>
-    <button class="btn-drill" onclick="showFull()">Show verse</button>
-    <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
+function openEditModal(id) {
+  editingId=id;
+  const v=allVerses.find(v=>v.id===id); if(!v) return;
+  document.getElementById('edit-ref').value=v.ref||'';
+  document.getElementById('edit-text').value=v.text||'';
+  document.getElementById('edit-status').value=v.status||'road';
+  document.getElementById('edit-modal').classList.add('show');
 }
-
-window.nextStep  = () => { if (drillStep < 3) { drillStep++; renderDrillPanel(); } };
-window.showFull  = () => {
-  const v = getActive(); if (!v) return;
-  document.getElementById('drill-disp').innerHTML = '\u201c' + v.text + '\u201d';
-  document.getElementById('recall-area').style.display = 'none';
-  document.getElementById('drill-disp').style.display  = 'block';
+window.closeEditModal = () => { document.getElementById('edit-modal').classList.remove('show'); editingId=null; };
+window.saveEdit = async () => {
+  if (!editingId) return;
+  const newRef=document.getElementById('edit-ref').value.trim();
+  const newText=document.getElementById('edit-text').value.trim();
+  const newStatus=document.getElementById('edit-status').value;
+  if (!newText) { toast('Verse text cannot be empty'); return; }
+  const updates={ref:newRef,text:newText,status:newStatus};
+  if (newStatus==='quest') updates.obj=pick(ACTIVE_OBJ);
+  if (newStatus==='maint') updates.maintObj=pick(MAINT_OBJ);
+  try { await update(ref(db,`sword/verses/${editingId}`),updates); closeEditModal(); toast('Quest updated'); }
+  catch(e) { toast('Error saving'); }
 };
-window.closeDrill = () => {
-  activeId = null;
-  document.getElementById('drill-panel').style.display = 'none';
-  renderQuestLog();
-};
-
-window.checkRecall = () => {
-  const v   = getActive();
-  const inp = document.getElementById('recall-in').value.trim();
-  const fb  = document.getElementById('recall-fb');
-  const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
-  fb.style.display = 'block';
-  if (norm(inp) === norm(v.text)) {
-    fb.className = 'recall-feedback rf-correct';
-    fb.textContent = '✓ You have it. The blade is forged.';
-    document.getElementById('drill-btns').innerHTML = `
-      <button class="btn-drill success" onclick="advance('quest')">Mark as Memorized →</button>
-      <button class="btn-drill" onclick="showFull()">Show Verse</button>
-      <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
-  } else {
-    fb.className = 'recall-feedback rf-incorrect';
-    fb.textContent = 'Not yet — keep training.';
-    document.getElementById('drill-btns').innerHTML = `
-      <button class="btn-drill gold" onclick="checkRecall()">Try Again</button>
-      <button class="btn-drill" onclick="showFull()">Show Verse</button>
-      <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
-  }
-};
-
-window.advance = async (newStatus) => {
-  const v = getActive(); if (!v) return;
-  const updates = { status: newStatus };
-  if (newStatus === 'quest') {
-    updates.obj = pick(ACTIVE_OBJ);
-    celebrate('⚔️', 'Quest Updated!', 'Keep pressing forward, ' + v.name + '.');
-  } else if (newStatus === 'inv') {
-    celebrate('🏆', 'Added to Inventory!', 'The verse is yours, ' + v.name + '. It is now part of your arsenal.');
-  } else if (newStatus === 'maint') {
-    updates.maintObj = pick(MAINT_OBJ);
-    toast('Maintenance quest assigned!');
-  }
+window.confirmDelete = async () => {
+  if (!editingId) return;
+  if (!confirm('Delete this quest permanently?')) return;
   try {
-    await update(ref(db, `sword/verses/${v.id}`), updates);
-    closeDrill();
-  } catch(e) { toast('Error saving'); }
+    await set(ref(db,`sword/verses/${editingId}`),null);
+    myIds=myIds.filter(i=>i!==editingId); localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
+    if (selectedId===editingId) { selectedId=null; document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>'; }
+    closeEditModal(); toast('Quest deleted');
+  } catch(e) { toast('Error deleting'); }
+};
+function openPinOverlay() { document.getElementById('pin-input').value=''; document.getElementById('pin-error').textContent=''; document.getElementById('pin-overlay').classList.add('show'); setTimeout(()=>document.getElementById('pin-input').focus(),100); }
+window.closePinOverlay = () => { document.getElementById('pin-overlay').classList.remove('show'); pendingEditId=null; };
+window.handlePinInput = () => {
+  const val=document.getElementById('pin-input').value;
+  if (val.length<4) return;
+  if (val===LEADER_PIN) { leaderUnlocked=true; document.getElementById('pin-overlay').classList.remove('show'); if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;} toast('Leader access granted'); }
+  else { document.getElementById('pin-error').textContent='Incorrect PIN'; document.getElementById('pin-input').value=''; }
 };
 
 // ── BOARD ─────────────────────────────────────────────
 function renderBoard() {
-  const board = document.getElementById('journey-board');
-  board.innerHTML = '<div class="loading" style="grid-column:1/-1;">Loading…</div>';
-  onValue(ref(db, 'sword/verses'), snap => {
-    const all   = snap.exists() ? Object.values(snap.val()) : [];
-    const road  = all.filter(v => v.status==='road');
-    const quest = all.filter(v => v.status==='quest');
-    const inv   = all.filter(v => v.status==='inv');
-    const maint = all.filter(v => v.status==='maint');
-
-    const card = v => {
-      const objText = v.status==='road'  ? 'Quest Acquired'
-                    : v.status==='quest' ? (v.obj||'')
-                    : v.status==='inv'   ? 'In the Inventory'
-                    : (v.maintObj||'');
-      return `<div class="board-card fade-up">
-        <div class="bc-name">${v.name}</div>
-        <div class="bc-ref">${v.ref||''}</div>
-        <div class="bc-text">\u201c${v.text}\u201d</div>
-        <div class="bc-obj ${v.status}">${objText}</div>
-      </div>`;
-    };
-    const col = list => list.length ? list.map(card).join('') : '<div class="empty-slot">None yet</div>';
-
-    const stations = [
-      { icon:'🗺️', name:'Quest Acquired',  desc:'The word is new',              list: road },
-      { icon:'⚔️', name:'On the Quest',     desc:'Pressing toward mastery',      list: quest },
-      { icon:'🏆', name:'In the Inventory', desc:'Spoken before the Fellowship', list: inv },
-      { icon:'🔧', name:'Maintenance',       desc:"Keeping the blade sharp",      list: maint },
-    ];
-
-    board.innerHTML = stations.map((s,i) =>
-      (i > 0 ? '<div class="j-arrow">›</div>' : '') +
-      `<div class="j-station">
-        <div class="js-icon">${s.icon}</div>
-        <div class="js-name">${s.name}</div>
-        <div class="js-desc">${s.desc}</div>
-        <div class="js-cards">${col(s.list)}</div>
-      </div>`
+  onValue(ref(db,'sword/verses'), snap => {
+    const all=snap.exists()?Object.values(snap.val()):[];
+    const cols={road:[],quest:[],inv:[],maint:[]};
+    all.forEach(v=>cols[v.status]&&cols[v.status].push(v));
+    const card=v=>`<div class="board-card"><div class="bc-name">${v.name}</div><div class="bc-ref">${v.ref||''}</div><div class="bc-text">\u201c${v.text}\u201d</div><div class="bc-obj ${v.status}">${v.status==='road'?'Quest Acquired':v.status==='quest'?(v.obj||''):v.status==='inv'?'In the Inventory':(v.maintObj||'')}</div></div>`;
+    const col=list=>list.length?list.map(card).join(''):'<div class="empty-slot">None yet</div>';
+    const stations=[{s:'road',icon:'🗺️',n:'Quest Acquired',d:'The word is new'},{s:'quest',icon:'⚔️',n:'On the Quest',d:'Pressing toward mastery'},{s:'inv',icon:'🏆',n:'In the Inventory',d:'Spoken before the Fellowship'},{s:'maint',icon:'🔧',n:'Maintenance',d:'Keeping the blade sharp'}];
+    document.getElementById('journey-board').innerHTML=stations.map((st,i)=>
+      (i>0?'<div class="j-arrow">›</div>':'')+`<div class="j-station"><div class="js-icon">${st.icon}</div><div class="js-name">${st.n}</div><div class="js-desc">${st.d}</div><div class="js-cards">${col(cols[st.s])}</div></div>`
     ).join('');
-  }, { onlyOnce: true });
+  },{onlyOnce:true});
 }
-
-// ── EDIT & PIN ────────────────────────────────────────
-const LEADER_PIN = '1957';
-let leaderUnlocked = false;
-let editingId      = null;
-let pendingEditId  = null;
-
-window.handleEditClick = (id) => {
-  const v = allVerses.find(v => v.id === id);
-  if (!v) return;
-  if (myIds.includes(id) || leaderUnlocked) {
-    openEditModal(id);
-  } else {
-    pendingEditId = id;
-    openPinOverlay();
-  }
-};
-
-function openEditModal(id) {
-  editingId = id;
-  const v = allVerses.find(v => v.id === id);
-  if (!v) return;
-  document.getElementById('edit-ref').value    = v.ref  || '';
-  document.getElementById('edit-text').value   = v.text || '';
-  document.getElementById('edit-status').value = v.status || 'road';
-  document.getElementById('edit-modal').classList.add('show');
-}
-
-window.closeEditModal = () => {
-  document.getElementById('edit-modal').classList.remove('show');
-  editingId = null;
-};
-
-window.saveEdit = async () => {
-  if (!editingId) return;
-  const newRef    = document.getElementById('edit-ref').value.trim();
-  const newText   = document.getElementById('edit-text').value.trim();
-  const newStatus = document.getElementById('edit-status').value;
-  if (!newText) { toast('Verse text cannot be empty'); return; }
-  try {
-    const updates = { ref: newRef, text: newText, status: newStatus };
-    // if status changed to quest/maint, assign a new objective
-    if (newStatus === 'quest')  updates.obj      = pick(ACTIVE_OBJ);
-    if (newStatus === 'maint')  updates.maintObj = pick(MAINT_OBJ);
-    await update(ref(db, `sword/verses/${editingId}`), updates);
-    closeEditModal();
-    toast('Quest updated');
-  } catch(e) { toast('Error saving — check connection'); }
-};
-
-window.confirmDelete = async () => {
-  if (!editingId) return;
-  if (!confirm('Delete this quest permanently? This cannot be undone.')) return;
-  try {
-    await set(ref(db, `sword/verses/${editingId}`), null);
-    // remove from local ids if mine
-    myIds = myIds.filter(i => i !== editingId);
-    localStorage.setItem(MY_IDS_KEY, JSON.stringify(myIds));
-    closeEditModal();
-    toast('Quest deleted');
-  } catch(e) { toast('Error deleting'); }
-};
-
-// PIN
-function openPinOverlay() {
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-error').textContent = '';
-  document.getElementById('pin-overlay').classList.add('show');
-  setTimeout(() => document.getElementById('pin-input').focus(), 100);
-}
-window.closePinOverlay = () => {
-  document.getElementById('pin-overlay').classList.remove('show');
-  pendingEditId = null;
-};
-window.handlePinInput = () => {
-  const val = document.getElementById('pin-input').value;
-  if (val.length < 4) return;
-  if (val === LEADER_PIN) {
-    leaderUnlocked = true;
-    document.getElementById('pin-overlay').classList.remove('show');
-    if (pendingEditId) { openEditModal(pendingEditId); pendingEditId = null; }
-    toast('Leader access granted');
-  } else {
-    document.getElementById('pin-error').textContent = 'Incorrect PIN';
-    document.getElementById('pin-input').value = '';
-  }
-};
 
 // ── INIT ──────────────────────────────────────────────
-loadAllVerses();
+loadAll();
 </script>
 </body>
 </html>
