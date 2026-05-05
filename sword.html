@@ -48,12 +48,16 @@
     }
     body > * { position: relative; z-index: 1; }
 
-    header { text-align: center; padding: 44px 20px 30px; border-bottom: 1px solid var(--border); }
+    /* HEADER */
+    header { text-align: center; padding: 44px 20px 30px; border-bottom: 1px solid var(--border); position: relative; }
+    .hdr-home { position: absolute; top: 18px; left: 20px; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); text-decoration: none; transition: color 0.2s; }
+    .hdr-home:hover { color: var(--gold); }
     .hdr-rule { width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--golddim), transparent); margin: 0 auto 16px; }
     .hdr-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(20px, 4vw, 38px); color: var(--gold2); letter-spacing: 1px; line-height: 1.15; text-shadow: 0 0 60px rgba(201,168,76,0.18); }
     .hdr-sub   { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--golddim); margin-top: 8px; }
     .hdr-verse { margin-top: 10px; font-style: italic; color: var(--textdim); font-size: 13px; }
 
+    /* NAV */
     nav { display: flex; justify-content: center; padding: 26px 20px 0; }
     .tab-btn {
       font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
@@ -65,12 +69,14 @@
     .tab-btn:hover { color: var(--text); border-color: var(--border2); }
     .tab-btn.active { background: var(--panel); border-color: var(--golddim); color: var(--gold2); z-index: 1; }
 
+    /* MAIN */
     main { max-width: 920px; margin: 0 auto; padding: 34px 18px 100px; }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
     .sec-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--golddim); margin-bottom: 16px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
 
+    /* PSALM PILLS */
     .psalm-pills { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
     .psalm-pill {
       font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
@@ -80,6 +86,7 @@
     .psalm-pill:hover { border-color: var(--border2); color: var(--text); }
     .psalm-pill.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel); }
 
+    /* SUBMIT CARD */
     .submit-card { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 26px 28px; margin-bottom: 28px; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
     @media (max-width: 540px) { .form-grid { grid-template-columns: 1fr; } }
@@ -92,7 +99,6 @@
     .field input:focus, .field textarea:focus { border-color: var(--golddim); }
     .field textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
     .field input::placeholder, .field textarea::placeholder { color: var(--textdim); font-style: italic; }
-
     .btn-primary {
       font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
       background: var(--green); color: var(--textbright); border: none; border-radius: 3px;
@@ -101,6 +107,7 @@
     .btn-primary:hover { background: var(--green2); }
     .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
+    /* PSALM REF LIST */
     .psalm-ref-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
     .psalm-v-row { display: flex; gap: 14px; padding: 9px 16px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; }
     .psalm-v-row:last-child { border-bottom: none; }
@@ -108,38 +115,46 @@
     .psalm-v-num { font-family: 'Cinzel', serif; font-size: 10px; color: var(--golddim); min-width: 18px; padding-top: 2px; }
     .psalm-v-text { font-size: 15px; font-style: italic; color: var(--text); line-height: 1.5; }
 
-    .verse-card { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 24px 28px; margin-bottom: 26px; }
-    .verse-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
-    .verse-heroname { font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold2); letter-spacing: 1px; }
-    .verse-ref { font-style: italic; color: var(--textdim); font-size: 14px; }
-    .verse-text { font-size: 19px; line-height: 1.65; color: var(--textbright); font-style: italic; margin: 11px 0 14px; }
-    .quest-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-      padding: 4px 11px; border: 1px solid; border-radius: 2px; margin-bottom: 18px;
+    /* QUEST LOG */
+    .quest-log { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+    .quest-row {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 4px;
+      padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+      cursor: pointer; transition: border-color 0.15s;
     }
-    .qb-road  { color: var(--c-road);  border-color: var(--c-road); }
-    .qb-quest { color: var(--c-quest); border-color: var(--c-quest); }
-    .qb-inv   { color: var(--c-inv);   border-color: var(--c-inv); }
-    .qb-maint { color: var(--c-maint); border-color: var(--c-maint); }
+    .quest-row:hover { border-color: var(--border2); }
+    .quest-row.active-drill { border-color: var(--golddim); background: var(--panel2); }
+    .quest-status-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .dot-road  { background: var(--c-road); }
+    .dot-quest { background: var(--c-quest); }
+    .dot-inv   { background: var(--c-inv); }
+    .dot-maint { background: var(--c-maint); }
+    .quest-info { flex: 1; min-width: 0; }
+    .quest-ref  { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold2); letter-spacing: 0.5px; }
+    .quest-obj  { font-size: 12px; color: var(--textdim); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .quest-action { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--green2); white-space: nowrap; }
 
-    .drill-wrap { border-top: 1px solid var(--border); padding-top: 18px; }
-    .drill-lbl { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--golddim); margin-bottom: 11px; }
-    .drill-modes { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 13px; }
-    .dmb {
-      font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-      padding: 6px 13px; border: 1px solid var(--border); border-radius: 2px;
-      background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s;
-    }
-    .dmb:hover { border-color: var(--border2); color: var(--text); }
-    .dmb.active { border-color: var(--golddim); color: var(--gold2); background: var(--panel2); }
+    /* DRILL PANEL */
+    .drill-panel { background: var(--panel); border: 1px solid var(--golddim); border-radius: 4px; padding: 24px 28px; margin-bottom: 28px; }
+    .drill-verse-header { margin-bottom: 16px; }
+    .drill-verse-name { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold2); margin-bottom: 2px; }
+    .drill-verse-ref   { font-size: 13px; font-style: italic; color: var(--textdim); }
+
+    /* Step progress bar */
+    .step-bar { display: flex; gap: 6px; margin-bottom: 8px; }
+    .step-pip { flex: 1; height: 3px; border-radius: 99px; background: var(--border2); transition: background 0.3s; }
+    .step-pip.done   { background: var(--green); }
+    .step-pip.active { background: var(--gold); }
+    .step-lbl { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--golddim); margin-bottom: 14px; }
+
     .drill-display {
-      font-size: 18px; font-style: italic; line-height: 1.75; color: var(--textbright);
-      min-height: 54px; margin-bottom: 13px; padding: 13px 15px;
+      font-size: 19px; font-style: italic; line-height: 1.75; color: var(--textbright);
+      min-height: 60px; margin-bottom: 14px; padding: 13px 15px;
       background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
     }
-    .blank-word { display: inline-block; background: var(--border2); border-radius: 2px; height: 13px; vertical-align: middle; margin: 0 2px; }
-    .recall-area { display: none; margin-bottom: 13px; }
+    .blank-word { display: inline-block; background: var(--border2); border-radius: 2px; height: 14px; vertical-align: middle; margin: 0 2px; }
+
+    .recall-area { display: none; }
     .recall-input {
       width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px;
       color: var(--textbright); font-family: 'EB Garamond', serif; font-size: 17px; font-style: italic;
@@ -150,40 +165,36 @@
     .recall-feedback { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1.5px; padding: 9px 13px; border-radius: 3px; display: none; margin-bottom: 10px; }
     .rf-correct   { background: rgba(74,124,63,0.15); border: 1px solid var(--green); color: var(--green2); }
     .rf-incorrect { background: rgba(139,58,42,0.15); border: 1px solid var(--red);   color: var(--red2); }
-    .action-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
-    .btn-action {
+
+    .drill-btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
+    .btn-drill {
       font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-      padding: 8px 16px; border: 1px solid var(--border2); border-radius: 2px;
+      padding: 9px 18px; border: 1px solid var(--border2); border-radius: 2px;
       background: transparent; color: var(--textdim); cursor: pointer; transition: all 0.15s;
     }
-    .btn-action:hover { border-color: var(--golddim); color: var(--gold2); }
-    .btn-action.gold { border-color: var(--golddim); color: var(--gold); }
-    .btn-action.gold:hover { background: var(--panel2); color: var(--gold2); }
-    .btn-action.danger { border-color: var(--red); color: var(--red2); }
+    .btn-drill:hover { border-color: var(--golddim); color: var(--gold); }
+    .btn-drill.gold { border-color: var(--golddim); color: var(--gold); }
+    .btn-drill.gold:hover { background: var(--panel2); color: var(--gold2); }
+    .btn-drill.success { border-color: var(--green); color: var(--green2); }
+    .btn-drill.danger  { border-color: var(--red); color: var(--red2); }
 
-    .celebrate {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.88);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.35s;
-    }
+    /* CELEBRATE */
+    .celebrate { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
     .celebrate.show { opacity: 1; pointer-events: all; }
-    .cel-icon { font-size: 60px; margin-bottom: 18px; animation: cpulse 1s ease-in-out infinite alternate; }
+    .cel-icon  { font-size: 60px; margin-bottom: 18px; animation: cpulse 1s ease-in-out infinite alternate; }
     @keyframes cpulse { from { transform: scale(1); } to { transform: scale(1.1); } }
     .cel-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(18px, 4vw, 32px); color: var(--gold2); text-align: center; margin-bottom: 10px; text-shadow: 0 0 40px rgba(232,201,122,0.4); padding: 0 20px; }
-    .cel-sub { font-style: italic; color: var(--textdim); font-size: 15px; margin-bottom: 26px; text-align: center; max-width: 380px; padding: 0 20px; }
+    .cel-sub   { font-style: italic; color: var(--textdim); font-size: 15px; margin-bottom: 26px; text-align: center; max-width: 380px; padding: 0 20px; }
     .cel-close { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; padding: 9px 26px; border: 1px solid var(--golddim); background: transparent; color: var(--gold); cursor: pointer; border-radius: 2px; }
 
-    .journey {
-      display: grid;
-      grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr;
-      margin-bottom: 36px;
-    }
+    /* BOARD */
+    .journey { display: grid; grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr; margin-bottom: 36px; }
     @media (max-width: 680px) {
       .journey { grid-template-columns: 1fr; }
       .j-arrow { display: none; }
       .j-station { border-radius: 4px !important; margin-bottom: 8px; border: 1px solid var(--border) !important; }
     }
-    .j-station { border: 1px solid var(--border); padding: 16px 14px; display: flex; flex-direction: column; min-height: 200px; }
+    .j-station { border: 1px solid var(--border); padding: 16px 14px; display: flex; flex-direction: column; min-height: 180px; }
     .j-station:nth-child(1) { border-radius: 4px 0 0 4px; background: var(--bg3); }
     .j-station:nth-child(3) { border-left: none; background: var(--panel); border-color: rgba(74,138,191,0.25); }
     .j-station:nth-child(5) { border-left: none; background: var(--panel2); border-color: rgba(201,168,76,0.3); }
@@ -204,26 +215,20 @@
     .bc-obj.maint { color: var(--c-maint); }
     .empty-slot { font-size: 11px; color: var(--textdim); font-style: italic; text-align: center; padding: 14px 6px; border: 1px dashed var(--border); border-radius: 3px; }
 
-    .toast {
-      position: fixed; bottom: 22px; left: 50%;
-      transform: translateX(-50%) translateY(70px);
-      background: var(--panel2); border: 1px solid var(--border2); border-radius: 3px;
-      padding: 9px 20px; font-family: 'Cinzel', serif; font-size: 9px;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
-      transition: transform 0.28s; z-index: 200;
-    }
+    /* TOAST */
+    .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(70px); background: var(--panel2); border: 1px solid var(--border2); border-radius: 3px; padding: 9px 20px; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); transition: transform 0.28s; z-index: 200; }
     .toast.show { transform: translateX(-50%) translateY(0); }
     .loading { text-align: center; padding: 40px; font-style: italic; color: var(--textdim); }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
     .fade-up { animation: fadeUp 0.25s ease forwards; }
+
+    .empty-log { text-align: center; padding: 40px 20px; font-style: italic; color: var(--textdim); border: 1px dashed var(--border); border-radius: 4px; }
   </style>
 </head>
 <body>
 
 <header>
-  <div style="position:absolute;top:18px;left:20px;">
-    <a href="index.html" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--golddim)'">← Home</a>
-  </div>
+  <a href="index.html" class="hdr-home">← Home</a>
   <div class="hdr-rule"></div>
   <div class="hdr-title">⚔ Sword of the Spirit ⚔</div>
   <div class="hdr-sub">Memory Verse Portal · The Fellowship</div>
@@ -231,15 +236,41 @@
 </header>
 
 <nav>
-  <button class="tab-btn active" onclick="switchTab('my',this)">My Quest</button>
+  <button class="tab-btn active" onclick="switchTab('my',this)">My Quest Log</button>
   <button class="tab-btn" onclick="switchTab('board',this)">The Fellowship</button>
 </nav>
 
 <main>
 
+  <!-- MY QUEST LOG -->
   <div id="tab-my" class="tab-panel active">
-    <div id="no-verse">
-      <p class="sec-label">Accept a Quest</p>
+
+    <!-- DRILL PANEL (hidden until a verse is selected) -->
+    <div id="drill-panel" class="drill-panel" style="display:none;">
+      <div class="drill-verse-header">
+        <div class="drill-verse-name" id="dp-name"></div>
+        <div class="drill-verse-ref" id="dp-ref"></div>
+      </div>
+      <div class="step-bar" id="step-bar"></div>
+      <div class="step-lbl" id="step-lbl"></div>
+      <div class="drill-display" id="drill-disp"></div>
+      <div class="recall-area" id="recall-area">
+        <textarea class="recall-input" id="recall-in" placeholder="Recite the verse from memory…" rows="3"></textarea>
+        <div class="recall-feedback" id="recall-fb"></div>
+      </div>
+      <div class="drill-btn-row" id="drill-btns"></div>
+    </div>
+
+    <!-- QUEST LOG LIST -->
+    <div id="quest-log-section">
+      <p class="sec-label">Quest Log</p>
+      <div class="quest-log" id="quest-log"></div>
+      <button class="btn-primary" id="add-verse-btn" onclick="showAddForm()" style="margin-bottom:28px;">+ Add a Verse</button>
+    </div>
+
+    <!-- ADD VERSE FORM (hidden by default) -->
+    <div id="add-form-section" style="display:none;">
+      <p class="sec-label">Accept a New Quest</p>
       <div class="psalm-pills">
         <button class="psalm-pill" onclick="selectPsalm(103,this)">Psalm 103</button>
         <button class="psalm-pill active" onclick="selectPsalm(121,this)">Psalm 121 · This Week</button>
@@ -259,42 +290,16 @@
           <label>Verse Text (ESV)</label>
           <textarea id="in-text" placeholder="Type or click a verse below to fill…"></textarea>
         </div>
-        <button class="btn-primary" id="submit-btn" onclick="submitVerse()">Accept Quest</button>
+        <button class="btn-primary" id="submit-btn" onclick="submitVerse()" style="margin-right:10px;">Accept Quest</button>
+        <button class="btn-drill" onclick="hideAddForm()" style="display:inline-block;">Cancel</button>
       </div>
       <p class="sec-label" id="psalm-lbl">Psalm 121 — ESV · Click to fill</p>
       <div class="psalm-ref-wrap" id="psalm-list"></div>
     </div>
 
-    <div id="my-verse" style="display:none;">
-      <p class="sec-label">Active Quest</p>
-      <div class="verse-card">
-        <div class="verse-top">
-          <span class="verse-heroname" id="dsp-name"></span>
-          <span class="verse-ref"      id="dsp-ref"></span>
-        </div>
-        <div class="verse-text"  id="dsp-text"></div>
-        <div class="quest-badge" id="dsp-badge"></div>
-        <div class="drill-wrap">
-          <div class="drill-lbl">Training Grounds</div>
-          <div class="drill-modes">
-            <button class="dmb active" id="dm-full"   onclick="setDrill('full')">Full Verse</button>
-            <button class="dmb"        id="dm-half"   onclick="setDrill('half')">Half Hidden</button>
-            <button class="dmb"        id="dm-most"   onclick="setDrill('most')">Mostly Hidden</button>
-            <button class="dmb"        id="dm-recall" onclick="setDrill('recall')">Full Recall</button>
-          </div>
-          <div class="drill-display" id="drill-disp"></div>
-          <div class="recall-area" id="recall-area">
-            <textarea class="recall-input" id="recall-in" placeholder="Recite the verse from memory…" rows="3"></textarea>
-            <div class="recall-feedback" id="recall-fb"></div>
-            <button class="btn-action gold" onclick="checkRecall()" style="margin-right:6px;">Check Answer</button>
-            <button class="btn-action" onclick="setDrill('full')">Show Verse</button>
-          </div>
-          <div class="action-row" id="action-row"></div>
-        </div>
-      </div>
-    </div>
   </div>
 
+  <!-- FELLOWSHIP BOARD -->
   <div id="tab-board" class="tab-panel">
     <p class="sec-label">The Fellowship's Journey</p>
     <div class="journey" id="journey-board">
@@ -331,28 +336,17 @@ const db = getDatabase(app);
 
 // ── OBJECTIVES ───────────────────────────────────────
 const ACTIVE_OBJ = [
-  "Slay the Defias Footpads",
-  "Collect the Zhevra Hooves",
-  "Bring Fuel to Everlook",
-  "Slay Razorclaw the Butcher",
-  "Collect the Bloodscalp Tusks",
-  "Report to Sentinel Dawnstrider",
-  "Escort Erland McGee to Refuge Pointe",
-  "Slay the Mor'Ladim",
-  "Collect the Venture Co. Uniforms",
-  "Speak with Watcher Backus"
+  "Slay the Defias Footpads","Collect the Zhevra Hooves","Bring Fuel to Everlook",
+  "Slay Razorclaw the Butcher","Collect the Bloodscalp Tusks","Report to Sentinel Dawnstrider",
+  "Escort Erland McGee to Refuge Pointe","Slay the Mor'Ladim",
+  "Collect the Venture Co. Uniforms","Speak with Watcher Backus"
 ];
 const MAINT_OBJ = [
-  "Bring the Mithril Bars to Tog'thar",
-  "Collect the Thick Leather from the Highlands",
-  "Deliver the Cracked Hammer to Calain",
-  "Bring the Elixirs of Fortitude to Dawnstar",
-  "Smelt the Truesilver Bars for Marvon",
-  "Collect the Iron Rivets from the Slag Pit",
-  "Deliver the Battered Shield to Irondeep",
-  "Bring the Dull Blade to Wiley the Black",
-  "Collect the Enchanted Thorium Bars",
-  "Return the Worn Axe to Belgrom Rockmaul"
+  "Bring the Mithril Bars to Tog'thar","Collect the Thick Leather from the Highlands",
+  "Deliver the Cracked Hammer to Calain","Bring the Elixirs of Fortitude to Dawnstar",
+  "Smelt the Truesilver Bars for Marvon","Collect the Iron Rivets from the Slag Pit",
+  "Deliver the Battered Shield to Irondeep","Bring the Dull Blade to Wiley the Black",
+  "Collect the Enchanted Thorium Bars","Return the Worn Axe to Belgrom Rockmaul"
 ];
 
 // ── PSALMS ───────────────────────────────────────────
@@ -393,9 +387,17 @@ const PSALMS = {
   ]
 };
 
-const LOCAL_KEY = 'sword_my_id_v2';
-let myVerse = null;
+// ── LOCAL STORAGE KEY (array of verse IDs) ───────────
+const LOCAL_KEY = 'sword_ids_v3';
+const HERO_KEY  = 'sword_hero_v3';
+
+let myIds    = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+let myVerses = []; // loaded from Firebase
+let activeId = null; // which verse is being drilled
+let drillStep = 0;   // 0=full,1=half,2=most,3=recall
 let selectedPsalm = 121;
+
+const STEPS = ['Full verse','Half hidden','Mostly hidden','Full recall'];
 
 const pick = arr => arr[Math.floor(Math.random() * arr.length)];
 
@@ -404,6 +406,7 @@ function toast(msg, ms=2400) {
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), ms);
 }
+
 function celebrate(icon, title, sub) {
   document.getElementById('cel-icon').textContent  = icon;
   document.getElementById('cel-title').textContent = title;
@@ -411,6 +414,7 @@ function celebrate(icon, title, sub) {
   document.getElementById('celebrate').classList.add('show');
 }
 
+// ── TABS ─────────────────────────────────────────────
 window.switchTab = (name, el) => {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -419,6 +423,21 @@ window.switchTab = (name, el) => {
   if (name === 'board') renderBoard();
 };
 
+// ── ADD FORM ─────────────────────────────────────────
+window.showAddForm = () => {
+  document.getElementById('add-form-section').style.display = 'block';
+  document.getElementById('add-verse-btn').style.display = 'none';
+  // pre-fill hero name if known
+  const hero = localStorage.getItem(HERO_KEY);
+  if (hero) document.getElementById('in-name').value = hero;
+  renderPsalmList();
+};
+window.hideAddForm = () => {
+  document.getElementById('add-form-section').style.display = 'none';
+  document.getElementById('add-verse-btn').style.display = 'inline-block';
+};
+
+// ── PSALM SELECTOR ────────────────────────────────────
 window.selectPsalm = (num, el) => {
   selectedPsalm = num;
   document.querySelectorAll('.psalm-pill').forEach(p => p.classList.remove('active'));
@@ -441,20 +460,29 @@ window.prefill = (n, t) => {
   document.getElementById('in-text').value = t;
 };
 
+// ── SUBMIT VERSE ──────────────────────────────────────
 window.submitVerse = async () => {
   const name = document.getElementById('in-name').value.trim();
   const ref2 = document.getElementById('in-ref').value.trim();
   const text = document.getElementById('in-text').value.trim();
   if (!name || !text) { toast('Enter your hero name and verse text'); return; }
+
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Accepting Quest…';
+
+  localStorage.setItem(HERO_KEY, name);
+
   const id = `v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
   const verse = { id, name, ref: ref2, text, status: 'road', obj: pick(ACTIVE_OBJ), created: Date.now() };
+
   try {
     await set(ref(db, `sword/verses/${id}`), verse);
-    localStorage.setItem(LOCAL_KEY, id);
-    myVerse = verse;
-    showMyVerse();
+    myIds.push(id);
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(myIds));
+    myVerses.push(verse);
+    btn.disabled = false; btn.textContent = 'Accept Quest';
+    hideAddForm();
+    renderQuestLog();
     toast('Quest accepted — begin your training!');
   } catch(e) {
     toast('Error — check connection');
@@ -462,137 +490,186 @@ window.submitVerse = async () => {
   }
 };
 
-async function loadMyVerse() {
-  const id = localStorage.getItem(LOCAL_KEY);
-  if (!id) { showNoVerse(); return; }
+// ── LOAD MY VERSES ────────────────────────────────────
+async function loadMyVerses() {
+  if (myIds.length === 0) { renderQuestLog(); return; }
   try {
-    const snap = await get(ref(db, `sword/verses/${id}`));
-    if (snap.exists()) { myVerse = snap.val(); showMyVerse(); }
-    else { localStorage.removeItem(LOCAL_KEY); showNoVerse(); }
-  } catch(e) { showNoVerse(); }
+    const snaps = await Promise.all(myIds.map(id => get(ref(db, `sword/verses/${id}`))));
+    myVerses = snaps.filter(s => s.exists()).map(s => s.val());
+    // clean up any ids that no longer exist
+    myIds = myVerses.map(v => v.id);
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(myIds));
+    renderQuestLog();
+  } catch(e) { renderQuestLog(); }
 }
 
-function showNoVerse() {
-  document.getElementById('no-verse').style.display  = 'block';
-  document.getElementById('my-verse').style.display  = 'none';
-  renderPsalmList();
-}
-
-function showMyVerse() {
-  document.getElementById('no-verse').style.display  = 'none';
-  document.getElementById('my-verse').style.display  = 'block';
-  const v = myVerse;
-  document.getElementById('dsp-name').textContent = v.name;
-  document.getElementById('dsp-ref').textContent  = v.ref || '';
-  document.getElementById('dsp-text').textContent = '\u201c' + v.text + '\u201d';
-
-  const badge = document.getElementById('dsp-badge');
-  const label = v.status === 'road'  ? 'Quest Acquired'
-              : v.status === 'quest' ? (v.obj || pick(ACTIVE_OBJ))
-              : v.status === 'inv'   ? 'In the Inventory'
-              : (v.maintObj || pick(MAINT_OBJ));
-  const icon  = v.status === 'road' ? '🗺️' : v.status === 'quest' ? '⚔️' : v.status === 'inv' ? '🏆' : '🔧';
-  const cls   = 'qb-' + v.status;
-  badge.className = 'quest-badge ' + cls;
-  badge.innerHTML = `<span>${icon}</span><span>${label}</span>`;
-
-  const ar = document.getElementById('action-row');
-  ar.innerHTML = '';
-  const mkBtn = (lbl, cls, fn) => {
-    const b = document.createElement('button');
-    b.className = 'btn-action ' + (cls||''); b.textContent = lbl; b.onclick = fn;
-    ar.appendChild(b);
-  };
-  if      (v.status==='road')  mkBtn('Mark as Memorized →','gold', () => advance('quest'));
-  else if (v.status==='quest') mkBtn('I Can Recite It! →', 'gold', () => advance('inv'));
-  else if (v.status==='inv')   mkBtn('Sharpen the Blade ↺','',     () => advance('maint'));
-  else if (v.status==='maint') mkBtn('Blade is Sharp ✓',   'gold', () => advance('inv'));
-  mkBtn('Abandon Quest','danger', clearVerse);
-
-  setDrill('full');
-}
-
-window.advance = async (newStatus) => {
-  if (!myVerse) return;
-  const updates = { status: newStatus };
-  if (newStatus === 'quest') {
-    updates.obj = pick(ACTIVE_OBJ);
-    celebrate('⚔️', 'Quest Updated!', 'Keep pressing forward, ' + myVerse.name + '.');
-  } else if (newStatus === 'inv' && myVerse.status === 'quest') {
-    celebrate('🏆', 'Added to Inventory!', 'The verse is yours, ' + myVerse.name + '. It is now part of your arsenal.');
-  } else if (newStatus === 'inv' && myVerse.status === 'maint') {
-    celebrate('✨', 'Blade Re-Sharpened!', 'Well done, ' + myVerse.name + '. The edge is keen again.');
-  } else if (newStatus === 'maint') {
-    updates.maintObj = pick(MAINT_OBJ);
-    toast('Maintenance quest assigned!');
-  }
-  try {
-    await update(ref(db, `sword/verses/${myVerse.id}`), updates);
-    Object.assign(myVerse, updates);
-    showMyVerse();
-  } catch(e) { toast('Error saving'); }
-};
-
-window.clearVerse = async () => {
-  if (!confirm('Abandon this quest? Your entry stays on the board.')) return;
-  localStorage.removeItem(LOCAL_KEY);
-  myVerse = null;
-  showNoVerse();
-};
-
-window.setDrill = (mode) => {
-  ['full','half','most','recall'].forEach(m =>
-    document.getElementById('dm-'+m)?.classList.toggle('active', m===mode)
-  );
-  const disp   = document.getElementById('drill-disp');
-  const recall = document.getElementById('recall-area');
-  if (mode === 'recall') {
-    disp.style.display = 'none'; recall.style.display = 'block';
-    document.getElementById('recall-in').value = '';
-    document.getElementById('recall-fb').style.display = 'none';
+// ── QUEST LOG ─────────────────────────────────────────
+function renderQuestLog() {
+  const log = document.getElementById('quest-log');
+  if (myVerses.length === 0) {
+    log.innerHTML = '<div class="empty-log">No quests yet — add a verse to begin.</div>';
     return;
   }
-  disp.style.display = 'block'; recall.style.display = 'none';
-  if (!myVerse) return;
-  const words = myVerse.text.split(' ');
+  log.innerHTML = myVerses.map(v => {
+    const isActive = v.id === activeId;
+    const dotClass = `dot-${v.status}`;
+    const obj = v.status === 'road' ? 'Quest Acquired'
+              : v.status === 'quest' ? (v.obj || '')
+              : v.status === 'inv'   ? 'In the Inventory'
+              : (v.maintObj || '');
+    const action = v.status === 'inv' ? 'Sharpen →' : 'Train →';
+    return `<div class="quest-row${isActive ? ' active-drill' : ''}" onclick="openDrill('${v.id}')">
+      <div class="quest-status-dot ${dotClass}"></div>
+      <div class="quest-info">
+        <div class="quest-ref">${v.ref || v.name}</div>
+        <div class="quest-obj">${obj}</div>
+      </div>
+      <div class="quest-action">${action}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── DRILL ─────────────────────────────────────────────
+window.openDrill = (id) => {
+  activeId = id;
+  drillStep = 0;
+  renderQuestLog();
+  renderDrillPanel();
+  document.getElementById('drill-panel').style.display = 'block';
+  document.getElementById('drill-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+};
+
+function getActiveVerse() { return myVerses.find(v => v.id === activeId); }
+
+function renderDrillPanel() {
+  const v = getActiveVerse();
+  if (!v) return;
+
+  document.getElementById('dp-name').textContent = v.name;
+  document.getElementById('dp-ref').textContent  = v.ref || '';
+
+  // Step bar
+  const bar = document.getElementById('step-bar');
+  bar.innerHTML = STEPS.map((_, i) =>
+    `<div class="step-pip ${i < drillStep ? 'done' : i === drillStep ? 'active' : ''}"></div>`
+  ).join('');
+  document.getElementById('step-lbl').textContent = `Step ${drillStep + 1} of ${STEPS.length} — ${STEPS[drillStep]}`;
+
+  const disp   = document.getElementById('drill-disp');
+  const recall = document.getElementById('recall-area');
+  const btns   = document.getElementById('drill-btns');
+
+  // recall step
+  if (drillStep === 3) {
+    disp.style.display   = 'none';
+    recall.style.display = 'block';
+    document.getElementById('recall-in').value = '';
+    document.getElementById('recall-fb').style.display = 'none';
+    btns.innerHTML = `
+      <button class="btn-drill gold" onclick="checkRecall()">Check Answer</button>
+      <button class="btn-drill" onclick="showFullVerse()">Show Verse</button>
+      <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
+    return;
+  }
+
+  disp.style.display   = 'block';
+  recall.style.display = 'none';
+
+  const words = v.text.split(' ');
   let hideCount = 0;
-  if (mode==='half') hideCount = Math.floor(words.length * 0.45);
-  if (mode==='most') hideCount = Math.floor(words.length * 0.8);
+  if (drillStep === 1) hideCount = Math.floor(words.length * 0.45);
+  if (drillStep === 2) hideCount = Math.floor(words.length * 0.8);
   const toHide = new Set();
   if (hideCount > 0) {
     const step = words.length / hideCount;
-    for (let i=0; i<hideCount; i++) toHide.add(Math.floor(i*step));
+    for (let i = 0; i < hideCount; i++) toHide.add(Math.floor(i * step));
   }
-  disp.innerHTML = '\u201c' + words.map((w,i) => {
+  disp.innerHTML = '\u201c' + words.map((w, i) => {
     if (toHide.has(i)) {
       const len = Math.max(w.replace(/[^a-zA-Z]/g,'').length, 3);
       return `<span class="blank-word" style="width:${len*8}px;"></span>`;
     }
     return `<span>${w}</span>`;
   }).join(' ') + '\u201d';
+
+  btns.innerHTML = `
+    <button class="btn-drill gold" onclick="nextStep()">I got it →</button>
+    <button class="btn-drill" onclick="showFullVerse()">Show verse</button>
+    <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
+}
+
+window.nextStep = () => {
+  if (drillStep < 3) { drillStep++; renderDrillPanel(); }
+};
+
+window.showFullVerse = () => {
+  const v = getActiveVerse();
+  if (!v) return;
+  document.getElementById('drill-disp').innerHTML = '\u201c' + v.text + '\u201d';
+  document.getElementById('recall-area').style.display = 'none';
+  document.getElementById('drill-disp').style.display = 'block';
 };
 
 window.checkRecall = () => {
+  const v   = getActiveVerse();
   const inp = document.getElementById('recall-in').value.trim();
   const fb  = document.getElementById('recall-fb');
   const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
   fb.style.display = 'block';
-  if (norm(inp) === norm(myVerse.text)) {
+  if (norm(inp) === norm(v.text)) {
     fb.className = 'recall-feedback rf-correct';
     fb.textContent = '✓ You have it. The blade is forged.';
+    document.getElementById('drill-btns').innerHTML = `
+      <button class="btn-drill success" onclick="advanceStatus('quest')">Mark as Memorized →</button>
+      <button class="btn-drill" onclick="showFullVerse()">Show Verse</button>
+      <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
   } else {
     fb.className = 'recall-feedback rf-incorrect';
-    fb.textContent = 'Not yet — keep training. Click "Show Verse" to review.';
+    fb.textContent = 'Not yet — keep training.';
+    document.getElementById('drill-btns').innerHTML = `
+      <button class="btn-drill gold" onclick="checkRecall()">Try Again</button>
+      <button class="btn-drill" onclick="showFullVerse()">Show Verse</button>
+      <button class="btn-drill danger" onclick="closeDrill()">Close</button>`;
   }
 };
 
+window.closeDrill = () => {
+  activeId = null;
+  document.getElementById('drill-panel').style.display = 'none';
+  renderQuestLog();
+};
+
+// ── ADVANCE STATUS ────────────────────────────────────
+window.advanceStatus = async (newStatus) => {
+  const v = getActiveVerse();
+  if (!v) return;
+  const updates = { status: newStatus };
+
+  if (newStatus === 'quest') {
+    updates.obj = pick(ACTIVE_OBJ);
+    celebrate('⚔️', 'Quest Updated!', 'Keep pressing forward, ' + v.name + '.');
+  } else if (newStatus === 'inv') {
+    celebrate('🏆', 'Added to Inventory!', 'The verse is yours, ' + v.name + '. It is now part of your arsenal.');
+  } else if (newStatus === 'maint') {
+    updates.maintObj = pick(MAINT_OBJ);
+    toast('Maintenance quest assigned!');
+  }
+
+  try {
+    await update(ref(db, `sword/verses/${v.id}`), updates);
+    Object.assign(v, updates);
+    closeDrill();
+  } catch(e) { toast('Error saving'); }
+};
+
+// ── BOARD ─────────────────────────────────────────────
 function renderBoard() {
   onValue(ref(db, 'sword/verses'), snap => {
     const all   = snap.exists() ? Object.values(snap.val()) : [];
-    const road  = all.filter(v => v.status==='road');
-    const quest = all.filter(v => v.status==='quest');
-    const inv   = all.filter(v => v.status==='inv');
-    const maint = all.filter(v => v.status==='maint');
+    const road  = all.filter(v => v.status === 'road');
+    const quest = all.filter(v => v.status === 'quest');
+    const inv   = all.filter(v => v.status === 'inv');
+    const maint = all.filter(v => v.status === 'maint');
 
     const card = v => {
       const objText = v.status==='road'  ? 'Quest Acquired'
@@ -609,10 +686,10 @@ function renderBoard() {
     const col = list => list.length ? list.map(card).join('') : '<div class="empty-slot">None yet</div>';
 
     const stations = [
-      { status:'road',  icon:'🗺️', name:'Quest Acquired',  desc:'The word is new — still learning its shape',          list: road },
-      { status:'quest', icon:'⚔️', name:'On the Quest',     desc:'In the thick of it — pressing toward mastery',        list: quest },
-      { status:'inv',   icon:'🏆', name:'In the Inventory', desc:'Word is yours — spoken before the Fellowship',        list: inv },
-      { status:'maint', icon:'🔧', name:'Maintenance',       desc:"Keeping the blade sharp — don't let it go dull",     list: maint },
+      { icon:'🗺️', name:'Quest Acquired',  desc:'The word is new — still learning its shape',      list: road },
+      { icon:'⚔️', name:'On the Quest',     desc:'In the thick of it — pressing toward mastery',    list: quest },
+      { icon:'🏆', name:'In the Inventory', desc:'Word is yours — spoken before the Fellowship',    list: inv },
+      { icon:'🔧', name:'Maintenance',       desc:"Keeping the blade sharp — don't let it go dull", list: maint },
     ];
 
     document.getElementById('journey-board').innerHTML = stations.map((s, i) =>
@@ -627,8 +704,8 @@ function renderBoard() {
   }, { onlyOnce: true });
 }
 
-renderPsalmList();
-loadMyVerse();
+// ── INIT ──────────────────────────────────────────────
+loadMyVerses();
 </script>
 </body>
 </html>
