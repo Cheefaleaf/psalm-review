@@ -400,6 +400,7 @@ const db = getDatabase(app);
 const CAT_ORDER = ["FOCUS","ROOM AND SPACE","MUSIC","SUMMER","PROGRAM","MISSIONS AND OUTREACH"];
 
 const DEFAULT_INITIATIVES = [
+  // ── PROGRAM ───────────────────────────────────────────────────────────────
   {id:"prayer-wall",cat:"PROGRAM",title:"Prayer Wall",status:"building",vision:"A living wall where students write real requests and pray over each other. The Psalms are the original prayer wall. Laments and praises, made physical and visible in the room.",
    steps:[
     {id:"pw-1",label:"Step 1 · Design",text:"Decide the format",detail:"Whiteboard with dry-erase columns? Cork board with index cards and tacks? Pick the format and plan it out — columns: Requests / Ongoing / Answered-Praise.",groupme:"Post in GroupMe: \"Prayer wall is going [format] — here's what it'll look like\""},
@@ -407,18 +408,30 @@ const DEFAULT_INITIATIVES = [
     {id:"pw-3",label:"Step 3 · Install",text:"Set it up and transfer the existing list",detail:"Mount or place the board. Transfer existing prayer requests. Write the Psalm 130:1 header quote. First request goes up — model the wall for the group on Wednesday.",groupme:"Photo in GroupMe: \"The prayer wall is live. Come add yours Wednesday.\""},
     {id:"pw-4",label:"Step 4 · Steward",text:"Pick a monthly prayer wall steward",detail:"One student per month whose job is to check in on old requests and move cards to Answered. Builds follow-through and makes the wall feel alive.",groupme:"Announce the first steward in GroupMe. Make it a real named role."}
   ]},
+ 
+  {id:"communication-group",cat:"PROGRAM",title:"GroupMe Communication",status:"active",vision:"One channel, consistent cadence. Stay disciplined about using it well.",
+   steps:[
+    {id:"cg-0",label:"Step 1 · Roster",text:"Make sure everyone is in who wants to be",detail:"Cross-reference roster against GroupMe. Personally invite students not yet in.",groupme:"\"Making sure everyone is in the GroupMe — if you know someone who should be, add them\""},
+    {id:"cg-1",label:"Step 2 · Recaps",text:"Post a Wednesday night recap every week",detail:"Same night or Thursday morning. Even three sentences is enough. Consistency is the game.",groupme:"This IS the GroupMe initiative."},
+    {id:"cg-2",label:"Step 3 · Reminders",text:"Drop event reminders 3-4 days out",detail:"Saturday or Sunday reminders for the week ahead.",groupme:"\"Reminder: [event] is [day] at [time]\""}
+  ]},
+ 
+  // ── ROOM AND SPACE ────────────────────────────────────────────────────────
   {id:"room-makeover",cat:"ROOM AND SPACE",title:"Room Makeover",status:"building",vision:"A room that says 'you belong here' the second you walk in. Lounge side for hangout energy, activity side for music and gaming.",
    steps:[
-    {id:"rm-1",label:"Step 1 · Couch",text:"Source another couch",detail:"FB Marketplace is the move. Look for a sectional or second piece that fills out the lounge side. James approves before purchase.",groupme:"Screenshot your best finds in GroupMe for group input."},
+    {id:"rm-0",label:"Step 1 · Lighting",text:"Fix the lighting",detail:"The fluorescent overheads kill the atmosphere during worship and hangout. Goal: cut the overheads entirely and replace with warm floor lighting. One lamp already in the room — source 2-3 more floor or corner lamps. TV provides ambient light during music. Amazon or Target, nothing expensive. Assign someone to own lamp sourcing and placement before a Wednesday.",groupme:"\"Lighting upgrade is happening — anyone want to help pick out lamps?\""},
     {id:"rm-2",label:"Step 2 · Sign",text:"Hang the CPC Youth sign",detail:"Sign is already purchased. Pick the wall, get the hardware, get it level. Visible the second you walk in.",groupme:"Post the finished install photo in GroupMe."},
-    {id:"rm-3",label:"Step 3 · Paint",text:"PAINT — plan and execute",detail:"Three sub-steps: pick a day, recruit a volunteer to help, get Recer to help lead the project. Paint already approved by Session.",groupme:"Drop the before + after in GroupMe when it is done."}
+    {id:"rm-3",label:"Step 3 · Paint",text:"PAINT — plan and execute",detail:"Three sub-steps: pick a day, recruit a volunteer to help, get Recer to help lead the project. Paint already approved by Session.",groupme:"Drop the before + after in GroupMe when it is done."},
+    {id:"rm-1",label:"Step 4 · Couch",text:"Source another couch",detail:"FB Marketplace is the move. Look for a sectional or second piece that fills out the lounge side. James approves before purchase.",groupme:"Screenshot your best finds in GroupMe for group input."}
   ]},
+ 
   {id:"game-shelf",cat:"ROOM AND SPACE",title:"Game Shelf",status:"idea",vision:"A visible, accessible shelf of games ready before the lesson starts. Community happens before and after — give students something to do the second they walk in.",
    steps:[
     {id:"gs-1",label:"Step 1 · Inventory",text:"Current inventory — keep vs. remove?",detail:"Walk through what games the church currently has. Be ruthless — keep only what people will actually play. Donate or ditch the rest.",groupme:"\"Clearing out the old games this week — if you have a game to donate bring it Wednesday\""},
     {id:"gs-2",label:"Step 2 · Source",text:"Source games we actually play",detail:"Buy games the group will genuinely reach for: Uno, Exploding Kittens, Codenames, Jenga, Wavelength, Coup. Ask students what they want. James can cover cost.",groupme:"\"New games are in — come early Wednesday and try them out\""},
     {id:"gs-3",label:"Step 3 · Maintain",text:"Update shelf — add new, remove old",detail:"Ongoing: rotate in new games as interest shifts, pull out anything collecting dust. Assign a student to be shelf steward.",groupme:"\"Shelf update — [game] is in, [game] is out. Come try it.\""}
   ]},
+ 
   {id:"photo-wall",cat:"ROOM AND SPACE",title:"Student Photo Wall",status:"idea",vision:"A growing gallery near the entrance. Visual proof this group has a real history and you are part of it.",
    steps:[
     {id:"phw-1",label:"Step 1 · Design",text:"Design the photo wall",detail:"Cork board? String lights with clips? Printed grid? Pick the format and the wall location.",groupme:"\"Photo wall is coming — vote on the style 📸 [options]\""},
@@ -426,48 +439,60 @@ const DEFAULT_INITIATIVES = [
     {id:"phw-3",label:"Step 3 · Source",text:"Source the first batch of photos",detail:"Gather the best shots from recent events — Wednesdays, retreats, Ranchopalooza.",groupme:"\"Drop your best group photos in GroupMe — building the wall 📸\""},
     {id:"phw-4",label:"Step 4 · Print",text:"Print and hang the first batch",detail:"Walgreens same-day prints. Pick 10-15 best. Get something on the wall.",groupme:"\"First photos are up — come see if you made it\""}
   ]},
-  {id:"music-tech",cat:"MUSIC",title:"Music and Worship Tech",status:"building",vision:"A real worship setup in the room — not borrowed gear, not makeshift. Sound board, proper speaker placement, drums.",
+ 
+  // ── MUSIC ─────────────────────────────────────────────────────────────────
+  {id:"sound-crew",cat:"MUSIC",title:"Sound Crew",status:"building",vision:"A real worship setup in the room — not borrowed gear, not makeshift. Sound board, proper speaker placement, drums. And students who know how to run it.",
    steps:[
-    {id:"mt-1",label:"Step 1 · Sound Board",text:"Install the sound board",detail:"Get the sound board mounted and wired. This is the hub — everything else connects to it.",groupme:"\"Sound board is in — worship setup just leveled up\""},
-    {id:"mt-2",label:"Step 2 · Speaker Stand",text:"Get a proper speaker stand (Amazon)",detail:"Speaker on the floor kills the sound. A single adjustable stand fixes it. Order from Amazon. James purchases.",groupme:"\"Speaker stand is in — no more floor speaker 🎶\""},
-    {id:"mt-3",label:"Step 3 · Drums",text:"Source an e-drum kit",detail:"Used is fine — Roland TD series or similar. James handles purchase.",groupme:"Photo when it lands: \"Drums are in the building 🥁\""}
+    // All steps are parallel — no locked ordering
+    {id:"mt-1",label:"Sound Board",text:"Install the sound board",detail:"Get the sound board mounted and wired. This is the hub — everything else connects to it.",groupme:"\"Sound board is in — worship setup just leveled up\""},
+    {id:"mt-2",label:"Speaker Stand",text:"Get a proper speaker stand",detail:"Speaker on the floor kills the sound. A single adjustable stand fixes it. Order from Amazon. James purchases.",groupme:"\"Speaker stand is in — no more floor speaker 🎶\""},
+    {id:"mt-3",label:"Drums",text:"Source an e-drum kit",detail:"Used is fine — Roland TD series or similar. James handles purchase.",groupme:"Photo when it lands: \"Drums are in the building 🥁\""},
+    {id:"mt-4",label:"Sound Crew",text:"Identify and recruit students for the Sound Crew",detail:"Who wants to learn to run sound? This is a real role — running the board, managing levels during worship. Recruit 2-3 students who are interested and start training them.",groupme:"\"Looking for students to run sound — talk to James if you're interested\""}
   ]},
-  {id:"music-team",cat:"MUSIC",title:"Worship Team",status:"building",vision:"Students leading worship — not James doing it alone. Identify who is interested, build a loose rotation.",
+ 
+  {id:"music-team",cat:"MUSIC",title:"Music Team",status:"building",vision:"Students leading worship — not James doing it alone. Build a rotating team starting with cajon, then identify older youth for instruments and vocals.",
    steps:[
-    {id:"mteam-1",label:"Step 1 · Identify",text:"Identify the team — Davi, Ethan, Talia, others?",detail:"Have individual conversations first, not a group ask. Guitar, keys, vocals, drums.",groupme:"\"Worship team forming — if you play anything talk to James\""},
-    {id:"mteam-2",label:"Step 2 · Schedule",text:"Set a loose practice schedule",detail:"Start simple — one practice before a Wednesday. Consistency matters more than frequency.",groupme:"\"First worship team practice is [date] at 6pm\""},
-    {id:"mteam-3",label:"Step 3 · Practice",text:"Coordinate practice at 6pm before Wednesdays",detail:"Practice at 6pm, meeting starts at 6:15. Fifteen minutes to run through 2-3 songs.",groupme:"\"Worship team — practice at 6 this Wednesday.\""}
+    {id:"mteam-0",label:"Step 1 · Cajon",text:"Get kids rotating on cajon",detail:"Lowest barrier instrument to start. Build a simple rotation so multiple students are learning and taking turns. Anyone can try it — no experience needed.",groupme:"\"Want to play drums for worship? We're starting a cajon rotation — talk to James\""},
+    {id:"mteam-1",label:"Step 2 · Identify",text:"Identify older youth for instruments and vocals",detail:"Have individual conversations — not a group ask. Guitar, keys, vocals. Who is ready or close to ready? Davi, Ethan, Talia, others?",groupme:"\"Worship team forming — if you play anything talk to James\""},
+    {id:"mteam-2",label:"Step 3 · Schedule",text:"Set a loose practice schedule",detail:"Start simple — one practice before a Wednesday. Consistency matters more than frequency.",groupme:"\"First worship team practice is [date] at 6pm\""},
+    {id:"mteam-3",label:"Step 4 · Practice",text:"Coordinate practice at 6pm before Wednesdays",detail:"Practice at 6pm, meeting starts at 6:15. Fifteen minutes to run through 2-3 songs.",groupme:"\"Worship team — practice at 6 this Wednesday.\""}
   ]},
-  {id:"video-game-tournament",cat:"SUMMER",title:"Video Game Tournament",status:"planning",vision:"Bracket-style Mario Kart or Smash. Low barrier, high energy — the kind of night a student brings a friend to.",
+ 
+  // ── SUMMER ────────────────────────────────────────────────────────────────
+  {id:"video-game-tournament",cat:"SUMMER",title:"Video Game Tournament",status:"planning",vision:"Bracket-style tournament night. Low barrier, high energy — the kind of night a student brings a friend to. Multiple screens, main tourney plus side action.",
    steps:[
-    {id:"vg-1",label:"Step 1 · Format",text:"Lock the format and date",detail:"Confirm the bracket format and games. Single elimination. Print or draw on a whiteboard.",groupme:"\"Tournament is [date] — single elimination. Bracket drops Wednesday.\""},
-    {id:"vg-2",label:"Step 2 · Prizes",text:"Source prizes",detail:"Gift card, Amazon trophy, bragging rights. Something to make winning feel real.",groupme:"\"Prizes are locked — come find out Wednesday\""},
-    {id:"vg-3",label:"Step 3 · Setup",text:"Confirm both TVs are ready",detail:"Two screens means two games at once. Confirm TVs, controllers, Switch situation.",groupme:"\"Setup confirmed — two TVs for the tournament\""},
-    {id:"vg-4",label:"Step 4 · Invites",text:"Build the invite list",detail:"Every student brings at least one person. Forward-able invite two weeks out.",groupme:"Drop a screenshot-able invite in GroupMe"}
+    {id:"vg-1",label:"Step 1 · Date",text:"Lock a date — top priority",detail:"Nothing else moves without a date. Get it on the calendar first.",groupme:"\"Tournament is [date] — put it on your calendar.\""},
+    {id:"vg-2",label:"Step 2 · Games",text:"Choose games and rough roster",detail:"What's the main tournament game? What runs on TV 2 as the alt? Leave room for students to bring their own system and screen — targeting 3-5 screens total including the 2 we have.",groupme:"\"Main game is [game] — TV 2 is [game]. Bring your setup if you want a station.\""},
+    {id:"vg-3",label:"Step 3 · Logistics",text:"Confirm electronics and setup",detail:"2 TVs confirmed. James bringing a 3rd. Open invite for students to bring a screen and system. Up to 4-5 stations. Confirm controllers and Switch situation.",groupme:"\"Setup confirmed — [X] screens for the tournament. Bring your setup.\""},
+    {id:"vg-4",label:"Step 4 · Format",text:"Decide the bracket format",detail:"Main tourney on primary screen — single elimination bracket. TV 2 and other screens are alt/casual. Print or draw bracket on a whiteboard.",groupme:"\"Bracket format is locked — single elim. Draw drops Wednesday.\""},
+    {id:"vg-5",label:"Step 5 · Prizes",text:"Source prizes",detail:"Gift card, Amazon trophy, bragging rights. Something to make winning feel real.",groupme:"\"Prizes are locked — come find out Wednesday\""},
+    {id:"vg-6",label:"Step 6 · Invites",text:"Build the invite list",detail:"Every student brings at least one person. Drop a screenshot-able invite in GroupMe two weeks out.",groupme:"Drop a shareable invite graphic in GroupMe"}
   ]},
+ 
+  {id:"music-jam",cat:"SUMMER",title:"Music Jam — July",status:"planning",vision:"A casual music jam night in July. Low pressure, high fun — students playing together, Samuel Moore leading the charge.",
+   steps:[
+    {id:"mj-1",label:"Step 1 · Kickoff",text:"Lock a date and get Samuel Moore involved",detail:"Samuel Moore is the key stakeholder on this one. Get him looped in early and pick a July date together.",groupme:"\"Music jam is happening in July — more details soon 🎸\""}
+  ]},
+ 
   {id:"summer-lock-in",cat:"SUMMER",title:"Summer Lock-In",status:"planning",vision:"An overnight event that builds memory in a way a 90-minute Wednesday cannot.",
    steps:[
-    {id:"li-1",label:"Step 1 · Date",text:"Set a July date and hold it",detail:"Pick a date in July. Needs Session awareness. Lock it before planning anything else.",groupme:"\"Lock-in is [date] — put it on your calendar.\""},
+    {id:"li-1",label:"Step 1 · Date",text:"Set an August date and hold it",detail:"Pick a date in August. Needs Session awareness. Lock it before planning anything else.",groupme:"\"Lock-in is [date] — put it on your calendar.\""},
     {id:"li-2",label:"Step 2 · Planning",text:"Start planning — team, supervision, buy-in",detail:"Identify the youth team, lock adult supervision, get parent buy-in early.",groupme:"\"Lock-in planning is underway — more details soon.\""}
   ]},
+ 
   {id:"summer-party",cat:"SUMMER",title:"Summer Party at Shaver",status:"planning",vision:"A casual summer hangout at the Shavers' place — pool, food, low-key community.",
    steps:[
-    {id:"sp-1",label:"Step 1 · Point Person",text:"Need a point person for this one",detail:"Coordinate with the Shavers on a date. Who is taking this?",groupme:"\"Summer party at Shaver is happening — [name] is the point person.\""}
+    {id:"sp-1",label:"Step 1 · Point Person",text:"Ethan takes point on this one",detail:"Coordinate with the Shavers on a date. Ethan is the point person — get him looped in and moving.",groupme:"\"Summer party at Shaver is happening — Ethan is the point person.\""}
   ]},
-  {id:"communication-group",cat:"PROGRAM",title:"GroupMe Communication",status:"active",vision:"One channel, consistent cadence. Stay disciplined about using it well.",
+ 
+  // ── MISSIONS AND OUTREACH ─────────────────────────────────────────────────
+  {id:"reynosa",cat:"MISSIONS AND OUTREACH",title:"Reynosa Mission Trip",status:"active",vision:"Connected through Ethan. Goal is group involvement, active support, and prayer for the team heading to Reynosa in mid-June.",
    steps:[
-    {id:"cg-0",label:"Step 1 · Roster",text:"Make sure everyone is in who wants to be",detail:"Cross-reference roster against GroupMe. Personally invite students not yet in.",groupme:"\"Making sure everyone is in the GroupMe — if you know someone who should be, add them\""},
-    {id:"cg-1",label:"Step 2 · Recaps",text:"Post a Wednesday night recap every week",detail:"Same night or Thursday morning. Even three sentences is enough. Consistency is the game.",groupme:"This IS the GroupMe initiative."},
-    {id:"cg-2",label:"Step 3 · Reminders",text:"Drop event reminders 3-4 days out",detail:"Saturday or Sunday reminders for the week ahead.",groupme:"\"Reminder: [event] is [day] at [time]\""}
+    {id:"ry-1",label:"Step 1 · Awareness",text:"Get it on the group's radar",detail:"Share the trip with the group — who is going, what it is, approximate dates (mid-June). Make it real, not an announcement. This is one of our own.",groupme:"\"One of our own is heading to Reynosa in June — hear about it Wednesday 🙏\""},
+    {id:"ry-2",label:"Step 2 · Prayer",text:"Pray specifically by name",detail:"Bring the Reynosa team before the group by name on a Wednesday. Ongoing, not a one-time thing. Put it on the prayer wall.",groupme:"\"We are praying for the Reynosa team this week — [names] 🙏\""},
+    {id:"ry-3",label:"Step 3 · Support",text:"Find practical ways to support prep",detail:"Are there ways the youth group can help the team get ready? Supplies, encouragement, fundraising? Ask Ethan what they actually need.",groupme:"\"Here's how we can help the Reynosa team — [details]\""}
   ]},
-  {id:"memory-verse",cat:"PROGRAM",title:"Memory Verse Program",status:"idea",vision:"Open every Wednesday by reciting the verse together. Ten verses memorized this year.",
-   steps:[
-    {id:"mv-1",label:"Step 1 · Vision Check",text:"Flesh out the vision — does anyone care?",detail:"Ask: do the students actually want this? Bring it up on a Wednesday.",groupme:"\"Quick question Wednesday — would you actually memorize a verse a month?\""}
-  ]},
-  {id:"reynosa",cat:"MISSIONS AND OUTREACH",title:"Reynosa Mission Trip",status:"active",vision:"Connected through Ethan. Mission starts in prayer.",
-   steps:[
-    {id:"ry-1",label:"Step 1 · Prayer",text:"Bring Reynosa before the group on a Wednesday",detail:"Make it real. Share what the trip is, who is going. Pray specifically by name.",groupme:"\"We are praying for the Reynosa team this week 🙏\""}
-  ]},
+ 
   {id:"car-wash",cat:"MISSIONS AND OUTREACH",title:"Car Wash Outreach",status:"idea",vision:"Get the group out of the building doing something visible and simple.",
    steps:[
     {id:"cw-1",label:"Step 1 · Concept",text:"Decide: free gift or donation-based",detail:"Free as a gift to the community sends a different message. Pick one and own it.",groupme:"\"Thinking about a car wash — free to the neighborhood. Who is in?\""},
