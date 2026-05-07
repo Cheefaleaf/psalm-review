@@ -501,7 +501,7 @@ function hashPick(arr, key) {
 }
 
 // ── STATE ─────────────────────────────────────────────
-let allVerses=[],myIds=JSON.parse(localStorage.getItem(MY_IDS_KEY)||'[]'),myHero=localStorage.getItem(HERO_KEY)||'';
+let allVerses=[],myIds=JSON.parse(localStorage.getItem(MY_IDS_KEY)||'[]'),myHero=localStorage.getItem(HERO_KEY)||'';heroRoster = new Set()
 let heroFilter='all',selectedQid=null,leaderUnlocked=false,editingId=null,pendingEditId=null;
 let selectedPsalm=121,selectedVerses=new Map();
 let trainVerses=[],trainMode='read',trainProgress={};
@@ -618,9 +618,14 @@ function loadAll(){
     // Check maintenance spawns
     checkMaintenanceSpawns();
   });
+  onValue(ref(db,'sword/heroes'), snap => {
+    const heroes = snap.val() || {};
+    Object.values(heroes).forEach(h => { if(h.name) heroRoster.add(h.name); });
+    updateFilterBar();
+  });
 }
 function updateFilterBar(){
-  const heroes=[...new Set(allVerses.map(v=>v.name))].sort();
+  const heroes=[...new Set([...allVerses.map(v=>v.name),...heroRoster])].filter(Boolean).sort();
   document.getElementById('filter-bar').innerHTML=`<button class="filter-pill${heroFilter==='all'?' active':''}" onclick="setFilter('all',this)">All</button>`+heroes.map(h=>`<button class="filter-pill${heroFilter===h?' active':''}" onclick="setFilter('${h}',this)">${h}</button>`).join('');
   const sel=document.getElementById('name-select');
   if(sel){sel.innerHTML=`<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>`+heroes.map(h=>`<option value="${h}">${h}</option>`).join('');if(myHero)sel.value=myHero;}
