@@ -501,7 +501,7 @@ function hashPick(arr, key) {
 }
 
 // ── STATE ─────────────────────────────────────────────
-let allVerses=[],myIds=JSON.parse(localStorage.getItem(MY_IDS_KEY)||'[]'),myHero=localStorage.getItem(HERO_KEY)||'';heroRoster = new Set()
+let allVerses=[],myIds=JSON.parse(localStorage.getItem(MY_IDS_KEY)||'[]'),myHero=localStorage.getItem(HERO_KEY)||'',heroRoster=new Set();
 let heroFilter='all',selectedQid=null,leaderUnlocked=false,editingId=null,pendingEditId=null;
 let selectedPsalm=121,selectedVerses=new Map();
 let trainVerses=[],trainMode='read',trainProgress={};
