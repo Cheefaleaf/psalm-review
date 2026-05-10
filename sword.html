@@ -25,6 +25,8 @@
     .hdr-title{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,4vw,38px);color:var(--gold2);letter-spacing:1px;line-height:1.15;text-shadow:0 0 60px rgba(201,168,76,0.18);}
     .hdr-sub{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--golddim);margin-top:8px;}
     .hdr-verse{margin-top:10px;font-style:italic;color:var(--textdim);font-size:13px;}
+    .hdr-tv-btn{position:absolute;top:18px;right:20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);background:transparent;border:1px solid var(--border);padding:6px 12px;border-radius:2px;cursor:pointer;transition:all 0.2s;}
+    .hdr-tv-btn:hover{color:var(--gold);border-color:var(--golddim);}
     nav{display:flex;justify-content:center;padding:26px 20px 0;}
     .tab-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:9px 26px;background:transparent;border:1px solid var(--border);color:var(--textdim);cursor:pointer;transition:all 0.2s;margin:0 -0.5px;}
     .tab-btn:first-child{border-radius:3px 0 0 3px;}.tab-btn:last-child{border-radius:0 3px 3px 0;}
@@ -115,7 +117,7 @@
     .durability-bar-fill{height:100%;border-radius:99px;transition:width 0.4s,background 0.4s;}
     .durability-warn{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red2);margin-top:5px;display:flex;align-items:center;gap:5px;}
 
-    /* INVENTORY — hero sections */
+    /* INVENTORY */
     .inv-hero-section{margin-bottom:36px;}
     .inv-hero-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
     .inv-hero-avatar{width:36px;height:36px;border-radius:50%;background:var(--panel2);border:2px solid var(--golddim);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
@@ -137,7 +139,7 @@
     .inv-maint-badge{display:inline-flex;align-items:center;gap:4px;font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--c-maint);background:rgba(154,122,191,0.1);border:1px solid var(--c-maint);border-radius:99px;padding:2px 8px;margin-bottom:8px;}
     .inv-empty{text-align:center;padding:60px 20px;font-style:italic;color:var(--textdim);font-size:15px;}
 
-    /* JOURNEY BOARD — 4 columns: road, quest, inv, maint */
+    /* JOURNEY BOARD */
     .journey{display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr 20px 1fr;margin-bottom:36px;}
     @media(max-width:680px){.journey{grid-template-columns:1fr;}.j-arrow{display:none;}.j-station{border-radius:4px !important;margin-bottom:8px;border:1px solid var(--border) !important;}}
     .j-station{border:1px solid var(--border);padding:16px 14px;display:flex;flex-direction:column;min-height:180px;}
@@ -258,15 +260,595 @@
     .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--panel2);border:1px solid var(--border2);border-radius:3px;padding:9px 20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);transition:transform 0.28s;z-index:300;}
     .toast.show{transform:translateX(-50%) translateY(0);}
     .loading{text-align:center;padding:40px;font-style:italic;color:var(--textdim);}
+
+    /* ═══════════════════════════════════════════════════
+       TV MODE — full screen quest kiosk
+    ═══════════════════════════════════════════════════ */
+    .tv-mode-wrap{
+      display:none;position:fixed;inset:0;z-index:500;
+      background:#0a0804;
+      font-family:'EB Garamond',Georgia,serif;
+      overflow:hidden;
+    }
+    .tv-mode-wrap::before{
+      content:'';position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 100%, rgba(74,124,63,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 90% 100%, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events:none;z-index:0;
+    }
+    .tv-mode-wrap::after{
+      content:'';position:absolute;inset:0;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events:none;z-index:0;opacity:0.6;
+    }
+    body.tv-active{overflow:hidden;}
+    .tv-mode-wrap.active{display:flex;flex-direction:column;}
+
+    /* TV header bar */
+    .tv-hdr{
+      position:relative;z-index:2;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 24px;
+      border-bottom:1px solid rgba(90,62,16,0.5);
+      background:rgba(5,4,2,0.7);
+      flex-shrink:0;
+    }
+    .tv-hdr-logo{
+      font-family:'Cinzel Decorative',serif;
+      font-size:15px;color:var(--gold);letter-spacing:1px;
+    }
+    .tv-hdr-logo span{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;
+      text-transform:uppercase;color:var(--golddim);
+      display:block;margin-top:1px;
+    }
+    .tv-hdr-tabs{display:flex;gap:6px;}
+    .tv-tab{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+      padding:5px 14px;border:1px solid rgba(90,62,16,0.6);border-radius:2px;
+      color:var(--golddim);background:transparent;cursor:pointer;transition:all 0.2s;
+    }
+    .tv-tab:hover{border-color:var(--golddim);color:var(--gold);}
+    .tv-tab.tv-tab-active{border-color:var(--gold);color:var(--gold2);background:rgba(201,168,76,0.08);}
+    .tv-hdr-exit{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+      padding:5px 12px;border:1px solid rgba(90,62,16,0.5);border-radius:2px;
+      color:rgba(110,86,40,0.7);background:transparent;cursor:pointer;transition:all 0.2s;
+    }
+    .tv-hdr-exit:hover{border-color:var(--red);color:var(--red2);}
+
+    /* TV content area */
+    .tv-content{position:relative;z-index:2;flex:1;overflow:hidden;display:flex;flex-direction:column;}
+    .tv-view{display:none;flex:1;flex-direction:column;overflow:hidden;}
+    .tv-view.tv-view-active{display:flex;}
+
+    /* ── BOARD VIEW ── */
+    .tv-board-inner{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:14px 20px 0;}
+    .tv-board-masthead{text-align:center;margin-bottom:12px;flex-shrink:0;}
+    .tv-board-title{
+      font-family:'Cinzel Decorative',serif;
+      font-size:clamp(18px,2.5vw,32px);
+      color:var(--gold2);
+      text-shadow:0 0 60px rgba(201,168,76,0.25);
+      letter-spacing:1px;
+    }
+    .tv-board-ornament{
+      font-family:'Cinzel',serif;font-size:10px;letter-spacing:6px;
+      color:rgba(90,62,16,0.7);margin:4px 0 2px;
+    }
+    .tv-board-sub{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;
+      text-transform:uppercase;color:var(--golddim);
+    }
+    .tv-columns{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+      flex:1;overflow:hidden;margin-bottom:10px;
+    }
+    .tv-col{
+      background:rgba(255,255,255,0.015);
+      border:1px solid rgba(42,31,10,0.8);
+      border-radius:4px;
+      display:flex;flex-direction:column;overflow:hidden;
+    }
+    .tv-col-hdr{
+      padding:8px 12px;border-bottom:1px solid rgba(42,31,10,0.8);
+      display:flex;align-items:center;gap:7px;flex-shrink:0;
+      background:rgba(0,0,0,0.2);
+    }
+    .tv-col-icon{font-size:14px;}
+    .tv-col-name{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+    }
+    .tv-col-name.road{color:var(--c-road);}
+    .tv-col-name.quest{color:var(--c-quest);}
+    .tv-col-name.inv{color:var(--c-inv);}
+    .tv-col-name.maint{color:var(--c-maint);}
+    .tv-col-cards{flex:1;overflow-y:auto;padding:8px;}
+    .tv-qcard{
+      background:rgba(10,8,4,0.7);
+      border:1px solid rgba(42,31,10,0.9);
+      border-radius:3px;padding:9px 11px;margin-bottom:7px;
+      cursor:pointer;transition:border-color 0.2s;
+    }
+    .tv-qcard:hover{border-color:rgba(90,62,16,0.8);}
+    .tv-qcard-hero{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--gold);
+      display:flex;align-items:center;gap:5px;margin-bottom:2px;
+    }
+    .tv-qcard-quest{font-size:11px;color:var(--text);font-style:italic;margin-bottom:2px;}
+    .tv-qcard-ref{font-size:10px;color:var(--golddim);font-style:italic;margin-bottom:5px;}
+    .tv-qcard-chips{display:flex;flex-wrap:wrap;gap:3px;}
+    .tv-chip{
+      font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;text-transform:uppercase;
+      padding:2px 7px;border-radius:99px;border:1px solid rgba(42,31,10,0.9);
+      color:var(--golddim);
+    }
+    .tv-chip.done{color:#4a7c3f;border-color:rgba(74,124,63,0.4);}
+    .tv-col-empty{
+      font-size:11px;color:var(--textdim);font-style:italic;text-align:center;
+      padding:14px 8px;border:1px dashed rgba(42,31,10,0.7);border-radius:3px;margin:4px;
+    }
+    /* Leaderboard strip */
+    .tv-lb{
+      border-top:1px solid rgba(42,31,10,0.8);
+      padding:10px 20px;flex-shrink:0;
+      background:rgba(0,0,0,0.3);
+      display:flex;align-items:center;gap:20px;
+    }
+    .tv-lb-label{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+      color:var(--gold);flex-shrink:0;
+    }
+    .tv-lb-heroes{display:flex;gap:16px;flex:1;align-items:center;flex-wrap:wrap;}
+    .tv-lb-hero{display:flex;align-items:center;gap:7px;}
+    .tv-lb-rank{font-family:'Cinzel',serif;font-size:10px;min-width:14px;}
+    .tv-lb-rank.gold{color:var(--gold2);}
+    .tv-lb-rank.silver{color:#b0b0b0;}
+    .tv-lb-rank.bronze{color:var(--c-road);}
+    .tv-lb-rank.other{color:var(--golddim);}
+    .tv-lb-name{font-family:'Cinzel',serif;font-size:10px;color:var(--parch-text);}
+    .tv-lb-bar-wrap{width:60px;height:3px;background:rgba(42,31,10,0.9);border-radius:99px;overflow:hidden;}
+    .tv-lb-bar{height:100%;border-radius:99px;}
+    .tv-lb-count{font-family:'Cinzel',serif;font-size:9px;color:var(--golddim);}
+
+    /* ── SPOTLIGHT VIEW ── */
+    .tv-spot-inner{
+      flex:1;display:flex;flex-direction:column;
+      padding:16px 28px 0;overflow:hidden;
+      max-width:900px;margin:0 auto;width:100%;
+    }
+    .tv-spot-meta{text-align:center;margin-bottom:10px;flex-shrink:0;}
+    .tv-spot-ref{
+      font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;
+      text-transform:uppercase;color:var(--golddim);margin-bottom:4px;
+    }
+    .tv-spot-qname{
+      font-family:'Cinzel Decorative',serif;
+      font-size:clamp(14px,2vw,22px);
+      color:var(--gold);margin-bottom:5px;
+    }
+    .tv-spot-status{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+    }
+    .tv-sdot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0;}
+    .tv-sdot-road{background:var(--c-road);}
+    .tv-sdot-quest{background:var(--c-quest);}
+    .tv-sdot-inv{background:var(--c-inv);}
+    .tv-sdot-maint{background:var(--c-maint);}
+    .tv-spot-hero-lbl{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--golddim);
+    }
+
+    /* verse box */
+    .tv-verse-box{
+      background:rgba(10,8,4,0.8);
+      border:1px solid rgba(90,62,16,0.6);
+      border-radius:4px;
+      padding:20px 28px;
+      margin-bottom:10px;
+      flex:1;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+      overflow:hidden;
+      flex-shrink:0;
+      min-height:120px;max-height:260px;
+      transition:border-color 0.3s;
+    }
+    .tv-verse-box.hide-mode{border-color:rgba(201,168,76,0.5);}
+    .tv-verse-text{
+      font-size:clamp(17px,2.2vw,28px);
+      font-style:italic;line-height:1.75;
+      color:var(--textbright);
+      text-align:center;
+      transition:opacity 0.3s;
+    }
+    /* Big ! panel */
+    .tv-hide-panel{
+      display:none;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;gap:6px;
+      width:100%;
+    }
+    .tv-hide-exclaim{
+      font-family:'Cinzel Decorative',serif;
+      font-size:clamp(60px,10vw,120px);
+      color:var(--gold2);
+      line-height:1;
+      text-shadow:
+        0 0 40px rgba(232,201,122,0.5),
+        0 0 80px rgba(201,168,76,0.25);
+      animation:tv-pulse 2s ease-in-out infinite alternate;
+    }
+    @keyframes tv-pulse{
+      from{text-shadow:0 0 40px rgba(232,201,122,0.4),0 0 80px rgba(201,168,76,0.2);}
+      to{text-shadow:0 0 60px rgba(232,201,122,0.7),0 0 120px rgba(201,168,76,0.4);}
+    }
+    .tv-hide-label{
+      font-family:'Cinzel',serif;font-size:12px;letter-spacing:4px;
+      text-transform:uppercase;color:var(--gold2);margin-top:4px;
+    }
+    .tv-hide-sublabel{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--golddim);
+    }
+    .tv-hide-tap{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;
+      text-transform:uppercase;color:rgba(90,62,16,0.6);
+      margin-top:8px;cursor:pointer;transition:color 0.2s;
+      background:none;border:none;
+    }
+    .tv-hide-tap:hover{color:var(--golddim);}
+
+    /* turn-in ready strip */
+    .tv-turnin-strip{
+      display:none;
+      align-items:center;gap:12px;
+      background:rgba(201,168,76,0.06);
+      border:1px solid rgba(201,168,76,0.25);
+      border-radius:3px;
+      padding:8px 16px;
+      margin-bottom:10px;
+      flex-shrink:0;
+    }
+    .tv-turnin-strip.visible{display:flex;}
+    .tv-ti-exclaim{
+      font-family:'Cinzel Decorative',serif;
+      font-size:22px;color:var(--gold2);
+      text-shadow:0 0 20px rgba(232,201,122,0.5);
+      flex-shrink:0;
+    }
+    .tv-ti-text{
+      font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--gold);
+    }
+    .tv-ti-sub{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;
+      text-transform:uppercase;color:var(--golddim);margin-top:2px;
+    }
+    .tv-ti-btn{
+      margin-left:auto;
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+      background:rgba(201,168,76,0.15);border:1px solid var(--gold);
+      color:var(--gold2);border-radius:3px;padding:8px 18px;
+      cursor:pointer;transition:all 0.2s;white-space:nowrap;
+    }
+    .tv-ti-btn:hover{background:rgba(201,168,76,0.25);}
+
+    /* action row */
+    .tv-spot-actions{
+      display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+      margin-bottom:10px;flex-shrink:0;
+    }
+    .tv-sp-btn{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+      padding:7px 16px;border-radius:2px;cursor:pointer;transition:all 0.2s;
+      border:1px solid rgba(42,31,10,0.9);color:var(--golddim);background:transparent;
+    }
+    .tv-sp-btn:hover{border-color:var(--golddim);color:var(--gold);}
+    .tv-sp-btn.sp-green{background:rgba(74,124,63,0.15);border-color:var(--green);color:var(--green2);}
+    .tv-sp-btn.sp-green:hover{background:rgba(74,124,63,0.25);}
+    .tv-sp-btn.sp-gold{background:rgba(201,168,76,0.1);border-color:var(--golddim);color:var(--gold);}
+    .tv-sp-btn.sp-gold:hover{background:rgba(201,168,76,0.18);}
+
+    /* party roster */
+    .tv-roster{
+      background:rgba(10,8,4,0.6);
+      border:1px solid rgba(42,31,10,0.8);
+      border-radius:4px;
+      padding:10px 14px;
+      margin-bottom:10px;
+      flex-shrink:0;
+    }
+    .tv-roster-label{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2.5px;
+      text-transform:uppercase;color:rgba(90,62,16,0.8);margin-bottom:8px;
+    }
+    .tv-roster-heroes{display:flex;gap:8px;flex-wrap:wrap;}
+    .tv-roster-hero{
+      display:flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(42,31,10,0.8);
+      border-radius:3px;padding:7px 14px;
+      cursor:pointer;transition:all 0.2s;
+    }
+    .tv-roster-hero:hover{border-color:rgba(90,62,16,0.8);}
+    .tv-roster-hero.rh-active{
+      border-color:var(--gold);
+      background:rgba(201,168,76,0.07);
+      box-shadow:0 0 12px rgba(201,168,76,0.1);
+    }
+    .rh-avatar{font-size:18px;}
+    .rh-name{font-family:'Cinzel',serif;font-size:10px;color:var(--golddim);}
+    .rh-name.rh-name-active{color:var(--gold2);}
+    .rh-status{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:rgba(90,62,16,0.7);}
+    .rh-status.rh-testing{color:var(--gold);}
+    .rh-status.rh-done{color:var(--green);}
+    .rh-badge{
+      font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;text-transform:uppercase;
+      padding:2px 7px;border-radius:99px;
+    }
+    .rh-badge-active{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.4);color:var(--gold2);}
+    .rh-badge-mastered{background:rgba(74,124,63,0.12);border:1px solid rgba(74,124,63,0.4);color:var(--green2);}
+
+    /* nav */
+    .tv-spot-nav{
+      display:flex;align-items:center;justify-content:center;gap:14px;
+      padding:8px 0 10px;flex-shrink:0;
+    }
+    .tv-nav-btn{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+      padding:6px 14px;border:1px solid rgba(42,31,10,0.9);border-radius:2px;
+      color:rgba(90,62,16,0.7);background:transparent;cursor:pointer;transition:all 0.2s;
+    }
+    .tv-nav-btn:hover{border-color:var(--golddim);color:var(--gold);}
+    .tv-nav-counter{font-family:'Cinzel',serif;font-size:10px;color:var(--golddim);}
+
+    /* controls legend */
+    .tv-legend{
+      position:absolute;bottom:8px;right:14px;z-index:10;
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;
+    }
+    .tv-ctrl{display:flex;align-items:center;gap:4px;}
+    .tv-key{
+      font-family:'Cinzel',serif;font-size:7px;
+      background:rgba(42,31,10,0.8);border:1px solid rgba(90,62,16,0.6);
+      border-radius:2px;padding:2px 5px;color:rgba(110,86,40,0.8);
+    }
+    .tv-kdesc{
+      font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;
+      text-transform:uppercase;color:rgba(90,62,16,0.6);
+    }
+    .tv-ksep{color:rgba(42,31,10,0.8);font-size:9px;}
+
+    /* ── TV TURN-IN POPUP OVERLAY ── */
+    .tv-turnin-overlay{
+      display:none;position:absolute;inset:0;z-index:20;
+      background:rgba(5,4,2,0.95);
+      align-items:center;justify-content:center;
+    }
+    .tv-turnin-overlay.visible{display:flex;}
+    .tv-turnin-popup{
+      background:linear-gradient(160deg,#2a1f0a 0%,#1a1208 60%,#110e06 100%);
+      border:1px solid var(--gold);
+      border-radius:6px;
+      padding:28px 32px;
+      width:90%;max-width:520px;
+      position:relative;
+    }
+    .tv-turnin-popup::before{
+      content:'';position:absolute;inset:0;border-radius:6px;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events:none;
+    }
+    .tv-popup-inner{position:relative;z-index:1;}
+    .tv-popup-npc{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--golddim);margin-bottom:5px;
+    }
+    .tv-popup-title{
+      font-family:'Cinzel Decorative',serif;font-size:22px;
+      color:var(--gold2);margin-bottom:3px;
+      text-shadow:0 0 30px rgba(232,201,122,0.3);
+    }
+    .tv-popup-sub{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--golddim);margin-bottom:14px;
+    }
+    .tv-popup-hero-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+    .tv-popup-avatar{font-size:24px;}
+    .tv-popup-hero-name{font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-text);}
+    .tv-popup-hero-sub{font-family:'Cinzel',serif;font-size:8px;color:var(--golddim);margin-top:2px;}
+    .tv-popup-npc-speech{
+      font-size:14px;font-style:italic;color:var(--parch-dim);
+      line-height:1.65;margin-bottom:14px;
+      border-left:2px solid var(--parch-border);padding-left:12px;
+    }
+    .tv-popup-divider{height:1px;background:linear-gradient(to right,var(--parch-border),transparent);margin:12px 0;}
+    .tv-popup-item-box{
+      background:rgba(10,8,4,0.7);border:1px solid rgba(90,62,16,0.7);
+      border-radius:4px;padding:14px 16px;margin-bottom:16px;
+    }
+    .tv-popup-acquiring{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;
+      text-transform:uppercase;color:rgba(90,62,16,0.8);margin-bottom:6px;
+    }
+    .tv-popup-item-name{
+      font-family:'Cinzel Decorative',serif;font-size:18px;
+      color:var(--gold2);margin-bottom:2px;
+    }
+    .tv-popup-item-type{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--c-quest);margin-bottom:8px;
+    }
+    .tv-popup-item-ref{
+      font-family:'Cinzel',serif;font-size:9px;color:var(--golddim);margin-bottom:8px;
+    }
+    .tv-popup-verse{
+      font-size:13px;font-style:italic;color:var(--parch-dim);
+      line-height:1.55;border-left:2px solid rgba(90,62,16,0.5);padding-left:10px;
+    }
+    .tv-popup-btn-row{display:flex;gap:10px;align-items:center;}
+    .tv-popup-confirm{
+      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+      background:var(--gold);color:#1a0f00;border:none;border-radius:3px;
+      padding:11px 24px;cursor:pointer;font-weight:700;transition:background 0.2s;
+    }
+    .tv-popup-confirm:hover{background:var(--gold2);}
+    .tv-popup-cancel{
+      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+      padding:10px 16px;border:1px solid rgba(42,31,10,0.9);border-radius:2px;
+      background:transparent;color:var(--golddim);cursor:pointer;transition:all 0.2s;
+    }
+    .tv-popup-cancel:hover{border-color:var(--golddim);}
   </style>
 </head>
 <body>
+
+<!-- ═══ TV MODE OVERLAY ═══ -->
+<div class="tv-mode-wrap" id="tv-mode-wrap">
+
+  <div class="tv-hdr">
+    <div class="tv-hdr-logo">⚔ Sword of the Spirit <span>Quest Kiosk · The Fellowship</span></div>
+    <div class="tv-hdr-tabs">
+      <button class="tv-tab tv-tab-active" id="tv-tab-board" onclick="tvSwitchView('board')">⊞ Board</button>
+      <button class="tv-tab" id="tv-tab-spot" onclick="tvSwitchView('spot')">◈ Spotlight</button>
+    </div>
+    <button class="tv-hdr-exit" onclick="exitTvMode()">✕ Exit [Esc]</button>
+  </div>
+
+  <div class="tv-content">
+
+    <!-- BOARD VIEW -->
+    <div class="tv-view tv-view-active" id="tv-view-board">
+      <div class="tv-board-inner">
+        <div class="tv-board-masthead">
+          <div class="tv-board-title">The Fellowship Quest Board</div>
+          <div class="tv-board-ornament">— ✦ —</div>
+          <div class="tv-board-sub">Scripture Memory · Christ Presbyterian Church</div>
+        </div>
+        <div class="tv-columns" id="tv-columns">
+          <div class="tv-col">
+            <div class="tv-col-hdr"><span class="tv-col-icon">🗺️</span><span class="tv-col-name road">Quest Acquired</span></div>
+            <div class="tv-col-cards" id="tv-col-road"><div class="loading">Loading…</div></div>
+          </div>
+          <div class="tv-col">
+            <div class="tv-col-hdr"><span class="tv-col-icon">⚔️</span><span class="tv-col-name quest">On the Quest</span></div>
+            <div class="tv-col-cards" id="tv-col-quest"><div class="loading">Loading…</div></div>
+          </div>
+          <div class="tv-col">
+            <div class="tv-col-hdr"><span class="tv-col-icon">🏆</span><span class="tv-col-name inv">Inventory</span></div>
+            <div class="tv-col-cards" id="tv-col-inv"><div class="loading">Loading…</div></div>
+          </div>
+          <div class="tv-col">
+            <div class="tv-col-hdr"><span class="tv-col-icon">🔧</span><span class="tv-col-name maint">Maintenance</span></div>
+            <div class="tv-col-cards" id="tv-col-maint"><div class="loading">Loading…</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tv-lb" id="tv-lb">
+        <span class="tv-lb-label">⚔ Rankings</span>
+        <div class="tv-lb-heroes" id="tv-lb-heroes"></div>
+      </div>
+    </div>
+
+    <!-- SPOTLIGHT VIEW -->
+    <div class="tv-view" id="tv-view-spot">
+      <div class="tv-spot-inner">
+
+        <div class="tv-spot-meta" id="tv-spot-meta">
+          <div class="tv-spot-ref" id="tv-spot-ref">—</div>
+          <div class="tv-spot-qname" id="tv-spot-qname">—</div>
+          <div class="tv-spot-status" id="tv-spot-status"></div>
+        </div>
+
+        <div class="tv-verse-box" id="tv-verse-box">
+          <div class="tv-verse-text" id="tv-verse-text">Select a quest from the Board to spotlight it.</div>
+          <div class="tv-hide-panel" id="tv-hide-panel">
+            <div class="tv-hide-exclaim">!</div>
+            <div class="tv-hide-label">Recite the Verse</div>
+            <div class="tv-hide-sublabel" id="tv-hide-sublabel">—</div>
+            <button class="tv-hide-tap" onclick="tvRevealVerse()">Tap to reveal ›</button>
+          </div>
+        </div>
+
+        <div class="tv-turnin-strip" id="tv-turnin-strip">
+          <div class="tv-ti-exclaim">!</div>
+          <div>
+            <div class="tv-ti-text">Ready to Turn In?</div>
+            <div class="tv-ti-sub">Spoken before the Fellowship · Tap to claim your item</div>
+          </div>
+          <button class="tv-ti-btn" onclick="tvOpenTurninPopup()">✦ Turn In Quest</button>
+        </div>
+
+        <div class="tv-spot-actions">
+          <button class="tv-sp-btn sp-green" id="tv-hide-btn" onclick="tvToggleHide()">Hide &amp; Test</button>
+          <button class="tv-sp-btn" onclick="tvRevealWordByWord()">Reveal Word by Word</button>
+          <button class="tv-sp-btn sp-gold" onclick="tvLaunchTraining()">⚔ Begin Training</button>
+        </div>
+
+        <div class="tv-roster" id="tv-roster">
+          <div class="tv-roster-label">Party Roster — This Verse</div>
+          <div class="tv-roster-heroes" id="tv-roster-heroes"></div>
+        </div>
+
+        <div class="tv-spot-nav">
+          <button class="tv-nav-btn" onclick="tvNavQuest(-1)">← Prev</button>
+          <span class="tv-nav-counter" id="tv-nav-counter">— of —</span>
+          <button class="tv-nav-btn" onclick="tvNavQuest(1)">Next →</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tv-content -->
+
+  <!-- controls legend -->
+  <div class="tv-legend">
+    <div class="tv-ctrl"><span class="tv-key">B</span><span class="tv-kdesc">Board</span></div>
+    <div class="tv-ctrl"><span class="tv-key">S</span><span class="tv-kdesc">Spotlight</span></div>
+    <span class="tv-ksep">|</span>
+    <div class="tv-ctrl"><span class="tv-key">←</span><span class="tv-key">→</span><span class="tv-kdesc">Cycle</span></div>
+    <div class="tv-ctrl"><span class="tv-key">H</span><span class="tv-kdesc">Hide/Show</span></div>
+    <div class="tv-ctrl"><span class="tv-key">W</span><span class="tv-kdesc">Word</span></div>
+    <span class="tv-ksep">|</span>
+    <div class="tv-ctrl"><span class="tv-key">Esc</span><span class="tv-kdesc">Exit</span></div>
+    <span class="tv-ksep">|</span>
+    <div class="tv-ctrl"><span class="tv-key">?</span><span class="tv-key">T</span><span class="tv-kdesc">Toggle</span></div>
+  </div>
+
+  <!-- Turn-in popup -->
+  <div class="tv-turnin-overlay" id="tv-turnin-overlay">
+    <div class="tv-turnin-popup">
+      <div class="tv-popup-inner">
+        <div class="tv-popup-npc">⚔ The Quest Master speaks:</div>
+        <div class="tv-popup-title" id="tv-popup-title">Declare Thy Deed</div>
+        <div class="tv-popup-sub" id="tv-popup-sub">—</div>
+        <div class="tv-popup-hero-row" id="tv-popup-hero-row"></div>
+        <div class="tv-popup-npc-speech" id="tv-popup-speech"></div>
+        <div class="tv-popup-divider"></div>
+        <div class="tv-popup-item-box" id="tv-popup-item-box"></div>
+        <div class="tv-popup-btn-row">
+          <button class="tv-popup-confirm" onclick="tvConfirmTurnin()">✦ Aye — I have spoken it</button>
+          <button class="tv-popup-cancel" onclick="tvCloseTurninPopup()">Not yet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tv-mode-wrap -->
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- NORMAL PAGE                                        -->
+<!-- ══════════════════════════════════════════════════ -->
 <header>
   <a href="index.html" class="hdr-home">← Home</a>
   <div class="hdr-rule"></div>
   <div class="hdr-title">⚔ Sword of the Spirit ⚔</div>
   <div class="hdr-sub">Memory Verse Portal · The Fellowship</div>
   <div class="hdr-verse">"Take the sword of the Spirit, which is the word of God." — Ephesians 6:17</div>
+  <button class="hdr-tv-btn" onclick="enterTvMode()" title="Press T">⊞ TV Mode</button>
 </header>
 
 <nav>
@@ -362,7 +944,7 @@
   <button class="cel-close" onclick="document.getElementById('celebrate').classList.remove('show')">Continue the Journey</button>
 </div>
 
-<!-- TURN-IN CONFIRM MODAL (NPC) -->
+<!-- TURN-IN CONFIRM MODAL (normal page) -->
 <div class="modal-overlay" id="turnin-modal">
   <div class="modal-box">
     <div class="modal-npc">⚔ The Quest Master speaks:</div>
@@ -426,7 +1008,7 @@ const LEADER_PIN = '1957';
 const HERO_KEY   = 'sword_hero_v5';
 const MY_IDS_KEY = 'sword_ids_v5';
 const MAINT_DAYS = 45;
-const WARN_DAYS  = 40; // low durability warning threshold
+const WARN_DAYS  = 40;
 
 const QUEST_NAMES = [
   "Test of Faith","In the Name of the Light","The Ties That Bind",
@@ -437,14 +1019,12 @@ const QUEST_NAMES = [
   "The Challenge","The Prodigal Lich","Sully Ballou",
   "Into The Scarlet Monastery","Legends of Maraudon"
 ];
-
 const MAINT_QUEST_NAMES = [
   "Sharpening the Blade","Keeping the Edge","The Warrior's Vigil",
   "Return to the Training Grounds","Maintenance of the Covenant",
   "The Daily Recitation","Lest the Blade Rust","Words Renewed",
   "The Faithful Review","Remembrance of the Oath"
 ];
-
 const ITEM_NAMES = [
   "Sword of Serenity","Shadowfang","Blade of the Titans",
   "Sword of Omen","Bonebiter","Krol Blade",
@@ -454,7 +1034,6 @@ const ITEM_NAMES = [
   "The Butcher","Tainted Pierce","Steelclaw Reaver",
   "Sliverblade","Black Menace"
 ];
-
 const ITEM_TYPES = [
   "One-Hand Sword","Main Hand Sword","Two-Hand Sword",
   "One-Hand Sword","Two-Hand Axe","Main Hand Sword",
@@ -464,9 +1043,7 @@ const ITEM_TYPES = [
   "One-Hand Sword","One-Hand Sword","One-Hand Axe",
   "One-Hand Dagger","One-Hand Sword"
 ];
-
 const HERO_AVATARS = ['⚔️','🛡️','🏹','🔮','🌿','🔥','❄️','⚡','🌟','🗡️'];
-
 const FLAVOR = [
   "A word once hidden in the heart becomes a blade that never dulls.",
   "The enemy fears the warrior who can speak truth in the dark.",
@@ -476,20 +1053,16 @@ const FLAVOR = [
   "Carry the word like a sword — sheathed until the moment of need.",
   "A verse known by heart is a covenant renewed with every recitation."
 ];
-
 const NPC_TURNIN = [
   "Hast thou spoken this word before thy brethren in the Fellowship? The gates of the Inventory open only to those who have declared the Scripture aloud before witnesses.",
   "Warrior — before this quest is sealed, confirm thou hast recited this passage before the Brotherhood. The word must be spoken, not merely learned.",
   "The ledger of the Inventory awaits. But first — hast thou stood before thy Fellowship and declared this word? Only then may thy blade be counted among the mastered.",
   "Speak plainly: didst thou recite this before the Brotherhood this night? The Inventory is sacred ground — entry requires thy spoken vow."
 ];
-
 const PSALMS = {
   103:[[1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],[2,"Bless the LORD, O my soul, and forget not all his benefits,"],[3,"who forgives all your iniquity, who heals all your diseases,"],[4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],[5,"who satisfies you with good so that your youth is renewed like the eagle's."],[6,"The LORD works righteousness and justice for all who are oppressed."],[7,"He made known his ways to Moses, his acts to the people of Israel."],[8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],[9,"He will not always chide, nor will he keep his anger forever."],[10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],[11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],[12,"as far as the east is from the west, so far does he remove our transgressions from us."],[13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],[14,"For he knows our frame; he remembers that we are dust."],[15,"As for man, his days are like grass; he flourishes like a flower of the field;"],[16,"for the wind passes over it, and it is gone, and its place knows it no more."],[17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],[18,"to those who keep his covenant and remember to do his commandments."],[19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],[20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],[21,"Bless the LORD, all his hosts, his ministers, who do his will!"],[22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]],
   121:[[1,"I lift up my eyes to the hills. From where does my help come?"],[2,"My help comes from the LORD, who made heaven and earth."],[3,"He will not let your foot be moved; he who keeps you will not slumber."],[4,"Behold, he who keeps Israel will neither slumber nor sleep."],[5,"The LORD is your keeper; the LORD is your shade on your right hand."],[6,"The sun shall not strike you by day, nor the moon by night."],[7,"The LORD will keep you from all evil; he will keep your life."],[8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]]
 };
-
-// Full training modes vs maintenance modes
 const TRAIN_MODES_FULL = ['read','blank','firstletter','scramble','recall'];
 const TRAIN_MODES_MAINT = ['firstletter','recall'];
 const MODE_LABELS = {read:'Read',blank:'Fill Blank',firstletter:'First Letters',scramble:'Scramble',recall:'Recall'};
@@ -508,6 +1081,11 @@ let trainVerses=[],trainMode='read',trainProgress={};
 let scrambleState={sentenceIdx:0,pool:[],built:[],usedIdx:new Set()};
 let pendingTurninQid=null;
 
+// ── TV MODE STATE ──────────────────────────────────────
+let tvActive=false,tvCurrentView='board';
+let tvSpotQids=[],tvSpotIdx=0,tvSpotHidden=false,tvSpotWordIdx=0;
+let tvActiveHeroName='',tvPendingTurninQid=null;
+
 function resetScramble(idx){
   const v=trainVerses[idx]; if(!v) return;
   scrambleState={sentenceIdx:idx,pool:[...v.text.split(' ')].sort(()=>Math.random()-0.5),built:[],usedIdx:new Set()};
@@ -521,51 +1099,24 @@ function similarity(a,b){a=normText(a);b=normText(b);if(a===b)return 1;const wa=
 function diffWords(input,target){const wi=normText(input).split(' '),tw=target.split(' ');return tw.map((w,i)=>{const c=normText(w);if(wi[i]&&normText(wi[i])===c)return`<span class="diff-ok">${w}</span>`;if(wi.includes(c))return`<span class="diff-add">${w}</span>`;return`<span class="diff-miss">${w}</span>`;}).join(' ');}
 function passageRefLabel(verses){const g={};verses.forEach(v=>{const m=v.ref&&v.ref.match(/Psalm\s*(\d+):(\d+)/i);if(m){const pn=m[1],vn=parseInt(m[2]);if(!g[pn])g[pn]=[];g[pn].push(vn);}});return Object.entries(g).map(([pn,vnums])=>{vnums.sort((a,b)=>a-b);const f=vnums[0],l=vnums[vnums.length-1];return f===l?`Psalm ${pn}:${f}`:`Psalm ${pn}:${f}–${l}`;}).join(', ');}
 function vnum(v){return v.ref?v.ref.split(':')[1]||'':'';}
-
-function groupByQuest(verses){
-  const map=new Map();
-  verses.forEach(v=>{const k=v.questId||v.id;if(!map.has(k))map.set(k,[]);map.get(k).push(v);});
-  map.forEach(arr=>arr.sort((a,b)=>(a.ref||'').localeCompare(b.ref||'')));
-  return map;
-}
+function groupByQuest(verses){const map=new Map();verses.forEach(v=>{const k=v.questId||v.id;if(!map.has(k))map.set(k,[]);map.get(k).push(v);});map.forEach(arr=>arr.sort((a,b)=>(a.ref||'').localeCompare(b.ref||'')));return map;}
 function questStatus(verses){const p={road:0,quest:1,maint:2,inv:3};return verses.reduce((b,v)=>p[v.status]<p[b]?v.status:b,'inv');}
 function passageLines(){return trainVerses.map(v=>`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${v.text}</span></div>`).join('');}
+function modesForQuest(verses){return verses[0]?.isMaintenance ? TRAIN_MODES_MAINT : TRAIN_MODES_FULL;}
+function getDurability(verses){const ts=verses[0]?.invEnteredAt;if(!ts)return null;const daysElapsed=(Date.now()-ts)/(1000*60*60*24);const pct=Math.max(0,Math.min(100,100-(daysElapsed/MAINT_DAYS*100)));return Math.round(pct);}
 
-// Which modes apply to this quest?
-function modesForQuest(verses){
-  return verses[0]?.isMaintenance ? TRAIN_MODES_MAINT : TRAIN_MODES_FULL;
-}
-
-// Durability: 0–100, based on invEnteredAt, decays over MAINT_DAYS
-function getDurability(verses){
-  const ts=verses[0]?.invEnteredAt;if(!ts)return null;
-  const daysElapsed=(Date.now()-ts)/(1000*60*60*24);
-  const pct=Math.max(0,Math.min(100,100-(daysElapsed/MAINT_DAYS*100)));
-  return Math.round(pct);
-}
-
-// Check if any inv verse is past 45 days and spawn maintenance if needed
 async function checkMaintenanceSpawns(){
   const inv=allVerses.filter(v=>v.status==='inv');
-  const groups=groupByQuest(inv);
-  const now=Date.now();
+  const groups=groupByQuest(inv);const now=Date.now();
   for(const[qid,verses] of groups){
-    const ts=verses[0]?.invEnteredAt;
-    if(!ts) continue;
-    const daysElapsed=(now-ts)/(1000*60*60*24);
-    if(daysElapsed<MAINT_DAYS) continue;
-    // Check if a maintenance quest already exists for this source qid
+    const ts=verses[0]?.invEnteredAt;if(!ts)continue;
+    const daysElapsed=(now-ts)/(1000*60*60*24);if(daysElapsed<MAINT_DAYS)continue;
     const alreadyExists=allVerses.some(v=>v.sourceQuestId===qid&&v.isMaintenance&&v.status!=='inv');
-    if(alreadyExists) continue;
-    // Spawn maintenance quest
+    if(alreadyExists)continue;
     await spawnMaintenanceQuest(qid,verses);
-    // Move inv verses to maint
-    for(const v of verses){
-      await update(ref(db,`sword/verses/${v.id}`),{status:'maint'});
-    }
+    for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'maint'});}
   }
 }
-
 async function spawnMaintenanceQuest(sourceQid,sourceVerses){
   const heroName=sourceVerses[0].name;
   const newQuestId=`q_maint_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
@@ -573,22 +1124,10 @@ async function spawnMaintenanceQuest(sourceQid,sourceVerses){
   try{
     for(const sv of sourceVerses){
       const id=`v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-      await set(ref(db,`sword/verses/${id}`),{
-        id,questId:newQuestId,name:heroName,
-        ref:sv.ref,text:sv.text,
-        status:'maint',
-        isMaintenance:true,
-        sourceQuestId:sourceQid,
-        created:Date.now()
-      });
-      newIds.push(id);
-      await new Promise(r=>setTimeout(r,50));
+      await set(ref(db,`sword/verses/${id}`),{id,questId:newQuestId,name:heroName,ref:sv.ref,text:sv.text,status:'maint',isMaintenance:true,sourceQuestId:sourceQid,created:Date.now()});
+      newIds.push(id);await new Promise(r=>setTimeout(r,50));
     }
-    // If this is the hero's own verse, add to myIds
-    if(sourceVerses.some(v=>myIds.includes(v.id))){
-      myIds=[...myIds,...newIds];
-      localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
-    }
+    if(sourceVerses.some(v=>myIds.includes(v.id))){myIds=[...myIds,...newIds];localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));}
     toast(`⚠ Maintenance quest spawned for ${heroName}!`,3500);
   }catch(e){console.error('Spawn maint error',e);}
 }
@@ -597,10 +1136,8 @@ async function spawnMaintenanceQuest(sourceQid,sourceVerses){
 window.switchTab=(name,el)=>{
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  el.classList.add('active');
-  if(name==='board')renderBoard();
-  if(name==='inventory')renderInventory();
+  document.getElementById('tab-'+name).classList.add('active');el.classList.add('active');
+  if(name==='board')renderBoard();if(name==='inventory')renderInventory();
 };
 window.setFilter=(hero,el)=>{heroFilter=hero;document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderQuestList();};
 
@@ -611,16 +1148,16 @@ function loadAll(){
     allVerses.sort((a,b)=>(b.created||0)-(a.created||0));
     updateFilterBar();renderQuestList();
     if(selectedQid)renderParchment(selectedQid);
-    // Count quests shown in log (non-inv)
     const activeGroups=groupByQuest(allVerses.filter(v=>v.status!=='inv'));
     const n=activeGroups.size;
     document.getElementById('quest-count').textContent=n+' quest'+(n!==1?'s':'');
-    // Check maintenance spawns
     checkMaintenanceSpawns();
+    // refresh TV if active
+    if(tvActive)tvRefreshAll();
   });
-  onValue(ref(db,'sword/heroes'), snap => {
-    const heroes = snap.val() || {};
-    Object.values(heroes).forEach(h => { if(h.name) heroRoster.add(h.name); });
+  onValue(ref(db,'sword/heroes'),snap=>{
+    const heroes=snap.val()||{};
+    Object.values(heroes).forEach(h=>{if(h.name)heroRoster.add(h.name);});
     updateFilterBar();
   });
 }
@@ -635,7 +1172,6 @@ function updateFilterBar(){
 function renderQuestList(){
   const list=document.getElementById('quest-list');
   const filtered=heroFilter==='all'?allVerses:allVerses.filter(v=>v.name===heroFilter);
-  // Show all non-inv quests (road, quest, maint all appear in log)
   const active=filtered.filter(v=>v.status!=='inv');
   const groups=groupByQuest(active);
   if(!groups.size){list.innerHTML='<div class="loading" style="padding:20px;font-size:13px;">No active quests — check the Inventory tab.</div>';return;}
@@ -676,7 +1212,6 @@ window.parchBack=()=>{
   document.getElementById('panel-right').classList.remove('mobile-show');
   selectedQid=null;
 };
-
 function renderParchment(qid){
   const groups=groupByQuest(allVerses);const verses=groups.get(qid);if(!verses)return;
   const isMine=verses.some(v=>myIds.includes(v.id)),status=questStatus(verses);
@@ -692,7 +1227,6 @@ function renderParchment(qid){
   const passageHtml=verses.map(v=>`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext" style="font-size:15px;color:var(--parch-text);">\u201c${v.text}\u201d</span></div>`).join('');
   const canTurnIn=allDone&&isMine&&status!=='inv';
   const maintNote=isMaint?`<div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--c-maint);margin-bottom:16px;padding:8px 12px;border:1px solid rgba(154,122,191,0.3);border-radius:3px;background:rgba(154,122,191,0.05);">↻ Maintenance Quest — Complete ${modes.length} training modes and recite before the Brotherhood to restore this blade.</div>`:'';
-
   document.getElementById('parch-content').innerHTML=`
     <button class="parch-back" onclick="parchBack()">← Back to Log</button>
     <div class="parch-status-row"><div class="parch-status-dot dot-${status}"></div><span class="parch-status-lbl status-lbl-${status}">${statusLabels[status]}</span></div>
@@ -714,14 +1248,9 @@ function renderParchment(qid){
     </div>`;
 }
 
-// ── RESTART TRAINING ──────────────────────────────────
-window.restartTraining=(qid)=>{
-  if(trainProgress[qid]) delete trainProgress[qid];
-  renderParchment(qid);
-  toast('Training reset — begin again, warrior');
-};
+window.restartTraining=(qid)=>{if(trainProgress[qid])delete trainProgress[qid];renderParchment(qid);toast('Training reset — begin again, warrior');};
 
-// ── TURN-IN MODAL (NPC) ───────────────────────────────
+// ── TURN-IN MODAL (normal page) ───────────────────────
 window.openTurninModal=(qid)=>{
   pendingTurninQid=qid;
   const verses=groupByQuest(allVerses).get(qid);
@@ -733,40 +1262,28 @@ window.openTurninModal=(qid)=>{
   document.getElementById('turnin-modal').classList.add('show');
 };
 window.closeTurninModal=()=>{document.getElementById('turnin-modal').classList.remove('show');pendingTurninQid=null;};
-
 async function confirmTurnin(){
   document.getElementById('turnin-modal').classList.remove('show');
-  const qid=pendingTurninQid;pendingTurninQid=null;
-  if(!qid)return;
+  const qid=pendingTurninQid;pendingTurninQid=null;if(!qid)return;
+  await doTurnin(qid);
+}
+
+async function doTurnin(qid){
   const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
-  const isMaint=verses[0]?.isMaintenance;
-  const now=Date.now();
+  const isMaint=verses[0]?.isMaintenance;const now=Date.now();
   try{
     if(isMaint){
-      // Maintenance turn-in: set sourceQuestId inv verses back to inv with reset clock, delete maint verses
       const sourceQid=verses[0].sourceQuestId;
-      if(sourceQid){
-        const sourceVerses=allVerses.filter(v=>v.questId===sourceQid);
-        for(const sv of sourceVerses){
-          await update(ref(db,`sword/verses/${sv.id}`),{status:'inv',invEnteredAt:now});
-        }
-      }
-      // Delete the maintenance quest verses
-      for(const v of verses){
-        await set(ref(db,`sword/verses/${v.id}`),null);
-        myIds=myIds.filter(i=>i!==v.id);
-      }
+      if(sourceQid){const sourceVerses=allVerses.filter(v=>v.questId===sourceQid);for(const sv of sourceVerses){await update(ref(db,`sword/verses/${sv.id}`),{status:'inv',invEnteredAt:now});}}
+      for(const v of verses){await set(ref(db,`sword/verses/${v.id}`),null);myIds=myIds.filter(i=>i!==v.id);}
       localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
       if(selectedQid===qid){selectedQid=null;document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>';}
       celebrate('🔧','Blade Restored!','The Scripture dwells richly in thee — thy weapon gleams anew. The 45-day clock has been reset.');
     } else {
-      // Normal turn-in: move to inv, stamp invEnteredAt
-      for(const v of verses){
-        await update(ref(db,`sword/verses/${v.id}`),{status:'inv',invEnteredAt:now});
-      }
+      for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'inv',invEnteredAt:now});}
       celebrate('🏆','Quest Turned In!',hashPick(ITEM_NAMES,qid)+' added to thine inventory. The Brotherhood bears witness.');
     }
-    if(trainProgress[qid]) delete trainProgress[qid];
+    if(trainProgress[qid])delete trainProgress[qid];
   }catch(e){toast('Error — check connection');}
 }
 
@@ -775,276 +1292,90 @@ window.startTraining=async(qid)=>{
   const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
   trainVerses=verses;
   const modes=modesForQuest(verses);
-  // Default to first incomplete mode, or first mode
   trainMode=modes.find(m=>!(trainProgress[qid]||{})[m])||modes[0];
   resetScramble(0);
-  // Auto-advance status to 'quest' on first training start
   const status=questStatus(verses);
-  if(status==='road'){
-    try{
-      for(const v of verses){
-        await update(ref(db,`sword/verses/${v.id}`),{status:'quest'});
-      }
-    }catch(e){console.error('Status advance error',e);}
-  }
+  if(status==='road'){try{for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'quest'});}}catch(e){console.error(e);}}
   document.getElementById('train-overlay').classList.add('show');
   renderTrainMode(qid);
 };
 window.closeTrain=()=>{document.getElementById('train-overlay').classList.remove('show');if(selectedQid)renderParchment(selectedQid);};
 function currentQid(){return trainVerses[0]?.questId||trainVerses[0]?.id||'';}
-
 function renderTrainMode(qidOverride){
   const qid=qidOverride||currentQid();
   const prog=trainProgress[qid]||{};
   const modes=modesForQuest(trainVerses);
   document.getElementById('train-title').textContent=`Training — ${trainVerses[0]?.name||''}`;
   document.getElementById('train-passage-ref').textContent=passageRefLabel(trainVerses);
-  document.getElementById('train-mode-tabs').innerHTML=modes.map(m=>{
-    const done=!!prog[m],active=m===trainMode;
-    return`<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">${done?'<span class="tab-check">✓</span>':''}${MODE_LABELS[m]}</button>`;
-  }).join('');
+  document.getElementById('train-mode-tabs').innerHTML=modes.map(m=>{const done=!!prog[m],active=m===trainMode;return`<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">${done?'<span class="tab-check">✓</span>':''}${MODE_LABELS[m]}</button>`;}).join('');
   const body=document.getElementById('train-body');
-
-  if(trainMode==='read'){
-    body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${passageLines()}</div>
-    <div class="train-btn-row">
-      <button class="btn-train gold" onclick="completeMode('read')">Got it →</button>
-      <button class="btn-train danger" onclick="retryMode('read')">↺ Try Again</button>
-    </div>`;
-  }
-  else if(trainMode==='blank'){
-    const html=trainVerses.map(v=>{
-      const words=v.text.split(' '),hideCount=Math.max(1,Math.floor(words.length*0.5)),toHide=new Set(),step=words.length/hideCount;
-      for(let i=0;i<hideCount;i++)toHide.add(Math.floor(i*step));
-      const lineHtml=words.map((w,i)=>toHide.has(i)?`<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>`:`<span>${w}</span>`).join(' ');
-      return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;
-    }).join('');
-    body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div>
-    <div class="train-btn-row">
-      <button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button>
-      <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-      <button class="btn-train danger" onclick="retryMode('blank')">↺ Try Again</button>
-    </div>`;
-  }
-  else if(trainMode==='firstletter'){
-    const html=trainVerses.map(v=>{
-      const lineHtml=v.text.split(' ').map(w=>{const letters=w.replace(/[^a-zA-Z]/g,'');if(!letters)return w;const rest='_'.repeat(Math.max(letters.length-1,1)),trail=w.match(/[^a-zA-Z]$/)?w.slice(-1):'';return`<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${trail}`;}).join(' ');
-      return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;
-    }).join('');
-    body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div>
-    <div class="train-btn-row">
-      <button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button>
-      <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-      <button class="btn-train danger" onclick="retryMode('firstletter')">↺ Try Again</button>
-    </div>`;
-  }
-  else if(trainMode==='scramble'){
-    if(scrambleState.sentenceIdx>=trainVerses.length)resetScramble(0);
-    renderScrambleSentence();
-  }
-  else if(trainMode==='recall'){
-    body.innerHTML=`<div style="margin-bottom:10px;font-style:italic;color:var(--textdim);font-size:14px;">Type the full passage from memory.</div>
-    <textarea class="recall-textarea" id="recall-ta" placeholder="Type the passage…"></textarea>
-    <div class="train-btn-row">
-      <button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button>
-      <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-      <button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button>
-    </div>`;
-  }
+  if(trainMode==='read'){body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${passageLines()}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('read')">Got it →</button><button class="btn-train danger" onclick="retryMode('read')">↺ Try Again</button></div>`;}
+  else if(trainMode==='blank'){const html=trainVerses.map(v=>{const words=v.text.split(' '),hideCount=Math.max(1,Math.floor(words.length*0.5)),toHide=new Set(),step=words.length/hideCount;for(let i=0;i<hideCount;i++)toHide.add(Math.floor(i*step));const lineHtml=words.map((w,i)=>toHide.has(i)?`<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>`:`<span>${w}</span>`).join(' ');return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;}).join('');body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('blank')">↺ Try Again</button></div>`;}
+  else if(trainMode==='firstletter'){const html=trainVerses.map(v=>{const lineHtml=v.text.split(' ').map(w=>{const letters=w.replace(/[^a-zA-Z]/g,'');if(!letters)return w;const rest='_'.repeat(Math.max(letters.length-1,1)),trail=w.match(/[^a-zA-Z]$/)?w.slice(-1):'';return`<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${trail}`;}).join(' ');return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;}).join('');body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('firstletter')">↺ Try Again</button></div>`;}
+  else if(trainMode==='scramble'){if(scrambleState.sentenceIdx>=trainVerses.length)resetScramble(0);renderScrambleSentence();}
+  else if(trainMode==='recall'){body.innerHTML=`<div style="margin-bottom:10px;font-style:italic;color:var(--textdim);font-size:14px;">Type the full passage from memory.</div><textarea class="recall-textarea" id="recall-ta" placeholder="Type the passage…"></textarea><div class="train-btn-row"><button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button></div>`;}
 }
-
 window.showFullPassage=()=>{const el=document.getElementById('train-display');if(el)el.innerHTML=passageLines();};
 window.setTrainMode=(mode)=>{trainMode=mode;if(mode==='scramble')resetScramble(0);renderTrainMode();};
-window.retryMode=(mode)=>{
-  // Clear this mode's completion if it was marked, then re-render
-  const qid=currentQid();
-  if(trainProgress[qid]&&trainProgress[qid][mode]) delete trainProgress[qid][mode];
-  trainMode=mode;
-  if(mode==='scramble')resetScramble(0);
-  renderTrainMode();
-};
-window.completeMode=(mode)=>{
-  const qid=currentQid();if(!trainProgress[qid])trainProgress[qid]={};trainProgress[qid][mode]=true;
-  const modes=modesForQuest(trainVerses);
-  const next=modes.find(m=>!trainProgress[qid][m]);
-  if(next){trainMode=next;}else{trainMode=modes[0];} // stay on last if all done
-  if(trainMode==='scramble')resetScramble(0);
-  renderTrainMode();
-};
+window.retryMode=(mode)=>{const qid=currentQid();if(trainProgress[qid]&&trainProgress[qid][mode])delete trainProgress[qid][mode];trainMode=mode;if(mode==='scramble')resetScramble(0);renderTrainMode();};
+window.completeMode=(mode)=>{const qid=currentQid();if(!trainProgress[qid])trainProgress[qid]={};trainProgress[qid][mode]=true;const modes=modesForQuest(trainVerses);const next=modes.find(m=>!trainProgress[qid][m]);if(next){trainMode=next;}else{trainMode=modes[0];}if(trainMode==='scramble')resetScramble(0);renderTrainMode();};
 
-// SCRAMBLE
 function renderScrambleSentence(){
   const body=document.getElementById('train-body'),sIdx=scrambleState.sentenceIdx,v=trainVerses[sIdx];
   const label=trainVerses.length>1?`Verse ${sIdx+1} of ${trainVerses.length} — ${v.ref||''}`:(v.ref||'');
   const targetHtml=scrambleState.built.length===0?'<span class="scramble-target-empty">Tap words below to build the verse…</span>':scrambleState.built.map((e,bi)=>`<span class="word-chip placed" data-bi="${bi}" onclick="scrambleUnplace(${bi})">${e.word}</span>`).join('');
   const poolHtml=scrambleState.pool.map((w,pi)=>`<span class="word-chip" id="spool-${pi}" style="${scrambleState.usedIdx.has(pi)?'opacity:0.25;pointer-events:none;':''}" onclick="scramblePlace(${pi})">${w}</span>`).join('');
-  body.innerHTML=`<div class="scramble-sentence-label">${label}</div><div class="scramble-wrap"><div class="scramble-target" id="scramble-target">${targetHtml}</div><div class="scramble-pool">${poolHtml}</div></div>
-  <div class="train-btn-row">
-    <button class="btn-train gold" onclick="checkScrambleSentence()">Check Order</button>
-    <button class="btn-train" onclick="clearScrambleSentence()">Clear</button>
-    <button class="btn-train" onclick="showCurrentSentence()">Show verse</button>
-    <button class="btn-train danger" onclick="retryMode('scramble')">↺ Try Again</button>
-  </div>`;
+  body.innerHTML=`<div class="scramble-sentence-label">${label}</div><div class="scramble-wrap"><div class="scramble-target" id="scramble-target">${targetHtml}</div><div class="scramble-pool">${poolHtml}</div></div><div class="train-btn-row"><button class="btn-train gold" onclick="checkScrambleSentence()">Check Order</button><button class="btn-train" onclick="clearScrambleSentence()">Clear</button><button class="btn-train" onclick="showCurrentSentence()">Show verse</button><button class="btn-train danger" onclick="retryMode('scramble')">↺ Try Again</button></div>`;
 }
-window.scramblePlace=(pi)=>{
-  if(scrambleState.usedIdx.has(pi))return;
-  const word=scrambleState.pool[pi];scrambleState.usedIdx.add(pi);scrambleState.built.push({word,pi});
-  const chip=document.getElementById(`spool-${pi}`);if(chip){chip.style.opacity='0.25';chip.style.pointerEvents='none';}
-  const target=document.getElementById('scramble-target');target.querySelector('.scramble-target-empty')?.remove();
-  const el=document.createElement('span');el.className='word-chip placed';el.textContent=word;
-  const bi=scrambleState.built.length-1;el.dataset.bi=bi;el.onclick=()=>scrambleUnplace(parseInt(el.dataset.bi));target.appendChild(el);
-};
-window.scrambleUnplace=(bi)=>{
-  const entry=scrambleState.built[bi];if(!entry)return;
-  scrambleState.built.splice(bi,1);scrambleState.usedIdx.delete(entry.pi);
-  const target=document.getElementById('scramble-target');
-  if(target)target.querySelectorAll('.word-chip.placed').forEach((c,i)=>{c.dataset.bi=i;c.onclick=()=>scrambleUnplace(i);});
-  const pc=document.getElementById(`spool-${entry.pi}`);if(pc){pc.style.opacity='';pc.style.pointerEvents='';}
-  if(scrambleState.built.length===0&&target)target.innerHTML='<span class="scramble-target-empty">Tap words below to build the verse…</span>';
-};
+window.scramblePlace=(pi)=>{if(scrambleState.usedIdx.has(pi))return;const word=scrambleState.pool[pi];scrambleState.usedIdx.add(pi);scrambleState.built.push({word,pi});const chip=document.getElementById(`spool-${pi}`);if(chip){chip.style.opacity='0.25';chip.style.pointerEvents='none';}const target=document.getElementById('scramble-target');target.querySelector('.scramble-target-empty')?.remove();const el=document.createElement('span');el.className='word-chip placed';el.textContent=word;const bi=scrambleState.built.length-1;el.dataset.bi=bi;el.onclick=()=>scrambleUnplace(parseInt(el.dataset.bi));target.appendChild(el);};
+window.scrambleUnplace=(bi)=>{const entry=scrambleState.built[bi];if(!entry)return;scrambleState.built.splice(bi,1);scrambleState.usedIdx.delete(entry.pi);const target=document.getElementById('scramble-target');if(target)target.querySelectorAll('.word-chip.placed').forEach((c,i)=>{c.dataset.bi=i;c.onclick=()=>scrambleUnplace(i);});const pc=document.getElementById(`spool-${entry.pi}`);if(pc){pc.style.opacity='';pc.style.pointerEvents='';}if(scrambleState.built.length===0&&target)target.innerHTML='<span class="scramble-target-empty">Tap words below to build the verse…</span>';};
 window.clearScrambleSentence=()=>{resetScramble(scrambleState.sentenceIdx);renderScrambleSentence();};
-window.showCurrentSentence=()=>{
-  const v=trainVerses[scrambleState.sentenceIdx],body=document.getElementById('train-body');
-  document.getElementById('show-verse-reveal')?.remove();
-  const div=document.createElement('div');div.id='show-verse-reveal';div.style.cssText='font-style:italic;color:var(--parch-dim);font-size:16px;padding:10px 0 6px;line-height:1.6;';div.textContent='\u201c'+v.text+'\u201d';
-  const btnRow=body.querySelector('.train-btn-row');if(btnRow)body.insertBefore(div,btnRow);
-};
-window.checkScrambleSentence=()=>{
-  const v=trainVerses[scrambleState.sentenceIdx],built=scrambleState.built.map(e=>e.word).join(' ');
-  if(similarity(built,v.text)>=0.9){
-    const next=scrambleState.sentenceIdx+1;
-    if(next<trainVerses.length){toast(`Verse ${scrambleState.sentenceIdx+1} ✓ — next sentence`);resetScramble(next);renderScrambleSentence();}
-    else completeMode('scramble');
-  } else {
-    toast('Not quite — keep rearranging!');
-  }
-};
+window.showCurrentSentence=()=>{const v=trainVerses[scrambleState.sentenceIdx],body=document.getElementById('train-body');document.getElementById('show-verse-reveal')?.remove();const div=document.createElement('div');div.id='show-verse-reveal';div.style.cssText='font-style:italic;color:var(--parch-dim);font-size:16px;padding:10px 0 6px;line-height:1.6;';div.textContent='\u201c'+v.text+'\u201d';const btnRow=body.querySelector('.train-btn-row');if(btnRow)body.insertBefore(div,btnRow);};
+window.checkScrambleSentence=()=>{const v=trainVerses[scrambleState.sentenceIdx],built=scrambleState.built.map(e=>e.word).join(' ');if(similarity(built,v.text)>=0.9){const next=scrambleState.sentenceIdx+1;if(next<trainVerses.length){toast(`Verse ${scrambleState.sentenceIdx+1} ✓ — next sentence`);resetScramble(next);renderScrambleSentence();}else completeMode('scramble');}else{toast('Not quite — keep rearranging!');}};
+window.checkRecallMode=()=>{const fullText=trainVerses.map(v=>v.text).join(' '),inp=document.getElementById('recall-ta').value.trim(),sim=similarity(inp,fullText);const body=document.getElementById('train-body');if(sim>=0.9){body.innerHTML=`<div class="recall-feedback rf-correct">✓ Perfect. The blade is forged.</div><div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Mark Complete →</button><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button></div>`;}else if(sim>=0.65){body.innerHTML=`<div class="recall-feedback rf-close">Close — review the highlighted words</div><div class="diff-display">${diffWords(inp,fullText)}</div><div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Still counts ✓</button><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button></div>`;}else{body.innerHTML=`<div class="recall-feedback rf-incorrect">Not quite — keep training</div><div class="diff-display">${diffWords(inp,fullText)}</div><div class="train-btn-row"><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button><button class="btn-train" onclick="showFullPassage()">Show passage</button></div>`;}};
 
-// RECALL
-window.checkRecallMode=()=>{
-  const fullText=trainVerses.map(v=>v.text).join(' '),inp=document.getElementById('recall-ta').value.trim(),sim=similarity(inp,fullText);
-  const body=document.getElementById('train-body');
-  if(sim>=0.9){
-    body.innerHTML=`<div class="recall-feedback rf-correct">✓ Perfect. The blade is forged.</div>
-    <div class="train-btn-row">
-      <button class="btn-train success" onclick="completeMode('recall')">Mark Complete →</button>
-      <button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button>
-    </div>`;
-  } else if(sim>=0.65){
-    body.innerHTML=`<div class="recall-feedback rf-close">Close — review the highlighted words</div>
-    <div class="diff-display">${diffWords(inp,fullText)}</div>
-    <div class="train-btn-row">
-      <button class="btn-train success" onclick="completeMode('recall')">Still counts ✓</button>
-      <button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button>
-    </div>`;
-  } else {
-    body.innerHTML=`<div class="recall-feedback rf-incorrect">Not quite — keep training</div>
-    <div class="diff-display">${diffWords(inp,fullText)}</div>
-    <div class="train-btn-row">
-      <button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button>
-      <button class="btn-train" onclick="showFullPassage()">Show passage</button>
-    </div>`;
-  }
-};
-
-// ── INVENTORY — grouped by hero ───────────────────────
+// ── INVENTORY ─────────────────────────────────────────
 function renderInventory(){
   const wrap=document.getElementById('inv-grid-wrap');
   const inv=allVerses.filter(v=>v.status==='inv');
   if(!inv.length){wrap.innerHTML='<div class="inv-empty">No verses in the inventory yet.<br>Complete a quest and turn it in to add items here.</div>';return;}
-
-  // Group by hero name first, then by questId within
   const byHero=new Map();
-  inv.forEach(v=>{
-    if(!byHero.has(v.name))byHero.set(v.name,[]);
-    byHero.get(v.name).push(v);
-  });
-
+  inv.forEach(v=>{if(!byHero.has(v.name))byHero.set(v.name,[]);byHero.get(v.name).push(v);});
   let html='';
   byHero.forEach((heroVerses,heroName)=>{
     const groups=groupByQuest(heroVerses);
     const avatar=HERO_AVATARS[Math.abs((heroName.charCodeAt(0)||0))%HERO_AVATARS.length];
     const count=groups.size;
-    html+=`<div class="inv-hero-section">
-      <div class="inv-hero-header">
-        <div class="inv-hero-avatar">${avatar}</div>
-        <div class="inv-hero-name">${heroName}</div>
-        <div class="inv-hero-count">${count} item${count!==1?'s':''}</div>
-      </div>
-      <div class="inv-grid">`;
-
+    html+=`<div class="inv-hero-section"><div class="inv-hero-header"><div class="inv-hero-avatar">${avatar}</div><div class="inv-hero-name">${heroName}</div><div class="inv-hero-count">${count} item${count!==1?'s':''}</div></div><div class="inv-grid">`;
     groups.forEach((verses,qid)=>{
       const isMine=verses.some(v=>myIds.includes(v.id));
       const itemName=hashPick(ITEM_NAMES,qid),itemIdx=ITEM_NAMES.indexOf(itemName),itemType=ITEM_TYPES[itemIdx]||'One-Hand Sword';
-      const refLbl=passageRefLabel(verses);
-      const savedName=verses[0].itemName||itemName;
+      const refLbl=passageRefLabel(verses);const savedName=verses[0].itemName||itemName;
       const fullText=verses.map(v=>`\u201c${v.text}\u201d`).join(' ');
       const dur=getDurability(verses);
-      const isLowDur=dur!==null&&dur<=((WARN_DAYS/MAINT_DAYS)*100+5); // ~10% range
+      const isLowDur=dur!==null&&dur<=((WARN_DAYS/MAINT_DAYS)*100+5);
       const durColor=dur===null?'var(--green)':(dur>50?'var(--green)':(dur>20?'var(--gold)':'var(--red2)'));
-
-      // Check if maintenance quest already active for this qid
       const hasMaintActive=allVerses.some(v=>v.sourceQuestId===qid&&v.isMaintenance&&v.status!=='inv');
-
-      const durHtml=dur!==null?`
-        <div class="inv-divider"></div>
-        <div class="durability-wrap">
-          <div class="durability-label-row">
-            <span class="durability-label">Durability</span>
-            <span class="durability-pct" style="color:${durColor};">${dur}%</span>
-          </div>
-          <div class="durability-bar-bg"><div class="durability-bar-fill" style="width:${dur}%;background:${durColor};"></div></div>
-          ${isLowDur&&!hasMaintActive?`<div class="durability-warn">⚠ Blade growing dull — maintenance soon</div>`:''}
-          ${hasMaintActive?`<div class="inv-maint-badge">↻ Maintenance Active</div>`:''}
-        </div>`:'';
-
-      html+=`<div class="inv-card${isLowDur?' low-durability':''}"><div class="inv-card-inner">
-        <div class="inv-item-name">${savedName}</div>
-        <div class="inv-item-type">${itemType}</div>
-        <div class="inv-ref">${refLbl}</div>
-        <div class="inv-divider"></div>
-        <div class="inv-verse">${fullText}</div>
-        ${durHtml}
-        ${isMine?`<div class="inv-divider"></div><div class="inv-name-label">Rename item</div><input class="inv-name-edit" type="text" value="${savedName}" data-vid="${verses[0].id}" onchange="saveItemName(this)" />`:''}
-      </div></div>`;
+      const durHtml=dur!==null?`<div class="inv-divider"></div><div class="durability-wrap"><div class="durability-label-row"><span class="durability-label">Durability</span><span class="durability-pct" style="color:${durColor};">${dur}%</span></div><div class="durability-bar-bg"><div class="durability-bar-fill" style="width:${dur}%;background:${durColor};"></div></div>${isLowDur&&!hasMaintActive?`<div class="durability-warn">⚠ Blade growing dull — maintenance soon</div>`:''}${hasMaintActive?`<div class="inv-maint-badge">↻ Maintenance Active</div>`:''}</div>`:'';
+      html+=`<div class="inv-card${isLowDur?' low-durability':''}"><div class="inv-card-inner"><div class="inv-item-name">${savedName}</div><div class="inv-item-type">${itemType}</div><div class="inv-ref">${refLbl}</div><div class="inv-divider"></div><div class="inv-verse">${fullText}</div>${durHtml}${isMine?`<div class="inv-divider"></div><div class="inv-name-label">Rename item</div><input class="inv-name-edit" type="text" value="${savedName}" data-vid="${verses[0].id}" onchange="saveItemName(this)" />`:''}  </div></div>`;
     });
-
     html+='</div></div>';
   });
-
   wrap.innerHTML=html;
 }
-window.saveItemName=async(input)=>{
-  const name=input.value.trim(),vid=input.dataset.vid;if(!name||!vid)return;
-  try{await update(ref(db,`sword/verses/${vid}`),{itemName:name});toast('Item renamed');}catch(e){toast('Error saving');}
-};
+window.saveItemName=async(input)=>{const name=input.value.trim(),vid=input.dataset.vid;if(!name||!vid)return;try{await update(ref(db,`sword/verses/${vid}`),{itemName:name});toast('Item renamed');}catch(e){toast('Error saving');}};
 
-// ── JOURNEY BOARD — road, quest, inv, maint ───────────
+// ── JOURNEY BOARD ─────────────────────────────────────
 function renderBoard(){
   get(ref(db,'sword/verses')).then(snap=>{
     const all=snap.exists()?Object.values(snap.val()):[];
     const groups=groupByQuest(all);
     const cols={road:[],quest:[],inv:[],maint:[]};
-    groups.forEach((verses,qid)=>{
-      const s=questStatus(verses);
-      if(cols[s])cols[s].push({qid,verses});
-    });
-    const card=({qid,verses})=>{
-      const isMaint=verses[0]?.isMaintenance;
-      const name=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid);
-      return`<div class="board-card"><div class="bc-name">${verses[0].name}</div><div class="bc-qname">${name}</div><div class="bc-ref">${passageRefLabel(verses)}</div><div class="bc-text">\u201c${verses.map(v=>v.text).join(' ')}\u201d</div></div>`;
-    };
+    groups.forEach((verses,qid)=>{const s=questStatus(verses);if(cols[s])cols[s].push({qid,verses});});
+    const card=({qid,verses})=>{const isMaint=verses[0]?.isMaintenance;const name=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid);return`<div class="board-card"><div class="bc-name">${verses[0].name}</div><div class="bc-qname">${name}</div><div class="bc-ref">${passageRefLabel(verses)}</div><div class="bc-text">\u201c${verses.map(v=>v.text).join(' ')}\u201d</div></div>`;};
     const col=list=>list.length?list.map(card).join(''):'<div class="empty-slot">None yet</div>';
-    const stations=[
-      {s:'road',cls:'s-road',icon:'🗺️',n:'Quest Acquired',d:'The word is newly received'},
-      {s:'quest',cls:'s-quest',icon:'⚔️',n:'On the Quest',d:'Pressing toward mastery'},
-      {s:'inv',cls:'s-inv',icon:'🏆',n:'Inventory',d:'Spoken before the Fellowship'},
-      {s:'maint',cls:'s-maint',icon:'🔧',n:'Maintenance',d:'Keeping the blade sharp'}
-    ];
-    document.getElementById('journey-board').innerHTML=stations.map((st,i)=>
-      (i>0?'<div class="j-arrow">›</div>':'')+
-      `<div class="j-station ${st.cls}"><div class="js-icon">${st.icon}</div><div class="js-name">${st.n}</div><div class="js-desc">${st.d}</div><div class="js-cards">${col(cols[st.s])}</div></div>`
-    ).join('');
+    const stations=[{s:'road',cls:'s-road',icon:'🗺️',n:'Quest Acquired',d:'The word is newly received'},{s:'quest',cls:'s-quest',icon:'⚔️',n:'On the Quest',d:'Pressing toward mastery'},{s:'inv',cls:'s-inv',icon:'🏆',n:'Inventory',d:'Spoken before the Fellowship'},{s:'maint',cls:'s-maint',icon:'🔧',n:'Maintenance',d:'Keeping the blade sharp'}];
+    document.getElementById('journey-board').innerHTML=stations.map((st,i)=>(i>0?'<div class="j-arrow">›</div>':'')+`<div class="j-station ${st.cls}"><div class="js-icon">${st.icon}</div><div class="js-name">${st.n}</div><div class="js-desc">${st.d}</div><div class="js-cards">${col(cols[st.s])}</div></div>`).join('');
   });
 }
 
@@ -1059,29 +1390,17 @@ function renderPsalmList(){
 }
 window.toggleVerse=(pn,vn,text)=>{const key=`${pn}:${vn}`;if(selectedVerses.has(key))selectedVerses.delete(key);else selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text});renderPsalmList();updateSelCount();};
 function updateSelCount(){const n=selectedVerses.size;document.getElementById('selected-count').textContent=n===0?'':n+' verse'+(n>1?'s':'')+' selected';}
-window.handleManualRef=()=>{
-  const val=document.getElementById('manual-ref').value.trim(),match=val.match(/(?:psalm\s*)?(\d+):(\d+)/i);if(!match)return;
-  const pn=parseInt(match[1]),vn=parseInt(match[2]);if(!PSALMS[pn])return;
-  const vd=PSALMS[pn].find(([n])=>n===vn);if(!vd)return;
-  selectedPsalm=pn;document.querySelectorAll('.psalm-pill').forEach(p=>p.classList.toggle('active',p.textContent.includes(String(pn))));renderPsalmList();
-  const key=`${pn}:${vn}`;if(!selectedVerses.has(key)){selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text:vd[1]});renderPsalmList();updateSelCount();}
-};
+window.handleManualRef=()=>{const val=document.getElementById('manual-ref').value.trim(),match=val.match(/(?:psalm\s*)?(\d+):(\d+)/i);if(!match)return;const pn=parseInt(match[1]),vn=parseInt(match[2]);if(!PSALMS[pn])return;const vd=PSALMS[pn].find(([n])=>n===vn);if(!vd)return;selectedPsalm=pn;document.querySelectorAll('.psalm-pill').forEach(p=>p.classList.toggle('active',p.textContent.includes(String(pn))));renderPsalmList();const key=`${pn}:${vn}`;if(!selectedVerses.has(key)){selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text:vd[1]});renderPsalmList();updateSelCount();}};
 window.submitVerses=async()=>{
   const sel=document.getElementById('name-select'),isNew=sel.value==='__new__';
   const name=isNew?document.getElementById('new-name-input').value.trim():sel.value;
   if(!name){toast('Choose or create a hero name');return;}if(!selectedVerses.size){toast('Select at least one verse');return;}
   const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='Accepting…';
   myHero=name;localStorage.setItem(HERO_KEY,name);
-  const questId=`q_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-  const newIds=[];
+  const questId=`q_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;const newIds=[];
   try{
-    for(const[key,v] of selectedVerses){
-      const id=`v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-      await set(ref(db,`sword/verses/${id}`),{id,questId,name,ref:v.ref,text:v.text,status:'road',created:Date.now()});
-      newIds.push(id);await new Promise(r=>setTimeout(r,50));
-    }
-    myIds=[...myIds,...newIds];localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
-    btn.disabled=false;btn.textContent='Accept Quest';hideAddForm();toast(`Quest accepted — ${newIds.length} verse${newIds.length>1?'s':''}`);
+    for(const[key,v] of selectedVerses){const id=`v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;await set(ref(db,`sword/verses/${id}`),{id,questId,name,ref:v.ref,text:v.text,status:'road',created:Date.now()});newIds.push(id);await new Promise(r=>setTimeout(r,50));}
+    myIds=[...myIds,...newIds];localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));btn.disabled=false;btn.textContent='Accept Quest';hideAddForm();toast(`Quest accepted — ${newIds.length} verse${newIds.length>1?'s':''}`);
   }catch(e){toast('Error — check connection');btn.disabled=false;btn.textContent='Accept Quest';}
 };
 
@@ -1094,7 +1413,6 @@ window.saveEdit=async()=>{
   const newRef=document.getElementById('edit-ref').value.trim(),newText=document.getElementById('edit-text').value.trim(),newStatus=document.getElementById('edit-status').value;
   if(!newText){toast('Verse text cannot be empty');return;}
   const updates={ref:newRef,text:newText,status:newStatus};
-  // If manually moving to inv, stamp the timestamp
   if(newStatus==='inv'){const existing=allVerses.find(v=>v.id===editingId);if(!existing?.invEnteredAt)updates.invEnteredAt=Date.now();}
   try{await update(ref(db,`sword/verses/${editingId}`),updates);closeEditModal();toast('Quest updated');}catch(e){toast('Error saving');}
 };
@@ -1106,11 +1424,357 @@ window.confirmDelete=async()=>{
 };
 function openPinOverlay(){document.getElementById('pin-input').value='';document.getElementById('pin-error').textContent='';document.getElementById('pin-overlay').classList.add('show');setTimeout(()=>document.getElementById('pin-input').focus(),100);}
 window.closePinOverlay=()=>{document.getElementById('pin-overlay').classList.remove('show');pendingEditId=null;};
-window.handlePinInput=()=>{
-  const val=document.getElementById('pin-input').value;if(val.length<4)return;
-  if(val===LEADER_PIN){leaderUnlocked=true;document.getElementById('pin-overlay').classList.remove('show');if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;}toast('Leader access granted');}
-  else{document.getElementById('pin-error').textContent='Incorrect PIN';document.getElementById('pin-input').value='';}
+window.handlePinInput=()=>{const val=document.getElementById('pin-input').value;if(val.length<4)return;if(val===LEADER_PIN){leaderUnlocked=true;document.getElementById('pin-overlay').classList.remove('show');if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;}toast('Leader access granted');}else{document.getElementById('pin-error').textContent='Incorrect PIN';document.getElementById('pin-input').value='';}};
+
+// ════════════════════════════════════════════════════
+// TV MODE
+// ════════════════════════════════════════════════════
+
+window.enterTvMode = function() {
+  tvActive = true;
+  document.getElementById('tv-mode-wrap').classList.add('active');
+  document.body.classList.add('tv-active');
+  tvRefreshAll();
+  tvSwitchView('board');
 };
+
+window.exitTvMode = function() {
+  tvActive = false;
+  document.getElementById('tv-mode-wrap').classList.remove('active');
+  document.body.classList.remove('tv-active');
+  tvCloseTurninPopup();
+};
+
+window.tvSwitchView = function(view) {
+  tvCurrentView = view;
+  document.querySelectorAll('.tv-view').forEach(v => v.classList.remove('tv-view-active'));
+  document.querySelectorAll('.tv-tab').forEach(b => b.classList.remove('tv-tab-active'));
+  document.getElementById('tv-view-' + view).classList.add('tv-view-active');
+  document.getElementById('tv-tab-' + view).classList.add('tv-tab-active');
+  if (view === 'board') tvRenderBoard();
+  if (view === 'spot') tvRenderSpotlight();
+};
+
+function tvRefreshAll() {
+  if (tvCurrentView === 'board') tvRenderBoard();
+  if (tvCurrentView === 'spot') tvRenderSpotlight();
+}
+
+// ── TV BOARD ──────────────────────────────────────────
+function tvRenderBoard() {
+  const groups = groupByQuest(allVerses);
+  const cols = { road: [], quest: [], inv: [], maint: [] };
+  groups.forEach((verses, qid) => {
+    const s = questStatus(verses);
+    if (cols[s]) cols[s].push({ qid, verses });
+  });
+
+  ['road','quest','inv','maint'].forEach(status => {
+    const el = document.getElementById('tv-col-' + status);
+    if (!el) return;
+    const items = cols[status];
+    if (!items.length) { el.innerHTML = '<div class="tv-col-empty">None yet</div>'; return; }
+    el.innerHTML = items.map(({ qid, verses }) => {
+      const isMaint = verses[0]?.isMaintenance;
+      const qname = isMaint ? hashPick(MAINT_QUEST_NAMES, qid) : hashPick(QUEST_NAMES, qid);
+      const refLbl = passageRefLabel(verses);
+      const dotCls = 'tv-sdot tv-sdot-' + questStatus(verses);
+      // group by hero name for chips
+      const heroNames = [...new Set(verses.map(v => v.name))];
+      const chipsHtml = heroNames.map(n => {
+        const heroInv = allVerses.filter(v => v.name === n && v.status === 'inv').length;
+        return `<span class="tv-chip${heroInv > 0 ? '' : ''}">${n}</span>`;
+      }).join('');
+      return `<div class="tv-qcard" onclick="tvSpotlightQuest('${qid}')">
+        <div class="tv-qcard-hero"><span class="${dotCls}"></span>${verses[0].name}${isMaint?' ↻':''}</div>
+        <div class="tv-qcard-quest">${qname}</div>
+        <div class="tv-qcard-ref">${refLbl}</div>
+        <div class="tv-qcard-chips">${chipsHtml}</div>
+      </div>`;
+    }).join('');
+  });
+
+  // Leaderboard
+  const byHero = new Map();
+  allVerses.filter(v => v.status === 'inv').forEach(v => {
+    byHero.set(v.name, (byHero.get(v.name) || 0) + 1);
+  });
+  // Also include heroes with 0 inv
+  [...new Set(allVerses.map(v => v.name))].forEach(n => { if (!byHero.has(n)) byHero.set(n, 0); });
+  const sorted = [...byHero.entries()].sort((a, b) => b[1] - a[1]);
+  const maxCount = sorted[0]?.[1] || 1;
+  const rankColors = ['gold','silver','bronze','other'];
+  document.getElementById('tv-lb-heroes').innerHTML = sorted.map(([name, count], i) => {
+    const rankCls = rankColors[Math.min(i, 3)];
+    const barPct = maxCount > 0 ? Math.round((count / maxCount) * 100) : 0;
+    const barColor = i === 0 ? '#c9a84c' : i === 1 ? '#b0b0b0' : i === 2 ? '#c97a3a' : '#5a3e10';
+    return `<div class="tv-lb-hero">
+      <span class="tv-lb-rank ${rankCls}">${i+1}</span>
+      <span class="tv-lb-name">${name}</span>
+      <div class="tv-lb-bar-wrap"><div class="tv-lb-bar" style="width:${barPct}%;background:${barColor};"></div></div>
+      <span class="tv-lb-count">${count} verse${count!==1?'s':''}</span>
+    </div>`;
+  }).join('');
+}
+
+// Clicking a board card goes to spotlight for that quest
+window.tvSpotlightQuest = function(qid) {
+  // Build spotlight list from all non-inv quests, put clicked one first
+  const groups = groupByQuest(allVerses.filter(v => v.status !== 'inv'));
+  tvSpotQids = [...groups.keys()];
+  const idx = tvSpotQids.indexOf(qid);
+  if (idx >= 0) tvSpotIdx = idx;
+  tvSwitchView('spot');
+};
+
+// ── TV SPOTLIGHT ──────────────────────────────────────
+function tvRenderSpotlight() {
+  const groups = groupByQuest(allVerses.filter(v => v.status !== 'inv'));
+  tvSpotQids = [...groups.keys()];
+  if (!tvSpotQids.length) {
+    document.getElementById('tv-verse-text').textContent = 'No active quests — check the Inventory tab.';
+    document.getElementById('tv-spot-ref').textContent = '—';
+    document.getElementById('tv-spot-qname').textContent = '—';
+    document.getElementById('tv-spot-status').innerHTML = '';
+    document.getElementById('tv-roster-heroes').innerHTML = '';
+    document.getElementById('tv-nav-counter').textContent = '— of —';
+    return;
+  }
+  tvSpotIdx = Math.max(0, Math.min(tvSpotIdx, tvSpotQids.length - 1));
+  const qid = tvSpotQids[tvSpotIdx];
+  const verses = groups.get(qid);
+  if (!verses) return;
+
+  // Reset hide state on new quest
+  tvSpotHidden = false;
+  tvSpotWordIdx = 0;
+  tvSetHideMode(false);
+
+  const isMaint = !!verses[0]?.isMaintenance;
+  const qname = isMaint ? hashPick(MAINT_QUEST_NAMES, qid) : hashPick(QUEST_NAMES, qid);
+  const refLbl = passageRefLabel(verses);
+  const status = questStatus(verses);
+  const statusLabels = { road: 'Quest Acquired', quest: 'On the Quest', maint: 'Maintenance' };
+
+  document.getElementById('tv-spot-ref').textContent = refLbl;
+  document.getElementById('tv-spot-qname').textContent = qname;
+  document.getElementById('tv-spot-status').innerHTML = `
+    <span class="tv-sdot tv-sdot-${status}"></span>
+    <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--${status==='road'?'c-road':status==='quest'?'c-quest':'c-maint'});">${statusLabels[status]||status}</span>
+    <span style="color:rgba(42,31,10,0.8);margin:0 6px;">·</span>
+    <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);" id="tv-spot-active-hero">${tvActiveHeroName || verses[0].name}</span>
+  `;
+
+  const fullText = verses.map(v => `"${v.text}"`).join(' ');
+  document.getElementById('tv-verse-text').textContent = fullText;
+  document.getElementById('tv-hide-sublabel').textContent = `${refLbl} · ${tvActiveHeroName || verses[0].name}`;
+  document.getElementById('tv-nav-counter').textContent = `Quest ${tvSpotIdx + 1} of ${tvSpotQids.length}`;
+
+  // Check if active hero has all training done (for turn-in strip)
+  const activeHero = tvActiveHeroName || verses[0].name;
+  const heroVerses = verses.filter(v => v.name === activeHero);
+  const heroQid = heroVerses[0]?.questId || heroVerses[0]?.id;
+  const prog = heroQid ? (trainProgress[heroQid] || {}) : {};
+  const modes = modesForQuest(verses);
+  const allDone = modes.every(m => prog[m]);
+  const strip = document.getElementById('tv-turnin-strip');
+  // Only show turn-in strip when training is done and it's their own quest
+  const isMine = verses.some(v => myIds.includes(v.id));
+  if (allDone && isMine && status !== 'inv') {
+    strip.classList.add('visible');
+  } else {
+    strip.classList.remove('visible');
+  }
+
+  // Party roster — all heroes with this same verse ref
+  const allOnVerse = allVerses.filter(v => {
+    const vRef = passageRefLabel([v]);
+    return vRef && vRef.includes(refLbl.split('–')[0].split(':')[0]);
+  });
+  // Group differently: find any quest for same passage
+  const rosterHeroes = new Map();
+  allVerses.forEach(v => {
+    if (v.ref && verses.some(sv => sv.ref === v.ref)) {
+      if (!rosterHeroes.has(v.name)) rosterHeroes.set(v.name, v.status);
+    }
+  });
+
+  const statusLabel = s => ({ road: 'Quest Acquired', quest: 'On the Quest', inv: '✓ Inventory', maint: 'Maintenance' }[s] || s);
+  const isActive = name => name === (tvActiveHeroName || verses[0].name);
+
+  document.getElementById('tv-roster-heroes').innerHTML = [...rosterHeroes.entries()].map(([name, st]) => {
+    const avatar = HERO_AVATARS[Math.abs((name.charCodeAt(0)||0)) % HERO_AVATARS.length];
+    const active = isActive(name);
+    const badge = st === 'inv' ? `<span class="rh-badge rh-badge-mastered">Mastered</span>` :
+                  active ? `<span class="rh-badge rh-badge-active">Active</span>` : '';
+    const stClass = st === 'inv' ? 'rh-done' : active ? 'rh-testing' : '';
+    const testingLabel = active && st !== 'inv' ? 'Testing for turn-in' : statusLabel(st);
+    return `<div class="tv-roster-hero${active?' rh-active':''}" onclick="tvSelectHero('${name}','${qid}')">
+      <div class="rh-avatar">${avatar}</div>
+      <div>
+        <div class="rh-name${active?' rh-name-active':''}">${name}</div>
+        <div class="rh-status ${stClass}">${testingLabel}</div>
+      </div>
+      ${badge}
+    </div>`;
+  }).join('');
+}
+
+window.tvSelectHero = function(name, qid) {
+  tvActiveHeroName = name;
+  // Re-render spotlight to update active state
+  tvRenderSpotlight();
+};
+
+window.tvNavQuest = function(dir) {
+  const groups = groupByQuest(allVerses.filter(v => v.status !== 'inv'));
+  tvSpotQids = [...groups.keys()];
+  tvSpotIdx = (tvSpotIdx + dir + tvSpotQids.length) % tvSpotQids.length;
+  tvSpotHidden = false;
+  tvRenderSpotlight();
+};
+
+// ── TV HIDE / REVEAL ──────────────────────────────────
+function tvSetHideMode(hidden) {
+  tvSpotHidden = hidden;
+  const verseText = document.getElementById('tv-verse-text');
+  const hidePanel = document.getElementById('tv-hide-panel');
+  const verseBox = document.getElementById('tv-verse-box');
+  const hideBtn = document.getElementById('tv-hide-btn');
+  const strip = document.getElementById('tv-turnin-strip');
+
+  if (hidden) {
+    verseText.style.display = 'none';
+    hidePanel.style.display = 'flex';
+    verseBox.classList.add('hide-mode');
+    hideBtn.textContent = 'Show Verse';
+    hideBtn.classList.remove('sp-green');
+    hideBtn.classList.add('sp-gold');
+    strip.classList.add('visible');
+  } else {
+    verseText.style.display = 'block';
+    hidePanel.style.display = 'none';
+    verseBox.classList.remove('hide-mode');
+    hideBtn.textContent = 'Hide & Test';
+    hideBtn.classList.add('sp-green');
+    hideBtn.classList.remove('sp-gold');
+    // re-check if strip should show
+    const qid = tvSpotQids[tvSpotIdx];
+    if (!qid) return;
+    const verses = groupByQuest(allVerses).get(qid);
+    if (!verses) return;
+    const isMine = verses.some(v => myIds.includes(v.id));
+    const status = questStatus(verses);
+    const modes = modesForQuest(verses);
+    const prog = trainProgress[qid] || {};
+    const allDone = modes.every(m => prog[m]);
+    if (!(allDone && isMine && status !== 'inv')) {
+      strip.classList.remove('visible');
+    }
+  }
+}
+
+window.tvToggleHide = function() { tvSetHideMode(!tvSpotHidden); };
+window.tvRevealVerse = function() { tvSetHideMode(false); };
+window.tvRevealWordByWord = function() {
+  if (tvSpotHidden) tvSetHideMode(false);
+  const qid = tvSpotQids[tvSpotIdx];
+  if (!qid) return;
+  const verses = groupByQuest(allVerses).get(qid);
+  if (!verses) return;
+  const fullText = verses.map(v => `"${v.text}"`).join(' ');
+  const words = fullText.split(' ');
+  tvSpotWordIdx = Math.min(tvSpotWordIdx + 1, words.length);
+  document.getElementById('tv-verse-text').textContent =
+    words.slice(0, tvSpotWordIdx).join(' ') + (tvSpotWordIdx < words.length ? ' …' : '');
+};
+
+window.tvLaunchTraining = function() {
+  const qid = tvSpotQids[tvSpotIdx];
+  if (!qid) return;
+  exitTvMode();
+  setTimeout(() => startTraining(qid), 200);
+};
+
+// ── TV TURN-IN POPUP ──────────────────────────────────
+window.tvOpenTurninPopup = function() {
+  const qid = tvSpotQids[tvSpotIdx];
+  if (!qid) return;
+  tvPendingTurninQid = qid;
+  const verses = groupByQuest(allVerses).get(qid);
+  if (!verses) return;
+
+  const isMaint = !!verses[0]?.isMaintenance;
+  const refLbl = passageRefLabel(verses);
+  const qname = isMaint ? hashPick(MAINT_QUEST_NAMES, qid) : hashPick(QUEST_NAMES, qid);
+  const itemName = hashPick(ITEM_NAMES, qid);
+  const itemIdx = ITEM_NAMES.indexOf(itemName);
+  const itemType = ITEM_TYPES[itemIdx] || 'One-Hand Sword';
+  const npcLine = NPC_TURNIN[Math.abs((qid.charCodeAt(1)||0)) % NPC_TURNIN.length];
+  const heroName = tvActiveHeroName || verses[0].name;
+  const avatar = HERO_AVATARS[Math.abs((heroName.charCodeAt(0)||0)) % HERO_AVATARS.length];
+  const versePreview = verses.map(v => `"${v.text}"`).join(' ').slice(0, 220) + (verses.map(v=>v.text).join(' ').length > 200 ? '…' : '"');
+
+  document.getElementById('tv-popup-title').textContent = isMaint ? 'Restore the Blade' : 'Declare Thy Deed';
+  document.getElementById('tv-popup-sub').textContent = `${refLbl} · ${qname}`;
+  document.getElementById('tv-popup-hero-row').innerHTML = `
+    <div class="tv-popup-avatar">${avatar}</div>
+    <div>
+      <div class="tv-popup-hero-name">${heroName}</div>
+      <div class="tv-popup-hero-sub">Hast thou spoken this word before the Fellowship?</div>
+    </div>`;
+  document.getElementById('tv-popup-speech').textContent = npcLine;
+  document.getElementById('tv-popup-item-box').innerHTML = `
+    <div class="tv-popup-acquiring">${isMaint ? 'Blade Being Restored' : 'Item Acquiring'}</div>
+    <div class="tv-popup-item-name">${itemName}</div>
+    <div class="tv-popup-item-type">${itemType}</div>
+    <div class="tv-popup-item-ref">${refLbl}</div>
+    <div class="tv-popup-divider" style="height:1px;background:linear-gradient(to right,rgba(90,62,16,0.7),transparent);margin:10px 0;"></div>
+    <div class="tv-popup-verse">${versePreview}</div>`;
+
+  document.getElementById('tv-turnin-overlay').classList.add('visible');
+};
+
+window.tvCloseTurninPopup = function() {
+  document.getElementById('tv-turnin-overlay').classList.remove('visible');
+  tvPendingTurninQid = null;
+};
+
+window.tvConfirmTurnin = async function() {
+  tvCloseTurninPopup();
+  const qid = tvPendingTurninQid || tvSpotQids[tvSpotIdx];
+  if (!qid) return;
+  await doTurnin(qid);
+  // After turn-in, refresh and advance spotlight
+  tvSpotIdx = Math.max(0, tvSpotIdx - 1);
+  tvSetHideMode(false);
+  tvRenderBoard();
+  tvRenderSpotlight();
+};
+
+// ── KEYBOARD SHORTCUTS ────────────────────────────────
+document.addEventListener('keydown', e => {
+  // T = toggle TV mode (when not in an input)
+  if ((e.key === 't' || e.key === 'T') && !tvActive &&
+      !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
+    enterTvMode(); return;
+  }
+  if (!tvActive) return;
+  // popup open — only Escape matters
+  if (document.getElementById('tv-turnin-overlay').classList.contains('visible')) {
+    if (e.key === 'Escape') tvCloseTurninPopup();
+    return;
+  }
+  switch (e.key) {
+    case 'Escape': exitTvMode(); break;
+    case 'b': case 'B': tvSwitchView('board'); break;
+    case 's': case 'S': tvSwitchView('spot'); break;
+    case 'ArrowLeft':  if (tvCurrentView==='spot') tvNavQuest(-1); break;
+    case 'ArrowRight': if (tvCurrentView==='spot') tvNavQuest(1); break;
+    case 'h': case 'H': if (tvCurrentView==='spot') tvToggleHide(); break;
+    case 'w': case 'W': if (tvCurrentView==='spot') tvRevealWordByWord(); break;
+  }
+});
 
 loadAll();
 </script>
