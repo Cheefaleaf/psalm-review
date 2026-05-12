@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fellowship – Worship Songs</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF7A2B;
+    --orange-dim: rgba(255,122,43,0.55);
+    --orange-glow: rgba(255,122,43,0.15);
+    --orange-glow-strong: rgba(255,122,43,0.28);
+    --bg: #181c24;
+    --bg2: #1f2430;
+    --bg3: #232838;
+    --card-bg: #1c2130;
+    --card-border: rgba(255,255,255,0.07);
+    --card-border-hover: rgba(255,122,43,0.45);
+    --text: #f0f0f0;
+    --text-mid: #a0a8b8;
+    --text-dim: #505870;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ambient orange glow top-right — like the sign bleeding through */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    right: -15%;
+    width: 55%;
+    height: 55%;
+    background: radial-gradient(ellipse, rgba(255,122,43,0.07) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+  }
+
+  /* ============================
+     GRID PAGE
+  ============================ */
+  #grid-page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 60px 36px 100px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .site-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .site-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  .site-title {
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    text-transform: uppercase;
+  }
+
+  /* Orange underline accent */
+  .site-title span {
+    display: inline-block;
+    position: relative;
+  }
+  .site-title span::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 2px;
+    box-shadow: 0 0 12px var(--orange-dim);
+  }
+
+  .site-sub {
+    margin-top: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* Grid */
+  .song-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 780px) { .song-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) {
+    .song-grid { grid-template-columns: 1fr; }
+    #grid-page { padding: 40px 18px 80px; }
+  }
+
+  .song-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 20px 20px 18px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    opacity: 0;
+    animation: cardIn 0.35s ease forwards;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Orange glow on hover */
+  .song-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 70% at 80% 10%, var(--orange-glow) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+  }
+
+  /* Bottom orange line */
+  .song-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .song-card:hover {
+    background: var(--bg3);
+    border-color: var(--card-border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35), 0 0 20px var(--orange-glow);
+  }
+  .song-card:hover::before { opacity: 1; }
+  .song-card:hover::after  { opacity: 0.8; }
+  .song-card:active { transform: translateY(-1px); }
+
+  .card-inner { position: relative; z-index: 1; }
+
+  .card-num {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    opacity: 0.7;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 5px;
+    letter-spacing: -0.01em;
+  }
+
+  .card-artist {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* ============================
+     SLIDESHOW
+  ============================ */
+  #slideshow-page {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    flex-direction: column;
+  }
+  #slideshow-page.active { display: flex; }
+
+  /* BG layers */
+  .slide-bg { position: absolute; inset: 0; z-index: 0; }
+  .slide-bg-base   { position: absolute; inset: 0; }
+  .slide-bg-bloom1 { position: absolute; top: -20%; right: -8%;  width: 70%; height: 78%; filter: blur(60px); }
+  .slide-bg-bloom2 { position: absolute; bottom: -15%; left: -5%; width: 60%; height: 60%; filter: blur(65px); }
+  .slide-bg-bloom3 { position: absolute; top: 20%; left: 15%; width: 70%; height: 60%; filter: blur(80px); opacity: 0.4; }
+  .slide-bg-streak {
+    position: absolute;
+    top: 46%; left: 0; right: 0;
+    height: 2px; filter: blur(2px); opacity: 0.25;
+  }
+
+  /* UPBEAT — warm amber/orange, lifted */
+  #slideshow-page.upbeat .slide-bg-base   { background: #1a1408; }
+  #slideshow-page.upbeat .slide-bg-bloom1 { background: radial-gradient(ellipse at 65% 25%, rgba(255,160,40,0.35) 0%, transparent 70%); }
+  #slideshow-page.upbeat .slide-bg-bloom2 { background: radial-gradient(ellipse at 30% 75%, rgba(255,122,43,0.18) 0%, transparent 65%); }
+  #slideshow-page.upbeat .slide-bg-bloom3 { background: radial-gradient(ellipse at 50% 50%, rgba(255,190,80,0.10) 0%, transparent 60%); }
+  #slideshow-page.upbeat .slide-bg-streak { background: linear-gradient(90deg, transparent, rgba(255,170,60,0.5), transparent); }
+  #slideshow-page.upbeat .ss-accent       { color: #FFB347; }
+  #slideshow-page.upbeat .dot.active      { background: #FFB347; box-shadow: 0 0 8px rgba(255,179,71,0.6); }
+  #slideshow-page.upbeat .nav-arrow:hover:not(:disabled) { border-color: #FFB347; color: #FFB347; }
+  #slideshow-page.upbeat .close-btn:hover { border-color: #FFB347; color: #FFB347; }
+
+  /* GENTLE — soft blue/periwinkle */
+  #slideshow-page.gentle .slide-bg-base   { background: #0e1420; }
+  #slideshow-page.gentle .slide-bg-bloom1 { background: radial-gradient(ellipse at 65% 25%, rgba(100,160,240,0.28) 0%, transparent 70%); }
+  #slideshow-page.gentle .slide-bg-bloom2 { background: radial-gradient(ellipse at 30% 75%, rgba(80,140,220,0.15) 0%, transparent 65%); }
+  #slideshow-page.gentle .slide-bg-bloom3 { background: radial-gradient(ellipse at 50% 50%, rgba(120,180,255,0.08) 0%, transparent 60%); }
+  #slideshow-page.gentle .slide-bg-streak { background: linear-gradient(90deg, transparent, rgba(120,180,255,0.4), transparent); }
+  #slideshow-page.gentle .ss-accent       { color: #7EB8F7; }
+  #slideshow-page.gentle .dot.active      { background: #7EB8F7; box-shadow: 0 0 8px rgba(126,184,247,0.6); }
+  #slideshow-page.gentle .nav-arrow:hover:not(:disabled) { border-color: #7EB8F7; color: #7EB8F7; }
+  #slideshow-page.gentle .close-btn:hover { border-color: #7EB8F7; color: #7EB8F7; }
+
+  /* SOMBER — deep rose/mauve, not cave-dark */
+  #slideshow-page.somber .slide-bg-base   { background: #160e10; }
+  #slideshow-page.somber .slide-bg-bloom1 { background: radial-gradient(ellipse at 65% 25%, rgba(210,90,110,0.30) 0%, transparent 70%); }
+  #slideshow-page.somber .slide-bg-bloom2 { background: radial-gradient(ellipse at 30% 75%, rgba(190,80,100,0.16) 0%, transparent 65%); }
+  #slideshow-page.somber .slide-bg-bloom3 { background: radial-gradient(ellipse at 50% 50%, rgba(220,110,130,0.08) 0%, transparent 60%); }
+  #slideshow-page.somber .slide-bg-streak { background: linear-gradient(90deg, transparent, rgba(220,110,130,0.4), transparent); }
+  #slideshow-page.somber .ss-accent       { color: #E8889A; }
+  #slideshow-page.somber .dot.active      { background: #E8889A; box-shadow: 0 0 8px rgba(232,136,154,0.6); }
+  #slideshow-page.somber .nav-arrow:hover:not(:disabled) { border-color: #E8889A; color: #E8889A; }
+  #slideshow-page.somber .close-btn:hover { border-color: #E8889A; color: #E8889A; }
+
+  /* Header */
+  .slide-header {
+    position: relative; z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(14px);
+    flex-shrink: 0;
+  }
+  .slide-song-info { display: flex; flex-direction: column; gap: 3px; }
+
+  .slide-song-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .slide-song-artist {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+  .close-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .close-btn:hover { background: rgba(255,255,255,0.08); }
+
+  /* Stage */
+  .slide-stage {
+    flex: 1;
+    position: relative; z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 90px;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    text-align: center;
+    max-width: 860px;
+    width: 100%;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .slide-content.fade-out { opacity: 0; transform: translateY(8px); }
+
+  /* Section label */
+  .slide-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 28px;
+  }
+
+  /* THE LYRICS — Hillsong/Passion style: bold, clean, uppercase, massive */
+  .slide-lyrics {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    white-space: pre-line;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.6);
+    text-transform: uppercase;
+  }
+
+  /* Nav arrows */
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.09);
+    color: rgba(255,255,255,0.3);
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 20;
+    user-select: none;
+    backdrop-filter: blur(6px);
+  }
+  .nav-arrow:hover:not(:disabled) {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-50%) scale(1.1);
+  }
+  .nav-arrow:disabled { opacity: 0.1; cursor: default; }
+  .nav-arrow.prev { left: 18px; }
+  .nav-arrow.next { right: 18px; }
+
+  /* Footer */
+  .slide-footer {
+    position: relative; z-index: 10;
+    padding: 12px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    flex-shrink: 0;
+  }
+
+  .dot-nav {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 540px;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.16);
+    cursor: pointer;
+    border: none; padding: 0;
+    transition: background 0.2s, transform 0.22s, width 0.25s, border-radius 0.25s;
+  }
+  .dot.active {
+    transform: scale(1.2);
+    width: 20px;
+    border-radius: 3px;
+  }
+  .dot:hover:not(.active) { background: rgba(255,255,255,0.35); }
+
+  .slide-counter {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.2);
+  }
+</style>
+</head>
+<body>
+
+<div id="grid-page">
+  <header class="site-header">
+    <div class="site-eyebrow">Christ Presbyterian Church &middot; Georgetown TX</div>
+    <h1 class="site-title"><span>Worship Songs</span></h1>
+    <p class="site-sub">Select a song to open lyrics</p>
+  </header>
+  <div class="song-grid" id="song-grid"></div>
+</div>
+
+<div id="slideshow-page">
+  <div class="slide-bg">
+    <div class="slide-bg-base"></div>
+    <div class="slide-bg-bloom1"></div>
+    <div class="slide-bg-bloom2"></div>
+    <div class="slide-bg-bloom3"></div>
+    <div class="slide-bg-streak"></div>
+  </div>
+  <div class="slide-header">
+    <div class="slide-song-info">
+      <div class="slide-song-title" id="ss-title"></div>
+      <div class="slide-song-artist" id="ss-artist"></div>
+    </div>
+    <button class="close-btn" id="close-btn">✕ Close</button>
+  </div>
+  <div class="slide-stage">
+    <button class="nav-arrow prev" id="prev-btn">&#8592;</button>
+    <div class="slide-content" id="slide-content">
+      <div class="slide-label ss-accent" id="slide-label"></div>
+      <div class="slide-lyrics" id="slide-lyrics"></div>
+    </div>
+    <button class="nav-arrow next" id="next-btn">&#8594;</button>
+  </div>
+  <div class="slide-footer">
+    <div class="dot-nav" id="dot-nav"></div>
+    <div class="slide-counter" id="slide-counter"></div>
+  </div>
+</div>
+
+<script>
+const SONGS = [
+  {
+    title: "Jesus Strong and Kind", artist: "CityAlight", mood: "gentle",
+    slides: [
+      { label: "Verse 1", lyrics: "Jesus said that if I thirst\nI should come to him\nNo one else can satisfy\nI should come to him" },
+      { label: "Verse 2", lyrics: "Jesus said if I am weak\nI should come to him\nNo one else can be my strength\nI should come to him" },
+      { label: "Chorus", lyrics: "For the Lord is good and faithful\nHe will keep us day and night\nWe can always run to Jesus\nJesus strong and kind" },
+      { label: "Verse 3", lyrics: "Jesus said that if I fear\nI should come to him\nNo one else can be my shield\nI should come to him" },
+      { label: "Verse 4", lyrics: "Jesus said if I am lost\nHe will come to me\nAnd he showed me on that cross\nHe will come to me" },
+      { label: "Chorus", lyrics: "For the Lord is good and faithful\nHe will keep us day and night\nWe can always run to Jesus\nJesus strong and kind" },
+      { label: "Bridge", lyrics: "Jesus strong and kind\nJesus strong and kind\nWe can always run to Jesus\nJesus strong and kind" },
+    ]
+  },
+  {
+    title: "Praise You in This Storm", artist: "Casting Crowns", mood: "somber",
+    slides: [
+      { label: "Verse 1", lyrics: "I was sure by now, God\nYou would have reached down\nAnd wiped our tears away\nStepped in and saved the day\nBut once again, I say amen\nAnd it's still raining" },
+      { label: "Pre-Chorus", lyrics: "As the thunder rolls\nI barely hear You whisper\nThrough the rain, \"I'm with you\"\nAnd as Your mercy falls\nI raise my hands and praise the God\nWho gives and takes away" },
+      { label: "Chorus", lyrics: "And I'll praise You in this storm\nAnd I will lift my hands\nFor You are who You are\nNo matter where I am\nAnd every tear I've cried\nYou hold in Your hand\nYou never left my side\nAnd though my heart is torn\nI will praise You in this storm" },
+      { label: "Verse 2", lyrics: "I remember when I stumbled\nIn the wind\nYou heard my cry\nAnd raised me up again\nMy strength is almost gone\nHow can I carry on\nIf I can't find You?" },
+      { label: "Bridge", lyrics: "I lift my eyes unto the hills\nWhere does my help come from?\nMy help comes from the Lord\nThe Maker of heaven and earth" },
+      { label: "Chorus", lyrics: "And I'll praise You in this storm\nAnd I will lift my hands\nFor You are who You are\nNo matter where I am\nAnd every tear I've cried\nYou hold in Your hand\nYou never left my side\nAnd though my heart is torn\nI will praise You in this storm" },
+    ]
+  },
+  {
+    title: "As the Deer", artist: "Martin Nystrom", mood: "gentle",
+    slides: [
+      { label: "Verse 1", lyrics: "As the deer panteth for the water\nSo my soul longeth after Thee\nYou alone are my heart's desire\nAnd I long to worship Thee" },
+      { label: "Chorus", lyrics: "You alone are my strength, my shield\nTo You alone may my spirit yield\nYou alone are my heart's desire\nAnd I long to worship Thee" },
+      { label: "Verse 2", lyrics: "You're my friend and You are my brother\nEven though You are a King\nI love You more than any other\nSo much more than anything" },
+      { label: "Chorus", lyrics: "You alone are my strength, my shield\nTo You alone may my spirit yield\nYou alone are my heart's desire\nAnd I long to worship Thee" },
+      { label: "Verse 3", lyrics: "I want You more than gold or silver\nOnly You can satisfy\nYou alone are the real joy-giver\nAnd the apple of my eye" },
+      { label: "Chorus", lyrics: "You alone are my strength, my shield\nTo You alone may my spirit yield\nYou alone are my heart's desire\nAnd I long to worship Thee" },
+    ]
+  },
+  {
+    title: "10,000 Reasons", artist: "Matt Redman", mood: "upbeat",
+    slides: [
+      { label: "Chorus", lyrics: "Bless the Lord, O my soul\nO my soul\nWorship His holy name\nSing like never before\nO my soul\nI'll worship Your holy name" },
+      { label: "Verse 1", lyrics: "The sun comes up\nIt's a new day dawning\nIt's time to sing Your song again\nWhatever may pass\nAnd whatever lies before me\nLet me be singing\nWhen the evening comes" },
+      { label: "Verse 2", lyrics: "You're rich in love\nAnd You're slow to anger\nYour name is great\nAnd Your heart is kind\nFor all Your goodness\nI will keep on singing\nTen thousand reasons\nFor my heart to find" },
+      { label: "Chorus", lyrics: "Bless the Lord, O my soul\nO my soul\nWorship His holy name\nSing like never before\nO my soul\nI'll worship Your holy name" },
+      { label: "Verse 3", lyrics: "And on that day\nWhen my strength is failing\nThe end draws near\nAnd my time has come\nStill my soul will sing\nYour praise unending\nTen thousand years\nAnd then forevermore" },
+      { label: "Chorus", lyrics: "Bless the Lord, O my soul\nO my soul\nWorship His holy name\nSing like never before\nO my soul\nI'll worship Your holy name" },
+    ]
+  },
+  {
+    title: "How Deep the Father's Love", artist: "Stuart Townend", mood: "somber",
+    slides: [
+      { label: "Verse 1", lyrics: "How deep the Father's love for us\nHow vast beyond all measure\nThat He should give His only Son\nTo make a wretch His treasure\nHow great the pain of searing loss\nThe Father turns His face away\nAs wounds which mar the Chosen One\nBring many sons to glory" },
+      { label: "Verse 2", lyrics: "Behold the man upon a cross\nMy sin upon His shoulders\nAshamed, I hear my mocking voice\nCall out among the scoffers\nIt was my sin that held Him there\nUntil it was accomplished\nHis dying breath has brought me life\nI know that it is finished" },
+      { label: "Verse 3", lyrics: "I will not boast in anything\nNo gifts, no power, no wisdom\nBut I will boast in Jesus Christ\nHis death and resurrection\nWhy should I gain from His reward?\nI cannot give an answer\nBut this I know with all my heart\nHis wounds have paid my ransom" },
+    ]
+  },
+  {
+    title: "The Old Rugged Cross", artist: "George Bennard", mood: "somber",
+    slides: [
+      { label: "Verse 1", lyrics: "On a hill far away\nStood an old rugged cross\nThe emblem of suffering and shame\nAnd I love that old cross\nWhere the dearest and best\nFor a world of lost sinners was slain" },
+      { label: "Chorus", lyrics: "So I'll cherish the old rugged cross\nTill my trophies at last I lay down\nI will cling to the old rugged cross\nAnd exchange it someday for a crown" },
+      { label: "Verse 2", lyrics: "O that old rugged cross\nSo despised by the world\nHas a wondrous attraction for me\nFor the dear Lamb of God\nLeft His glory above\nTo bear it to dark Calvary" },
+      { label: "Chorus", lyrics: "So I'll cherish the old rugged cross\nTill my trophies at last I lay down\nI will cling to the old rugged cross\nAnd exchange it someday for a crown" },
+      { label: "Verse 3", lyrics: "In the old rugged cross\nStained with blood so divine\nA wondrous beauty I see\nFor 'twas on that old cross\nJesus suffered and died\nTo pardon and sanctify me" },
+      { label: "Chorus", lyrics: "So I'll cherish the old rugged cross\nTill my trophies at last I lay down\nI will cling to the old rugged cross\nAnd exchange it someday for a crown" },
+    ]
+  },
+  {
+    title: "Hosanna (Praise Is Rising)", artist: "Paul Baloche", mood: "upbeat",
+    slides: [
+      { label: "Verse 1", lyrics: "Praise is rising\nEyes are turning to You\nWe turn to You\nHope is stirring\nHearts are yearning for You\nWe long for You" },
+      { label: "Pre-Chorus", lyrics: "'Cause when we see You\nWe find strength to face the day\nIn Your presence\nAll our fears are washed away" },
+      { label: "Chorus", lyrics: "Hosanna, hosanna\nYou are the God who saves us\nWorthy of all our praises\nHosanna, hosanna\nCome have Your way among us\nWe welcome You here, Lord Jesus" },
+      { label: "Verse 2", lyrics: "Hear the sound of hearts\nReturning to You\nWe return to You\nIn Your Kingdom\nBroken lives are made new\nYou make us new" },
+      { label: "Chorus", lyrics: "Hosanna, hosanna\nYou are the God who saves us\nWorthy of all our praises\nHosanna, hosanna\nCome have Your way among us\nWe welcome You here, Lord Jesus" },
+    ]
+  },
+  {
+    title: "Come Thou Fount", artist: "Robert Robinson", mood: "gentle",
+    slides: [
+      { label: "Verse 1", lyrics: "Come Thou fount of every blessing\nTune my heart to sing Thy grace\nStreams of mercy never ceasing\nCall for songs of loudest praise\nTeach me some melodious sonnet\nSung by flaming tongues above\nPraise the mount, I'm fixed upon it\nMount of Thy redeeming love" },
+      { label: "Verse 2", lyrics: "Here I raise my Ebenezer\nHither by Thy help I'm come\nAnd I hope by Thy good pleasure\nSafely to arrive at home\nJesus sought me when a stranger\nWandering from the fold of God\nHe to rescue me from danger\nInterposed His precious blood" },
+      { label: "Verse 3", lyrics: "O to grace how great a debtor\nDaily I'm constrained to be\nLet Thy goodness like a fetter\nBind my wandering heart to Thee\nProne to wander, Lord, I feel it\nProne to leave the God I love\nHere's my heart, O take and seal it\nSeal it for Thy courts above" },
+    ]
+  },
+  {
+    title: "Come People of the Risen King", artist: "Keith & Kristyn Getty", mood: "upbeat",
+    slides: [
+      { label: "Verse 1", lyrics: "Come people of the Risen King\nWho delight to bring Him praise\nCome all and tune your hearts to sing\nTo the Morning Star of days\nCome those whose joy is morning sun\nAnd those weeping through the night\nCome those who tell of battles won\nAnd those struggling in the fight" },
+      { label: "Chorus", lyrics: "All praise to Him who reigns above\nIn majesty supreme\nWho gave His Son to die in love\nFor sinners such as we\nHow great the wisdom, power and grace\nThat God should come to earth\nAnd in our nature take His place\nO Christ of matchless worth" },
+      { label: "Verse 2", lyrics: "Come those with deep unspoken fears\nAnd those whose faith is strong\nCome, taste the peace that He imparts\nAnd come and join the song\nLet nations honor Jesus Christ\nThe Lord who comes to bless" },
+      { label: "Chorus", lyrics: "All praise to Him who reigns above\nIn majesty supreme\nWho gave His Son to die in love\nFor sinners such as we\nHow great the wisdom, power and grace\nThat God should come to earth\nAnd in our nature take His place\nO Christ of matchless worth" },
+    ]
+  },
+  {
+    title: "Pharaoh Pharaoh", artist: "Camp Classic", mood: "upbeat",
+    slides: [
+      { label: "Chorus", lyrics: "Pharaoh Pharaoh\nOh baby let my people go!\nWhoa-oa-oa yeah!" },
+      { label: "Verse 1", lyrics: "Well a burnin' bush told me\nJust the other day\nThat I should go back to Egypt\nFree my people away\nWell I picked up my staff\nAnd I walked across the sand\nAnd I told old Pharaoh:\nLet my people go!" },
+      { label: "Chorus", lyrics: "Pharaoh Pharaoh\nOh baby let my people go!\nWhoa-oa-oa yeah!" },
+      { label: "Verse 2", lyrics: "Well the Lord told Moses\nI'll send locusts on this land\nSend frogs and flies and darkness too\nAnd Pharaoh wouldn't listen\nSo I hardened his heart\nAnd said Pharaoh:\nLet my people go!" },
+      { label: "Chorus", lyrics: "Pharaoh Pharaoh\nOh baby let my people go!\nWhoa-oa-oa yeah!" },
+      { label: "Verse 3", lyrics: "Well Moses took his staff\nAnd he walked to the sea\nAnd the people walked across\nOn dry and dusty ground\nAnd Pharaoh's army\nCame a-followin' down" },
+      { label: "Outro", lyrics: "The sea came down\nAnd covered them over\nPharaoh's army drowned!\nHallelujah!" },
+    ]
+  },
+  {
+    title: "This Is the Day", artist: "CityAlight (2022)", mood: "upbeat",
+    slides: [
+      { label: "Verse 1", lyrics: "Morning has broken\nOver the mountains\nThe sun on the water\nIs shining so bright\nThis is the day\nThat my Lord has made\nI will rejoice\nAnd be glad in it" },
+      { label: "Chorus", lyrics: "This is the day, this is the day\nThat the Lord has made\nI will rejoice, I will rejoice\nAnd be glad in it\nThis is the day that the Lord has made\nI will rejoice and be glad in it\nThis is the day, this is the day\nThat the Lord has made" },
+      { label: "Verse 2", lyrics: "Open my eyes\nTo the hope You have given\nA mercy renewed\nWith the coming of dawn\nThis is the day\nThat my Lord has made\nI will rejoice\nAnd be glad in it" },
+      { label: "Bridge", lyrics: "Sing to the Lord\nA song of thanksgiving\nLift up your voice and sing\nPraise to the God of our salvation\nHonor and glory to the King" },
+      { label: "Chorus", lyrics: "This is the day, this is the day\nThat the Lord has made\nI will rejoice, I will rejoice\nAnd be glad in it\nThis is the day that the Lord has made\nI will rejoice and be glad in it\nThis is the day, this is the day\nThat the Lord has made" },
+    ]
+  },
+  {
+    title: "Holy Holy Holy", artist: "Reginald Heber", mood: "somber",
+    slides: [
+      { label: "Verse 1", lyrics: "Holy, holy, holy!\nLord God Almighty!\nEarly in the morning\nOur song shall rise to Thee\nHoly, holy, holy!\nMerciful and mighty!\nGod in three Persons\nBlessèd Trinity!" },
+      { label: "Verse 2", lyrics: "Holy, holy, holy!\nAll the saints adore Thee\nCasting down their golden crowns\nAround the glassy sea\nCherubim and seraphim\nFalling down before Thee\nWhich wert and art\nAnd evermore shalt be" },
+      { label: "Verse 3", lyrics: "Holy, holy, holy!\nThough the darkness hide Thee\nThough the eye of sinful man\nThy glory may not see\nOnly Thou art holy\nThere is none beside Thee\nPerfect in power\nIn love, and purity" },
+      { label: "Verse 4", lyrics: "Holy, holy, holy!\nLord God Almighty!\nAll Thy works shall praise Thy name\nIn earth and sky and sea\nHoly, holy, holy!\nMerciful and mighty!\nGod in three Persons\nBlessèd Trinity!" },
+    ]
+  },
+  {
+    title: "Only a Holy God", artist: "CityAlight", mood: "somber",
+    slides: [
+      { label: "Verse 1", lyrics: "Who else commands\nAll the hosts of heaven?\nWho else could make\nEvery king bow down?\nWho else can whisper\nAnd darkness trembles?\nOnly a Holy God" },
+      { label: "Verse 2", lyrics: "What other beauty\nDemands such praises?\nWhat other splendor\nOutshines the sun?\nWhat other majesty\nRules with justice?\nOnly a Holy God" },
+      { label: "Chorus", lyrics: "Come and behold Him\nThe One and the Only\nCry out, sing holy\nForever, a Holy God\nCome and worship the Holy God" },
+      { label: "Verse 3", lyrics: "What other glory\nConsumes like fire?\nWhat other power\nCan raise the dead?\nWhat other name\nRemains undefeated?\nOnly a Holy God" },
+      { label: "Chorus", lyrics: "Come and behold Him\nThe One and the Only\nCry out, sing holy\nForever, a Holy God\nCome and worship the Holy God" },
+      { label: "Verse 4", lyrics: "Who else could rescue me\nFrom my failing?\nWho else would offer\nHis only Son?\nWho else invites me\nTo call Him Father?\nOnly a Holy God\nOnly a Holy God!" },
+      { label: "Chorus", lyrics: "Come and behold Him\nThe One and the Only\nCry out, sing holy\nForever, a Holy God\nCome and worship the Holy God" },
+    ]
+  },
+  {
+    title: "Goodness of God", artist: "Bethel / Jenn Johnson", mood: "gentle",
+    slides: [
+      { label: "Verse 1", lyrics: "I love You Lord\nFor Your mercy never fails me\nAll my days\nI've been held in Your hands\nFrom the moment that I wake up\nUntil I lay my head\nI will sing of the goodness of God" },
+      { label: "Chorus", lyrics: "All my life You have been faithful\nAll my life You have been so, so good\nWith every breath that I am able\nI will sing of the goodness of God" },
+      { label: "Verse 2", lyrics: "I love Your voice\nYou have led me through the fire\nIn darkest night\nYou are close like no other\nI've known You as a Father\nI've known You as a Friend\nI have lived in the goodness of God" },
+      { label: "Chorus", lyrics: "All my life You have been faithful\nAll my life You have been so, so good\nWith every breath that I am able\nI will sing of the goodness of God" },
+      { label: "Bridge", lyrics: "Your goodness is running after\nIt's running after me\nWith my life laid down\nI'm surrendered now\nI give You everything\nYour goodness is running after\nIt's running after me" },
+      { label: "Chorus", lyrics: "All my life You have been faithful\nAll my life You have been so, so good\nWith every breath that I am able\nI will sing of the goodness of God" },
+    ]
+  },
+  {
+    title: "Gratitude", artist: "Brandon Lake", mood: "upbeat",
+    slides: [
+      { label: "Verse 1", lyrics: "All my words fall short\nI got nothing new\nHow could I express\nAll my gratitude?" },
+      { label: "Verse 2", lyrics: "I could sing a thousand songs\nA trillion still too few\nI want to pour out my praise\nI'm giving everything to You" },
+      { label: "Chorus", lyrics: "Thank You Lord\nThank You Lord\nThank You Lord\nI just want to thank You Lord" },
+      { label: "Verse 3", lyrics: "I've got nothing to offer\nNothing I call mine\nBut I'll give You all that I am\nEvery single time" },
+      { label: "Chorus", lyrics: "Thank You Lord\nThank You Lord\nThank You Lord\nI just want to thank You Lord" },
+      { label: "Bridge", lyrics: "So I'll shout out Your name\nFrom the rooftops I'll proclaim\nThat I am Yours and You are mine\nYou have saved my soul\nAnd I'll thank You for it all\nForever I am Yours\nAnd that is enough" },
+      { label: "Chorus", lyrics: "Thank You Lord\nThank You Lord\nThank You Lord\nI just want to thank You Lord" },
+    ]
+  },
+];
+
+// Build uniform grid
+const grid = document.getElementById('song-grid');
+SONGS.forEach((song, i) => {
+  const card = document.createElement('div');
+  card.className = 'song-card';
+  card.style.animationDelay = `${i * 0.035}s`;
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="card-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="card-title">${song.title}</div>
+      <div class="card-artist">${song.artist}</div>
+    </div>
+  `;
+  card.addEventListener('click', () => openSlideshow(i));
+  grid.appendChild(card);
+});
+
+// Slideshow
+let currentSong = 0, currentSlide = 0;
+const slideshowPage = document.getElementById('slideshow-page');
+const ssTitle      = document.getElementById('ss-title');
+const ssArtist     = document.getElementById('ss-artist');
+const slideContent = document.getElementById('slide-content');
+const slideLabel   = document.getElementById('slide-label');
+const slideLyrics  = document.getElementById('slide-lyrics');
+const dotNav       = document.getElementById('dot-nav');
+const slideCounter = document.getElementById('slide-counter');
+const prevBtn      = document.getElementById('prev-btn');
+const nextBtn      = document.getElementById('next-btn');
+
+function openSlideshow(idx) {
+  currentSong = idx; currentSlide = 0;
+  const song = SONGS[idx];
+  ssTitle.textContent  = song.title;
+  ssArtist.textContent = song.artist;
+  slideshowPage.className = 'active ' + song.mood;
+  buildDots();
+  renderSlide(false);
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSlideshow() {
+  slideshowPage.className = '';
+  document.body.style.overflow = '';
+}
+
+function buildDots() {
+  dotNav.innerHTML = '';
+  SONGS[currentSong].slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goToSlide(i));
+    dotNav.appendChild(d);
+  });
+}
+
+function renderSlide(animate = true) {
+  const song  = SONGS[currentSong];
+  const slide = song.slides[currentSlide];
+  const doUpdate = () => {
+    slideLabel.textContent  = slide.label;
+    slideLyrics.textContent = slide.lyrics;
+    slideContent.classList.remove('fade-out');
+    dotNav.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    slideCounter.textContent = `${currentSlide + 1} / ${song.slides.length}`;
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === song.slides.length - 1;
+  };
+  if (animate) { slideContent.classList.add('fade-out'); setTimeout(doUpdate, 215); }
+  else doUpdate();
+}
+
+function goToSlide(i) {
+  if (i < 0 || i >= SONGS[currentSong].slides.length) return;
+  currentSlide = i; renderSlide(true);
+}
+
+document.getElementById('close-btn').addEventListener('click', closeSlideshow);
+prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+document.addEventListener('keydown', e => {
+  if (!slideshowPage.classList.contains('active')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goToSlide(currentSlide - 1);
+  if (e.key === 'Escape') closeSlideshow();
+});
+</script>
+</body>
+</html>
