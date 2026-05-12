@@ -575,11 +575,9 @@
     .tv-nav-btn{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(42,31,10,0.9);border-radius:2px;color:rgba(90,62,16,0.7);background:transparent;cursor:pointer;transition:all 0.2s;}
     .tv-nav-btn:hover{border-color:var(--golddim);color:var(--gold);}
     .tv-nav-counter{font-family:'Cinzel',serif;font-size:10px;color:var(--golddim);}
-    .tv-legend{position:absolute;bottom:8px;right:14px;z-index:10;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
-    .tv-ctrl{display:flex;align-items:center;gap:4px;}
-    .tv-key{font-family:'Cinzel',serif;font-size:7px;background:rgba(42,31,10,0.8);border:1px solid rgba(90,62,16,0.6);border-radius:2px;padding:2px 5px;color:rgba(110,86,40,0.8);}
-    .tv-kdesc{font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:rgba(90,62,16,0.6);}
-    .tv-ksep{color:rgba(42,31,10,0.8);font-size:9px;}
+    .tv-key-hint{display:flex;align-items:center;gap:5px;flex-shrink:0;}
+    .tv-key{font-family:'Cinzel',serif;font-size:7px;background:rgba(42,31,10,0.8);border:1px solid rgba(90,62,16,0.5);border-radius:2px;padding:2px 6px;color:rgba(110,86,40,0.7);}
+    .tv-kdesc{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(90,62,16,0.55);}
 
     /* TV TURN-IN POPUP */
     .tv-turnin-overlay{display:none;position:absolute;inset:0;z-index:20;background:rgba(5,4,2,0.95);align-items:center;justify-content:center;}
@@ -639,8 +637,9 @@
       <button class="tv-tab" id="tv-tab-map" onclick="tvSwitchView('map')">🗺 Fellowship Map</button>
     </div>
     <div class="tv-hdr-right">
+      <div class="tv-key-hint"><span class="tv-key">M</span><span class="tv-kdesc">Map</span></div>
       <button class="tv-accept-btn" onclick="tvShowAddQuest()">+ Accept Quest</button>
-      <button class="tv-hdr-exit" onclick="exitTvMode()">✕ Exit [Esc]</button>
+      <button class="tv-hdr-exit" onclick="exitTvMode()">✕ Exit</button>
     </div>
   </div>
 
@@ -740,18 +739,7 @@
 
   </div><!-- /tv-content -->
 
-  <!-- controls legend -->
-  <div class="tv-legend">
-    <div class="tv-ctrl"><span class="tv-key">B</span><span class="tv-kdesc">Board</span></div>
-    <div class="tv-ctrl"><span class="tv-key">S</span><span class="tv-kdesc">Spotlight</span></div>
-    <div class="tv-ctrl"><span class="tv-key">M</span><span class="tv-kdesc">Map</span></div>
-    <span class="tv-ksep">|</span>
-    <div class="tv-ctrl"><span class="tv-key">←</span><span class="tv-key">→</span><span class="tv-kdesc">Cycle</span></div>
-    <div class="tv-ctrl"><span class="tv-key">H</span><span class="tv-kdesc">Hide</span></div>
-    <div class="tv-ctrl"><span class="tv-key">W</span><span class="tv-kdesc">Word</span></div>
-    <span class="tv-ksep">|</span>
-    <div class="tv-ctrl"><span class="tv-key">Esc</span><span class="tv-kdesc">Exit</span></div>
-  </div>
+
 
   <!-- Turn-in popup -->
   <div class="tv-turnin-overlay" id="tv-turnin-overlay">
