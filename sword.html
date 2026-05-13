@@ -35,22 +35,13 @@
     main{max-width:980px;margin:0 auto;padding:28px 16px 100px;}
     .tab-panel{display:none;}.tab-panel.active{display:block;}
     .sec-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--golddim);margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--border);}
-
-    /* PROMINENT ADD QUEST BUTTON */
     .add-quest-banner{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(74,124,63,0.15) 0%,rgba(201,168,76,0.08) 100%);border:1px solid rgba(74,124,63,0.4);border-radius:4px;padding:14px 20px;margin-bottom:20px;gap:16px;}
     .aqb-text{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-dim);}
     .aqb-text strong{color:var(--gold2);display:block;font-size:13px;letter-spacing:1px;margin-bottom:2px;}
     .btn-aqb{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:var(--textbright);border:none;border-radius:3px;padding:12px 28px;cursor:pointer;transition:all 0.2s;white-space:nowrap;box-shadow:0 0 20px rgba(74,124,63,0.3);}
     .btn-aqb:hover{background:var(--green2);box-shadow:0 0 30px rgba(74,124,63,0.5);}
-
-    /* QUEST LOG */
     .quest-log-wrap{display:grid;grid-template-columns:280px 1fr;border:1px solid var(--border);border-radius:4px;overflow:hidden;min-height:520px;}
-    @media(max-width:680px){
-      .quest-log-wrap{grid-template-columns:1fr;}
-      .quest-panel-right{display:none;}
-      .quest-panel-right.mobile-show{display:flex !important;}
-      .quest-panel-left.mobile-hide{display:none !important;}
-    }
+    @media(max-width:680px){.quest-log-wrap{grid-template-columns:1fr;}.quest-panel-right{display:none;}.quest-panel-right.mobile-show{display:flex !important;}.quest-panel-left.mobile-hide{display:none !important;}}
     .quest-panel-left{background:var(--bg3);border-right:1px solid var(--border);display:flex;flex-direction:column;}
     .qpl-header{padding:12px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
     .qpl-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
@@ -77,8 +68,6 @@
     .qpl-add{padding:10px 14px;border-top:1px solid var(--border);}
     .btn-add-quest{width:100%;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:var(--textbright);border:none;border-radius:3px;padding:9px;cursor:pointer;transition:background 0.2s;}
     .btn-add-quest:hover{background:var(--green2);}
-
-    /* PARCHMENT */
     .quest-panel-right{background:linear-gradient(160deg,#2a1f0a 0%,#241a08 40%,#1e1506 100%);display:flex;flex-direction:column;position:relative;overflow:hidden;}
     .quest-panel-right::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;opacity:0.5;}
     .parch-content{position:relative;z-index:1;padding:28px 28px 20px;flex:1;overflow-y:auto;display:flex;flex-direction:column;}
@@ -114,8 +103,6 @@
     .passage-line{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
     .passage-vnum{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--golddim);min-width:28px;padding-top:4px;flex-shrink:0;text-align:right;}
     .passage-vtext{font-size:19px;font-style:italic;line-height:1.7;color:var(--textbright);}
-
-    /* DURABILITY BAR */
     .durability-wrap{margin-bottom:14px;}
     .durability-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
     .durability-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-dim);}
@@ -123,8 +110,6 @@
     .durability-bar-bg{height:4px;background:var(--parch-border);border-radius:99px;overflow:hidden;}
     .durability-bar-fill{height:100%;border-radius:99px;transition:width 0.4s,background 0.4s;}
     .durability-warn{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red2);margin-top:5px;display:flex;align-items:center;gap:5px;}
-
-    /* INVENTORY */
     .inv-hero-section{margin-bottom:36px;}
     .inv-hero-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
     .inv-hero-avatar{width:36px;height:36px;border-radius:50%;background:var(--panel2);border:2px solid var(--golddim);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
@@ -145,8 +130,6 @@
     .inv-name-edit:focus{border-color:var(--gold);}
     .inv-maint-badge{display:inline-flex;align-items:center;gap:4px;font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--c-maint);background:rgba(154,122,191,0.1);border:1px solid var(--c-maint);border-radius:99px;padding:2px 8px;margin-bottom:8px;}
     .inv-empty{text-align:center;padding:60px 20px;font-style:italic;color:var(--textdim);font-size:15px;}
-
-    /* JOURNEY BOARD */
     .journey{display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr 20px 1fr;margin-bottom:36px;}
     @media(max-width:680px){.journey{grid-template-columns:1fr;}.j-arrow{display:none;}.j-station{border-radius:4px !important;margin-bottom:8px;border:1px solid var(--border) !important;}}
     .j-station{border:1px solid var(--border);padding:16px 14px;display:flex;flex-direction:column;min-height:180px;}
@@ -164,8 +147,6 @@
     .bc-ref{font-size:10px;color:var(--textdim);font-style:italic;margin-bottom:3px;}
     .bc-text{font-size:11px;font-style:italic;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
     .empty-slot{font-size:11px;color:var(--textdim);font-style:italic;text-align:center;padding:14px 6px;border:1px dashed var(--border);border-radius:3px;}
-
-    /* TRAINING MODAL */
     .train-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:120;display:none;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;}
     .train-overlay.show{display:flex;}
     .train-inner{max-width:680px;margin:0 auto;width:100%;padding:32px 20px 80px;flex:1;display:flex;flex-direction:column;}
@@ -204,8 +185,6 @@
     .btn-train.gold{border-color:var(--golddim);color:var(--gold);}.btn-train.gold:hover{background:var(--panel2);color:var(--gold2);}
     .btn-train.success{border-color:var(--green);color:var(--green2);background:rgba(74,124,63,0.1);}
     .btn-train.danger{border-color:var(--red);color:var(--red2);}
-
-    /* ══════════ EPIC TURN-IN CELEBRATION ══════════ */
     .celebrate{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;opacity:0;pointer-events:none;transition:opacity 0.35s;}
     .celebrate.show{opacity:1;pointer-events:all;}
     .cel-icon{font-size:64px;margin-bottom:18px;animation:cpulse 1s ease-in-out infinite alternate;}
@@ -213,32 +192,15 @@
     .cel-title{font-family:'Cinzel Decorative',serif;font-size:clamp(18px,4vw,32px);color:var(--gold2);text-align:center;margin-bottom:10px;text-shadow:0 0 40px rgba(232,201,122,0.4);padding:0 20px;}
     .cel-sub{font-style:italic;color:var(--textdim);font-size:15px;margin-bottom:28px;text-align:center;max-width:380px;padding:0 20px;line-height:1.6;}
     .cel-close{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:10px 28px;border:1px solid var(--golddim);background:transparent;color:var(--gold);cursor:pointer;border-radius:2px;}
-
-    /* EPIC TURN-IN ANIMATION OVERLAY */
     .epic-turnin{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;pointer-events:none;}
     .epic-turnin.show{display:flex;}
     .epic-flash{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(232,201,122,0.95) 0%,rgba(201,168,76,0.7) 30%,rgba(0,0,0,0) 70%);opacity:0;animation:none;}
     .epic-flash.go{animation:flashburst 1.2s ease-out forwards;}
     @keyframes flashburst{0%{opacity:0;}8%{opacity:1;}40%{opacity:0.6;}100%{opacity:0;}}
     .epic-sparks-canvas{position:absolute;inset:0;pointer-events:none;}
-    .epic-item-reveal{
-      position:relative;z-index:2;
-      background:linear-gradient(160deg,#2a1f0a 0%,#1a1208 60%,#110e06 100%);
-      border:2px solid var(--gold);
-      border-radius:6px;
-      padding:30px 36px;
-      max-width:480px;width:90%;
-      text-align:center;
-      box-shadow:0 0 80px rgba(201,168,76,0.4),0 0 160px rgba(201,168,76,0.15);
-      transform:scale(0.5) translateY(60px);opacity:0;
-      animation:none;
-      pointer-events:all;
-    }
+    .epic-item-reveal{position:relative;z-index:2;background:linear-gradient(160deg,#2a1f0a 0%,#1a1208 60%,#110e06 100%);border:2px solid var(--gold);border-radius:6px;padding:30px 36px;max-width:480px;width:90%;text-align:center;box-shadow:0 0 80px rgba(201,168,76,0.4),0 0 160px rgba(201,168,76,0.15);transform:scale(0.5) translateY(60px);opacity:0;animation:none;pointer-events:all;}
     .epic-item-reveal.go{animation:itemslam 0.55s cubic-bezier(0.175,0.885,0.32,1.275) 0.4s forwards;}
-    @keyframes itemslam{
-      0%{transform:scale(0.5) translateY(60px);opacity:0;}
-      100%{transform:scale(1) translateY(0);opacity:1;}
-    }
+    @keyframes itemslam{0%{transform:scale(0.5) translateY(60px);opacity:0;}100%{transform:scale(1) translateY(0);opacity:1;}}
     .eir-acquiring{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--golddim);margin-bottom:8px;}
     .eir-item-name{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,4vw,32px);color:var(--gold2);margin-bottom:4px;text-shadow:0 0 40px rgba(232,201,122,0.5);}
     .eir-item-type{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--c-quest);margin-bottom:16px;}
@@ -248,10 +210,6 @@
     .eir-hero{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--parch-text);margin-bottom:20px;}
     .eir-continue{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:10px 28px;border:1px solid var(--golddim);background:transparent;color:var(--gold);cursor:pointer;border-radius:2px;transition:all 0.2s;}
     .eir-continue:hover{background:rgba(201,168,76,0.1);border-color:var(--gold2);}
-    /* gold particle embers on epic reveal */
-    .eir-sparks{position:absolute;inset:-20px;pointer-events:none;overflow:hidden;border-radius:6px;}
-
-    /* ADD FORM */
     .add-form-wrap{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:24px 26px;margin-bottom:24px;}
     .field{margin-bottom:14px;}.field label{display:block;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--golddim);margin-bottom:5px;}
     .field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:3px;color:var(--textbright);font-family:'EB Garamond',serif;font-size:16px;padding:8px 12px;outline:none;transition:border-color 0.2s;appearance:none;}
@@ -275,8 +233,6 @@
     .btn-submit-quest{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;background:var(--green);color:var(--textbright);border:none;border-radius:3px;padding:11px 26px;cursor:pointer;transition:background 0.2s;margin-right:10px;}
     .btn-submit-quest:hover{background:var(--green2);}.btn-submit-quest:disabled{opacity:0.5;cursor:not-allowed;}
     .btn-cancel-form{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:9px 16px;border:1px solid var(--border2);border-radius:2px;background:transparent;color:var(--textdim);cursor:pointer;}
-
-    /* MODALS */
     .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);display:flex;align-items:center;justify-content:center;z-index:150;opacity:0;pointer-events:none;transition:opacity 0.25s;padding:20px;}
     .modal-overlay.show{opacity:1;pointer-events:all;}
     .modal-box{background:var(--panel);border:1px solid var(--golddim);border-radius:4px;padding:26px 26px 22px;width:100%;max-width:500px;}
@@ -306,173 +262,63 @@
     .toast.show{transform:translateX(-50%) translateY(0);}
     .loading{text-align:center;padding:40px;font-style:italic;color:var(--textdim);}
 
-    /* ════════════════════════════════════════
-       LOTR PROGRESS MAP (normal page tab)
-    ════════════════════════════════════════ */
-    .lotr-map-wrap{
-      background:linear-gradient(160deg,#1a1208 0%,#120e06 50%,#0e0b05 100%);
-      border:1px solid rgba(90,62,16,0.6);
-      border-radius:6px;
-      padding:20px;
-      margin-bottom:24px;
-      position:relative;
-      overflow:hidden;
-    }
-    .lotr-map-wrap::before{
-      content:'';position:absolute;inset:0;
-      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events:none;
-    }
+    /* LOTR MAP NORMAL PAGE */
+    .lotr-map-wrap{background:linear-gradient(160deg,#1a1208 0%,#120e06 50%,#0e0b05 100%);border:1px solid rgba(90,62,16,0.6);border-radius:6px;padding:20px;margin-bottom:24px;position:relative;overflow:hidden;}
+    .lotr-map-wrap::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;}
     .lotr-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
     .lotr-title{font-family:'Cinzel Decorative',serif;font-size:16px;color:var(--gold2);text-shadow:0 0 30px rgba(201,168,76,0.2);}
     .lotr-progress-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);}
     .lotr-progress-label span{color:var(--gold2);font-size:13px;}
-    .lotr-svg-wrap{width:100%;overflow:hidden;border-radius:4px;}
+    /* Map container — 16:9 aspect ratio box */
+    .lotr-svg-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:4px;overflow:hidden;}
+    .lotr-svg-wrap img,.lotr-svg-wrap svg{position:absolute;inset:0;width:100%;height:100%;}
     .lotr-waypoint-info{margin-top:14px;text-align:center;}
     .lotr-current-loc{font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--gold);}
     .lotr-next-loc{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);margin-top:3px;}
 
-    /* ════════════════════════════════════════
-       TV MODE
-    ════════════════════════════════════════ */
-    .tv-mode-wrap{
-      display:none;position:fixed;inset:0;z-index:500;
-      background:#0a0804;
-      font-family:'EB Garamond',Georgia,serif;
-      overflow:hidden;
-    }
-    .tv-mode-wrap::before{
-      content:'';position:absolute;inset:0;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 10% 100%, rgba(74,124,63,0.05) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 90% 100%, rgba(201,168,76,0.04) 0%, transparent 60%);
-      pointer-events:none;z-index:0;
-    }
+    /* TV MODE */
+    .tv-mode-wrap{display:none;position:fixed;inset:0;z-index:500;background:#0a0804;font-family:'EB Garamond',Georgia,serif;overflow:hidden;}
+    .tv-mode-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),radial-gradient(ellipse 40% 40% at 10% 100%, rgba(74,124,63,0.05) 0%, transparent 60%),radial-gradient(ellipse 40% 40% at 90% 100%, rgba(201,168,76,0.04) 0%, transparent 60%);pointer-events:none;z-index:0;}
     body.tv-active{overflow:hidden;}
     .tv-mode-wrap.active{display:flex;flex-direction:column;}
-
-    /* EMBER CANVAS */
     #ember-canvas{position:absolute;inset:0;pointer-events:none;z-index:1;}
-
-    /* TV header bar */
-    .tv-hdr{
-      position:relative;z-index:3;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:10px 24px;
-      border-bottom:1px solid rgba(90,62,16,0.5);
-      background:rgba(5,4,2,0.85);
-      flex-shrink:0;
-      gap:12px;
-    }
-    .tv-hdr-logo{
-      font-family:'Cinzel Decorative',serif;
-      font-size:15px;color:var(--gold);letter-spacing:1px;
-      flex-shrink:0;
-    }
-    .tv-hdr-logo span{
-      font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;
-      text-transform:uppercase;color:var(--golddim);
-      display:block;margin-top:1px;
-    }
+    .tv-hdr{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;border-bottom:1px solid rgba(90,62,16,0.5);background:rgba(5,4,2,0.85);flex-shrink:0;gap:12px;}
+    .tv-hdr-logo{font-family:'Cinzel Decorative',serif;font-size:15px;color:var(--gold);letter-spacing:1px;flex-shrink:0;}
+    .tv-hdr-logo span{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--golddim);display:block;margin-top:1px;}
     .tv-hdr-tabs{display:flex;gap:6px;}
-    .tv-tab{
-      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
-      padding:5px 14px;border:1px solid rgba(90,62,16,0.6);border-radius:2px;
-      color:var(--golddim);background:transparent;cursor:pointer;transition:all 0.2s;
-    }
+    .tv-tab{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border:1px solid rgba(90,62,16,0.6);border-radius:2px;color:var(--golddim);background:transparent;cursor:pointer;transition:all 0.2s;}
     .tv-tab:hover{border-color:var(--golddim);color:var(--gold);}
     .tv-tab.tv-tab-active{border-color:var(--gold);color:var(--gold2);background:rgba(201,168,76,0.08);}
     .tv-hdr-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-    .tv-accept-btn{
-      font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
-      padding:7px 18px;border-radius:3px;cursor:pointer;transition:all 0.2s;
-      background:rgba(74,124,63,0.2);border:1px solid var(--green);color:var(--green2);
-      box-shadow:0 0 14px rgba(74,124,63,0.2);
-    }
-    .tv-accept-btn:hover{background:rgba(74,124,63,0.35);box-shadow:0 0 22px rgba(74,124,63,0.4);}
-    .tv-hdr-exit{
-      font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
-      padding:5px 12px;border:1px solid rgba(90,62,16,0.5);border-radius:2px;
-      color:rgba(110,86,40,0.7);background:transparent;cursor:pointer;transition:all 0.2s;
-    }
+    .tv-accept-btn{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:7px 18px;border-radius:3px;cursor:pointer;transition:all 0.2s;background:rgba(74,124,63,0.2);border:1px solid var(--green);color:var(--green2);box-shadow:0 0 14px rgba(74,124,63,0.2);}
+    .tv-accept-btn:hover{background:rgba(74,124,63,0.35);}
+    .tv-hdr-exit{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(90,62,16,0.5);border-radius:2px;color:rgba(110,86,40,0.7);background:transparent;cursor:pointer;transition:all 0.2s;}
     .tv-hdr-exit:hover{border-color:var(--red);color:var(--red2);}
-
-    /* TV content area */
     .tv-content{position:relative;z-index:2;flex:1;overflow:hidden;display:flex;flex-direction:column;}
     .tv-view{display:none;flex:1;flex-direction:column;overflow:hidden;}
     .tv-view.tv-view-active{display:flex;}
-
-    /* ── BOARD VIEW ── */
     .tv-board-inner{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:14px 20px 0;}
     .tv-board-masthead{text-align:center;margin-bottom:10px;flex-shrink:0;}
-    .tv-board-title{
-      font-family:'Cinzel Decorative',serif;
-      font-size:clamp(18px,2.5vw,30px);
-      color:var(--gold2);
-      text-shadow:0 0 60px rgba(201,168,76,0.25);
-      letter-spacing:1px;
-    }
+    .tv-board-title{font-family:'Cinzel Decorative',serif;font-size:clamp(18px,2.5vw,30px);color:var(--gold2);text-shadow:0 0 60px rgba(201,168,76,0.25);letter-spacing:1px;}
     .tv-board-ornament{font-family:'Cinzel',serif;font-size:10px;letter-spacing:6px;color:rgba(90,62,16,0.7);margin:3px 0 2px;}
     .tv-board-sub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--golddim);}
-    .tv-columns{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
-      flex:1;overflow:hidden;margin-bottom:8px;
-    }
-    .tv-col{
-      background:rgba(255,255,255,0.015);
-      border:1px solid rgba(42,31,10,0.8);
-      border-radius:4px;
-      display:flex;flex-direction:column;overflow:hidden;
-    }
-    .tv-col-hdr{
-      padding:8px 12px;border-bottom:1px solid rgba(42,31,10,0.8);
-      display:flex;align-items:center;gap:7px;flex-shrink:0;
-      background:rgba(0,0,0,0.2);
-    }
+    .tv-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1;overflow:hidden;margin-bottom:8px;}
+    .tv-col{background:rgba(255,255,255,0.015);border:1px solid rgba(42,31,10,0.8);border-radius:4px;display:flex;flex-direction:column;overflow:hidden;}
+    .tv-col-hdr{padding:8px 12px;border-bottom:1px solid rgba(42,31,10,0.8);display:flex;align-items:center;gap:7px;flex-shrink:0;background:rgba(0,0,0,0.2);}
     .tv-col-icon{font-size:14px;}
     .tv-col-name{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;}
-    .tv-col-name.road{color:var(--c-road);}
-    .tv-col-name.quest{color:var(--c-quest);}
-    .tv-col-name.inv{color:var(--c-inv);}
-    .tv-col-name.maint{color:var(--c-maint);}
+    .tv-col-name.road{color:var(--c-road);}.tv-col-name.quest{color:var(--c-quest);}.tv-col-name.inv{color:var(--c-inv);}.tv-col-name.maint{color:var(--c-maint);}
     .tv-col-cards{flex:1;overflow-y:auto;padding:8px;}
-    .tv-qcard{
-      background:rgba(10,8,4,0.7);
-      border:1px solid rgba(42,31,10,0.9);
-      border-radius:3px;padding:9px 11px;margin-bottom:7px;
-      cursor:pointer;transition:border-color 0.2s,transform 0.15s;
-      animation:cardfadein 0.4s ease both;
-    }
+    .tv-qcard{background:rgba(10,8,4,0.7);border:1px solid rgba(42,31,10,0.9);border-radius:3px;padding:9px 11px;margin-bottom:7px;cursor:pointer;transition:border-color 0.2s,transform 0.15s;animation:cardfadein 0.4s ease both;}
     @keyframes cardfadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
     .tv-qcard:hover{border-color:rgba(90,62,16,0.8);transform:translateY(-1px);}
     .tv-qcard-hero{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--gold);display:flex;align-items:center;gap:5px;margin-bottom:2px;}
     .tv-qcard-quest{font-size:11px;color:var(--text);font-style:italic;margin-bottom:2px;}
-    .tv-qcard-ref{font-size:10px;color:var(--golddim);font-style:italic;margin-bottom:5px;}
-    .tv-qcard-chips{display:flex;flex-wrap:wrap;gap:3px;}
-    .tv-chip{font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:99px;border:1px solid rgba(42,31,10,0.9);color:var(--golddim);}
-    .tv-chip.done{color:#4a7c3f;border-color:rgba(74,124,63,0.4);}
-
-    /* TROPHY for #1 leader */
-    .tv-trophy{
-      font-size:18px;
-      animation:trophyspin 4s linear infinite;
-      display:inline-block;
-    }
-    @keyframes trophyspin{
-      0%{transform:rotateY(0deg);filter:drop-shadow(0 0 4px rgba(201,168,76,0.4));}
-      50%{transform:rotateY(180deg);filter:drop-shadow(0 0 10px rgba(232,201,122,0.8));}
-      100%{transform:rotateY(360deg);filter:drop-shadow(0 0 4px rgba(201,168,76,0.4));}
-    }
+    .tv-qcard-ref{font-size:10px;color:var(--golddim);font-style:italic;}
+    .tv-trophy{font-size:18px;animation:trophyspin 4s linear infinite;display:inline-block;}
+    @keyframes trophyspin{0%{filter:drop-shadow(0 0 4px rgba(201,168,76,0.4));}50%{filter:drop-shadow(0 0 10px rgba(232,201,122,0.8));}100%{filter:drop-shadow(0 0 4px rgba(201,168,76,0.4));}}
     .tv-col-empty{font-size:11px;color:var(--textdim);font-style:italic;text-align:center;padding:14px 8px;border:1px dashed rgba(42,31,10,0.7);border-radius:3px;margin:4px;}
-
-    /* Leaderboard strip */
-    .tv-lb{
-      border-top:1px solid rgba(42,31,10,0.8);
-      padding:8px 20px;flex-shrink:0;
-      background:rgba(0,0,0,0.3);
-      display:flex;align-items:center;gap:20px;
-    }
+    .tv-lb{border-top:1px solid rgba(42,31,10,0.8);padding:8px 20px;flex-shrink:0;background:rgba(0,0,0,0.3);display:flex;align-items:center;gap:20px;}
     .tv-lb-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);flex-shrink:0;}
     .tv-lb-heroes{display:flex;gap:16px;flex:1;align-items:center;flex-wrap:wrap;}
     .tv-lb-hero{display:flex;align-items:center;gap:7px;}
@@ -482,44 +328,20 @@
     .tv-lb-bar-wrap{width:60px;height:3px;background:rgba(42,31,10,0.9);border-radius:99px;overflow:hidden;}
     .tv-lb-bar{height:100%;border-radius:99px;transition:width 0.8s ease;}
     .tv-lb-count{font-family:'Cinzel',serif;font-size:9px;color:var(--golddim);}
-
-    /* ── NEWS TICKER ── */
-    .tv-ticker-wrap{
-      border-top:1px solid rgba(90,62,16,0.4);
-      background:rgba(0,0,0,0.5);
-      padding:5px 0;
-      flex-shrink:0;
-      overflow:hidden;
-      position:relative;
-      height:28px;
-    }
-    .tv-ticker-inner{
-      display:flex;align-items:center;gap:0;
-      white-space:nowrap;
-      position:absolute;
-      top:50%;transform:translateY(-50%);
-      animation:tickerscroll linear infinite;
-    }
-    @keyframes tickerscroll{
-      0%{transform:translateY(-50%) translateX(0);}
-      100%{transform:translateY(-50%) translateX(-50%);}
-    }
-    .tv-ticker-item{
-      font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;
-      text-transform:uppercase;color:var(--golddim);
-      padding:0 40px;
-    }
+    .tv-ticker-wrap{border-top:1px solid rgba(90,62,16,0.4);background:rgba(0,0,0,0.5);padding:5px 0;flex-shrink:0;overflow:hidden;position:relative;height:28px;}
+    .tv-ticker-inner{display:flex;align-items:center;white-space:nowrap;position:absolute;top:50%;transform:translateY(-50%);animation:tickerscroll linear infinite;}
+    @keyframes tickerscroll{0%{transform:translateY(-50%) translateX(0);}100%{transform:translateY(-50%) translateX(-50%);}}
+    .tv-ticker-item{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--golddim);padding:0 40px;}
     .tv-ticker-item.real{color:var(--gold2);}
     .tv-ticker-sep{color:rgba(90,62,16,0.6);padding:0 4px;}
-
-    /* ── LOTR MAP in TV ── */
+    /* TV MAP VIEW */
     .tv-map-inner{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:14px 20px 0;}
     .tv-map-masthead{text-align:center;margin-bottom:10px;flex-shrink:0;}
     .tv-map-title{font-family:'Cinzel Decorative',serif;font-size:clamp(16px,2.2vw,28px);color:var(--gold2);text-shadow:0 0 60px rgba(201,168,76,0.25);}
     .tv-map-sub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--golddim);margin-top:4px;}
-    .tv-map-svg-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding-bottom:8px;}
-
-    /* ── SPOTLIGHT VIEW ── */
+    .tv-map-svg-wrap{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:4px;}
+    .tv-map-svg-wrap img,.tv-map-svg-wrap svg{position:absolute;inset:0;width:100%;height:100%;}
+    /* SPOTLIGHT */
     .tv-spot-inner{flex:1;display:flex;flex-direction:column;padding:16px 28px 0;overflow:hidden;max-width:900px;margin:0 auto;width:100%;}
     .tv-spot-meta{text-align:center;margin-bottom:10px;flex-shrink:0;}
     .tv-spot-ref{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--golddim);margin-bottom:4px;}
@@ -527,16 +349,9 @@
     .tv-spot-status{display:flex;align-items:center;justify-content:center;gap:8px;}
     .tv-sdot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0;}
     .tv-sdot-road{background:var(--c-road);}.tv-sdot-quest{background:var(--c-quest);}.tv-sdot-inv{background:var(--c-inv);}.tv-sdot-maint{background:var(--c-maint);}
-    .tv-spot-hero-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);}
-    .tv-verse-box{
-      background:rgba(10,8,4,0.8);border:1px solid rgba(90,62,16,0.6);border-radius:4px;
-      padding:20px 28px;margin-bottom:10px;flex:1;
-      display:flex;align-items:center;justify-content:center;
-      position:relative;overflow:hidden;flex-shrink:0;
-      min-height:120px;max-height:260px;transition:border-color 0.3s;
-    }
+    .tv-verse-box{background:rgba(10,8,4,0.8);border:1px solid rgba(90,62,16,0.6);border-radius:4px;padding:20px 28px;margin-bottom:10px;flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;min-height:120px;max-height:260px;transition:border-color 0.3s;}
     .tv-verse-box.hide-mode{border-color:rgba(201,168,76,0.5);}
-    .tv-verse-text{font-size:clamp(17px,2.2vw,28px);font-style:italic;line-height:1.75;color:var(--textbright);text-align:center;transition:opacity 0.3s;}
+    .tv-verse-text{font-size:clamp(17px,2.2vw,28px);font-style:italic;line-height:1.75;color:var(--textbright);text-align:center;}
     .tv-hide-panel{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;width:100%;}
     .tv-hide-exclaim{font-family:'Cinzel Decorative',serif;font-size:clamp(60px,10vw,120px);color:var(--gold2);line-height:1;text-shadow:0 0 40px rgba(232,201,122,0.5),0 0 80px rgba(201,168,76,0.25);animation:tv-pulse 2s ease-in-out infinite alternate;}
     @keyframes tv-pulse{from{text-shadow:0 0 40px rgba(232,201,122,0.4),0 0 80px rgba(201,168,76,0.2);}to{text-shadow:0 0 60px rgba(232,201,122,0.7),0 0 120px rgba(201,168,76,0.4);}}
@@ -578,8 +393,6 @@
     .tv-key-hint{display:flex;align-items:center;gap:5px;flex-shrink:0;}
     .tv-key{font-family:'Cinzel',serif;font-size:7px;background:rgba(42,31,10,0.8);border:1px solid rgba(90,62,16,0.5);border-radius:2px;padding:2px 6px;color:rgba(110,86,40,0.7);}
     .tv-kdesc{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(90,62,16,0.55);}
-
-    /* TV TURN-IN POPUP */
     .tv-turnin-overlay{display:none;position:absolute;inset:0;z-index:20;background:rgba(5,4,2,0.95);align-items:center;justify-content:center;}
     .tv-turnin-overlay.visible{display:flex;}
     .tv-turnin-popup{background:linear-gradient(160deg,#2a1f0a 0%,#1a1208 60%,#110e06 100%);border:1px solid var(--gold);border-radius:6px;padding:28px 32px;width:90%;max-width:520px;position:relative;}
@@ -605,30 +418,26 @@
     .tv-popup-confirm:hover{background:var(--gold2);}
     .tv-popup-cancel{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:10px 16px;border:1px solid rgba(42,31,10,0.9);border-radius:2px;background:transparent;color:var(--golddim);cursor:pointer;transition:all 0.2s;}
     .tv-popup-cancel:hover{border-color:var(--golddim);}
-
-    /* TV ADD QUEST OVERLAY */
-    .tv-addquest-overlay{
-      display:none;position:absolute;inset:0;z-index:25;
-      background:rgba(5,4,2,0.97);
-      overflow-y:auto;
-    }
+    .tv-addquest-overlay{display:none;position:absolute;inset:0;z-index:25;background:rgba(5,4,2,0.97);overflow-y:auto;}
     .tv-addquest-overlay.visible{display:block;}
-    .tv-addquest-inner{
-      max-width:680px;margin:0 auto;padding:32px 24px 80px;
-    }
+    .tv-addquest-inner{max-width:680px;margin:0 auto;padding:32px 24px 80px;}
     .tv-addquest-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
     .tv-addquest-title{font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--gold2);}
     .tv-addquest-close{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:transparent;border:1px solid var(--border2);color:var(--textdim);padding:7px 16px;border-radius:2px;cursor:pointer;}
+
+    /* MAP SVG hover labels */
+    .wp-label{pointer-events:none;font-family:'Cinzel',serif;}
+    .wp-hover-group{cursor:default;}
+    .wp-hover-group:hover .wp-tooltip{display:block;}
+    .wp-tooltip{display:none;}
   </style>
 </head>
 <body>
 
-<!-- EMBER CANVAS (TV mode ambient) -->
 <canvas id="ember-canvas"></canvas>
 
-<!-- ═══ TV MODE OVERLAY ═══ -->
+<!-- TV MODE -->
 <div class="tv-mode-wrap" id="tv-mode-wrap">
-
   <div class="tv-hdr">
     <div class="tv-hdr-logo">⚔ Sword of the Spirit <span>Quest Kiosk · The Fellowship</span></div>
     <div class="tv-hdr-tabs">
@@ -642,9 +451,7 @@
       <button class="tv-hdr-exit" onclick="exitTvMode()">✕ Exit</button>
     </div>
   </div>
-
   <div class="tv-content">
-
     <!-- BOARD VIEW -->
     <div class="tv-view tv-view-active" id="tv-view-board">
       <div class="tv-board-inner">
@@ -653,42 +460,20 @@
           <div class="tv-board-ornament">— ✦ —</div>
           <div class="tv-board-sub">Scripture Memory · Christ Presbyterian Church</div>
         </div>
-        <div class="tv-columns" id="tv-columns">
-          <div class="tv-col">
-            <div class="tv-col-hdr"><span class="tv-col-icon">🗺️</span><span class="tv-col-name road">Quest Acquired</span></div>
-            <div class="tv-col-cards" id="tv-col-road"><div class="loading">Loading…</div></div>
-          </div>
-          <div class="tv-col">
-            <div class="tv-col-hdr"><span class="tv-col-icon">⚔️</span><span class="tv-col-name quest">On the Quest</span></div>
-            <div class="tv-col-cards" id="tv-col-quest"><div class="loading">Loading…</div></div>
-          </div>
-          <div class="tv-col">
-            <div class="tv-col-hdr"><span class="tv-col-icon">🏆</span><span class="tv-col-name inv">Inventory</span></div>
-            <div class="tv-col-cards" id="tv-col-inv"><div class="loading">Loading…</div></div>
-          </div>
-          <div class="tv-col">
-            <div class="tv-col-hdr"><span class="tv-col-icon">🔧</span><span class="tv-col-name maint">Maintenance</span></div>
-            <div class="tv-col-cards" id="tv-col-maint"><div class="loading">Loading…</div></div>
-          </div>
+        <div class="tv-columns">
+          <div class="tv-col"><div class="tv-col-hdr"><span class="tv-col-icon">🗺️</span><span class="tv-col-name road">Quest Acquired</span></div><div class="tv-col-cards" id="tv-col-road"><div class="loading">Loading…</div></div></div>
+          <div class="tv-col"><div class="tv-col-hdr"><span class="tv-col-icon">⚔️</span><span class="tv-col-name quest">On the Quest</span></div><div class="tv-col-cards" id="tv-col-quest"><div class="loading">Loading…</div></div></div>
+          <div class="tv-col"><div class="tv-col-hdr"><span class="tv-col-icon">🏆</span><span class="tv-col-name inv">Inventory</span></div><div class="tv-col-cards" id="tv-col-inv"><div class="loading">Loading…</div></div></div>
+          <div class="tv-col"><div class="tv-col-hdr"><span class="tv-col-icon">🔧</span><span class="tv-col-name maint">Maintenance</span></div><div class="tv-col-cards" id="tv-col-maint"><div class="loading">Loading…</div></div></div>
         </div>
       </div>
-      <div class="tv-lb" id="tv-lb">
-        <span class="tv-lb-label">⚔ Rankings</span>
-        <div class="tv-lb-heroes" id="tv-lb-heroes"></div>
-      </div>
-      <div class="tv-ticker-wrap" id="tv-ticker-wrap">
-        <div class="tv-ticker-inner" id="tv-ticker-inner"></div>
-      </div>
+      <div class="tv-lb" id="tv-lb"><span class="tv-lb-label">⚔ Rankings</span><div class="tv-lb-heroes" id="tv-lb-heroes"></div></div>
+      <div class="tv-ticker-wrap"><div class="tv-ticker-inner" id="tv-ticker-inner"></div></div>
     </div>
-
     <!-- SPOTLIGHT VIEW -->
     <div class="tv-view" id="tv-view-spot">
       <div class="tv-spot-inner">
-        <div class="tv-spot-meta" id="tv-spot-meta">
-          <div class="tv-spot-ref" id="tv-spot-ref">—</div>
-          <div class="tv-spot-qname" id="tv-spot-qname">—</div>
-          <div class="tv-spot-status" id="tv-spot-status"></div>
-        </div>
+        <div class="tv-spot-meta"><div class="tv-spot-ref" id="tv-spot-ref">—</div><div class="tv-spot-qname" id="tv-spot-qname">—</div><div class="tv-spot-status" id="tv-spot-status"></div></div>
         <div class="tv-verse-box" id="tv-verse-box">
           <div class="tv-verse-text" id="tv-verse-text">Select a quest from the Board to spotlight it.</div>
           <div class="tv-hide-panel" id="tv-hide-panel">
@@ -700,10 +485,7 @@
         </div>
         <div class="tv-turnin-strip" id="tv-turnin-strip">
           <div class="tv-ti-exclaim">!</div>
-          <div>
-            <div class="tv-ti-text">Ready to Turn In?</div>
-            <div class="tv-ti-sub">Spoken before the Fellowship · Tap to claim your item</div>
-          </div>
+          <div><div class="tv-ti-text">Ready to Turn In?</div><div class="tv-ti-sub">Spoken before the Fellowship · Tap to claim your item</div></div>
           <button class="tv-ti-btn" onclick="tvOpenTurninPopup()">✦ Turn In Quest</button>
         </div>
         <div class="tv-spot-actions">
@@ -711,10 +493,7 @@
           <button class="tv-sp-btn" onclick="tvRevealWordByWord()">Reveal Word by Word</button>
           <button class="tv-sp-btn sp-gold" onclick="tvLaunchTraining()">⚔ Begin Training</button>
         </div>
-        <div class="tv-roster" id="tv-roster">
-          <div class="tv-roster-label">Party Roster — This Verse</div>
-          <div class="tv-roster-heroes" id="tv-roster-heroes"></div>
-        </div>
+        <div class="tv-roster"><div class="tv-roster-label">Party Roster — This Verse</div><div class="tv-roster-heroes" id="tv-roster-heroes"></div></div>
         <div class="tv-spot-nav">
           <button class="tv-nav-btn" onclick="tvNavQuest(-1)">← Prev</button>
           <span class="tv-nav-counter" id="tv-nav-counter">— of —</span>
@@ -722,7 +501,6 @@
         </div>
       </div>
     </div>
-
     <!-- MAP VIEW -->
     <div class="tv-view" id="tv-view-map">
       <div class="tv-map-inner">
@@ -732,35 +510,26 @@
         </div>
         <div class="tv-map-svg-wrap" id="tv-map-svg-wrap"></div>
       </div>
-      <div class="tv-ticker-wrap">
-        <div class="tv-ticker-inner" id="tv-ticker-inner-map"></div>
-      </div>
-    </div>
-
-  </div><!-- /tv-content -->
-
-
-
-  <!-- Turn-in popup -->
-  <div class="tv-turnin-overlay" id="tv-turnin-overlay">
-    <div class="tv-turnin-popup">
-      <div class="tv-popup-inner">
-        <div class="tv-popup-npc">⚔ The Quest Master speaks:</div>
-        <div class="tv-popup-title" id="tv-popup-title">Declare Thy Deed</div>
-        <div class="tv-popup-sub" id="tv-popup-sub">—</div>
-        <div class="tv-popup-hero-row" id="tv-popup-hero-row"></div>
-        <div class="tv-popup-npc-speech" id="tv-popup-speech"></div>
-        <div class="tv-popup-divider"></div>
-        <div class="tv-popup-item-box" id="tv-popup-item-box"></div>
-        <div class="tv-popup-btn-row">
-          <button class="tv-popup-confirm" onclick="tvConfirmTurnin()">✦ Aye — I have spoken it</button>
-          <button class="tv-popup-cancel" onclick="tvCloseTurninPopup()">Not yet</button>
-        </div>
-      </div>
+      <div class="tv-ticker-wrap"><div class="tv-ticker-inner" id="tv-ticker-inner-map"></div></div>
     </div>
   </div>
-
-  <!-- TV Add Quest overlay (reuses main add form logic) -->
+  <!-- Turn-in popup -->
+  <div class="tv-turnin-overlay" id="tv-turnin-overlay">
+    <div class="tv-turnin-popup"><div class="tv-popup-inner">
+      <div class="tv-popup-npc">⚔ The Quest Master speaks:</div>
+      <div class="tv-popup-title" id="tv-popup-title">Declare Thy Deed</div>
+      <div class="tv-popup-sub" id="tv-popup-sub">—</div>
+      <div class="tv-popup-hero-row" id="tv-popup-hero-row"></div>
+      <div class="tv-popup-npc-speech" id="tv-popup-speech"></div>
+      <div class="tv-popup-divider"></div>
+      <div class="tv-popup-item-box" id="tv-popup-item-box"></div>
+      <div class="tv-popup-btn-row">
+        <button class="tv-popup-confirm" onclick="tvConfirmTurnin()">✦ Aye — I have spoken it</button>
+        <button class="tv-popup-cancel" onclick="tvCloseTurninPopup()">Not yet</button>
+      </div>
+    </div></div>
+  </div>
+  <!-- Add Quest overlay -->
   <div class="tv-addquest-overlay" id="tv-addquest-overlay">
     <div class="tv-addquest-inner">
       <div class="tv-addquest-header">
@@ -770,12 +539,9 @@
       <div id="tv-add-form-body"></div>
     </div>
   </div>
-
 </div><!-- /tv-mode-wrap -->
 
-<!-- ══════════════════════════════════════════════════ -->
-<!-- NORMAL PAGE                                        -->
-<!-- ══════════════════════════════════════════════════ -->
+<!-- NORMAL PAGE -->
 <header>
   <a href="index.html" class="hdr-home">← Home</a>
   <div class="hdr-rule"></div>
@@ -784,90 +550,50 @@
   <div class="hdr-verse">"Take the sword of the Spirit, which is the word of God." — Ephesians 6:17</div>
   <button class="hdr-tv-btn" onclick="enterTvMode()" title="Press T">⊞ TV Mode</button>
 </header>
-
 <nav>
   <button class="tab-btn active" onclick="switchTab('log',this)">Quest Log</button>
   <button class="tab-btn" onclick="switchTab('board',this)">Journey Board</button>
   <button class="tab-btn" onclick="switchTab('inventory',this)">Inventory</button>
   <button class="tab-btn" onclick="switchTab('map',this)">🗺 Fellowship Map</button>
 </nav>
-
 <main>
-  <!-- QUEST LOG -->
   <div id="tab-log" class="tab-panel active">
     <div id="add-form" style="display:none;">
       <p class="sec-label">Accept a New Quest</p>
       <div class="add-form-wrap">
-        <div class="field">
-          <label>Hero Name</label>
-          <select id="name-select" onchange="handleNameSelect()">
-            <option value="">— choose or create —</option>
-            <option value="__new__">+ Create new hero</option>
-          </select>
-          <div class="new-name-row" id="new-name-row">
-            <input type="text" id="new-name-input" placeholder="e.g. Legolas, Eowyn, Strider…" />
-          </div>
+        <div class="field"><label>Hero Name</label>
+          <select id="name-select" onchange="handleNameSelect()"><option value="">— choose or create —</option><option value="__new__">+ Create new hero</option></select>
+          <div class="new-name-row" id="new-name-row"><input type="text" id="new-name-input" placeholder="e.g. Legolas, Eowyn, Strider…" /></div>
         </div>
         <div class="psalm-pills">
           <button class="psalm-pill" onclick="selectPsalm(103,this)">Psalm 103</button>
           <button class="psalm-pill active" onclick="selectPsalm(121,this)">Psalm 121 · This Week</button>
         </div>
-        <div class="field">
-          <label>Or type a reference</label>
-          <input type="text" id="manual-ref" placeholder="e.g. Psalm 121:3" oninput="handleManualRef()" />
-        </div>
+        <div class="field"><label>Or type a reference</label><input type="text" id="manual-ref" placeholder="e.g. Psalm 121:3" oninput="handleManualRef()" /></div>
         <div class="selected-count" id="selected-count"></div>
         <p style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);margin-bottom:8px;" id="psalm-lbl">Psalm 121 — Click verses to select</p>
         <div class="psalm-ref-wrap" id="psalm-list"></div>
-        <div style="margin-top:16px;">
-          <button class="btn-submit-quest" id="submit-btn" onclick="submitVerses()">Accept Quest</button>
-          <button class="btn-cancel-form" onclick="hideAddForm()">Cancel</button>
-        </div>
+        <div style="margin-top:16px;"><button class="btn-submit-quest" id="submit-btn" onclick="submitVerses()">Accept Quest</button><button class="btn-cancel-form" onclick="hideAddForm()">Cancel</button></div>
       </div>
     </div>
-
-    <!-- Prominent add quest banner -->
     <div class="add-quest-banner" id="add-quest-banner">
-      <div class="aqb-text">
-        <strong>⚔ Begin Your Quest</strong>
-        Choose verses, claim your hero name, and join the Fellowship's journey.
-      </div>
+      <div class="aqb-text"><strong>⚔ Begin Your Quest</strong>Choose verses, claim your hero name, and join the Fellowship's journey.</div>
       <button class="btn-aqb" onclick="showAddForm()">+ Accept a Quest</button>
     </div>
-
     <div class="quest-log-wrap">
       <div class="quest-panel-left" id="panel-left">
-        <div class="qpl-header">
-          <span class="qpl-title">Quest Log</span>
-          <span class="qpl-count" id="quest-count">0 quests</span>
-        </div>
-        <div class="qpl-filter" id="filter-bar">
-          <button class="filter-pill active" onclick="setFilter('all',this)">All</button>
-        </div>
+        <div class="qpl-header"><span class="qpl-title">Quest Log</span><span class="qpl-count" id="quest-count">0 quests</span></div>
+        <div class="qpl-filter" id="filter-bar"><button class="filter-pill active" onclick="setFilter('all',this)">All</button></div>
         <div class="quest-list" id="quest-list"><div class="loading">Loading…</div></div>
         <div class="qpl-add"><button class="btn-add-quest" onclick="showAddForm()">+ Accept a Quest</button></div>
       </div>
       <div class="quest-panel-right" id="panel-right">
-        <div class="parch-content" id="parch-content">
-          <div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>
-        </div>
+        <div class="parch-content" id="parch-content"><div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div></div>
       </div>
     </div>
   </div>
-
-  <!-- JOURNEY BOARD -->
-  <div id="tab-board" class="tab-panel">
-    <p class="sec-label">The Fellowship's Journey</p>
-    <div class="journey" id="journey-board"><div class="loading" style="grid-column:1/-1;">Loading…</div></div>
-  </div>
-
-  <!-- INVENTORY -->
-  <div id="tab-inventory" class="tab-panel">
-    <p class="sec-label">The Inventory — Verses Mastered</p>
-    <div id="inv-grid-wrap"><div class="loading">Loading…</div></div>
-  </div>
-
-  <!-- FELLOWSHIP MAP -->
+  <div id="tab-board" class="tab-panel"><p class="sec-label">The Fellowship's Journey</p><div class="journey" id="journey-board"><div class="loading" style="grid-column:1/-1;">Loading…</div></div></div>
+  <div id="tab-inventory" class="tab-panel"><p class="sec-label">The Inventory — Verses Mastered</p><div id="inv-grid-wrap"><div class="loading">Loading…</div></div></div>
   <div id="tab-map" class="tab-panel">
     <p class="sec-label">The Fellowship's Journey — From the Shire to Mount Doom</p>
     <div class="lotr-map-wrap">
@@ -887,17 +613,14 @@
 <!-- TRAINING MODAL -->
 <div class="train-overlay" id="train-overlay">
   <div class="train-inner">
-    <div class="train-header">
-      <span class="train-title" id="train-title">Training Grounds</span>
-      <button class="train-close" onclick="closeTrain()">✕ Close</button>
-    </div>
+    <div class="train-header"><span class="train-title" id="train-title">Training Grounds</span><button class="train-close" onclick="closeTrain()">✕ Close</button></div>
     <div class="train-mode-tabs" id="train-mode-tabs"></div>
     <div class="train-passage-ref" id="train-passage-ref"></div>
     <div id="train-body"></div>
   </div>
 </div>
 
-<!-- EPIC TURN-IN ANIMATION -->
+<!-- EPIC TURN-IN -->
 <div class="epic-turnin" id="epic-turnin">
   <div class="epic-flash" id="epic-flash"></div>
   <canvas class="epic-sparks-canvas" id="epic-sparks-canvas"></canvas>
@@ -913,24 +636,18 @@
   </div>
 </div>
 
-<!-- OLD CELEBRATE (keep for fallback) -->
 <div class="celebrate" id="celebrate" style="display:none;">
-  <div class="cel-icon" id="cel-icon">⚔️</div>
-  <div class="cel-title" id="cel-title"></div>
-  <div class="cel-sub" id="cel-sub"></div>
+  <div class="cel-icon" id="cel-icon">⚔️</div><div class="cel-title" id="cel-title"></div><div class="cel-sub" id="cel-sub"></div>
   <button class="cel-close" onclick="document.getElementById('celebrate').classList.remove('show')">Continue the Journey</button>
 </div>
 
-<!-- TURN-IN CONFIRM MODAL (normal page) -->
+<!-- TURN-IN MODAL -->
 <div class="modal-overlay" id="turnin-modal">
   <div class="modal-box">
     <div class="modal-npc">⚔ The Quest Master speaks:</div>
     <div class="modal-title" id="turnin-title">Declare Thy Deed</div>
     <div class="modal-body" id="turnin-body"></div>
-    <div class="modal-btn-row">
-      <button class="modal-confirm-gold" id="turnin-confirm-btn">Aye — I have spoken it</button>
-      <button class="modal-cancel" onclick="closeTurninModal()">Not yet</button>
-    </div>
+    <div class="modal-btn-row"><button class="modal-confirm-gold" id="turnin-confirm-btn">Aye — I have spoken it</button><button class="modal-cancel" onclick="closeTurninModal()">Not yet</button></div>
   </div>
 </div>
 
@@ -940,20 +657,8 @@
     <div class="modal-title">Edit Quest</div>
     <div class="modal-field"><label>Reference</label><input type="text" id="edit-ref" /></div>
     <div class="modal-field"><label>Verse Text</label><textarea id="edit-text" rows="3"></textarea></div>
-    <div class="modal-field">
-      <label>Status</label>
-      <select id="edit-status">
-        <option value="road">Quest Acquired</option>
-        <option value="quest">On the Quest</option>
-        <option value="inv">In the Inventory</option>
-        <option value="maint">Maintenance</option>
-      </select>
-    </div>
-    <div class="modal-btn-row">
-      <button class="modal-save" onclick="saveEdit()">Save</button>
-      <button class="modal-cancel" onclick="closeEditModal()">Cancel</button>
-      <button class="modal-delete" onclick="confirmDelete()">Delete</button>
-    </div>
+    <div class="modal-field"><label>Status</label><select id="edit-status"><option value="road">Quest Acquired</option><option value="quest">On the Quest</option><option value="inv">In the Inventory</option><option value="maint">Maintenance</option></select></div>
+    <div class="modal-btn-row"><button class="modal-save" onclick="saveEdit()">Save</button><button class="modal-cancel" onclick="closeEditModal()">Cancel</button><button class="modal-delete" onclick="confirmDelete()">Delete</button></div>
   </div>
 </div>
 
@@ -980,262 +685,125 @@ const app = initializeApp({
 });
 const db = getDatabase(app);
 
-// ── CONSTANTS ─────────────────────────────────────────
-const LEADER_PIN = '1957';
-const HERO_KEY   = 'sword_hero_v5';
-const MY_IDS_KEY = 'sword_ids_v5';
-const MAINT_DAYS = 45;
-const WARN_DAYS  = 40;
-const LOTR_GOAL  = 20;
+const LEADER_PIN='1957',HERO_KEY='sword_hero_v5',MY_IDS_KEY='sword_ids_v5',MAINT_DAYS=45,WARN_DAYS=40,LOTR_GOAL=20;
 
-const LOTR_WAYPOINTS = [
-  { name:"The Shire",   verses:0,  x:8,  y:72, desc:"The journey begins — the Shire awaits" },
-  { name:"Bree",        verses:2,  x:20, y:60, desc:"The Prancing Pony · First steps into the wider world" },
-  { name:"Weathertop",  verses:4,  x:31, y:50, desc:"Amon Sûl · The watchtower of the north" },
-  { name:"Rivendell",   verses:6,  x:42, y:40, desc:"The Last Homely House · Council of Elrond" },
-  { name:"Moria",       verses:8,  x:52, y:54, desc:"Khazad-dûm · Through darkness into light" },
-  { name:"Lothlórien",  verses:10, x:59, y:65, desc:"The Golden Wood · Refuge of the Fellowship" },
-  { name:"Helm's Deep", verses:13, x:67, y:56, desc:"The Hornburg · A fortress in the storm" },
-  { name:"Minas Tirith",verses:16, x:77, y:62, desc:"The White City · Bastion of the West" },
-  { name:"Mount Doom",  verses:20, x:89, y:70, desc:"The Crack of Doom · Destroy the Ring!" }
+// Real pixel coords verified against 1920x1080 map image
+const LOTR_WAYPOINTS=[
+  {name:"The Shire",   verses:0,  x:700,  y:300, desc:"The journey begins in the green hills of the Shire"},
+  {name:"Bree",        verses:2,  x:810,  y:270, desc:"The Prancing Pony · First steps into the wider world"},
+  {name:"Weathertop",  verses:4,  x:870,  y:280, desc:"Amon Sûl · The watchtower of the north"},
+  {name:"Rivendell",   verses:6,  x:990,  y:275, desc:"The Last Homely House · Council of Elrond"},
+  {name:"Moria",       verses:8,  x:990,  y:375, desc:"Khazad-dûm · Through darkness into light"},
+  {name:"Lothlórien",  verses:10, x:1050, y:400, desc:"The Golden Wood · Refuge of the Fellowship"},
+  {name:"Helm's Deep", verses:13, x:940,  y:560, desc:"The Hornburg · A fortress in the storm"},
+  {name:"Minas Tirith",verses:16, x:1180, y:670, desc:"The White City · Bastion of the West"},
+  {name:"Mount Doom",  verses:20, x:1350, y:630, desc:"The Crack of Doom · Destroy the Ring!"},
 ];
 
-const QUEST_NAMES = [
-  "Test of Faith","In the Name of the Light","The Ties That Bind",
-  "Mythology of the Titans","Compendium of the Fallen","Rituals of Power",
-  "Test of Endurance","Test of Strength","Words of the Ancients",
-  "The Ancient Egg","Pamela's Doll","It's Dangerous To Go Alone",
-  "Hidden Enemies","Collecting Memories","Dead Man's Plea",
-  "The Challenge","The Prodigal Lich","Sully Ballou",
-  "Into The Scarlet Monastery","Legends of Maraudon"
-];
-const MAINT_QUEST_NAMES = [
-  "Sharpening the Blade","Keeping the Edge","The Warrior's Vigil",
-  "Return to the Training Grounds","Maintenance of the Covenant",
-  "The Daily Recitation","Lest the Blade Rust","Words Renewed",
-  "The Faithful Review","Remembrance of the Oath"
-];
-const ITEM_NAMES = [
-  "Sword of Serenity","Shadowfang","Blade of the Titans",
-  "Sword of Omen","Bonebiter","Krol Blade",
-  "Warmonger","Night Reaver","Assassin's Blade",
-  "Stonecutting Glaive","Darkstone Claymore","Soulrender",
-  "Stoneraven","Frenzied Striker","Blade of Hanna",
-  "The Butcher","Tainted Pierce","Steelclaw Reaver",
-  "Sliverblade","Black Menace"
-];
-const ITEM_TYPES = [
-  "One-Hand Sword","Main Hand Sword","Two-Hand Sword",
-  "One-Hand Sword","Two-Hand Axe","Main Hand Sword",
-  "Two-Hand Sword","Two-Hand Axe","One-Hand Dagger",
-  "Two-Hand Polearm","Two-Hand Sword","One-Hand Axe",
-  "Two-Hand Polearm","Two-Hand Polearm","Two-Hand Sword",
-  "One-Hand Sword","One-Hand Sword","One-Hand Axe",
-  "One-Hand Dagger","One-Hand Sword"
-];
-const HERO_AVATARS = ['⚔️','🛡️','🏹','🔮','🌿','🔥','❄️','⚡','🌟','🗡️'];
-const FLAVOR = [
-  "A word once hidden in the heart becomes a blade that never dulls.",
-  "The enemy fears the warrior who can speak truth in the dark.",
-  "What is memorized is owned. What is owned cannot be taken.",
-  "Inscribe it not only on tablets, but on the walls of your mind.",
-  "The pilgrim who knows the song needs no lantern on the road.",
-  "Carry the word like a sword — sheathed until the moment of need.",
-  "A verse known by heart is a covenant renewed with every recitation."
-];
-const NPC_TURNIN = [
-  "Hast thou spoken this word before thy brethren in the Fellowship? The gates of the Inventory open only to those who have declared the Scripture aloud before witnesses.",
-  "Warrior — before this quest is sealed, confirm thou hast recited this passage before the Brotherhood. The word must be spoken, not merely learned.",
-  "The ledger of the Inventory awaits. But first — hast thou stood before thy Fellowship and declared this word? Only then may thy blade be counted among the mastered.",
-  "Speak plainly: didst thou recite this before the Brotherhood this night? The Inventory is sacred ground — entry requires thy spoken vow."
-];
-const PSALMS = {
-  103:[[1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],[2,"Bless the LORD, O my soul, and forget not all his benefits,"],[3,"who forgives all your iniquity, who heals all your diseases,"],[4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],[5,"who satisfies you with good so that your youth is renewed like the eagle's."],[6,"The LORD works righteousness and justice for all who are oppressed."],[7,"He made known his ways to Moses, his acts to the people of Israel."],[8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],[9,"He will not always chide, nor will he keep his anger forever."],[10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],[11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],[12,"as far as the east is from the west, so far does he remove our transgressions from us."],[13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],[14,"For he knows our frame; he remembers that we are dust."],[15,"As for man, his days are like grass; he flourishes like a flower of the field;"],[16,"for the wind passes over it, and it is gone, and its place knows it no more."],[17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],[18,"to those who keep his covenant and remember to do his commandments."],[19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],[20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],[21,"Bless the LORD, all his hosts, his ministers, who do his will!"],[22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]],
-  121:[[1,"I lift up my eyes to the hills. From where does my help come?"],[2,"My help comes from the LORD, who made heaven and earth."],[3,"He will not let your foot be moved; he who keeps you will not slumber."],[4,"Behold, he who keeps Israel will neither slumber nor sleep."],[5,"The LORD is your keeper; the LORD is your shade on your right hand."],[6,"The sun shall not strike you by day, nor the moon by night."],[7,"The LORD will keep you from all evil; he will keep your life."],[8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]]
-};
-const TRAIN_MODES_FULL = ['read','blank','firstletter','scramble','recall'];
-const TRAIN_MODES_MAINT = ['firstletter','recall'];
-const MODE_LABELS = {read:'Read',blank:'Fill Blank',firstletter:'First Letters',scramble:'Scramble',recall:'Recall'};
+const QUEST_NAMES=["Test of Faith","In the Name of the Light","The Ties That Bind","Mythology of the Titans","Compendium of the Fallen","Rituals of Power","Test of Endurance","Test of Strength","Words of the Ancients","The Ancient Egg","Pamela's Doll","It's Dangerous To Go Alone","Hidden Enemies","Collecting Memories","Dead Man's Plea","The Challenge","The Prodigal Lich","Sully Ballou","Into The Scarlet Monastery","Legends of Maraudon"];
+const MAINT_QUEST_NAMES=["Sharpening the Blade","Keeping the Edge","The Warrior's Vigil","Return to the Training Grounds","Maintenance of the Covenant","The Daily Recitation","Lest the Blade Rust","Words Renewed","The Faithful Review","Remembrance of the Oath"];
+const ITEM_NAMES=["Sword of Serenity","Shadowfang","Blade of the Titans","Sword of Omen","Bonebiter","Krol Blade","Warmonger","Night Reaver","Assassin's Blade","Stonecutting Glaive","Darkstone Claymore","Soulrender","Stoneraven","Frenzied Striker","Blade of Hanna","The Butcher","Tainted Pierce","Steelclaw Reaver","Sliverblade","Black Menace"];
+const ITEM_TYPES=["One-Hand Sword","Main Hand Sword","Two-Hand Sword","One-Hand Sword","Two-Hand Axe","Main Hand Sword","Two-Hand Sword","Two-Hand Axe","One-Hand Dagger","Two-Hand Polearm","Two-Hand Sword","One-Hand Axe","Two-Hand Polearm","Two-Hand Polearm","Two-Hand Sword","One-Hand Sword","One-Hand Sword","One-Hand Axe","One-Hand Dagger","One-Hand Sword"];
+const HERO_AVATARS=['⚔️','🛡️','🏹','🔮','🌿','🔥','❄️','⚡','🌟','🗡️'];
+const FLAVOR=["A word once hidden in the heart becomes a blade that never dulls.","The enemy fears the warrior who can speak truth in the dark.","What is memorized is owned. What is owned cannot be taken.","Inscribe it not only on tablets, but on the walls of your mind.","The pilgrim who knows the song needs no lantern on the road.","Carry the word like a sword — sheathed until the moment of need.","A verse known by heart is a covenant renewed with every recitation."];
+const NPC_TURNIN=["Hast thou spoken this word before thy brethren in the Fellowship? The gates of the Inventory open only to those who have declared the Scripture aloud before witnesses.","Warrior — before this quest is sealed, confirm thou hast recited this passage before the Brotherhood. The word must be spoken, not merely learned.","The ledger of the Inventory awaits. But first — hast thou stood before thy Fellowship and declared this word? Only then may thy blade be counted among the mastered.","Speak plainly: didst thou recite this before the Brotherhood this night? The Inventory is sacred ground — entry requires thy spoken vow."];
+const PSALMS={103:[[1,"Bless the LORD, O my soul, and all that is within me, bless his holy name!"],[2,"Bless the LORD, O my soul, and forget not all his benefits,"],[3,"who forgives all your iniquity, who heals all your diseases,"],[4,"who redeems your life from the pit, who crowns you with steadfast love and mercy,"],[5,"who satisfies you with good so that your youth is renewed like the eagle's."],[6,"The LORD works righteousness and justice for all who are oppressed."],[7,"He made known his ways to Moses, his acts to the people of Israel."],[8,"The LORD is merciful and gracious, slow to anger and abounding in steadfast love."],[9,"He will not always chide, nor will he keep his anger forever."],[10,"He does not deal with us according to our sins, nor repay us according to our iniquities."],[11,"For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him;"],[12,"as far as the east is from the west, so far does he remove our transgressions from us."],[13,"As a father shows compassion to his children, so the LORD shows compassion to those who fear him."],[14,"For he knows our frame; he remembers that we are dust."],[15,"As for man, his days are like grass; he flourishes like a flower of the field;"],[16,"for the wind passes over it, and it is gone, and its place knows it no more."],[17,"But the steadfast love of the LORD is from everlasting to everlasting on those who fear him, and his righteousness to children's children,"],[18,"to those who keep his covenant and remember to do his commandments."],[19,"The LORD has established his throne in the heavens, and his kingdom rules over all."],[20,"Bless the LORD, O you his angels, you mighty ones who do his word, obeying the voice of his word!"],[21,"Bless the LORD, all his hosts, his ministers, who do his will!"],[22,"Bless the LORD, all his works, in all places of his dominion. Bless the LORD, O my soul!"]],121:[[1,"I lift up my eyes to the hills. From where does my help come?"],[2,"My help comes from the LORD, who made heaven and earth."],[3,"He will not let your foot be moved; he who keeps you will not slumber."],[4,"Behold, he who keeps Israel will neither slumber nor sleep."],[5,"The LORD is your keeper; the LORD is your shade on your right hand."],[6,"The sun shall not strike you by day, nor the moon by night."],[7,"The LORD will keep you from all evil; he will keep your life."],[8,"The LORD will keep your going out and your coming in from this time forth and forevermore."]]};
+const TRAIN_MODES_FULL=['read','blank','firstletter','scramble','recall'];
+const TRAIN_MODES_MAINT=['firstletter','recall'];
+const MODE_LABELS={read:'Read',blank:'Fill Blank',firstletter:'First Letters',scramble:'Scramble',recall:'Recall'};
 
-// ── JOKE TICKER ITEMS (use {hero} as placeholder for random hero name) ──
-const TICKER_JOKES = [
-  "⚔ Rumor has it {hero} attempted to recite Psalm 121 in their sleep · Witnesses report mixed results",
-  "📜 {hero} was spotted muttering scripture under their breath at the lunch table · The Fellowship approves",
-  "🎮 Sources confirm {hero} has been neglecting their quest log in favor of video games · The Quest Master is displeased",
-  "🛡️ {hero} reportedly tried to use a Bible verse as a Wi-Fi password · IT has been notified",
-  "⚡ Breaking: {hero} completed the scramble mode on their first try · No one believes them",
-  "🔥 {hero} has been seen doing dramatic readings of Psalm 103 in the school hallway · Freshmen are confused",
-  "📱 {hero} texted a friend their verse instead of the answer to a math problem · Grades unclear",
-  "🏹 Intelligence sources report {hero} made flash cards · Progress tracked by Fellowship observers",
-  "🌟 {hero} was overheard correcting their Sunday School teacher on a verse · Awkward silence followed",
-  "❄️ {hero} claims they know the whole psalm · The Quest Master requests a demonstration",
-  "🔮 {hero} attempted to defeat a pop quiz using only memorized scripture · Partial credit awarded",
-  "⚔ The Quest Master has observed {hero} staring into the middle distance for 40 minutes · Likely memorizing",
-  "🗡️ {hero} reportedly used 'steadfast love' in a sentence at dinner · Family unsure how to respond",
-  "📜 Field report: {hero} whispered a verse during a fire drill · Classmates concerned but impressed",
-  "🛡️ {hero} has been seen pacing the hallway reciting verses · Looks like training montage energy",
-  "🏆 Unconfirmed: {hero} recited Psalm 121 while doing dishes · Fastest turn-in candidate",
-  "⚡ {hero} reportedly argued with autocorrect trying to type 'steadfast' · Autocorrect still losing",
-  "🎮 {hero} has unlocked the rare 'Knows More Than Two Verses' achievement · Party cheers",
-  "🔥 Scouts report {hero} wrote their verse on their hand before a test · The Lord saw. The Lord approved.",
-  "🌿 {hero} started a group chat just to quiz people on verses · Two members have already left",
-  "📱 {hero} set their lock screen to Psalm 121:3 · Screen time has never been so spiritually productive",
-  "⚔ Intelligence confirms {hero} fell asleep reading their verse · Counted as 15 minutes of training",
-  "🏹 {hero} was caught reciting scripture to their pet · Animal seemed unimpressed but attentive",
-  "🌟 Breaking: {hero} beat the recall mode with 97% accuracy · Was still told 'not quite'",
-  "❄️ {hero} reportedly keeps a verse index card in their shoe · Dedication is a form of armor",
-  "🔮 Local hero {hero} asked for 'extra credit' on the Quest Log · No such feature exists",
-  "⚔ {hero} has memorized the reference but not the verse · Quest Master notes this is backwards",
-  "📜 {hero} tried to look up their verse mid-recitation · Blade confiscated temporarily",
-  "🛡️ Sources indicate {hero} has been mouthing the words during worship · Fully absorbed the Psalm",
-  "🏆 {hero} confidently recited Psalm 121 to their grandparents · Both grandparents cried · Quest complete",
-  "🎮 It is rumored {hero} mumbles their verse while gaming · Multitasking respected, not endorsed",
-  "⚡ The Fellowship notes {hero} asked 'does it have to be exact' again · Yes. Yes it does.",
-  "🔥 {hero} has been seen holding a Bible at youth group · Suspicious but encouraged",
-  "🌿 {hero} reportedly signed off a text with a verse · Recipient confused, spiritually challenged",
-  "📱 {hero} typed out the full psalm and then deleted it · Training still counts",
-  "⚔ Observers confirm {hero} helped a younger student with their verse · Legend status imminent",
-  "🏹 {hero} was asked 'what does that mean' after reciting a verse · Could not explain · Returned to training",
-  "🌟 {hero} got the first 3 words wrong but nailed the rest · A tale for the ages",
-  "❄️ The Fellowship announces {hero} said 'um' four times during recall · But finished strong",
-  "🔮 Field report: {hero} recited their verse to a mirror for 20 minutes · The mirror is now saved",
-  "⚔ {hero} attempted the first-letters mode without looking · Half of it was correct · Half was poetry",
-  "📜 Scouts confirm {hero} has been practicing in the car · Parents are now memorizing it too",
-  "🛡️ {hero} completed the scramble mode by guessing · The Quest Master is watching",
-  "🏆 {hero} set a personal record of 3 failed recalls before succeeding · Grit is a virtue",
-  "🎮 {hero} has renamed their Minecraft sword after their verse item · Priorities: excellent",
-  "⚡ Sources say {hero} is stress-reciting before youth group · Relatable. Admirable. Concerning.",
-  "🔥 {hero} just quoted their verse unprompted at Chick-fil-A · The Fellowship was not there to witness",
-  "🌿 {hero} reportedly challenged a sibling to a recitation battle · Sibling won · Rematch scheduled",
-  "📱 {hero} asked if they could turn in their quest via text · The answer was no",
-  "⚔ It is reported that {hero} completed all five training modes in one sitting · Offered a brief nod of acknowledgement"
-];
+const TICKER_JOKES=["⚔ Rumor has it {hero} attempted to recite Psalm 121 in their sleep · Witnesses report mixed results","📜 {hero} was spotted muttering scripture under their breath at the lunch table · The Fellowship approves","🎮 Sources confirm {hero} has been neglecting their quest log in favor of video games · The Quest Master is displeased","🛡️ {hero} reportedly tried to use a Bible verse as a Wi-Fi password · IT has been notified","⚡ Breaking: {hero} completed the scramble mode on their first try · No one believes them","🔥 {hero} has been seen doing dramatic readings of Psalm 103 in the school hallway · Freshmen are confused","📱 {hero} texted a friend their verse instead of the answer to a math problem · Grades unclear","🏹 Intelligence sources report {hero} made flash cards · Progress tracked by Fellowship observers","🌟 {hero} was overheard correcting their Sunday School teacher on a verse · Awkward silence followed","❄️ {hero} claims they know the whole psalm · The Quest Master requests a demonstration","🔮 {hero} attempted to defeat a pop quiz using only memorized scripture · Partial credit awarded","⚔ The Quest Master has observed {hero} staring into the middle distance for 40 minutes · Likely memorizing","🗡️ {hero} reportedly used 'steadfast love' in a sentence at dinner · Family unsure how to respond","📜 Field report: {hero} whispered a verse during a fire drill · Classmates concerned but impressed","🛡️ {hero} has been seen pacing the hallway reciting verses · Looks like training montage energy","🏆 Unconfirmed: {hero} recited Psalm 121 while doing dishes · Fastest turn-in candidate","⚡ {hero} reportedly argued with autocorrect trying to type 'steadfast' · Autocorrect still losing","🎮 {hero} has unlocked the rare 'Knows More Than Two Verses' achievement · Party cheers","🔥 Scouts report {hero} wrote their verse on their hand before a test · The Lord saw. The Lord approved.","🌿 {hero} started a group chat just to quiz people on verses · Two members have already left","📱 {hero} set their lock screen to Psalm 121:3 · Screen time has never been so spiritually productive","⚔ Intelligence confirms {hero} fell asleep reading their verse · Counted as 15 minutes of training","🏹 {hero} was caught reciting scripture to their pet · Animal seemed unimpressed but attentive","🌟 Breaking: {hero} beat the recall mode with 97% accuracy · Was still told 'not quite'","❄️ {hero} reportedly keeps a verse index card in their shoe · Dedication is a form of armor","🔮 Local hero {hero} asked for 'extra credit' on the Quest Log · No such feature exists","⚔ {hero} has memorized the reference but not the verse · Quest Master notes this is backwards","📜 {hero} tried to look up their verse mid-recitation · Blade confiscated temporarily","🛡️ Sources indicate {hero} has been mouthing the words during worship · Fully absorbed the Psalm","🏆 {hero} confidently recited Psalm 121 to their grandparents · Both grandparents cried · Quest complete","🎮 It is rumored {hero} mumbles their verse while gaming · Multitasking respected, not endorsed","⚡ The Fellowship notes {hero} asked 'does it have to be exact' again · Yes. Yes it does.","🔥 {hero} has been seen holding a Bible at youth group · Suspicious but encouraged","🌿 {hero} reportedly signed off a text with a verse · Recipient confused, spiritually challenged","📱 {hero} typed out the full psalm and then deleted it · Training still counts","⚔ Observers confirm {hero} helped a younger student with their verse · Legend status imminent","🏹 {hero} was asked 'what does that mean' after reciting a verse · Could not explain · Returned to training","🌟 {hero} got the first 3 words wrong but nailed the rest · A tale for the ages","❄️ The Fellowship announces {hero} said 'um' four times during recall · But finished strong","🔮 Field report: {hero} recited their verse to a mirror for 20 minutes · The mirror is now saved","⚔ {hero} attempted the first-letters mode without looking · Half of it was correct · Half was poetry","📜 Scouts confirm {hero} has been practicing in the car · Parents are now memorizing it too","🛡️ {hero} completed the scramble mode by guessing · The Quest Master is watching","🏆 {hero} set a personal record of 3 failed recalls before succeeding · Grit is a virtue","🎮 {hero} has renamed their Minecraft sword after their verse item · Priorities: excellent","⚡ Sources say {hero} is stress-reciting before youth group · Relatable. Admirable. Concerning.","🔥 {hero} just quoted their verse unprompted at Chick-fil-A · The Fellowship was not there to witness","🌿 {hero} reportedly challenged a sibling to a recitation battle · Sibling won · Rematch scheduled","📱 {hero} asked if they could turn in their quest via text · The answer was no","⚔ It is reported that {hero} completed all five training modes in one sitting · Offered a brief nod of acknowledgement"];
 
-function hashPick(arr, key) {
-  let h = 0;
-  for (let i=0;i<key.length;i++) h=(Math.imul(31,h)+key.charCodeAt(i))|0;
-  return arr[Math.abs(h)%arr.length];
-}
+function hashPick(arr,key){let h=0;for(let i=0;i<key.length;i++)h=(Math.imul(31,h)+key.charCodeAt(i))|0;return arr[Math.abs(h)%arr.length];}
 
-// ── STATE ─────────────────────────────────────────────
 let allVerses=[],myIds=JSON.parse(localStorage.getItem(MY_IDS_KEY)||'[]'),myHero=localStorage.getItem(HERO_KEY)||'',heroRoster=new Set();
 let heroFilter='all',selectedQid=null,leaderUnlocked=false,editingId=null,pendingEditId=null;
 let selectedPsalm=121,selectedVerses=new Map();
 let trainVerses=[],trainMode='read',trainProgress={};
-let scrambleState={sentenceIdx:0,pool:[],built:[],usedIdx:new Set()};
-let pendingTurninQid=null;
-let recentTurninEvents=[];
+let trainChunks=[],trainChunkIdx=0;
 
-// TV state
+// Build chunk sequence: ≤2 verses → 1 chunk; >2 → pairs + cumulative
+// e.g. 4v: [v0-1],[v2-3],[v0-3]   6v: [v0-1],[v2-3],[v0-3],[v4-5],[v0-5]
+function buildChunks(verses){
+  if(verses.length<=2)return[verses];
+  const chunks=[];let covered=0;
+  while(covered<verses.length){
+    chunks.push(verses.slice(covered,covered+2));
+    covered+=2;
+    // Only insert cumulative review once we have 4+ covered (avoids trivial dupe on 3-4 verse sets)
+    if(covered<verses.length&&covered>=4)chunks.push(verses.slice(0,covered));
+  }
+  if(chunks[chunks.length-1].length<verses.length)chunks.push(verses);
+  return chunks;
+}
+function chunkKey(idx){return`chunk_${idx}`;}
+function isQuestComplete(qid,verses){
+  const chunks=buildChunks(verses),modes=modesForQuest(verses),prog=trainProgress[qid]||{};
+  return chunks.every((_,ci)=>modes.every(m=>prog[chunkKey(ci)]?.[m]));
+}
+let scrambleState={sentenceIdx:0,pool:[],built:[],usedIdx:new Set()};
+let pendingTurninQid=null,recentTurninEvents=[];
 let tvActive=false,tvCurrentView='board';
 let tvSpotQids=[],tvSpotIdx=0,tvSpotHidden=false,tvSpotWordIdx=0;
 let tvActiveHeroName='',tvPendingTurninQid=null;
-let tickerQueue=[],tickerInitialized=false;
-let emberAnimId=null;
+let tickerRebuildTimer=null,emberAnimId=null;
+let epicSparksId=null;
 
-function resetScramble(idx){
-  const v=trainVerses[idx]; if(!v) return;
-  scrambleState={sentenceIdx:idx,pool:[...v.text.split(' ')].sort(()=>Math.random()-0.5),built:[],usedIdx:new Set()};
-}
-
-// ── HELPERS ───────────────────────────────────────────
+function resetScramble(idx){const v=trainVerses[idx];if(!v)return;scrambleState={sentenceIdx:idx,pool:[...v.text.split(' ')].sort(()=>Math.random()-0.5),built:[],usedIdx:new Set()};}
 const normText=s=>s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
 function toast(msg,ms=2400){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}
 function similarity(a,b){a=normText(a);b=normText(b);if(a===b)return 1;const wa=a.split(' '),wb=b.split(' ');return wa.filter(w=>wb.includes(w)).length/Math.max(wa.length,wb.length);}
 function diffWords(input,target){const wi=normText(input).split(' '),tw=target.split(' ');return tw.map((w,i)=>{const c=normText(w);if(wi[i]&&normText(wi[i])===c)return`<span class="diff-ok">${w}</span>`;if(wi.includes(c))return`<span class="diff-add">${w}</span>`;return`<span class="diff-miss">${w}</span>`;}).join(' ');}
 function passageRefLabel(verses){const g={};verses.forEach(v=>{const m=v.ref&&v.ref.match(/Psalm\s*(\d+):(\d+)/i);if(m){const pn=m[1],vn=parseInt(m[2]);if(!g[pn])g[pn]=[];g[pn].push(vn);}});return Object.entries(g).map(([pn,vnums])=>{vnums.sort((a,b)=>a-b);const f=vnums[0],l=vnums[vnums.length-1];return f===l?`Psalm ${pn}:${f}`:`Psalm ${pn}:${f}–${l}`;}).join(', ');}
-function vnum(v){return v.ref?v.ref.split(':')[1]||'':'';}
+function vnum(v){return v.ref?v.ref.split(':')[1]||'':'';}  
 function groupByQuest(verses){const map=new Map();verses.forEach(v=>{const k=v.questId||v.id;if(!map.has(k))map.set(k,[]);map.get(k).push(v);});map.forEach(arr=>arr.sort((a,b)=>(a.ref||'').localeCompare(b.ref||'')));return map;}
 function questStatus(verses){const p={road:0,quest:1,maint:2,inv:3};return verses.reduce((b,v)=>p[v.status]<p[b]?v.status:b,'inv');}
 function passageLines(){return trainVerses.map(v=>`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${v.text}</span></div>`).join('');}
-function modesForQuest(verses){return verses[0]?.isMaintenance ? TRAIN_MODES_MAINT : TRAIN_MODES_FULL;}
-function getDurability(verses){const ts=verses[0]?.invEnteredAt;if(!ts)return null;const daysElapsed=(Date.now()-ts)/(1000*60*60*24);const pct=Math.max(0,Math.min(100,100-(daysElapsed/MAINT_DAYS*100)));return Math.round(pct);}
-function getInvVerseCount(){return [...groupByQuest(allVerses.filter(v=>v.status==='inv'))].length;}
-function getAllHeroNames(){return [...new Set([...allVerses.map(v=>v.name),...heroRoster])].filter(Boolean);}
+function modesForQuest(verses){return verses[0]?.isMaintenance?TRAIN_MODES_MAINT:TRAIN_MODES_FULL;}
+function getDurability(verses){const ts=verses[0]?.invEnteredAt;if(!ts)return null;const d=(Date.now()-ts)/(1000*60*60*24);return Math.round(Math.max(0,Math.min(100,100-(d/MAINT_DAYS*100))));}
+function getInvVerseCount(){return[...groupByQuest(allVerses.filter(v=>v.status==='inv'))].length;}
+function getAllHeroNames(){return[...new Set([...allVerses.map(v=>v.name),...heroRoster])].filter(Boolean);}
 
 async function checkMaintenanceSpawns(){
-  const inv=allVerses.filter(v=>v.status==='inv');
-  const groups=groupByQuest(inv);const now=Date.now();
-  for(const[qid,verses] of groups){
-    const ts=verses[0]?.invEnteredAt;if(!ts)continue;
-    const daysElapsed=(now-ts)/(1000*60*60*24);if(daysElapsed<MAINT_DAYS)continue;
-    const alreadyExists=allVerses.some(v=>v.sourceQuestId===qid&&v.isMaintenance&&v.status!=='inv');
-    if(alreadyExists)continue;
-    await spawnMaintenanceQuest(qid,verses);
-    for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'maint'});}
-  }
+  const inv=allVerses.filter(v=>v.status==='inv');const groups=groupByQuest(inv);const now=Date.now();
+  for(const[qid,verses] of groups){const ts=verses[0]?.invEnteredAt;if(!ts)continue;const d=(now-ts)/(1000*60*60*24);if(d<MAINT_DAYS)continue;const already=allVerses.some(v=>v.sourceQuestId===qid&&v.isMaintenance&&v.status!=='inv');if(already)continue;await spawnMaintenanceQuest(qid,verses);for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'maint'});}}
 }
 async function spawnMaintenanceQuest(sourceQid,sourceVerses){
-  const heroName=sourceVerses[0].name;
-  const newQuestId=`q_maint_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-  const newIds=[];
-  try{
-    for(const sv of sourceVerses){
-      const id=`v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-      await set(ref(db,`sword/verses/${id}`),{id,questId:newQuestId,name:heroName,ref:sv.ref,text:sv.text,status:'maint',isMaintenance:true,sourceQuestId:sourceQid,created:Date.now()});
-      newIds.push(id);await new Promise(r=>setTimeout(r,50));
-    }
-    if(sourceVerses.some(v=>myIds.includes(v.id))){myIds=[...myIds,...newIds];localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));}
-    toast(`⚠ Maintenance quest spawned for ${heroName}!`,3500);
-  }catch(e){console.error('Spawn maint error',e);}
+  const heroName=sourceVerses[0].name;const newQuestId=`q_maint_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;const newIds=[];
+  try{for(const sv of sourceVerses){const id=`v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;await set(ref(db,`sword/verses/${id}`),{id,questId:newQuestId,name:heroName,ref:sv.ref,text:sv.text,status:'maint',isMaintenance:true,sourceQuestId:sourceQid,created:Date.now()});newIds.push(id);await new Promise(r=>setTimeout(r,50));}if(sourceVerses.some(v=>myIds.includes(v.id))){myIds=[...myIds,...newIds];localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));}toast(`⚠ Maintenance quest spawned for ${heroName}!`,3500);}catch(e){console.error(e);}
 }
 
-// ── TABS ─────────────────────────────────────────────
-window.switchTab=(name,el)=>{
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');el.classList.add('active');
-  if(name==='board')renderBoard();
-  if(name==='inventory')renderInventory();
-  if(name==='map')renderLotrMap();
-};
+window.switchTab=(name,el)=>{document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');el.classList.add('active');if(name==='board')renderBoard();if(name==='inventory')renderInventory();if(name==='map')renderLotrMap();};
 window.setFilter=(hero,el)=>{heroFilter=hero;document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderQuestList();};
 
-// ── FIREBASE ──────────────────────────────────────────
 function loadAll(){
   onValue(ref(db,'sword/verses'),snap=>{
     allVerses=snap.exists()?Object.values(snap.val()):[];
     allVerses.sort((a,b)=>(b.created||0)-(a.created||0));
     updateFilterBar();renderQuestList();
     if(selectedQid)renderParchment(selectedQid);
-    const activeGroups=groupByQuest(allVerses.filter(v=>v.status!=='inv'));
-    const n=activeGroups.size;
+    const n=groupByQuest(allVerses.filter(v=>v.status!=='inv')).size;
     document.getElementById('quest-count').textContent=n+' quest'+(n!==1?'s':'');
     checkMaintenanceSpawns();
     if(tvActive)tvRefreshAll();
-    renderLotrMapIfVisible();
+    if(document.getElementById('tab-map')?.classList.contains('active'))renderLotrMap();
   });
-  onValue(ref(db,'sword/heroes'),snap=>{
-    const heroes=snap.val()||{};
-    Object.values(heroes).forEach(h=>{if(h.name)heroRoster.add(h.name);});
-    updateFilterBar();
-  });
-  // Load recent ticker events
-  onValue(ref(db,'sword/tickerEvents'),snap=>{
-    if(snap.exists()){
-      const all=Object.values(snap.val()).sort((a,b)=>(b.ts||0)-(a.ts||0));
-      recentTurninEvents=all.slice(0,10);
-      if(tvActive)rebuildTicker();
-    }
-  });
+  onValue(ref(db,'sword/heroes'),snap=>{const h=snap.val()||{};Object.values(h).forEach(h=>{if(h.name)heroRoster.add(h.name);});updateFilterBar();});
+  onValue(ref(db,'sword/tickerEvents'),snap=>{if(snap.exists()){recentTurninEvents=Object.values(snap.val()).sort((a,b)=>(b.ts||0)-(a.ts||0)).slice(0,10);if(tvActive)rebuildTicker();}});
 }
+
 function updateFilterBar(){
   const heroes=[...new Set([...allVerses.map(v=>v.name),...heroRoster])].filter(Boolean).sort();
   document.getElementById('filter-bar').innerHTML=`<button class="filter-pill${heroFilter==='all'?' active':''}" onclick="setFilter('all',this)">All</button>`+heroes.map(h=>`<button class="filter-pill${heroFilter===h?' active':''}" onclick="setFilter('${h}',this)">${h}</button>`).join('');
   const sel=document.getElementById('name-select');
-  if(sel){sel.innerHTML=`<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>`+heroes.map(h=>`<option value="${h}">${h}</option>`).join('');if(myHero)sel.value=myHero;}
-}
-function renderLotrMapIfVisible(){
-  if(document.getElementById('tab-map')?.classList.contains('active'))renderLotrMap();
+  if(sel){sel.innerHTML=`<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>`+heroes.map(h=>`<option value="${h}"${h===myHero?' selected':''}>${h}</option>`).join('');}
 }
 
-// ── QUEST LIST ────────────────────────────────────────
 function renderQuestList(){
   const list=document.getElementById('quest-list');
   const filtered=heroFilter==='all'?allVerses:allVerses.filter(v=>v.name===heroFilter);
-  const active=filtered.filter(v=>v.status!=='inv');
-  const groups=groupByQuest(active);
-  if(!groups.size){list.innerHTML='<div class="loading" style="padding:20px;font-size:13px;">No active quests — check the Inventory tab.</div>';return;}
+  const active=filtered.filter(v=>v.status!=='inv');const groups=groupByQuest(active);
+  if(!groups.size){list.innerHTML='<div class="loading" style="padding:20px;font-size:13px;">No active quests.</div>';return;}
   const mine=[],others=[];
   groups.forEach((verses,qid)=>{(verses.some(v=>myIds.includes(v.id))?mine:others).push({qid,verses});});
   let html='';
@@ -1244,77 +812,32 @@ function renderQuestList(){
   list.innerHTML=html;
 }
 function questListItem(qid,verses,isMine){
-  const sel=qid===selectedQid,status=questStatus(verses);
-  const isMaint=verses[0]?.isMaintenance;
+  const sel=qid===selectedQid,status=questStatus(verses),isMaint=verses[0]?.isMaintenance;
   const qname=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid);
-  const refLbl=passageRefLabel(verses);
   const maintTag=isMaint?` <span style="font-size:9px;color:var(--c-maint);">↻</span>`:'';
-  return `<div class="quest-list-item${sel?' selected':''}${isMine?' is-mine':''}" onclick="selectQuest('${qid}')">
-    <div class="ql-dot dot-${status}"></div>
-    <div class="ql-info">
-      <div class="ql-hero">${verses[0].name}${maintTag}</div>
-      <div class="ql-quest-name">${qname}</div>
-      <div class="ql-ref">${refLbl}</div>
-    </div>
-    <button class="ql-edit-btn" onclick="event.stopPropagation();handleEditClick('${verses[0].id}')">⋯</button>
-  </div>`;
+  return`<div class="quest-list-item${sel?' selected':''}${isMine?' is-mine':''}" onclick="selectQuest('${qid}')"><div class="ql-dot dot-${status}"></div><div class="ql-info"><div class="ql-hero">${verses[0].name}${maintTag}</div><div class="ql-quest-name">${qname}</div><div class="ql-ref">${passageRefLabel(verses)}</div></div><button class="ql-edit-btn" onclick="event.stopPropagation();handleEditClick('${verses[0].id}')">⋯</button></div>`;
 }
 
-// ── PARCHMENT ─────────────────────────────────────────
-window.selectQuest=(qid)=>{
-  selectedQid=qid;renderQuestList();renderParchment(qid);
-  if(window.innerWidth<=680){
-    document.getElementById('panel-left').classList.add('mobile-hide');
-    document.getElementById('panel-right').classList.add('mobile-show');
-  }
-};
-window.parchBack=()=>{
-  document.getElementById('panel-left').classList.remove('mobile-hide');
-  document.getElementById('panel-right').classList.remove('mobile-show');
-  selectedQid=null;
-};
+window.selectQuest=(qid)=>{selectedQid=qid;renderQuestList();renderParchment(qid);if(window.innerWidth<=680){document.getElementById('panel-left').classList.add('mobile-hide');document.getElementById('panel-right').classList.add('mobile-show');}};
+window.parchBack=()=>{document.getElementById('panel-left').classList.remove('mobile-hide');document.getElementById('panel-right').classList.remove('mobile-show');selectedQid=null;};
+
 function renderParchment(qid){
   const groups=groupByQuest(allVerses);const verses=groups.get(qid);if(!verses)return;
-  const isMine=verses.some(v=>myIds.includes(v.id)),status=questStatus(verses);
-  const isMaint=!!verses[0]?.isMaintenance;
-  const modes=modesForQuest(verses);
-  const qname=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid);
-  const refLbl=passageRefLabel(verses);
-  const flavor=FLAVOR[Math.abs((qid.charCodeAt(2)||0))%FLAVOR.length];
-  const prog=trainProgress[qid]||{};
-  const allDone=modes.every(m=>prog[m]);
+  const isMine=verses.some(v=>myIds.includes(v.id)),status=questStatus(verses),isMaint=!!verses[0]?.isMaintenance;
+  const modes=modesForQuest(verses),qname=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid);
+  const refLbl=passageRefLabel(verses),flavor=FLAVOR[Math.abs((qid.charCodeAt(2)||0))%FLAVOR.length];
+  const prog=trainProgress[qid]||{},allDone=isQuestComplete(qid,verses);
   const statusLabels={road:'Quest Acquired',quest:'On the Quest',inv:'In the Inventory',maint:'Maintenance'};
   const modesHtml=modes.map(m=>{const done=!!prog[m];return`<div class="progress-mode-row"><span class="progress-mode-name">${MODE_LABELS[m]}</span><div class="progress-mode-bar"><div class="progress-mode-fill" style="width:${done?100:0}%;background:${done?'var(--green)':'var(--c-quest)'};"></div></div><span class="progress-mode-check">${done?'✓':''}</span></div>`;}).join('');
   const passageHtml=verses.map(v=>`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext" style="font-size:15px;color:var(--parch-text);">\u201c${v.text}\u201d</span></div>`).join('');
   const canTurnIn=allDone&&isMine&&status!=='inv';
-  const maintNote=isMaint?`<div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--c-maint);margin-bottom:16px;padding:8px 12px;border:1px solid rgba(154,122,191,0.3);border-radius:3px;background:rgba(154,122,191,0.05);">↻ Maintenance Quest — Complete ${modes.length} training modes and recite before the Brotherhood to restore this blade.</div>`:'';
-  document.getElementById('parch-content').innerHTML=`
-    <button class="parch-back" onclick="parchBack()">← Back to Log</button>
-    <div class="parch-status-row"><div class="parch-status-dot dot-${status}"></div><span class="parch-status-lbl status-lbl-${status}">${statusLabels[status]}</span></div>
-    <div class="parch-quest-name">${qname}</div>
-    <div class="parch-hero-name">${verses[0].name} · ${refLbl}</div>
-    ${maintNote}
-    <div class="parch-divider"></div>
-    <div class="parch-section-label">The Passage</div>
-    <div style="margin-bottom:20px;">${passageHtml}</div>
-    <div class="parch-flavor">${flavor}</div>
-    <div class="parch-divider"></div>
-    <div class="parch-section-label">Training Progress</div>
-    <div class="parch-progress"><div class="progress-modes">${modesHtml}</div></div>
-    <div class="parch-actions">
-      ${isMine?`<button class="btn-parch-primary" onclick="startTraining('${qid}')">⚔ Begin Training</button>`:''}
-      ${canTurnIn?`<button class="btn-parch-gold" onclick="openTurninModal('${qid}')">✦ Turn In Quest</button>`:''}
-      ${isMine&&prog&&Object.keys(prog).length>0&&!allDone?`<button class="btn-parch-maint" onclick="restartTraining('${qid}')">↺ Restart Training</button>`:''}
-      ${allDone&&!canTurnIn&&isMine?`<span style="font-family:'Cinzel',serif;font-size:9px;color:var(--c-inv);">✦ In the Inventory — ready to recite!</span>`:''}
-    </div>`;
+  const maintNote=isMaint?`<div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--c-maint);margin-bottom:16px;padding:8px 12px;border:1px solid rgba(154,122,191,0.3);border-radius:3px;background:rgba(154,122,191,0.05);">↻ Maintenance Quest — Complete training modes and recite before the Brotherhood.</div>`:'';
+  document.getElementById('parch-content').innerHTML=`<button class="parch-back" onclick="parchBack()">← Back to Log</button><div class="parch-status-row"><div class="parch-status-dot dot-${status}"></div><span class="parch-status-lbl status-lbl-${status}">${statusLabels[status]}</span></div><div class="parch-quest-name">${qname}</div><div class="parch-hero-name">${verses[0].name} · ${refLbl}</div>${maintNote}<div class="parch-divider"></div><div class="parch-section-label">The Passage</div><div style="margin-bottom:20px;">${passageHtml}</div><div class="parch-flavor">${flavor}</div><div class="parch-divider"></div><div class="parch-section-label">Training Progress</div><div class="parch-progress"><div class="progress-modes">${modesHtml}</div></div><div class="parch-actions">${isMine?`<button class="btn-parch-primary" onclick="startTraining('${qid}')">⚔ Begin Training</button>`:''} ${canTurnIn?`<button class="btn-parch-gold" onclick="openTurninModal('${qid}')">✦ Turn In Quest</button>`:''} ${isMine&&Object.keys(prog).length>0&&!allDone?`<button class="btn-parch-maint" onclick="restartTraining('${qid}')">↺ Restart Training</button>`:''} ${allDone&&!canTurnIn&&isMine?`<span style="font-family:'Cinzel',serif;font-size:9px;color:var(--c-inv);">✦ In the Inventory — ready to recite!</span>`:''}</div>`;
 }
 window.restartTraining=(qid)=>{if(trainProgress[qid])delete trainProgress[qid];renderParchment(qid);toast('Training reset — begin again, warrior');};
 
-// ── TURN-IN MODAL (normal page) ───────────────────────
 window.openTurninModal=(qid)=>{
-  pendingTurninQid=qid;
-  const verses=groupByQuest(allVerses).get(qid);
-  const isMaint=verses&&verses[0]?.isMaintenance;
+  pendingTurninQid=qid;const verses=groupByQuest(allVerses).get(qid);const isMaint=verses&&verses[0]?.isMaintenance;
   const npcLine=NPC_TURNIN[Math.abs((qid.charCodeAt(1)||0))%NPC_TURNIN.length];
   document.getElementById('turnin-title').textContent=isMaint?'Restore the Blade':'Declare Thy Deed';
   document.getElementById('turnin-body').textContent=npcLine;
@@ -1322,25 +845,17 @@ window.openTurninModal=(qid)=>{
   document.getElementById('turnin-modal').classList.add('show');
 };
 window.closeTurninModal=()=>{document.getElementById('turnin-modal').classList.remove('show');pendingTurninQid=null;};
-async function confirmTurnin(){
-  document.getElementById('turnin-modal').classList.remove('show');
-  const qid=pendingTurninQid;pendingTurninQid=null;if(!qid)return;
-  await doTurnin(qid);
-}
+async function confirmTurnin(){document.getElementById('turnin-modal').classList.remove('show');const qid=pendingTurninQid;pendingTurninQid=null;if(!qid)return;await doTurnin(qid);}
 
 async function doTurnin(qid){
   const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
-  const isMaint=verses[0]?.isMaintenance;const now=Date.now();
-  const heroName=verses[0].name;
-  const itemName=hashPick(ITEM_NAMES,qid);
-  const itemIdx=ITEM_NAMES.indexOf(itemName);
-  const itemType=ITEM_TYPES[itemIdx]||'One-Hand Sword';
-  const refLbl=passageRefLabel(verses);
-  const versePreview=verses.map(v=>v.text).join(' ').slice(0,180);
+  const isMaint=verses[0]?.isMaintenance,now=Date.now(),heroName=verses[0].name;
+  const itemName=hashPick(ITEM_NAMES,qid),itemIdx=ITEM_NAMES.indexOf(itemName),itemType=ITEM_TYPES[itemIdx]||'One-Hand Sword';
+  const refLbl=passageRefLabel(verses),versePreview=verses.map(v=>v.text).join(' ').slice(0,180);
   try{
     if(isMaint){
       const sourceQid=verses[0].sourceQuestId;
-      if(sourceQid){const sourceVerses=allVerses.filter(v=>v.questId===sourceQid);for(const sv of sourceVerses){await update(ref(db,`sword/verses/${sv.id}`),{status:'inv',invEnteredAt:now});}}
+      if(sourceQid){const sv=allVerses.filter(v=>v.questId===sourceQid);for(const s of sv){await update(ref(db,`sword/verses/${s.id}`),{status:'inv',invEnteredAt:now});}}
       for(const v of verses){await set(ref(db,`sword/verses/${v.id}`),null);myIds=myIds.filter(i=>i!==v.id);}
       localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
       if(selectedQid===qid){selectedQid=null;document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>';}
@@ -1349,149 +864,152 @@ async function doTurnin(qid){
       for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'inv',invEnteredAt:now});}
       showEpicTurnin({itemName,itemType,refLbl,versePreview,heroName,isMaint:false});
     }
-    // Push ticker event to Firebase
-    const tickerMsg=isMaint
-      ?`⚔ ${heroName} restored the blade · ${refLbl} · Maintenance complete`
-      :`🏆 ${heroName} acquired ${itemName} · ${refLbl} · Quest complete`;
-    push(ref(db,'sword/tickerEvents'),{msg:tickerMsg,ts:now,heroName,real:true});
+    push(ref(db,'sword/tickerEvents'),{msg:isMaint?`⚔ ${heroName} restored the blade · ${refLbl}`:`🏆 ${heroName} acquired ${itemName} · ${refLbl} · Quest complete`,ts:now,heroName,real:true});
     if(trainProgress[qid])delete trainProgress[qid];
   }catch(e){toast('Error — check connection');}
 }
 
-// ── EPIC TURN-IN ANIMATION ─────────────────────────────
 function showEpicTurnin({itemName,itemType,refLbl,versePreview,heroName,isMaint}){
-  const wrap=document.getElementById('epic-turnin');
-  const flash=document.getElementById('epic-flash');
-  const reveal=document.getElementById('epic-item-reveal');
+  const wrap=document.getElementById('epic-turnin'),flash=document.getElementById('epic-flash'),reveal=document.getElementById('epic-item-reveal');
   document.getElementById('eir-acquiring').textContent=isMaint?'Blade Restored':'Item Acquired';
   document.getElementById('eir-item-name').textContent=itemName;
   document.getElementById('eir-item-type').textContent=itemType;
   document.getElementById('eir-ref').textContent=refLbl;
   document.getElementById('eir-verse').textContent=`"${versePreview}"`;
   document.getElementById('eir-hero').textContent=`— ${heroName}, Warrior of the Fellowship`;
-  // Reset animations
-  flash.classList.remove('go');reveal.classList.remove('go');
-  void flash.offsetWidth;
-  wrap.classList.add('show');
-  wrap.style.display='flex';
-  requestAnimationFrame(()=>{
-    flash.classList.add('go');
-    reveal.classList.add('go');
-    launchEpicSparks();
-  });
+  flash.classList.remove('go');reveal.classList.remove('go');void flash.offsetWidth;
+  wrap.classList.add('show');wrap.style.display='flex';
+  requestAnimationFrame(()=>{flash.classList.add('go');reveal.classList.add('go');launchEpicSparks();});
 }
-window.closeEpicTurnin=()=>{
-  const wrap=document.getElementById('epic-turnin');
-  wrap.classList.remove('show');
-  wrap.style.display='none';
-  stopEpicSparks();
-};
+window.closeEpicTurnin=()=>{const w=document.getElementById('epic-turnin');w.classList.remove('show');w.style.display='none';stopEpicSparks();};
 
-// Particle sparks for epic turn-in
-let epicSparksId=null;
 function launchEpicSparks(){
-  const canvas=document.getElementById('epic-sparks-canvas');
-  const ctx=canvas.getContext('2d');
+  const canvas=document.getElementById('epic-sparks-canvas'),ctx=canvas.getContext('2d');
   canvas.width=window.innerWidth;canvas.height=window.innerHeight;
   const particles=[];
-  for(let i=0;i<120;i++){
-    const angle=Math.random()*Math.PI*2;
-    const speed=2+Math.random()*6;
-    particles.push({
-      x:canvas.width/2,y:canvas.height/2,
-      vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed-3,
-      life:1,decay:0.008+Math.random()*0.012,
-      size:2+Math.random()*4,
-      color:`hsl(${35+Math.random()*25},${80+Math.random()*20}%,${55+Math.random()*30}%)`
-    });
-  }
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;p.vy+=0.12;p.life-=p.decay;
-      if(p.life<=0)return;
-      ctx.globalAlpha=p.life;
-      ctx.fillStyle=p.color;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill();
-    });
-    ctx.globalAlpha=1;
-    if(particles.some(p=>p.life>0))epicSparksId=requestAnimationFrame(draw);
-  }
+  for(let i=0;i<120;i++){const a=Math.random()*Math.PI*2,sp=2+Math.random()*6;particles.push({x:canvas.width/2,y:canvas.height/2,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-3,life:1,decay:0.008+Math.random()*0.012,size:2+Math.random()*4,color:`hsl(${35+Math.random()*25},${80+Math.random()*20}%,${55+Math.random()*30}%)`});}
+  function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.12;p.life-=p.decay;if(p.life<=0)return;ctx.globalAlpha=p.life;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;if(particles.some(p=>p.life>0))epicSparksId=requestAnimationFrame(draw);}
   epicSparksId=requestAnimationFrame(draw);
 }
 function stopEpicSparks(){if(epicSparksId){cancelAnimationFrame(epicSparksId);epicSparksId=null;}}
 
-// ── TRAINING ──────────────────────────────────────────
 window.startTraining=async(qid)=>{
   const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
   trainVerses=verses;
+  trainChunks=buildChunks(verses);
+  // Find first incomplete chunk
   const modes=modesForQuest(verses);
-  trainMode=modes.find(m=>!(trainProgress[qid]||{})[m])||modes[0];
+  trainChunkIdx=0;
+  for(let ci=0;ci<trainChunks.length;ci++){
+    if(!modes.every(m=>trainProgress[qid]?.[chunkKey(ci)]?.[m])){trainChunkIdx=ci;break;}
+    if(ci===trainChunks.length-1)trainChunkIdx=ci; // all done, land on last
+  }
+  trainMode=modes.find(m=>!trainProgress[qid]?.[chunkKey(trainChunkIdx)]?.[m])||modes[0];
   resetScramble(0);
   const status=questStatus(verses);
-  if(status==='road'){try{for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'quest'});}}catch(e){console.error(e);}}
-  document.getElementById('train-overlay').classList.add('show');
-  renderTrainMode(qid);
+  if(status==='road'){try{for(const v of verses){await update(ref(db,`sword/verses/${v.id}`),{status:'quest'});}}catch(e){}}
+  document.getElementById('train-overlay').classList.add('show');renderTrainMode(qid);
 };
 window.closeTrain=()=>{document.getElementById('train-overlay').classList.remove('show');if(selectedQid)renderParchment(selectedQid);};
 function currentQid(){return trainVerses[0]?.questId||trainVerses[0]?.id||'';}
 function renderTrainMode(qidOverride){
   const qid=qidOverride||currentQid();
-  const prog=trainProgress[qid]||{};
-  const modes=modesForQuest(trainVerses);
+  // Sync trainVerses to current chunk
+  if(trainChunks.length>0)trainVerses=trainChunks[trainChunkIdx];
+  const prog=trainProgress[qid]||{},modes=modesForQuest(trainVerses);
+  const ck=chunkKey(trainChunkIdx),chunkProg=prog[ck]||{};
+  const totalChunks=trainChunks.length,isLastChunk=trainChunkIdx===totalChunks-1;
+  const allVerseCount=trainChunks[totalChunks-1]?.length||trainVerses.length;
+
+  // Chunk progress header
+  let chunkLabel='';
+  if(totalChunks>1){
+    const refs=passageRefLabel(trainVerses);
+    const chunkDone=trainChunks.filter((_,ci)=>modes.every(m=>prog[chunkKey(ci)]?.[m])).length;
+    const isCumulative=trainChunkIdx>0&&trainChunks[trainChunkIdx].length>2&&trainChunks[trainChunkIdx][0]===trainChunks[0][0];
+    const pairLabel=isCumulative?`Review (v1–${trainVerses.length})`:`Verses ${refs}`;
+    chunkLabel=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+      <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);">Step ${trainChunkIdx+1} of ${totalChunks}</span>
+      <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--gold2);">${pairLabel}</span>
+      <div style="display:flex;gap:4px;">${trainChunks.map((_,ci)=>{const done=modes.every(m=>prog[chunkKey(ci)]?.[m]);const active=ci===trainChunkIdx;return`<span style="width:10px;height:10px;border-radius:50%;background:${done?'var(--green)':active?'var(--gold)':'var(--border2)'};display:inline-block;"></span>`;}).join('')}</div>
+    </div>`;
+  }
+
   document.getElementById('train-title').textContent=`Training — ${trainVerses[0]?.name||''}`;
   document.getElementById('train-passage-ref').textContent=passageRefLabel(trainVerses);
-  document.getElementById('train-mode-tabs').innerHTML=modes.map(m=>{const done=!!prog[m],active=m===trainMode;return`<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">${done?'<span class="tab-check">✓</span>':''}${MODE_LABELS[m]}</button>`;}).join('');
+  document.getElementById('train-mode-tabs').innerHTML=modes.map(m=>{const done=!!chunkProg[m],active=m===trainMode;return`<button class="train-mode-tab${active?' active':''}${done?' done':''}" onclick="setTrainMode('${m}')">${done?'<span class="tab-check">✓</span>':''}${MODE_LABELS[m]}</button>`;}).join('');
   const body=document.getElementById('train-body');
-  if(trainMode==='read'){body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${passageLines()}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('read')">Got it →</button><button class="btn-train danger" onclick="retryMode('read')">↺ Try Again</button></div>`;}
-  else if(trainMode==='blank'){const html=trainVerses.map(v=>{const words=v.text.split(' '),hideCount=Math.max(1,Math.floor(words.length*0.5)),toHide=new Set(),step=words.length/hideCount;for(let i=0;i<hideCount;i++)toHide.add(Math.floor(i*step));const lineHtml=words.map((w,i)=>toHide.has(i)?`<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>`:`<span>${w}</span>`).join(' ');return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;}).join('');body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('blank')">↺ Try Again</button></div>`;}
-  else if(trainMode==='firstletter'){const html=trainVerses.map(v=>{const lineHtml=v.text.split(' ').map(w=>{const letters=w.replace(/[^a-zA-Z]/g,'');if(!letters)return w;const rest='_'.repeat(Math.max(letters.length-1,1)),trail=w.match(/[^a-zA-Z]$/)?w.slice(-1):'';return`<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${rest}</span>${trail}`;}).join(' ');return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lineHtml}</span></div>`;}).join('');body.innerHTML=`<div class="train-display" id="train-display" style="font-size:17px;">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('firstletter')">↺ Try Again</button></div>`;}
+  if(trainMode==='read'){body.innerHTML=chunkLabel+`<div class="train-display" id="train-display">${passageLines()}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('read')">Got it →</button><button class="btn-train danger" onclick="retryMode('read')">↺ Try Again</button></div>`;}
+  else if(trainMode==='blank'){const html=trainVerses.map(v=>{const words=v.text.split(' '),hc=Math.max(1,Math.floor(words.length*0.5)),toH=new Set(),step=words.length/hc;for(let i=0;i<hc;i++)toH.add(Math.floor(i*step));const lh=words.map((w,i)=>toH.has(i)?`<span class="blank-word" style="width:${Math.max(w.replace(/[^a-zA-Z]/g,'').length,3)*9}px;"></span>`:`<span>${w}</span>`).join(' ');return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lh}</span></div>`;}).join('');body.innerHTML=chunkLabel+`<div class="train-display" id="train-display">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('blank')">I know the blanks →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('blank')">↺ Try Again</button></div>`;}
+  else if(trainMode==='firstletter'){const html=trainVerses.map(v=>{const lh=v.text.split(' ').map(w=>{const l=w.replace(/[^a-zA-Z]/g,'');if(!l)return w;const r='_'.repeat(Math.max(l.length-1,1)),tr=w.match(/[^a-zA-Z]$/)?w.slice(-1):'';return`<span class="first-letter">${w[0]}</span><span class="first-letter-blank">${r}</span>${tr}`;}).join(' ');return`<div class="passage-line"><span class="passage-vnum">${vnum(v)}</span><span class="passage-vtext">${lh}</span></div>`;}).join('');body.innerHTML=chunkLabel+`<div class="train-display" id="train-display">${html}</div><div class="train-btn-row"><button class="btn-train gold" onclick="completeMode('firstletter')">I said it →</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('firstletter')">↺ Try Again</button></div>`;}
   else if(trainMode==='scramble'){if(scrambleState.sentenceIdx>=trainVerses.length)resetScramble(0);renderScrambleSentence();}
-  else if(trainMode==='recall'){body.innerHTML=`<div style="margin-bottom:10px;font-style:italic;color:var(--textdim);font-size:14px;">Type the full passage from memory.</div><textarea class="recall-textarea" id="recall-ta" placeholder="Type the passage…"></textarea><div class="train-btn-row"><button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button></div>`;}
+  else if(trainMode==='recall'){body.innerHTML=chunkLabel+`<div style="margin-bottom:10px;font-style:italic;color:var(--textdim);font-size:14px;">Type the full passage from memory.</div><textarea class="recall-textarea" id="recall-ta" placeholder="Type the passage…"></textarea><div class="train-btn-row"><button class="btn-train gold" onclick="checkRecallMode()">Check Answer</button><button class="btn-train" onclick="showFullPassage()">Show passage</button><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button></div>`;}
 }
 window.showFullPassage=()=>{const el=document.getElementById('train-display');if(el)el.innerHTML=passageLines();};
 window.setTrainMode=(mode)=>{trainMode=mode;if(mode==='scramble')resetScramble(0);renderTrainMode();};
-window.retryMode=(mode)=>{const qid=currentQid();if(trainProgress[qid]&&trainProgress[qid][mode])delete trainProgress[qid][mode];trainMode=mode;if(mode==='scramble')resetScramble(0);renderTrainMode();};
-window.completeMode=(mode)=>{const qid=currentQid();if(!trainProgress[qid])trainProgress[qid]={};trainProgress[qid][mode]=true;const modes=modesForQuest(trainVerses);const next=modes.find(m=>!trainProgress[qid][m]);if(next){trainMode=next;}else{trainMode=modes[0];}if(trainMode==='scramble')resetScramble(0);renderTrainMode();};
+window.retryMode=(mode)=>{
+  const qid=currentQid(),ck=chunkKey(trainChunkIdx);
+  if(trainProgress[qid]?.[ck]?.[mode])delete trainProgress[qid][ck][mode];
+  trainMode=mode;if(mode==='scramble')resetScramble(0);renderTrainMode();
+};
+window.completeMode=(mode)=>{
+  const qid=currentQid(),ck=chunkKey(trainChunkIdx),modes=modesForQuest(trainVerses);
+  if(!trainProgress[qid])trainProgress[qid]={};
+  if(!trainProgress[qid][ck])trainProgress[qid][ck]={};
+  trainProgress[qid][ck][mode]=true;
+  // Check if current chunk is fully done
+  const chunkDone=modes.every(m=>trainProgress[qid][ck][m]);
+  if(chunkDone){
+    // Advance to next incomplete chunk
+    const nextChunkIdx=trainChunks.findIndex((_,ci)=>ci>trainChunkIdx&&!modes.every(m=>trainProgress[qid]?.[chunkKey(ci)]?.[m]));
+    if(nextChunkIdx>=0){
+      trainChunkIdx=nextChunkIdx;
+      trainVerses=trainChunks[trainChunkIdx];
+      trainMode=modes.find(m=>!trainProgress[qid]?.[chunkKey(trainChunkIdx)]?.[m])||modes[0];
+      if(trainMode==='scramble')resetScramble(0);
+      toast(`Chunk ${trainChunkIdx} complete — next section!`);
+      renderTrainMode();return;
+    } else {
+      toast('Quest training complete!');
+    }
+  } else {
+    const next=modes.find(m=>!trainProgress[qid][ck][m]);
+    trainMode=next||modes[0];
+  }
+  if(trainMode==='scramble')resetScramble(0);
+  renderTrainMode();
+};
 
 function renderScrambleSentence(){
   const body=document.getElementById('train-body'),sIdx=scrambleState.sentenceIdx,v=trainVerses[sIdx];
   const label=trainVerses.length>1?`Verse ${sIdx+1} of ${trainVerses.length} — ${v.ref||''}`:(v.ref||'');
-  const targetHtml=scrambleState.built.length===0?'<span class="scramble-target-empty">Tap words below to build the verse…</span>':scrambleState.built.map((e,bi)=>`<span class="word-chip placed" data-bi="${bi}" onclick="scrambleUnplace(${bi})">${e.word}</span>`).join('');
-  const poolHtml=scrambleState.pool.map((w,pi)=>`<span class="word-chip" id="spool-${pi}" style="${scrambleState.usedIdx.has(pi)?'opacity:0.25;pointer-events:none;':''}" onclick="scramblePlace(${pi})">${w}</span>`).join('');
-  body.innerHTML=`<div class="scramble-sentence-label">${label}</div><div class="scramble-wrap"><div class="scramble-target" id="scramble-target">${targetHtml}</div><div class="scramble-pool">${poolHtml}</div></div><div class="train-btn-row"><button class="btn-train gold" onclick="checkScrambleSentence()">Check Order</button><button class="btn-train" onclick="clearScrambleSentence()">Clear</button><button class="btn-train" onclick="showCurrentSentence()">Show verse</button><button class="btn-train danger" onclick="retryMode('scramble')">↺ Try Again</button></div>`;
+  const tH=scrambleState.built.length===0?'<span class="scramble-target-empty">Tap words below to build the verse…</span>':scrambleState.built.map((e,bi)=>`<span class="word-chip placed" data-bi="${bi}" onclick="scrambleUnplace(${bi})">${e.word}</span>`).join('');
+  const pH=scrambleState.pool.map((w,pi)=>`<span class="word-chip" id="spool-${pi}" style="${scrambleState.usedIdx.has(pi)?'opacity:0.25;pointer-events:none;':''}" onclick="scramblePlace(${pi})">${w}</span>`).join('');
+  body.innerHTML=`<div class="scramble-sentence-label">${label}</div><div class="scramble-wrap"><div class="scramble-target" id="scramble-target">${tH}</div><div class="scramble-pool">${pH}</div></div><div class="train-btn-row"><button class="btn-train gold" onclick="checkScrambleSentence()">Check Order</button><button class="btn-train" onclick="clearScrambleSentence()">Clear</button><button class="btn-train" onclick="showCurrentSentence()">Show verse</button><button class="btn-train danger" onclick="retryMode('scramble')">↺ Try Again</button></div>`;
 }
 window.scramblePlace=(pi)=>{if(scrambleState.usedIdx.has(pi))return;const word=scrambleState.pool[pi];scrambleState.usedIdx.add(pi);scrambleState.built.push({word,pi});const chip=document.getElementById(`spool-${pi}`);if(chip){chip.style.opacity='0.25';chip.style.pointerEvents='none';}const target=document.getElementById('scramble-target');target.querySelector('.scramble-target-empty')?.remove();const el=document.createElement('span');el.className='word-chip placed';el.textContent=word;const bi=scrambleState.built.length-1;el.dataset.bi=bi;el.onclick=()=>scrambleUnplace(parseInt(el.dataset.bi));target.appendChild(el);};
 window.scrambleUnplace=(bi)=>{const entry=scrambleState.built[bi];if(!entry)return;scrambleState.built.splice(bi,1);scrambleState.usedIdx.delete(entry.pi);const target=document.getElementById('scramble-target');if(target)target.querySelectorAll('.word-chip.placed').forEach((c,i)=>{c.dataset.bi=i;c.onclick=()=>scrambleUnplace(i);});const pc=document.getElementById(`spool-${entry.pi}`);if(pc){pc.style.opacity='';pc.style.pointerEvents='';}if(scrambleState.built.length===0&&target)target.innerHTML='<span class="scramble-target-empty">Tap words below to build the verse…</span>';};
 window.clearScrambleSentence=()=>{resetScramble(scrambleState.sentenceIdx);renderScrambleSentence();};
 window.showCurrentSentence=()=>{const v=trainVerses[scrambleState.sentenceIdx],body=document.getElementById('train-body');document.getElementById('show-verse-reveal')?.remove();const div=document.createElement('div');div.id='show-verse-reveal';div.style.cssText='font-style:italic;color:var(--parch-dim);font-size:16px;padding:10px 0 6px;line-height:1.6;';div.textContent='\u201c'+v.text+'\u201d';const btnRow=body.querySelector('.train-btn-row');if(btnRow)body.insertBefore(div,btnRow);};
-window.checkScrambleSentence=()=>{const v=trainVerses[scrambleState.sentenceIdx],built=scrambleState.built.map(e=>e.word).join(' ');if(similarity(built,v.text)>=0.9){const next=scrambleState.sentenceIdx+1;if(next<trainVerses.length){toast(`Verse ${scrambleState.sentenceIdx+1} ✓ — next sentence`);resetScramble(next);renderScrambleSentence();}else completeMode('scramble');}else{toast('Not quite — keep rearranging!');}};
+window.checkScrambleSentence=()=>{const v=trainVerses[scrambleState.sentenceIdx],built=scrambleState.built.map(e=>e.word).join(' ');if(similarity(built,v.text)>=0.9){const next=scrambleState.sentenceIdx+1;if(next<trainVerses.length){toast(`Verse ${scrambleState.sentenceIdx+1} ✓`);resetScramble(next);renderScrambleSentence();}else completeMode('scramble');}else{toast('Not quite — keep rearranging!');}};
 window.checkRecallMode=()=>{const fullText=trainVerses.map(v=>v.text).join(' '),inp=document.getElementById('recall-ta').value.trim(),sim=similarity(inp,fullText);const body=document.getElementById('train-body');if(sim>=0.9){body.innerHTML=`<div class="recall-feedback rf-correct">✓ Perfect. The blade is forged.</div><div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Mark Complete →</button><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button></div>`;}else if(sim>=0.65){body.innerHTML=`<div class="recall-feedback rf-close">Close — review the highlighted words</div><div class="diff-display">${diffWords(inp,fullText)}</div><div class="train-btn-row"><button class="btn-train success" onclick="completeMode('recall')">Still counts ✓</button><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button></div>`;}else{body.innerHTML=`<div class="recall-feedback rf-incorrect">Not quite — keep training</div><div class="diff-display">${diffWords(inp,fullText)}</div><div class="train-btn-row"><button class="btn-train danger" onclick="retryMode('recall')">↺ Try Again</button><button class="btn-train" onclick="showFullPassage()">Show passage</button></div>`;}};
 
-// ── INVENTORY ─────────────────────────────────────────
 function renderInventory(){
-  const wrap=document.getElementById('inv-grid-wrap');
-  const inv=allVerses.filter(v=>v.status==='inv');
-  if(!inv.length){wrap.innerHTML='<div class="inv-empty">No verses in the inventory yet.<br>Complete a quest and turn it in to add items here.</div>';return;}
-  const byHero=new Map();
-  inv.forEach(v=>{if(!byHero.has(v.name))byHero.set(v.name,[]);byHero.get(v.name).push(v);});
+  const wrap=document.getElementById('inv-grid-wrap');const inv=allVerses.filter(v=>v.status==='inv');
+  if(!inv.length){wrap.innerHTML='<div class="inv-empty">No verses in the inventory yet.</div>';return;}
+  const byHero=new Map();inv.forEach(v=>{if(!byHero.has(v.name))byHero.set(v.name,[]);byHero.get(v.name).push(v);});
   let html='';
   byHero.forEach((heroVerses,heroName)=>{
-    const groups=groupByQuest(heroVerses);
-    const avatar=HERO_AVATARS[Math.abs((heroName.charCodeAt(0)||0))%HERO_AVATARS.length];
-    const count=groups.size;
+    const groups=groupByQuest(heroVerses),avatar=HERO_AVATARS[Math.abs((heroName.charCodeAt(0)||0))%HERO_AVATARS.length],count=groups.size;
     html+=`<div class="inv-hero-section"><div class="inv-hero-header"><div class="inv-hero-avatar">${avatar}</div><div class="inv-hero-name">${heroName}</div><div class="inv-hero-count">${count} item${count!==1?'s':''}</div></div><div class="inv-grid">`;
     groups.forEach((verses,qid)=>{
-      const isMine=verses.some(v=>myIds.includes(v.id));
-      const itemName=hashPick(ITEM_NAMES,qid),itemIdx=ITEM_NAMES.indexOf(itemName),itemType=ITEM_TYPES[itemIdx]||'One-Hand Sword';
-      const refLbl=passageRefLabel(verses);const savedName=verses[0].itemName||itemName;
-      const fullText=verses.map(v=>`\u201c${v.text}\u201d`).join(' ');
-      const dur=getDurability(verses);
-      const isLowDur=dur!==null&&dur<=((WARN_DAYS/MAINT_DAYS)*100+5);
+      const isMine=verses.some(v=>myIds.includes(v.id)),itemName=hashPick(ITEM_NAMES,qid),itemIdx=ITEM_NAMES.indexOf(itemName),itemType=ITEM_TYPES[itemIdx]||'One-Hand Sword';
+      const refLbl=passageRefLabel(verses),savedName=verses[0].itemName||itemName,fullText=verses.map(v=>`\u201c${v.text}\u201d`).join(' ');
+      const dur=getDurability(verses),isLowDur=dur!==null&&dur<=((WARN_DAYS/MAINT_DAYS)*100+5);
       const durColor=dur===null?'var(--green)':(dur>50?'var(--green)':(dur>20?'var(--gold)':'var(--red2)'));
       const hasMaintActive=allVerses.some(v=>v.sourceQuestId===qid&&v.isMaintenance&&v.status!=='inv');
-      const durHtml=dur!==null?`<div class="inv-divider"></div><div class="durability-wrap"><div class="durability-label-row"><span class="durability-label">Durability</span><span class="durability-pct" style="color:${durColor};">${dur}%</span></div><div class="durability-bar-bg"><div class="durability-bar-fill" style="width:${dur}%;background:${durColor};"></div></div>${isLowDur&&!hasMaintActive?`<div class="durability-warn">⚠ Blade growing dull — maintenance soon</div>`:''}${hasMaintActive?`<div class="inv-maint-badge">↻ Maintenance Active</div>`:''}</div>`:'';
-      html+=`<div class="inv-card${isLowDur?' low-durability':''}"><div class="inv-card-inner"><div class="inv-item-name">${savedName}</div><div class="inv-item-type">${itemType}</div><div class="inv-ref">${refLbl}</div><div class="inv-divider"></div><div class="inv-verse">${fullText}</div>${durHtml}${isMine?`<div class="inv-divider"></div><div class="inv-name-label">Rename item</div><input class="inv-name-edit" type="text" value="${savedName}" data-vid="${verses[0].id}" onchange="saveItemName(this)" />`:''}  </div></div>`;
+      const durHtml=dur!==null?`<div class="inv-divider"></div><div class="durability-wrap"><div class="durability-label-row"><span class="durability-label">Durability</span><span class="durability-pct" style="color:${durColor};">${dur}%</span></div><div class="durability-bar-bg"><div class="durability-bar-fill" style="width:${dur}%;background:${durColor};"></div></div>${isLowDur&&!hasMaintActive?`<div class="durability-warn">⚠ Blade growing dull</div>`:''}${hasMaintActive?`<div class="inv-maint-badge">↻ Maintenance Active</div>`:''}</div>`:'';
+      html+=`<div class="inv-card${isLowDur?' low-durability':''}"><div class="inv-card-inner"><div class="inv-item-name">${savedName}</div><div class="inv-item-type">${itemType}</div><div class="inv-ref">${refLbl}</div><div class="inv-divider"></div><div class="inv-verse">${fullText}</div>${durHtml}${isMine?`<div class="inv-divider"></div><div class="inv-name-label">Rename item</div><input class="inv-name-edit" type="text" value="${savedName}" data-vid="${verses[0].id}" onchange="saveItemName(this)" />`:''}</div></div>`;
     });
     html+='</div></div>';
   });
@@ -1499,13 +1017,10 @@ function renderInventory(){
 }
 window.saveItemName=async(input)=>{const name=input.value.trim(),vid=input.dataset.vid;if(!name||!vid)return;try{await update(ref(db,`sword/verses/${vid}`),{itemName:name});toast('Item renamed');}catch(e){toast('Error saving');}};
 
-// ── JOURNEY BOARD ─────────────────────────────────────
 function renderBoard(){
   get(ref(db,'sword/verses')).then(snap=>{
-    const all=snap.exists()?Object.values(snap.val()):[];
-    const groups=groupByQuest(all);
-    const cols={road:[],quest:[],inv:[],maint:[]};
-    groups.forEach((verses,qid)=>{const s=questStatus(verses);if(cols[s])cols[s].push({qid,verses});});
+    const all=snap.exists()?Object.values(snap.val()):[];const groups=groupByQuest(all);
+    const cols={road:[],quest:[],inv:[],maint:[]};groups.forEach((verses,qid)=>{const s=questStatus(verses);if(cols[s])cols[s].push({qid,verses});});
     const card=({qid,verses})=>{const isMaint=verses[0]?.isMaintenance;const name=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid);return`<div class="board-card"><div class="bc-name">${verses[0].name}</div><div class="bc-qname">${name}</div><div class="bc-ref">${passageRefLabel(verses)}</div><div class="bc-text">\u201c${verses.map(v=>v.text).join(' ')}\u201d</div></div>`;};
     const col=list=>list.length?list.map(card).join(''):'<div class="empty-slot">None yet</div>';
     const stations=[{s:'road',cls:'s-road',icon:'🗺️',n:'Quest Acquired',d:'The word is newly received'},{s:'quest',cls:'s-quest',icon:'⚔️',n:'On the Quest',d:'Pressing toward mastery'},{s:'inv',cls:'s-inv',icon:'🏆',n:'Inventory',d:'Spoken before the Fellowship'},{s:'maint',cls:'s-maint',icon:'🔧',n:'Maintenance',d:'Keeping the blade sharp'}];
@@ -1514,715 +1029,339 @@ function renderBoard(){
 }
 
 // ══════════════════════════════════════════════════════
-// LOTR MAP
+// LOTR MAP — real image + SVG overlay
 // ══════════════════════════════════════════════════════
-function renderLotrMap(targetId='lotr-svg-wrap'){
-  const count=Math.min(getInvVerseCount(),LOTR_GOAL);
-  const wrap=document.getElementById(targetId);if(!wrap)return;
+function renderLotrMap(targetId='lotr-svg-wrap') {
+  const count = Math.min(getInvVerseCount(), LOTR_GOAL);
+  const wrap = document.getElementById(targetId);
+  if (!wrap) return;
 
-  // Find current & next waypoint
-  let currentWP=LOTR_WAYPOINTS[0],nextWP=null;
-  for(let i=LOTR_WAYPOINTS.length-1;i>=0;i--){
-    if(count>=LOTR_WAYPOINTS[i].verses){currentWP=LOTR_WAYPOINTS[i];nextWP=LOTR_WAYPOINTS[i+1]||null;break;}
+  const WP = LOTR_WAYPOINTS;
+  // Image is 1920x1080 — SVG viewBox matches so coords are 1:1
+  const VW = 1920, VH = 1080;
+
+  // Find current waypoint
+  let currentWP = WP[0], nextWP = null;
+  for (let i = WP.length-1; i >= 0; i--) {
+    if (count >= WP[i].verses) { currentWP = WP[i]; nextWP = WP[i+1]||null; break; }
   }
 
-  // Calculate fellowship position along path
-  const fellowshipPos=getFellowshipPos(count);
-
-  const isTv=targetId==='tv-map-svg-wrap';
-  const W=800,H=isTv?360:300;
-
-  // Scale x/y from percentage to SVG coords
-  const sx=p=>p/100*W;
-  const sy=p=>p/100*H;
-
-  // Build dotted path
-  const pts=LOTR_WAYPOINTS.map(w=>`${sx(w.x)},${sy(w.y)}`).join(' ');
-  const unlocked=LOTR_WAYPOINTS.filter(w=>count>=w.verses);
-  const locked=LOTR_WAYPOINTS.filter(w=>count<w.verses);
-
-  // Fellowship dot position
-  const fx=sx(fellowshipPos.x),fy=sy(fellowshipPos.y);
-
-  let svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-  <defs>
-    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <filter id="goldglow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <radialGradient id="mapbg" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="#1e1808" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#0e0b05" stop-opacity="1"/>
-    </radialGradient>
-    <linearGradient id="pathgrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#5a3e10" stop-opacity="0.8"/>
-      <stop offset="${(count/LOTR_GOAL)*100}%" stop-color="#c9a84c" stop-opacity="1"/>
-      <stop offset="${(count/LOTR_GOAL)*100}%" stop-color="#3a2a0a" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#2a1f0a" stop-opacity="0.3"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Background -->
-  <rect width="${W}" height="${H}" fill="url(#mapbg)" rx="4"/>
-
-  <!-- Subtle terrain texture marks -->
-  ${Array.from({length:30},(_,i)=>{
-    const x=20+Math.floor(Math.sin(i*2.3)*350+350);
-    const y=20+Math.floor(Math.cos(i*1.7)*130+140);
-    return `<text x="${x}" y="${y}" font-size="${8+Math.floor(Math.sin(i)*4)}" fill="rgba(90,62,16,0.12)" font-family="serif">${['·','∙','˙','•'][i%4]}</text>`;
-  }).join('')}
-
-  <!-- Map title flourish -->
-  <text x="${W/2}" y="18" text-anchor="middle" font-family="'Cinzel',serif" font-size="9" fill="rgba(90,62,16,0.5)" letter-spacing="4">— THE FELLOWSHIP'S ROAD —</text>
-
-  <!-- Full dotted path (dim) -->
-  <polyline points="${pts}" fill="none" stroke="rgba(42,31,10,0.5)" stroke-width="2" stroke-dasharray="6,5"/>
-
-  <!-- Unlocked path (gold) -->`;
-
-  // Draw unlocked path segments
-  if(unlocked.length>=2){
-    const unlockedPts=unlocked.map(w=>`${sx(w.x)},${sy(w.y)}`);
-    // Add fellowship current position
-    if(nextWP){unlockedPts.push(`${fx},${fy}`);}
-    svg+=`<polyline points="${unlockedPts.join(' ')}" fill="none" stroke="url(#pathgrad)" stroke-width="2.5" stroke-dasharray="6,5" filter="url(#glow)"/>`;
+  // Fellowship interpolated position
+  function getFPos() {
+    if (count <= 0) return {x:WP[0].x, y:WP[0].y};
+    if (count >= LOTR_GOAL) return {x:WP[WP.length-1].x, y:WP[WP.length-1].y};
+    for (let i = 0; i < WP.length-1; i++) {
+      const a=WP[i], b=WP[i+1];
+      if (count >= a.verses && count < b.verses) {
+        const t = (count-a.verses)/(b.verses-a.verses);
+        return {x: a.x+(b.x-a.x)*t, y: a.y+(b.y-a.y)*t};
+      }
+    }
+    return {x:WP[WP.length-1].x, y:WP[WP.length-1].y};
   }
+  const fpos = getFPos();
 
-  // Waypoint circles
-  LOTR_WAYPOINTS.forEach((wp,i)=>{
-    const x=sx(wp.x),y=sy(wp.y);
-    const done=count>=wp.verses;
-    const isCurrent=wp===currentWP;
-    const isMtDoom=i===LOTR_WAYPOINTS.length-1;
-    const isGoal=count>=LOTR_GOAL&&isMtDoom;
+  // All waypoint coords for full faint path
+  const allPts = WP.map(w=>`${w.x},${w.y}`).join(' ');
 
-    if(done){
-      // Completed waypoint
-      svg+=`<circle cx="${x}" cy="${y}" r="${isCurrent?9:7}" fill="${isGoal?'#c9a84c':'rgba(74,124,63,0.3)'}" stroke="${isGoal?'#e8c97a':'#4a7c3f'}" stroke-width="${isCurrent?2.5:1.5}" filter="${isCurrent?'url(#goldglow)':''}"/>`;
-      svg+=`<text cx="${x}" cy="${y}" x="${x}" y="${y+1}" text-anchor="middle" dominant-baseline="middle" font-size="${isCurrent?11:9}" fill="${isCurrent?'#e8c97a':'#5c9e50'}">${isGoal?'🔥':isCurrent?'★':'✓'}</text>`;
+  // Unlocked path up to current fellowship position
+  const unlockedWPs = WP.filter(w => count >= w.verses);
+  const unlockedPts = [...unlockedWPs.map(w=>`${w.x},${w.y}`), ...(nextWP?[`${fpos.x},${fpos.y}`]:[])];
+
+  // Waypoint markers
+  let markers = '';
+  WP.forEach((wp, i) => {
+    const done = count >= wp.verses;
+    const isCurrent = wp === currentWP && count < LOTR_GOAL;
+    const isDoom = i === WP.length-1;
+    const labelDy = (i % 2 === 0) ? -15 : 17;
+    const anchor = wp.x < 750 ? 'start' : wp.x > 1300 ? 'end' : 'middle';
+
+    if (isDoom) {
+      markers += `
+        <circle cx="${wp.x}" cy="${wp.y}" r="7" fill="rgba(180,55,25,${done?0.75:0.2})" stroke="rgba(220,80,30,${done?0.7:0.15})" stroke-width="1.5"/>
+        ${done?`<circle cx="${wp.x}" cy="${wp.y}" r="13" fill="none" stroke="rgba(200,60,20,0.3)" stroke-width="1.5"/>`:''}`;
     } else {
-      // Locked waypoint
-      svg+=`<circle cx="${x}" cy="${y}" r="6" fill="rgba(10,8,4,0.8)" stroke="rgba(42,31,10,0.8)" stroke-width="1.5"/>`;
-      svg+=`<text x="${x}" y="${y+1}" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="rgba(42,31,10,0.8)">◦</text>`;
+      // Cartographer-style crosshair dot
+      const op = done ? 1 : 0.28;
+      const fc = done ? 'rgba(160,115,45,0.75)' : 'rgba(120,90,40,0.25)';
+      const sc = done ? 'rgba(100,70,20,0.8)' : 'rgba(90,65,20,0.25)';
+      markers += `
+        <circle cx="${wp.x}" cy="${wp.y}" r="${done?5:4}" fill="${fc}" stroke="${sc}" stroke-width="1.2" opacity="${op}"/>
+        <line x1="${wp.x-9}" y1="${wp.y}" x2="${wp.x-5}" y2="${wp.y}" stroke="${sc}" stroke-width="1" opacity="${op}"/>
+        <line x1="${wp.x+5}" y1="${wp.y}" x2="${wp.x+9}" y2="${wp.y}" stroke="${sc}" stroke-width="1" opacity="${op}"/>
+        <line x1="${wp.x}" y1="${wp.y-9}" x2="${wp.x}" y2="${wp.y-5}" stroke="${sc}" stroke-width="1" opacity="${op}"/>
+        <line x1="${wp.x}" y1="${wp.y+5}" x2="${wp.x}" y2="${wp.y+9}" stroke="${sc}" stroke-width="1" opacity="${op}"/>`;
     }
 
-    // Label
-    const labelY=done?(y-13):(y+18);
-    const labelAnchor=x<W*0.15?'start':x>W*0.85?'end':'middle';
-    svg+=`<text x="${x}" y="${labelY}" text-anchor="${labelAnchor}" font-family="'Cinzel',serif" font-size="${isCurrent?9:8}" fill="${done?'rgba(201,168,76,0.9)':'rgba(90,62,16,0.5)'}" font-weight="${isCurrent?'600':'400'}">${wp.name}</text>`;
-    if(done){
-      svg+=`<text x="${x}" y="${labelY+11}" text-anchor="${labelAnchor}" font-family="serif" font-size="7" fill="rgba(110,86,40,0.6)">${wp.verses} verse${wp.verses!==1?'s':''}</text>`;
+    // Label — only when reached or current
+    if (done || isCurrent) {
+      markers += `<text x="${wp.x}" y="${wp.y+labelDy}" text-anchor="${anchor}"
+        font-family="'Cinzel',serif" font-size="${isCurrent?11:10}"
+        font-weight="${isCurrent?600:400}"
+        fill="rgba(170,120,40,${isCurrent?0.9:0.7})"
+        letter-spacing="0.5">${wp.name}</text>`;
     }
+
+    // Invisible hover target with tooltip
+    markers += `<circle cx="${wp.x}" cy="${wp.y}" r="20" fill="transparent" style="cursor:default;">
+      <title>${wp.name}${wp.desc?' · '+wp.desc:''} · ${wp.verses} verse${wp.verses!==1?'s':''} · ${done?'✓ Reached':'Not yet reached'}</title>
+    </circle>`;
   });
 
-  // Fellowship party icon
-  svg+=`
-  <g transform="translate(${fx},${fy})" filter="url(#goldglow)">
-    <circle r="10" fill="rgba(10,8,4,0.9)" stroke="#c9a84c" stroke-width="2"/>
-    <text x="0" y="1" text-anchor="middle" dominant-baseline="middle" font-size="10">🧙</text>
-    <animateTransform attributeName="transform" type="translate" values="${fx},${fy-1} ${fx},${fy+1} ${fx},${fy-1}" dur="2s" repeatCount="indefinite"/>
-  </g>`;
+  // Wizard fellowship marker with gentle bob animation
+  const wizard = `
+    <g filter="url(#wizglow)">
+      <animateTransform attributeName="transform" type="translate"
+        values="0,0 0,-2 0,0 0,1 0,0" keyTimes="0;0.25;0.5;0.75;1"
+        dur="3s" repeatCount="indefinite" additive="sum"/>
+      <circle cx="${fpos.x}" cy="${fpos.y}" r="12" fill="rgba(6,5,2,0.88)" stroke="rgba(201,168,76,0.85)" stroke-width="2"/>
+      <text x="${fpos.x}" y="${fpos.y+5}" text-anchor="middle" font-size="14">🧙</text>
+    </g>`;
 
-  // Progress bar at bottom
-  const barY=H-20,barX=40,barW=W-80;
-  const progressW=Math.min((count/LOTR_GOAL),1)*(barW);
-  svg+=`
-  <rect x="${barX}" y="${barY}" width="${barW}" height="4" rx="2" fill="rgba(42,31,10,0.8)"/>
-  <rect x="${barX}" y="${barY}" width="${progressW}" height="4" rx="2" fill="url(#pathgrad)" filter="url(#glow)"/>
-  <text x="${barX}" y="${barY+14}" font-family="'Cinzel',serif" font-size="8" fill="rgba(90,62,16,0.7)">${count} / ${LOTR_GOAL} verses</text>
-  <text x="${barX+barW}" y="${barY+14}" text-anchor="end" font-family="'Cinzel',serif" font-size="8" fill="rgba(90,62,16,0.7)">Mount Doom</text>`;
+  const svg = `<svg viewBox="0 0 ${VW} ${VH}" xmlns="http://www.w3.org/2000/svg"
+    style="position:absolute;inset:0;width:100%;height:100%;pointer-events:auto;">
+  <defs>
+    <filter id="wizglow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="pglow">
+      <feGaussianBlur stdDeviation="1.8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
 
-  svg+=`</svg>`;
-  wrap.innerHTML=svg;
+  <!-- Full route — very faint locked guide -->
+  <polyline points="${allPts}" fill="none"
+    stroke="rgba(90,65,20,0.18)" stroke-width="2.5" stroke-dasharray="7,9"
+    stroke-linecap="round"/>
 
-  // Update info text (normal page only)
-  if(targetId==='lotr-svg-wrap'){
-    const locEl=document.getElementById('lotr-current-loc');
-    const nextEl=document.getElementById('lotr-next-loc');
-    const countEl=document.getElementById('lotr-verse-count');
-    if(countEl)countEl.textContent=count;
-    if(count>=LOTR_GOAL){
-      if(locEl)locEl.textContent='🔥 The Ring is destroyed — Mount Doom reached!';
-      if(nextEl)nextEl.textContent='The Fellowship has completed the journey. The word dwells richly.';
-    } else {
-      if(locEl)locEl.textContent=`Currently at: ${currentWP.name} · ${currentWP.desc}`;
-      if(nextEl&&nextWP)nextEl.textContent=`Next waypoint: ${nextWP.name} in ${nextWP.verses-count} verse${nextWP.verses-count!==1?'s':''}`;
-    }
+  <!-- Unlocked path — warm gold, hand-drawn dashed feel -->
+  ${unlockedPts.length >= 2 ? `
+  <polyline points="${unlockedPts.join(' ')}" fill="none"
+    stroke="rgba(185,138,42,0.45)" stroke-width="3.5"
+    stroke-dasharray="9,8" stroke-linecap="round" filter="url(#pglow)"/>
+  <polyline points="${unlockedPts.join(' ')}" fill="none"
+    stroke="rgba(230,185,75,0.22)" stroke-width="1.5"
+    stroke-dasharray="9,8" stroke-linecap="round"/>` : ''}
+
+  <!-- Waypoint markers -->
+  ${markers}
+
+  <!-- Fellowship wizard -->
+  ${wizard}
+</svg>`;
+
+  // Inject image + SVG overlay
+  wrap.style.position = 'relative';
+  wrap.innerHTML = `
+    <img src="./old-middle-earth-map.jpg" alt="Middle Earth map"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;border-radius:4px;"/>
+    ${svg}`;
+
+  // Update info text
+  if (targetId === 'lotr-svg-wrap') {
+    const ce=document.getElementById('lotr-verse-count'), cl=document.getElementById('lotr-current-loc'), nl=document.getElementById('lotr-next-loc');
+    if(ce)ce.textContent=count;
+    if(count>=LOTR_GOAL){if(cl)cl.textContent='🔥 The Ring is destroyed — Mount Doom reached!';if(nl)nl.textContent='The Fellowship has completed the journey.';}
+    else{if(cl)cl.textContent=`Currently at: ${currentWP.name} · ${currentWP.desc||''}`;if(nl&&nextWP)nl.textContent=`Next: ${nextWP.name} in ${nextWP.verses-count} verse${nextWP.verses-count!==1?'s':''}`;}
   }
-  if(targetId==='tv-map-svg-wrap'){
+  if (targetId === 'tv-map-svg-wrap') {
     const sub=document.getElementById('tv-map-progress-sub');
-    if(sub){
-      if(count>=LOTR_GOAL)sub.textContent='🔥 The Ring is destroyed — Mount Doom reached!';
-      else sub.textContent=`${count} / ${LOTR_GOAL} verses mastered · Currently at ${currentWP.name} · Next: ${nextWP?nextWP.name:'—'}`;
-    }
+    if(sub){if(count>=LOTR_GOAL)sub.textContent='🔥 The Ring is destroyed — Mount Doom reached!';else sub.textContent=`${count} / ${LOTR_GOAL} verses · At ${currentWP.name}${nextWP?' · Next: '+nextWP.name:''}`;}
   }
 }
 
-function getFellowshipPos(count){
-  if(count<=0)return{x:LOTR_WAYPOINTS[0].x,y:LOTR_WAYPOINTS[0].y};
-  if(count>=LOTR_GOAL)return{x:LOTR_WAYPOINTS[LOTR_WAYPOINTS.length-1].x,y:LOTR_WAYPOINTS[LOTR_WAYPOINTS.length-1].y};
-  for(let i=0;i<LOTR_WAYPOINTS.length-1;i++){
-    const a=LOTR_WAYPOINTS[i],b=LOTR_WAYPOINTS[i+1];
-    if(count>=a.verses&&count<b.verses){
-      const t=(count-a.verses)/(b.verses-a.verses);
-      return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};
-    }
-  }
-  return{x:LOTR_WAYPOINTS[LOTR_WAYPOINTS.length-1].x,y:LOTR_WAYPOINTS[LOTR_WAYPOINTS.length-1].y};
-}
-
-// ── ADD FORM ─────────────────────────────────────────
-window.showAddForm=()=>{
-  document.getElementById('add-form').style.display='block';
-  document.getElementById('add-quest-banner').style.display='none';
-  updateFilterBar();selectedVerses.clear();renderPsalmList();updateSelCount();
-};
-window.hideAddForm=()=>{
-  document.getElementById('add-form').style.display='none';
-  document.getElementById('add-quest-banner').style.display='flex';
-  selectedVerses.clear();
-};
+// ── ADD FORM ──────────────────────────────────────────
+window.showAddForm=()=>{document.getElementById('add-form').style.display='block';document.getElementById('add-quest-banner').style.display='none';updateFilterBar();selectedVerses.clear();renderPsalmList();updateSelCount();};
+window.hideAddForm=()=>{document.getElementById('add-form').style.display='none';document.getElementById('add-quest-banner').style.display='flex';selectedVerses.clear();};
 window.handleNameSelect=()=>{document.getElementById('new-name-row').style.display=document.getElementById('name-select').value==='__new__'?'block':'none';};
 window.selectPsalm=(num,el)=>{selectedPsalm=num;document.querySelectorAll('.psalm-pill').forEach(p=>p.classList.remove('active'));el.classList.add('active');renderPsalmList();};
-function renderPsalmList(containerId='psalm-list',countId='selected-count'){
+function renderPsalmList(containerId='psalm-list'){
   const lblEl=containerId==='psalm-list'?document.getElementById('psalm-lbl'):null;
   if(lblEl)lblEl.textContent=`Psalm ${selectedPsalm} — Click verses to select`;
-  const el=document.getElementById(containerId);
-  if(!el)return;
+  const el=document.getElementById(containerId);if(!el)return;
   el.innerHTML=PSALMS[selectedPsalm].map(([n,t])=>{const key=`${selectedPsalm}:${n}`,sel=selectedVerses.has(key);return`<div class="psalm-v-row${sel?' selected':''}" onclick="toggleVerse(${selectedPsalm},${n},\`${t.replace(/`/g,"'")}\`)"><div class="psalm-v-check"><span class="psalm-v-check-mark">✓</span></div><span class="psalm-v-num">${n}</span><span class="psalm-v-text">${t}</span></div>`;}).join('');
 }
 window.toggleVerse=(pn,vn,text)=>{const key=`${pn}:${vn}`;if(selectedVerses.has(key))selectedVerses.delete(key);else selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text});renderPsalmList();updateSelCount();if(tvActive)updateSelCount('tv-selected-count');};
 function updateSelCount(id='selected-count'){const n=selectedVerses.size;const el=document.getElementById(id);if(el)el.textContent=n===0?'':n+' verse'+(n>1?'s':'')+' selected';}
 window.handleManualRef=()=>{const val=document.getElementById('manual-ref')?.value.trim()||'',match=val.match(/(?:psalm\s*)?(\d+):(\d+)/i);if(!match)return;const pn=parseInt(match[1]),vn=parseInt(match[2]);if(!PSALMS[pn])return;const vd=PSALMS[pn].find(([n])=>n===vn);if(!vd)return;selectedPsalm=pn;document.querySelectorAll('.psalm-pill').forEach(p=>p.classList.toggle('active',p.textContent.includes(String(pn))));renderPsalmList();const key=`${pn}:${vn}`;if(!selectedVerses.has(key)){selectedVerses.set(key,{ref:`Psalm ${pn}:${vn}`,text:vd[1]});renderPsalmList();updateSelCount();}};
 window.submitVerses=async(isTvMode=false)=>{
-  const selEl=document.getElementById(isTvMode?'tv-name-select':'name-select');
-  const isNew=selEl&&selEl.value==='__new__';
+  const selEl=document.getElementById(isTvMode?'tv-name-select':'name-select'),isNew=selEl&&selEl.value==='__new__';
   const newInputEl=document.getElementById(isTvMode?'tv-new-name-input':'new-name-input');
   const name=isNew?newInputEl?.value.trim():selEl?.value;
   if(!name){toast('Choose or create a hero name');return;}if(!selectedVerses.size){toast('Select at least one verse');return;}
-  const submitBtn=document.getElementById(isTvMode?'tv-submit-btn':'submit-btn');
-  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Accepting…';}
+  const btn=document.getElementById(isTvMode?'tv-submit-btn':'submit-btn');
+  if(btn){btn.disabled=true;btn.textContent='Accepting…';}
   myHero=name;localStorage.setItem(HERO_KEY,name);
   const questId=`q_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;const newIds=[];
   try{
     for(const[key,v] of selectedVerses){const id=`v_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;await set(ref(db,`sword/verses/${id}`),{id,questId,name,ref:v.ref,text:v.text,status:'road',created:Date.now()});newIds.push(id);await new Promise(r=>setTimeout(r,50));}
     myIds=[...myIds,...newIds];localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
-    if(submitBtn){submitBtn.disabled=false;submitBtn.textContent='Accept Quest';}
-    if(isTvMode)tvHideAddQuest();else hideAddForm();
-    selectedVerses.clear();
+    if(btn){btn.disabled=false;btn.textContent='Accept Quest';}
+    if(isTvMode)tvHideAddQuest();else hideAddForm();selectedVerses.clear();
     toast(`Quest accepted — ${newIds.length} verse${newIds.length>1?'s':''}`);
-  }catch(e){toast('Error — check connection');if(submitBtn){submitBtn.disabled=false;submitBtn.textContent='Accept Quest';}}
+  }catch(e){toast('Error — check connection');if(btn){btn.disabled=false;btn.textContent='Accept Quest';}}
 };
 
 // ── EDIT ─────────────────────────────────────────────
 window.handleEditClick=(id)=>{if(myIds.includes(id)||leaderUnlocked)openEditModal(id);else{pendingEditId=id;openPinOverlay();}};
 function openEditModal(id){editingId=id;const v=allVerses.find(v=>v.id===id);if(!v)return;document.getElementById('edit-ref').value=v.ref||'';document.getElementById('edit-text').value=v.text||'';document.getElementById('edit-status').value=v.status||'road';document.getElementById('edit-modal').classList.add('show');}
 window.closeEditModal=()=>{document.getElementById('edit-modal').classList.remove('show');editingId=null;};
-window.saveEdit=async()=>{
-  if(!editingId)return;
-  const newRef=document.getElementById('edit-ref').value.trim(),newText=document.getElementById('edit-text').value.trim(),newStatus=document.getElementById('edit-status').value;
-  if(!newText){toast('Verse text cannot be empty');return;}
-  const updates={ref:newRef,text:newText,status:newStatus};
-  if(newStatus==='inv'){const existing=allVerses.find(v=>v.id===editingId);if(!existing?.invEnteredAt)updates.invEnteredAt=Date.now();}
-  try{await update(ref(db,`sword/verses/${editingId}`),updates);closeEditModal();toast('Quest updated');}catch(e){toast('Error saving');}
-};
+window.saveEdit=async()=>{if(!editingId)return;const newRef=document.getElementById('edit-ref').value.trim(),newText=document.getElementById('edit-text').value.trim(),newStatus=document.getElementById('edit-status').value;if(!newText){toast('Verse text cannot be empty');return;}const updates={ref:newRef,text:newText,status:newStatus};if(newStatus==='inv'){const existing=allVerses.find(v=>v.id===editingId);if(!existing?.invEnteredAt)updates.invEnteredAt=Date.now();}try{await update(ref(db,`sword/verses/${editingId}`),updates);closeEditModal();toast('Quest updated');}catch(e){toast('Error saving');}};
 window.confirmDelete=async()=>{
-  if(!editingId)return;if(!confirm('Delete this quest permanently?'))return;
-  try{await set(ref(db,`sword/verses/${editingId}`),null);myIds=myIds.filter(i=>i!==editingId);localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
-    if(selectedQid){selectedQid=null;document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>';}
-    closeEditModal();toast('Quest deleted');}catch(e){toast('Error deleting');}
+  if(!editingId)return;
+  // Find all verses in this quest group
+  const editingVerse=allVerses.find(v=>v.id===editingId);
+  const questVers=editingVerse?allVerses.filter(v=>v.questId===editingVerse.questId&&v.questId):[editingVerse].filter(Boolean);
+  const count=questVers.length;
+  if(!confirm(`Delete this quest (${count} verse${count!==1?'s':''}) permanently?`))return;
+  try{
+    for(const v of questVers){await set(ref(db,`sword/verses/${v.id}`),null);}
+    const deletedIds=questVers.map(v=>v.id);
+    myIds=myIds.filter(i=>!deletedIds.includes(i));
+    localStorage.setItem(MY_IDS_KEY,JSON.stringify(myIds));
+    if(selectedQid===editingVerse?.questId||deletedIds.includes(selectedQid)){selectedQid=null;document.getElementById('parch-content').innerHTML='<div class="parch-empty"><div class="parch-empty-icon">📜</div><div class="parch-empty-text">Select a quest to view</div></div>';}
+    closeEditModal();toast(`Quest deleted (${count} verse${count!==1?'s':''})`);
+  }catch(e){toast('Error deleting');}
 };
 function openPinOverlay(){document.getElementById('pin-input').value='';document.getElementById('pin-error').textContent='';document.getElementById('pin-overlay').classList.add('show');setTimeout(()=>document.getElementById('pin-input').focus(),100);}
 window.closePinOverlay=()=>{document.getElementById('pin-overlay').classList.remove('show');pendingEditId=null;};
 window.handlePinInput=()=>{const val=document.getElementById('pin-input').value;if(val.length<4)return;if(val===LEADER_PIN){leaderUnlocked=true;document.getElementById('pin-overlay').classList.remove('show');if(pendingEditId){openEditModal(pendingEditId);pendingEditId=null;}toast('Leader access granted');}else{document.getElementById('pin-error').textContent='Incorrect PIN';document.getElementById('pin-input').value='';}};
 
-// ════════════════════════════════════════════════════
-// EMBER PARTICLES
-// ════════════════════════════════════════════════════
+// ── EMBER PARTICLES ───────────────────────────────────
 function initEmbers(){
-  const canvas=document.getElementById('ember-canvas');
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  const embers=[];
+  const canvas=document.getElementById('ember-canvas');if(!canvas)return;
+  const ctx=canvas.getContext('2d'),embers=[];
   function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-
-  function spawnEmber(){
-    const x=Math.random()*canvas.width;
-    embers.push({
-      x,y:canvas.height+10,
-      vx:(Math.random()-0.5)*0.8,
-      vy:-(0.4+Math.random()*1.2),
-      life:1,
-      decay:0.003+Math.random()*0.004,
-      size:1+Math.random()*2.5,
-      wobble:Math.random()*Math.PI*2,
-      wobbleSpeed:0.02+Math.random()*0.04,
-      hue:25+Math.random()*20
-    });
-  }
-
-  let spawnTimer=0;
+  resize();window.addEventListener('resize',resize);
+  function spawnEmber(){const x=Math.random()*canvas.width;embers.push({x,y:canvas.height+10,vx:(Math.random()-0.5)*0.8,vy:-(0.4+Math.random()*1.2),life:1,decay:0.003+Math.random()*0.004,size:1+Math.random()*2.5,wobble:Math.random()*Math.PI*2,wobbleSpeed:0.02+Math.random()*0.04,hue:25+Math.random()*20});}
+  let t=0;
   function drawEmbers(){
     if(!tvActive){emberAnimId=requestAnimationFrame(drawEmbers);return;}
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    spawnTimer++;
-    if(spawnTimer%18===0)spawnEmber();
-    for(let i=embers.length-1;i>=0;i--){
-      const e=embers[i];
-      e.wobble+=e.wobbleSpeed;
-      e.x+=e.vx+Math.sin(e.wobble)*0.3;
-      e.y+=e.vy;
-      e.life-=e.decay;
-      if(e.life<=0||e.y<-10){embers.splice(i,1);continue;}
-      const alpha=e.life*0.7;
-      ctx.globalAlpha=alpha;
-      ctx.fillStyle=`hsl(${e.hue},90%,${60+e.life*20}%)`;
-      ctx.beginPath();ctx.arc(e.x,e.y,e.size*e.life,0,Math.PI*2);ctx.fill();
-      // tiny glow
-      ctx.globalAlpha=alpha*0.3;
-      ctx.fillStyle=`hsl(${e.hue},90%,80%)`;
-      ctx.beginPath();ctx.arc(e.x,e.y,e.size*e.life*2.5,0,Math.PI*2);ctx.fill();
-    }
-    ctx.globalAlpha=1;
-    emberAnimId=requestAnimationFrame(drawEmbers);
+    ctx.clearRect(0,0,canvas.width,canvas.height);t++;
+    if(t%18===0)spawnEmber();
+    for(let i=embers.length-1;i>=0;i--){const e=embers[i];e.wobble+=e.wobbleSpeed;e.x+=e.vx+Math.sin(e.wobble)*0.3;e.y+=e.vy;e.life-=e.decay;if(e.life<=0||e.y<-10){embers.splice(i,1);continue;}ctx.globalAlpha=e.life*0.7;ctx.fillStyle=`hsl(${e.hue},90%,${60+e.life*20}%)`;ctx.beginPath();ctx.arc(e.x,e.y,e.size*e.life,0,Math.PI*2);ctx.fill();ctx.globalAlpha=e.life*0.3;ctx.fillStyle=`hsl(${e.hue},90%,80%)`;ctx.beginPath();ctx.arc(e.x,e.y,e.size*e.life*2.5,0,Math.PI*2);ctx.fill();}
+    ctx.globalAlpha=1;emberAnimId=requestAnimationFrame(drawEmbers);
   }
   drawEmbers();
 }
 
-// ════════════════════════════════════════════════════
-// NEWS TICKER
-// ════════════════════════════════════════════════════
+// ── TICKER ────────────────────────────────────────────
 function buildTickerItems(){
-  const heroes=getAllHeroNames();
-  const fallbackHeroes=['A brave hero','A wandering warrior','A faithful scribe','A bold champion'];
-  function randHero(){
-    const pool=heroes.length?heroes:fallbackHeroes;
-    return pool[Math.floor(Math.random()*pool.length)];
-  }
-
-  // Assign a DIFFERENT random hero to each of the 50 jokes
-  // Shuffle the jokes so the order varies each rebuild
-  const shuffled=[...TICKER_JOKES].sort(()=>Math.random()-0.5);
-  const jokeItems=shuffled.map(joke=>({
-    text:joke.replace(/\{hero\}/g,randHero()),
-    real:false
-  }));
-
-  // Recent real events jump to the front (last 5 turn-ins)
+  const heroes=getAllHeroNames();const fb=['A brave hero','A wandering warrior','A faithful scribe'];
+  function randHero(){const p=heroes.length?heroes:fb;return p[Math.floor(Math.random()*p.length)];}
+  const jokeItems=[...TICKER_JOKES].sort(()=>Math.random()-0.5).map(j=>({text:j.replace(/\{hero\}/g,randHero()),real:false}));
   const realItems=recentTurninEvents.slice(0,5).map(e=>({text:e.msg,real:true}));
-
-  // Interleave: real events first (they're fresh news), then all 50 jokes
-  return [...realItems,...jokeItems];
+  return[...realItems,...jokeItems];
 }
-
-let tickerRebuildTimer=null;
 function rebuildTicker(){
   clearTimeout(tickerRebuildTimer);
-  const items=buildTickerItems();
-  if(!items.length)return;
-
-  // Build doubled HTML for seamless CSS loop
-  const itemsHtml=items.map(it=>
-    `<span class="tv-ticker-item${it.real?' real':''}">${it.text}</span><span class="tv-ticker-sep">✦</span>`
-  ).join('');
-  const fullHtml=itemsHtml+itemsHtml; // doubled so loop is invisible
-
-  // Target: ~1 item visible per minute (very slow — background ambiance, not a distraction)
-  // Each item is ~40-80px wide at ticker font size; viewport is ~1920px wide
-  // We want the full scroll to take (totalItems * 60s) so each item passes once per minute
-  const totalItems=items.length; // 50+ items
-  const durationSec=totalItems*60; // 1 item per minute = e.g. 55 jokes → 55 min full cycle
-  // That's intentionally very slow. The ticker is wallpaper, not a show.
-
-  ['tv-ticker-inner','tv-ticker-inner-map'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el)return;
-    el.innerHTML=fullHtml;
-    el.style.animationDuration=durationSec+'s';
-  });
-
-  // Rebuild once per hour to refresh hero name assignments
+  const items=buildTickerItems();if(!items.length)return;
+  const itemsHtml=items.map(it=>`<span class="tv-ticker-item${it.real?' real':''}">${it.text}</span><span class="tv-ticker-sep">✦</span>`).join('');
+  const fullHtml=itemsHtml+itemsHtml;
+  const dur=items.length*60;
+  ['tv-ticker-inner','tv-ticker-inner-map'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.innerHTML=fullHtml;el.style.animationDuration=dur+'s';});
   tickerRebuildTimer=setTimeout(rebuildTicker,60*60*1000);
 }
 
-// ════════════════════════════════════════════════════
-// TV MODE
-// ════════════════════════════════════════════════════
-window.enterTvMode = function() {
-  tvActive = true;
-  document.getElementById('tv-mode-wrap').classList.add('active');
-  document.body.classList.add('tv-active');
-  tvRefreshAll();
-  tvSwitchView('board');
-  rebuildTicker();
-};
+// ── TV MODE ───────────────────────────────────────────
+window.enterTvMode=function(){tvActive=true;document.getElementById('tv-mode-wrap').classList.add('active');document.body.classList.add('tv-active');tvRefreshAll();tvSwitchView('board');rebuildTicker();};
+window.exitTvMode=function(){tvActive=false;document.getElementById('tv-mode-wrap').classList.remove('active');document.body.classList.remove('tv-active');tvCloseTurninPopup();};
+window.tvSwitchView=function(view){tvCurrentView=view;document.querySelectorAll('.tv-view').forEach(v=>v.classList.remove('tv-view-active'));document.querySelectorAll('.tv-tab').forEach(b=>b.classList.remove('tv-tab-active'));document.getElementById('tv-view-'+view).classList.add('tv-view-active');document.getElementById('tv-tab-'+view).classList.add('tv-tab-active');if(view==='board')tvRenderBoard();if(view==='spot')tvRenderSpotlight();if(view==='map'){renderLotrMap('tv-map-svg-wrap');rebuildTicker();}};
+function tvRefreshAll(){if(tvCurrentView==='board')tvRenderBoard();if(tvCurrentView==='spot')tvRenderSpotlight();if(tvCurrentView==='map')renderLotrMap('tv-map-svg-wrap');}
 
-window.exitTvMode = function() {
-  tvActive = false;
-  document.getElementById('tv-mode-wrap').classList.remove('active');
-  document.body.classList.remove('tv-active');
-  tvCloseTurninPopup();
-};
-
-window.tvSwitchView = function(view) {
-  tvCurrentView = view;
-  document.querySelectorAll('.tv-view').forEach(v => v.classList.remove('tv-view-active'));
-  document.querySelectorAll('.tv-tab').forEach(b => b.classList.remove('tv-tab-active'));
-  document.getElementById('tv-view-' + view).classList.add('tv-view-active');
-  document.getElementById('tv-tab-' + view).classList.add('tv-tab-active');
-  if (view === 'board') tvRenderBoard();
-  if (view === 'spot') tvRenderSpotlight();
-  if (view === 'map') { renderLotrMap('tv-map-svg-wrap'); rebuildTicker(); }
-};
-
-function tvRefreshAll() {
-  if (tvCurrentView === 'board') tvRenderBoard();
-  if (tvCurrentView === 'spot') tvRenderSpotlight();
-  if (tvCurrentView === 'map') renderLotrMap('tv-map-svg-wrap');
+function tvRenderBoard(){
+  const groups=groupByQuest(allVerses);const cols={road:[],quest:[],inv:[],maint:[]};
+  groups.forEach((verses,qid)=>{const s=questStatus(verses);if(cols[s])cols[s].push({qid,verses});});
+  ['road','quest','inv','maint'].forEach(status=>{
+    const el=document.getElementById('tv-col-'+status);if(!el)return;
+    const items=cols[status];
+    if(!items.length){el.innerHTML='<div class="tv-col-empty">None yet</div>';return;}
+    el.innerHTML=items.map(({qid,verses},idx)=>{const isMaint=verses[0]?.isMaintenance;const qname=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid);const dotCls='tv-sdot tv-sdot-'+questStatus(verses);return`<div class="tv-qcard" style="animation-delay:${idx*0.06}s" onclick="tvSpotlightQuest('${qid}')"><div class="tv-qcard-hero"><span class="${dotCls}"></span>${verses[0].name}${isMaint?' ↻':''}</div><div class="tv-qcard-quest">${qname}</div><div class="tv-qcard-ref">${passageRefLabel(verses)}</div></div>`;}).join('');
+  });
+  const byHero=new Map();allVerses.filter(v=>v.status==='inv').forEach(v=>{byHero.set(v.name,(byHero.get(v.name)||0)+1);});
+  [...new Set(allVerses.map(v=>v.name))].forEach(n=>{if(!byHero.has(n))byHero.set(n,0);});
+  const sorted=[...byHero.entries()].sort((a,b)=>b[1]-a[1]);const maxCount=sorted[0]?.[1]||1;
+  document.getElementById('tv-lb-heroes').innerHTML=sorted.map(([name,count],i)=>{const rankCls=['gold','silver','bronze','other'][Math.min(i,3)];const barPct=maxCount>0?Math.round((count/maxCount)*100):0;const barColor=i===0?'#c9a84c':i===1?'#b0b0b0':i===2?'#c97a3a':'#5a3e10';const trophy=i===0&&count>0?`<span class="tv-trophy">🏆</span>`:`<span class="tv-lb-rank ${rankCls}">${i+1}</span>`;return`<div class="tv-lb-hero">${trophy}<span class="tv-lb-name">${name}</span><div class="tv-lb-bar-wrap"><div class="tv-lb-bar" style="width:${barPct}%;background:${barColor};"></div></div><span class="tv-lb-count">${count} verse${count!==1?'s':''}</span></div>`;}).join('');
 }
 
-// ── TV BOARD ──────────────────────────────────────────
-function tvRenderBoard() {
-  const groups = groupByQuest(allVerses);
-  const cols = { road: [], quest: [], inv: [], maint: [] };
-  groups.forEach((verses, qid) => {
-    const s = questStatus(verses);
-    if (cols[s]) cols[s].push({ qid, verses });
-  });
+window.tvSpotlightQuest=function(qid){const groups=groupByQuest(allVerses.filter(v=>v.status!=='inv'));tvSpotQids=[...groups.keys()];const idx=tvSpotQids.indexOf(qid);if(idx>=0)tvSpotIdx=idx;tvSwitchView('spot');};
 
-  ['road','quest','inv','maint'].forEach(status => {
-    const el = document.getElementById('tv-col-' + status);
-    if (!el) return;
-    const items = cols[status];
-    if (!items.length) { el.innerHTML = '<div class="tv-col-empty">None yet</div>'; return; }
-    el.innerHTML = items.map(({ qid, verses }, idx) => {
-      const isMaint = verses[0]?.isMaintenance;
-      const qname = isMaint ? hashPick(MAINT_QUEST_NAMES, qid) : hashPick(QUEST_NAMES, qid);
-      const refLbl = passageRefLabel(verses);
-      const dotCls = 'tv-sdot tv-sdot-' + questStatus(verses);
-      return `<div class="tv-qcard" style="animation-delay:${idx*0.06}s" onclick="tvSpotlightQuest('${qid}')">
-        <div class="tv-qcard-hero"><span class="${dotCls}"></span>${verses[0].name}${isMaint?' ↻':''}</div>
-        <div class="tv-qcard-quest">${qname}</div>
-        <div class="tv-qcard-ref">${refLbl}</div>
-      </div>`;
-    }).join('');
-  });
-
-  // Leaderboard with trophy for #1
-  const byHero = new Map();
-  allVerses.filter(v => v.status === 'inv').forEach(v => {
-    byHero.set(v.name, (byHero.get(v.name) || 0) + 1);
-  });
-  [...new Set(allVerses.map(v => v.name))].forEach(n => { if (!byHero.has(n)) byHero.set(n, 0); });
-  const sorted = [...byHero.entries()].sort((a, b) => b[1] - a[1]);
-  const maxCount = sorted[0]?.[1] || 1;
-  const rankColors = ['gold','silver','bronze','other'];
-  document.getElementById('tv-lb-heroes').innerHTML = sorted.map(([name, count], i) => {
-    const rankCls = rankColors[Math.min(i, 3)];
-    const barPct = maxCount > 0 ? Math.round((count / maxCount) * 100) : 0;
-    const barColor = i === 0 ? '#c9a84c' : i === 1 ? '#b0b0b0' : i === 2 ? '#c97a3a' : '#5a3e10';
-    const trophyHtml = i === 0 && count > 0 ? `<span class="tv-trophy">🏆</span>` : `<span class="tv-lb-rank ${rankCls}">${i+1}</span>`;
-    return `<div class="tv-lb-hero">
-      ${trophyHtml}
-      <span class="tv-lb-name">${name}</span>
-      <div class="tv-lb-bar-wrap"><div class="tv-lb-bar" style="width:${barPct}%;background:${barColor};"></div></div>
-      <span class="tv-lb-count">${count} verse${count!==1?'s':''}</span>
-    </div>`;
-  }).join('');
+function tvRenderSpotlight(){
+  const groups=groupByQuest(allVerses.filter(v=>v.status!=='inv'));tvSpotQids=[...groups.keys()];
+  if(!tvSpotQids.length){document.getElementById('tv-verse-text').textContent='No active quests.';document.getElementById('tv-spot-ref').textContent='—';document.getElementById('tv-spot-qname').textContent='—';document.getElementById('tv-spot-status').innerHTML='';document.getElementById('tv-roster-heroes').innerHTML='';document.getElementById('tv-nav-counter').textContent='— of —';return;}
+  tvSpotIdx=Math.max(0,Math.min(tvSpotIdx,tvSpotQids.length-1));
+  const qid=tvSpotQids[tvSpotIdx],verses=groups.get(qid);if(!verses)return;
+  tvSpotHidden=false;tvSpotWordIdx=0;tvSetHideMode(false);
+  const isMaint=!!verses[0]?.isMaintenance,qname=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid),refLbl=passageRefLabel(verses),status=questStatus(verses);
+  const statusLabels={road:'Quest Acquired',quest:'On the Quest',maint:'Maintenance'};
+  document.getElementById('tv-spot-ref').textContent=refLbl;
+  document.getElementById('tv-spot-qname').textContent=qname;
+  document.getElementById('tv-spot-status').innerHTML=`<span class="tv-sdot tv-sdot-${status}"></span><span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--${status==='road'?'c-road':status==='quest'?'c-quest':'c-maint'});">${statusLabels[status]||status}</span><span style="color:rgba(42,31,10,0.8);margin:0 6px;">·</span><span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);" id="tv-spot-active-hero">${tvActiveHeroName||verses[0].name}</span>`;
+  document.getElementById('tv-verse-text').textContent=verses.map(v=>`"${v.text}"`).join(' ');
+  document.getElementById('tv-hide-sublabel').textContent=`${refLbl} · ${tvActiveHeroName||verses[0].name}`;
+  document.getElementById('tv-nav-counter').textContent=`Quest ${tvSpotIdx+1} of ${tvSpotQids.length}`;
+  const activeHero=tvActiveHeroName||verses[0].name,heroQid=verses.find(v=>v.name===activeHero)?.questId,prog=heroQid?(trainProgress[heroQid]||{}):{},modes=modesForQuest(verses),allDone=isQuestComplete(heroQid,verses),isMine=verses.some(v=>myIds.includes(v.id)),strip=document.getElementById('tv-turnin-strip');
+  if(allDone&&isMine&&status!=='inv')strip.classList.add('visible');else strip.classList.remove('visible');
+  const rosterHeroes=new Map();allVerses.forEach(v=>{if(v.ref&&verses.some(sv=>sv.ref===v.ref)){if(!rosterHeroes.has(v.name))rosterHeroes.set(v.name,v.status);}});
+  const statusLabel=s=>({road:'Quest Acquired',quest:'On the Quest',inv:'✓ Inventory',maint:'Maintenance'}[s]||s),isActiveHero=n=>n===(tvActiveHeroName||verses[0].name);
+  document.getElementById('tv-roster-heroes').innerHTML=[...rosterHeroes.entries()].map(([name,st])=>{const avatar=HERO_AVATARS[Math.abs((name.charCodeAt(0)||0))%HERO_AVATARS.length],active=isActiveHero(name),badge=st==='inv'?`<span class="rh-badge rh-badge-mastered">Mastered</span>`:active?`<span class="rh-badge rh-badge-active">Active</span>`:'',stClass=st==='inv'?'rh-done':active?'rh-testing':'',testingLabel=active&&st!=='inv'?'Testing for turn-in':statusLabel(st);return`<div class="tv-roster-hero${active?' rh-active':''}" onclick="tvSelectHero('${name}','${qid}')"><div class="rh-avatar">${avatar}</div><div><div class="rh-name${active?' rh-name-active':''}">${name}</div><div class="rh-status ${stClass}">${testingLabel}</div></div>${badge}</div>`;}).join('');
 }
 
-window.tvSpotlightQuest = function(qid) {
-  const groups = groupByQuest(allVerses.filter(v => v.status !== 'inv'));
-  tvSpotQids = [...groups.keys()];
-  const idx = tvSpotQids.indexOf(qid);
-  if (idx >= 0) tvSpotIdx = idx;
-  tvSwitchView('spot');
-};
+window.tvSelectHero=function(name){tvActiveHeroName=name;tvRenderSpotlight();};
+window.tvNavQuest=function(dir){const groups=groupByQuest(allVerses.filter(v=>v.status!=='inv'));tvSpotQids=[...groups.keys()];tvSpotIdx=(tvSpotIdx+dir+tvSpotQids.length)%tvSpotQids.length;tvSpotHidden=false;tvRenderSpotlight();};
 
-// ── TV SPOTLIGHT ──────────────────────────────────────
-function tvRenderSpotlight() {
-  const groups = groupByQuest(allVerses.filter(v => v.status !== 'inv'));
-  tvSpotQids = [...groups.keys()];
-  if (!tvSpotQids.length) {
-    document.getElementById('tv-verse-text').textContent = 'No active quests — check the Inventory tab.';
-    document.getElementById('tv-spot-ref').textContent = '—';
-    document.getElementById('tv-spot-qname').textContent = '—';
-    document.getElementById('tv-spot-status').innerHTML = '';
-    document.getElementById('tv-roster-heroes').innerHTML = '';
-    document.getElementById('tv-nav-counter').textContent = '— of —';
-    return;
-  }
-  tvSpotIdx = Math.max(0, Math.min(tvSpotIdx, tvSpotQids.length - 1));
-  const qid = tvSpotQids[tvSpotIdx];
-  const verses = groups.get(qid);
-  if (!verses) return;
-
-  tvSpotHidden = false;
-  tvSpotWordIdx = 0;
-  tvSetHideMode(false);
-
-  const isMaint = !!verses[0]?.isMaintenance;
-  const qname = isMaint ? hashPick(MAINT_QUEST_NAMES, qid) : hashPick(QUEST_NAMES, qid);
-  const refLbl = passageRefLabel(verses);
-  const status = questStatus(verses);
-  const statusLabels = { road: 'Quest Acquired', quest: 'On the Quest', maint: 'Maintenance' };
-
-  document.getElementById('tv-spot-ref').textContent = refLbl;
-  document.getElementById('tv-spot-qname').textContent = qname;
-  document.getElementById('tv-spot-status').innerHTML = `
-    <span class="tv-sdot tv-sdot-${status}"></span>
-    <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--${status==='road'?'c-road':status==='quest'?'c-quest':'c-maint'});">${statusLabels[status]||status}</span>
-    <span style="color:rgba(42,31,10,0.8);margin:0 6px;">·</span>
-    <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);" id="tv-spot-active-hero">${tvActiveHeroName || verses[0].name}</span>
-  `;
-
-  const fullText = verses.map(v => `"${v.text}"`).join(' ');
-  document.getElementById('tv-verse-text').textContent = fullText;
-  document.getElementById('tv-hide-sublabel').textContent = `${refLbl} · ${tvActiveHeroName || verses[0].name}`;
-  document.getElementById('tv-nav-counter').textContent = `Quest ${tvSpotIdx + 1} of ${tvSpotQids.length}`;
-
-  const activeHero = tvActiveHeroName || verses[0].name;
-  const heroVerses = verses.filter(v => v.name === activeHero);
-  const heroQid = heroVerses[0]?.questId || heroVerses[0]?.id;
-  const prog = heroQid ? (trainProgress[heroQid] || {}) : {};
-  const modes = modesForQuest(verses);
-  const allDone = modes.every(m => prog[m]);
-  const isMine = verses.some(v => myIds.includes(v.id));
-  const strip = document.getElementById('tv-turnin-strip');
-  if (allDone && isMine && status !== 'inv') strip.classList.add('visible');
-  else strip.classList.remove('visible');
-
-  const rosterHeroes = new Map();
-  allVerses.forEach(v => {
-    if (v.ref && verses.some(sv => sv.ref === v.ref)) {
-      if (!rosterHeroes.has(v.name)) rosterHeroes.set(v.name, v.status);
-    }
-  });
-
-  const statusLabel = s => ({ road: 'Quest Acquired', quest: 'On the Quest', inv: '✓ Inventory', maint: 'Maintenance' }[s] || s);
-  const isActiveHero = name => name === (tvActiveHeroName || verses[0].name);
-
-  document.getElementById('tv-roster-heroes').innerHTML = [...rosterHeroes.entries()].map(([name, st]) => {
-    const avatar = HERO_AVATARS[Math.abs((name.charCodeAt(0)||0)) % HERO_AVATARS.length];
-    const active = isActiveHero(name);
-    const badge = st === 'inv' ? `<span class="rh-badge rh-badge-mastered">Mastered</span>` :
-                  active ? `<span class="rh-badge rh-badge-active">Active</span>` : '';
-    const stClass = st === 'inv' ? 'rh-done' : active ? 'rh-testing' : '';
-    const testingLabel = active && st !== 'inv' ? 'Testing for turn-in' : statusLabel(st);
-    return `<div class="tv-roster-hero${active?' rh-active':''}" onclick="tvSelectHero('${name}','${qid}')">
-      <div class="rh-avatar">${avatar}</div>
-      <div>
-        <div class="rh-name${active?' rh-name-active':''}">${name}</div>
-        <div class="rh-status ${stClass}">${testingLabel}</div>
-      </div>
-      ${badge}
-    </div>`;
-  }).join('');
+function tvSetHideMode(hidden){
+  tvSpotHidden=hidden;
+  const vt=document.getElementById('tv-verse-text'),hp=document.getElementById('tv-hide-panel'),vb=document.getElementById('tv-verse-box'),hb=document.getElementById('tv-hide-btn'),strip=document.getElementById('tv-turnin-strip');
+  if(hidden){vt.style.display='none';hp.style.display='flex';vb.classList.add('hide-mode');hb.textContent='Show Verse';hb.classList.remove('sp-green');hb.classList.add('sp-gold');strip.classList.add('visible');}
+  else{vt.style.display='block';hp.style.display='none';vb.classList.remove('hide-mode');hb.textContent='Hide & Test';hb.classList.add('sp-green');hb.classList.remove('sp-gold');const qid=tvSpotQids[tvSpotIdx];if(!qid)return;const verses=groupByQuest(allVerses).get(qid);if(!verses)return;const isMine=verses.some(v=>myIds.includes(v.id)),status=questStatus(verses),modes=modesForQuest(verses),prog=trainProgress[qid]||{},allDone=isQuestComplete(qid,verses);if(!(allDone&&isMine&&status!=='inv'))strip.classList.remove('visible');}
 }
-
-window.tvSelectHero = function(name, qid) {
-  tvActiveHeroName = name;
-  tvRenderSpotlight();
+window.tvToggleHide=function(){tvSetHideMode(!tvSpotHidden);};
+window.tvRevealVerse=function(){tvSetHideMode(false);};
+window.tvRevealWordByWord=function(){
+  if(tvSpotHidden)tvSetHideMode(false);const qid=tvSpotQids[tvSpotIdx];if(!qid)return;
+  const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
+  const fullText=verses.map(v=>`"${v.text}"`).join(' '),words=fullText.split(' ');
+  tvSpotWordIdx=Math.min(tvSpotWordIdx+1,words.length);
+  document.getElementById('tv-verse-text').textContent=words.slice(0,tvSpotWordIdx).join(' ')+(tvSpotWordIdx<words.length?' …':'');
 };
+window.tvLaunchTraining=function(){const qid=tvSpotQids[tvSpotIdx];if(!qid)return;exitTvMode();setTimeout(()=>startTraining(qid),200);};
 
-window.tvNavQuest = function(dir) {
-  const groups = groupByQuest(allVerses.filter(v => v.status !== 'inv'));
-  tvSpotQids = [...groups.keys()];
-  tvSpotIdx = (tvSpotIdx + dir + tvSpotQids.length) % tvSpotQids.length;
-  tvSpotHidden = false;
-  tvRenderSpotlight();
+window.tvShowAddQuest=function(){
+  selectedVerses.clear();const heroes=getAllHeroNames();
+  const heroOpts=`<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>`+heroes.map(h=>`<option value="${h}"${h===myHero?' selected':''}>${h}</option>`).join('');
+  document.getElementById('tv-add-form-body').innerHTML=`<div class="field"><label>Hero Name</label><select id="tv-name-select" onchange="tvHandleNameSelect()">${heroOpts}</select><div class="new-name-row" id="tv-new-name-row" style="display:none;margin-top:8px;"><input type="text" id="tv-new-name-input" placeholder="e.g. Legolas, Eowyn, Strider…" /></div></div><div class="psalm-pills"><button class="psalm-pill" onclick="tvSelectPsalm(103,this)">Psalm 103</button><button class="psalm-pill active" onclick="tvSelectPsalm(121,this)">Psalm 121 · This Week</button></div><div class="selected-count" id="tv-selected-count"></div><p style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);margin-bottom:8px;">Psalm ${selectedPsalm} — Click verses to select</p><div class="psalm-ref-wrap" id="tv-psalm-list"></div><div style="margin-top:16px;"><button class="btn-submit-quest" id="tv-submit-btn" onclick="submitVerses(true)">Accept Quest</button><button class="btn-cancel-form" onclick="tvHideAddQuest()">Cancel</button></div>`;
+  renderPsalmList('tv-psalm-list');document.getElementById('tv-addquest-overlay').classList.add('visible');
 };
+window.tvHideAddQuest=function(){document.getElementById('tv-addquest-overlay').classList.remove('visible');selectedVerses.clear();};
+window.tvHandleNameSelect=function(){document.getElementById('tv-new-name-row').style.display=document.getElementById('tv-name-select').value==='__new__'?'block':'none';};
+window.tvSelectPsalm=function(num,el){selectedPsalm=num;document.querySelectorAll('.psalm-pill').forEach(p=>p.classList.remove('active'));el.classList.add('active');renderPsalmList('tv-psalm-list');};
 
-// ── TV HIDE / REVEAL ──────────────────────────────────
-function tvSetHideMode(hidden) {
-  tvSpotHidden = hidden;
-  const verseText = document.getElementById('tv-verse-text');
-  const hidePanel = document.getElementById('tv-hide-panel');
-  const verseBox = document.getElementById('tv-verse-box');
-  const hideBtn = document.getElementById('tv-hide-btn');
-  const strip = document.getElementById('tv-turnin-strip');
-
-  if (hidden) {
-    verseText.style.display = 'none';
-    hidePanel.style.display = 'flex';
-    verseBox.classList.add('hide-mode');
-    hideBtn.textContent = 'Show Verse';
-    hideBtn.classList.remove('sp-green');
-    hideBtn.classList.add('sp-gold');
-    strip.classList.add('visible');
-  } else {
-    verseText.style.display = 'block';
-    hidePanel.style.display = 'none';
-    verseBox.classList.remove('hide-mode');
-    hideBtn.textContent = 'Hide & Test';
-    hideBtn.classList.add('sp-green');
-    hideBtn.classList.remove('sp-gold');
-    const qid = tvSpotQids[tvSpotIdx];
-    if (!qid) return;
-    const verses = groupByQuest(allVerses).get(qid);
-    if (!verses) return;
-    const isMine = verses.some(v => myIds.includes(v.id));
-    const status = questStatus(verses);
-    const modes = modesForQuest(verses);
-    const prog = trainProgress[qid] || {};
-    const allDone = modes.every(m => prog[m]);
-    if (!(allDone && isMine && status !== 'inv')) strip.classList.remove('visible');
-  }
-}
-
-window.tvToggleHide = function() { tvSetHideMode(!tvSpotHidden); };
-window.tvRevealVerse = function() { tvSetHideMode(false); };
-window.tvRevealWordByWord = function() {
-  if (tvSpotHidden) tvSetHideMode(false);
-  const qid = tvSpotQids[tvSpotIdx];
-  if (!qid) return;
-  const verses = groupByQuest(allVerses).get(qid);
-  if (!verses) return;
-  const fullText = verses.map(v => `"${v.text}"`).join(' ');
-  const words = fullText.split(' ');
-  tvSpotWordIdx = Math.min(tvSpotWordIdx + 1, words.length);
-  document.getElementById('tv-verse-text').textContent =
-    words.slice(0, tvSpotWordIdx).join(' ') + (tvSpotWordIdx < words.length ? ' …' : '');
-};
-
-window.tvLaunchTraining = function() {
-  const qid = tvSpotQids[tvSpotIdx];
-  if (!qid) return;
-  exitTvMode();
-  setTimeout(() => startTraining(qid), 200);
-};
-
-// ── TV ADD QUEST ───────────────────────────────────────
-window.tvShowAddQuest = function() {
-  selectedVerses.clear();
-  // Build the form HTML inside the TV overlay
-  const heroes = getAllHeroNames();
-  const heroOpts = `<option value="">— choose or create —</option><option value="__new__">+ Create new hero</option>` +
-    heroes.map(h=>`<option value="${h}"${h===myHero?' selected':''}>${h}</option>`).join('');
-
-  document.getElementById('tv-add-form-body').innerHTML = `
-    <div class="field">
-      <label>Hero Name</label>
-      <select id="tv-name-select" onchange="tvHandleNameSelect()">
-        ${heroOpts}
-      </select>
-      <div class="new-name-row" id="tv-new-name-row" style="display:none;margin-top:8px;">
-        <input type="text" id="tv-new-name-input" placeholder="e.g. Legolas, Eowyn, Strider…" />
-      </div>
-    </div>
-    <div class="psalm-pills">
-      <button class="psalm-pill" onclick="tvSelectPsalm(103,this)">Psalm 103</button>
-      <button class="psalm-pill active" onclick="tvSelectPsalm(121,this)">Psalm 121 · This Week</button>
-    </div>
-    <div class="selected-count" id="tv-selected-count"></div>
-    <p style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--golddim);margin-bottom:8px;">Psalm ${selectedPsalm} — Click verses to select</p>
-    <div class="psalm-ref-wrap" id="tv-psalm-list"></div>
-    <div style="margin-top:16px;">
-      <button class="btn-submit-quest" id="tv-submit-btn" onclick="submitVerses(true)">Accept Quest</button>
-      <button class="btn-cancel-form" onclick="tvHideAddQuest()">Cancel</button>
-    </div>`;
-  renderPsalmList('tv-psalm-list','tv-selected-count');
-  document.getElementById('tv-addquest-overlay').classList.add('visible');
-};
-window.tvHideAddQuest = function() {
-  document.getElementById('tv-addquest-overlay').classList.remove('visible');
-  selectedVerses.clear();
-};
-window.tvHandleNameSelect = function() {
-  const val = document.getElementById('tv-name-select').value;
-  document.getElementById('tv-new-name-row').style.display = val === '__new__' ? 'block' : 'none';
-};
-window.tvSelectPsalm = function(num, el) {
-  selectedPsalm = num;
-  document.querySelectorAll('.psalm-pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  renderPsalmList('tv-psalm-list','tv-selected-count');
-};
-
-// ── TV TURN-IN POPUP ──────────────────────────────────
-window.tvOpenTurninPopup = function() {
-  const qid = tvSpotQids[tvSpotIdx];
-  if (!qid) return;
-  tvPendingTurninQid = qid;
-  const verses = groupByQuest(allVerses).get(qid);
-  if (!verses) return;
-
-  const isMaint = !!verses[0]?.isMaintenance;
-  const refLbl = passageRefLabel(verses);
-  const qname = isMaint ? hashPick(MAINT_QUEST_NAMES, qid) : hashPick(QUEST_NAMES, qid);
-  const itemName = hashPick(ITEM_NAMES, qid);
-  const itemIdx = ITEM_NAMES.indexOf(itemName);
-  const itemType = ITEM_TYPES[itemIdx] || 'One-Hand Sword';
-  const npcLine = NPC_TURNIN[Math.abs((qid.charCodeAt(1)||0)) % NPC_TURNIN.length];
-  const heroName = tvActiveHeroName || verses[0].name;
-  const avatar = HERO_AVATARS[Math.abs((heroName.charCodeAt(0)||0)) % HERO_AVATARS.length];
-  const versePreview = verses.map(v => `"${v.text}"`).join(' ').slice(0, 220);
-
-  document.getElementById('tv-popup-title').textContent = isMaint ? 'Restore the Blade' : 'Declare Thy Deed';
-  document.getElementById('tv-popup-sub').textContent = `${refLbl} · ${qname}`;
-  document.getElementById('tv-popup-hero-row').innerHTML = `
-    <div class="tv-popup-avatar">${avatar}</div>
-    <div>
-      <div class="tv-popup-hero-name">${heroName}</div>
-      <div class="tv-popup-hero-sub">Hast thou spoken this word before the Fellowship?</div>
-    </div>`;
-  document.getElementById('tv-popup-speech').textContent = npcLine;
-  document.getElementById('tv-popup-item-box').innerHTML = `
-    <div class="tv-popup-acquiring">${isMaint ? 'Blade Being Restored' : 'Item Acquiring'}</div>
-    <div class="tv-popup-item-name">${itemName}</div>
-    <div class="tv-popup-item-type">${itemType}</div>
-    <div class="tv-popup-item-ref">${refLbl}</div>
-    <div style="height:1px;background:linear-gradient(to right,rgba(90,62,16,0.7),transparent);margin:10px 0;"></div>
-    <div class="tv-popup-verse">${versePreview}</div>`;
-
+window.tvOpenTurninPopup=function(){
+  const qid=tvSpotQids[tvSpotIdx];if(!qid)return;tvPendingTurninQid=qid;
+  const verses=groupByQuest(allVerses).get(qid);if(!verses)return;
+  const isMaint=!!verses[0]?.isMaintenance,refLbl=passageRefLabel(verses),qname=isMaint?hashPick(MAINT_QUEST_NAMES,qid):hashPick(QUEST_NAMES,qid),itemName=hashPick(ITEM_NAMES,qid),itemIdx=ITEM_NAMES.indexOf(itemName),itemType=ITEM_TYPES[itemIdx]||'One-Hand Sword',npcLine=NPC_TURNIN[Math.abs((qid.charCodeAt(1)||0))%NPC_TURNIN.length],heroName=tvActiveHeroName||verses[0].name,avatar=HERO_AVATARS[Math.abs((heroName.charCodeAt(0)||0))%HERO_AVATARS.length],versePreview=verses.map(v=>`"${v.text}"`).join(' ').slice(0,220);
+  document.getElementById('tv-popup-title').textContent=isMaint?'Restore the Blade':'Declare Thy Deed';
+  document.getElementById('tv-popup-sub').textContent=`${refLbl} · ${qname}`;
+  document.getElementById('tv-popup-hero-row').innerHTML=`<div class="tv-popup-avatar">${avatar}</div><div><div class="tv-popup-hero-name">${heroName}</div><div class="tv-popup-hero-sub">Hast thou spoken this word before the Fellowship?</div></div>`;
+  document.getElementById('tv-popup-speech').textContent=npcLine;
+  document.getElementById('tv-popup-item-box').innerHTML=`<div class="tv-popup-acquiring">${isMaint?'Blade Being Restored':'Item Acquiring'}</div><div class="tv-popup-item-name">${itemName}</div><div class="tv-popup-item-type">${itemType}</div><div class="tv-popup-item-ref">${refLbl}</div><div style="height:1px;background:linear-gradient(to right,rgba(90,62,16,0.7),transparent);margin:10px 0;"></div><div class="tv-popup-verse">${versePreview}</div>`;
   document.getElementById('tv-turnin-overlay').classList.add('visible');
 };
+window.tvCloseTurninPopup=function(){document.getElementById('tv-turnin-overlay').classList.remove('visible');tvPendingTurninQid=null;};
+window.tvConfirmTurnin=async function(){tvCloseTurninPopup();const qid=tvPendingTurninQid||tvSpotQids[tvSpotIdx];if(!qid)return;await doTurnin(qid);tvSpotIdx=Math.max(0,tvSpotIdx-1);tvSetHideMode(false);tvRenderBoard();tvRenderSpotlight();renderLotrMap('tv-map-svg-wrap');};
 
-window.tvCloseTurninPopup = function() {
-  document.getElementById('tv-turnin-overlay').classList.remove('visible');
-  tvPendingTurninQid = null;
-};
-
-window.tvConfirmTurnin = async function() {
-  tvCloseTurninPopup();
-  const qid = tvPendingTurninQid || tvSpotQids[tvSpotIdx];
-  if (!qid) return;
-  await doTurnin(qid);
-  tvSpotIdx = Math.max(0, tvSpotIdx - 1);
-  tvSetHideMode(false);
-  tvRenderBoard();
-  tvRenderSpotlight();
-  renderLotrMap('tv-map-svg-wrap');
-};
-
-// ── KEYBOARD SHORTCUTS ────────────────────────────────
-document.addEventListener('keydown', e => {
-  if ((e.key === 't' || e.key === 'T') && !tvActive &&
-      !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
-    enterTvMode(); return;
-  }
-  if (!tvActive) return;
-  if (document.getElementById('tv-turnin-overlay').classList.contains('visible')) {
-    if (e.key === 'Escape') tvCloseTurninPopup();
-    return;
-  }
-  if (document.getElementById('tv-addquest-overlay').classList.contains('visible')) {
-    if (e.key === 'Escape') tvHideAddQuest();
-    return;
-  }
-  switch (e.key) {
-    case 'Escape': exitTvMode(); break;
-    case 'b': case 'B': tvSwitchView('board'); break;
-    case 's': case 'S': tvSwitchView('spot'); break;
-    case 'm': case 'M': tvSwitchView('map'); break;
-    case 'ArrowLeft':  if (tvCurrentView==='spot') tvNavQuest(-1); break;
-    case 'ArrowRight': if (tvCurrentView==='spot') tvNavQuest(1); break;
-    case 'h': case 'H': if (tvCurrentView==='spot') tvToggleHide(); break;
-    case 'w': case 'W': if (tvCurrentView==='spot') tvRevealWordByWord(); break;
-  }
+document.addEventListener('keydown',e=>{
+  if((e.key==='t'||e.key==='T')&&!tvActive&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){enterTvMode();return;}
+  if(!tvActive)return;
+  if(document.getElementById('tv-turnin-overlay').classList.contains('visible')){if(e.key==='Escape')tvCloseTurninPopup();return;}
+  if(document.getElementById('tv-addquest-overlay').classList.contains('visible')){if(e.key==='Escape')tvHideAddQuest();return;}
+  switch(e.key){case'Escape':exitTvMode();break;case'b':case'B':tvSwitchView('board');break;case's':case'S':tvSwitchView('spot');break;case'm':case'M':tvSwitchView('map');break;case'ArrowLeft':if(tvCurrentView==='spot')tvNavQuest(-1);break;case'ArrowRight':if(tvCurrentView==='spot')tvNavQuest(1);break;case'h':case'H':if(tvCurrentView==='spot')tvToggleHide();break;case'w':case'W':if(tvCurrentView==='spot')tvRevealWordByWord();break;}
 });
 
-// ── INIT ──────────────────────────────────────────────
 loadAll();
 initEmbers();
 </script>
