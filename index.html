@@ -474,9 +474,13 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyExample",  // same config as sword.html / initiatives.html
+  apiKey: "AIzaSyCeNzMSGSjKJyE8i3sugDYd_kaLeU6fMBc",
+  authDomain: "youth-262fc.firebaseapp.com",
   databaseURL: "https://youth-262fc-default-rtdb.firebaseio.com",
-  projectId: "youth-262fc"
+  projectId: "youth-262fc",
+  storageBucket: "youth-262fc.firebasestorage.app",
+  messagingSenderId: "886474552762",
+  appId: "1:886474552762:web:db68add41a7240748d5983"
 };
 
 // ---- NOTE: Replace apiKey above with the real one from sword.html ----
@@ -568,7 +572,7 @@ function updateLotrLocation(invCount) {
       if (!v.name) return;
       if (!heroMap[v.name]) heroMap[v.name] = { name: v.name, mastered: 0, total: 0, inProgress: false };
       heroMap[v.name].total++;
-      if (v.mastered) heroMap[v.name].mastered++;
+      if (v.status === 'inv') heroMap[v.name].mastered++;
       else heroMap[v.name].inProgress = true;
     });
 
@@ -584,8 +588,8 @@ function updateLotrLocation(invCount) {
     const totalVerses = heroes.reduce((s, h) => s + h.total, 0);
     const pct = totalVerses > 0 ? Math.round((totalMastered / totalVerses) * 100) : 0;
 
-    // Count inventory verses (status === 'inv') for LOTR map
-    const invCount = verses.filter(v => v.mastered).length;
+    // Count inventory verses (status === 'inv') for LOTR map — matches sword.html
+    const invCount = verses.filter(v => v.status === 'inv').length;
     updateLotrLocation(invCount);
 
     // Journey progress bar
