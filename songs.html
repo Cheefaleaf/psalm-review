@@ -33,20 +33,16 @@
     overflow-x: hidden;
   }
 
-  /* Ambient orange glow top-right — like the sign bleeding through */
   body::before {
     content: '';
     position: fixed;
-    top: -20%;
-    right: -15%;
-    width: 55%;
-    height: 55%;
+    top: -20%; right: -15%;
+    width: 55%; height: 55%;
     background: radial-gradient(ellipse, rgba(255,122,43,0.07) 0%, transparent 65%);
     pointer-events: none;
     z-index: 0;
   }
 
-  /* Grain */
   body::after {
     content: '';
     position: fixed;
@@ -74,7 +70,6 @@
     text-align: center;
     margin-bottom: 52px;
   }
-
   .site-eyebrow {
     font-size: 10px;
     font-weight: 600;
@@ -83,7 +78,6 @@
     color: var(--text-dim);
     margin-bottom: 16px;
   }
-
   .site-title {
     font-size: clamp(2.6rem, 6vw, 4.2rem);
     font-weight: 900;
@@ -92,8 +86,6 @@
     line-height: 1.0;
     text-transform: uppercase;
   }
-
-  /* Orange underline accent */
   .site-title span {
     display: inline-block;
     position: relative;
@@ -101,14 +93,12 @@
   .site-title span::after {
     content: '';
     position: absolute;
-    bottom: -6px;
-    left: 0; right: 0;
+    bottom: -6px; left: 0; right: 0;
     height: 3px;
     background: var(--orange);
     border-radius: 2px;
     box-shadow: 0 0 12px var(--orange-dim);
   }
-
   .site-sub {
     margin-top: 20px;
     font-size: 0.78rem;
@@ -118,7 +108,97 @@
     color: var(--text-dim);
   }
 
-  /* Grid */
+  /* ============================
+     THIS WEEK SECTION
+  ============================ */
+  .this-week-section {
+    margin-bottom: 40px;
+  }
+
+  .this-week-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .this-week-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  .this-week-label::before {
+    content: '';
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 8px var(--orange-dim);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 8px var(--orange-dim); }
+    50% { box-shadow: 0 0 16px var(--orange), 0 0 24px rgba(255,122,43,0.3); }
+  }
+
+  .clear-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: rgba(255,122,43,0.08);
+    border: 1px solid rgba(255,122,43,0.25);
+    color: rgba(255,122,43,0.7);
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .clear-btn:hover {
+    background: rgba(255,122,43,0.15);
+    color: var(--orange);
+    border-color: rgba(255,122,43,0.5);
+  }
+
+  .this-week-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 780px) { .this-week-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .this-week-grid { grid-template-columns: 1fr; } }
+
+  /* Divider between this week and all songs */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .section-divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+  .section-divider-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ============================
+     SONG CARDS (shared styles)
+  ============================ */
   .song-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -142,13 +222,11 @@
     opacity: 0;
     animation: cardIn 0.35s ease forwards;
   }
-
   @keyframes cardIn {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Orange glow on hover */
   .song-card::before {
     content: '';
     position: absolute;
@@ -158,8 +236,6 @@
     transition: opacity 0.25s;
     pointer-events: none;
   }
-
-  /* Bottom orange line */
   .song-card::after {
     content: '';
     position: absolute;
@@ -180,7 +256,22 @@
   .song-card:hover::after  { opacity: 0.8; }
   .song-card:active { transform: translateY(-1px); }
 
+  /* Pinned card style */
+  .song-card.pinned {
+    border-color: rgba(255,122,43,0.35);
+    background: #1e1f2e;
+  }
+  .song-card.pinned::after { opacity: 0.5; }
+
   .card-inner { position: relative; z-index: 1; }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
 
   .card-num {
     font-size: 9px;
@@ -189,8 +280,41 @@
     text-transform: uppercase;
     color: var(--orange);
     opacity: 0.7;
-    margin-bottom: 10px;
+    margin-top: 1px;
   }
+
+  /* Pin checkbox */
+  .pin-btn {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    z-index: 5;
+  }
+  .pin-btn:hover {
+    border-color: var(--orange);
+    background: rgba(255,122,43,0.1);
+  }
+  .pin-btn.checked {
+    border-color: var(--orange);
+    background: var(--orange);
+  }
+  .pin-btn .check-icon {
+    opacity: 0;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+    transition: opacity 0.15s;
+  }
+  .pin-btn.checked .check-icon { opacity: 1; }
 
   .card-title {
     font-size: 0.95rem;
@@ -200,12 +324,22 @@
     margin-bottom: 5px;
     letter-spacing: -0.01em;
   }
-
   .card-artist {
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-dim);
     letter-spacing: 0.04em;
+  }
+
+  /* Empty state for this week */
+  .this-week-empty {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    padding: 18px 0 4px;
+    text-align: center;
+    opacity: 0.6;
   }
 
   /* ============================
@@ -220,19 +354,13 @@
   }
   #slideshow-page.active { display: flex; }
 
-  /* BG layers */
   .slide-bg { position: absolute; inset: 0; z-index: 0; }
   .slide-bg-base   { position: absolute; inset: 0; }
   .slide-bg-bloom1 { position: absolute; top: -20%; right: -8%;  width: 70%; height: 78%; filter: blur(60px); }
   .slide-bg-bloom2 { position: absolute; bottom: -15%; left: -5%; width: 60%; height: 60%; filter: blur(65px); }
   .slide-bg-bloom3 { position: absolute; top: 20%; left: 15%; width: 70%; height: 60%; filter: blur(80px); opacity: 0.4; }
-  .slide-bg-streak {
-    position: absolute;
-    top: 46%; left: 0; right: 0;
-    height: 2px; filter: blur(2px); opacity: 0.25;
-  }
+  .slide-bg-streak { position: absolute; top: 46%; left: 0; right: 0; height: 2px; filter: blur(2px); opacity: 0.25; }
 
-  /* UPBEAT — warm amber/orange, lifted */
   #slideshow-page.upbeat .slide-bg-base   { background: #1a1408; }
   #slideshow-page.upbeat .slide-bg-bloom1 { background: radial-gradient(ellipse at 65% 25%, rgba(255,160,40,0.35) 0%, transparent 70%); }
   #slideshow-page.upbeat .slide-bg-bloom2 { background: radial-gradient(ellipse at 30% 75%, rgba(255,122,43,0.18) 0%, transparent 65%); }
@@ -243,7 +371,6 @@
   #slideshow-page.upbeat .nav-arrow:hover:not(:disabled) { border-color: #FFB347; color: #FFB347; }
   #slideshow-page.upbeat .close-btn:hover { border-color: #FFB347; color: #FFB347; }
 
-  /* GENTLE — soft blue/periwinkle */
   #slideshow-page.gentle .slide-bg-base   { background: #0e1420; }
   #slideshow-page.gentle .slide-bg-bloom1 { background: radial-gradient(ellipse at 65% 25%, rgba(100,160,240,0.28) 0%, transparent 70%); }
   #slideshow-page.gentle .slide-bg-bloom2 { background: radial-gradient(ellipse at 30% 75%, rgba(80,140,220,0.15) 0%, transparent 65%); }
@@ -254,7 +381,6 @@
   #slideshow-page.gentle .nav-arrow:hover:not(:disabled) { border-color: #7EB8F7; color: #7EB8F7; }
   #slideshow-page.gentle .close-btn:hover { border-color: #7EB8F7; color: #7EB8F7; }
 
-  /* SOMBER — deep rose/mauve, not cave-dark */
   #slideshow-page.somber .slide-bg-base   { background: #160e10; }
   #slideshow-page.somber .slide-bg-bloom1 { background: radial-gradient(ellipse at 65% 25%, rgba(210,90,110,0.30) 0%, transparent 70%); }
   #slideshow-page.somber .slide-bg-bloom2 { background: radial-gradient(ellipse at 30% 75%, rgba(190,80,100,0.16) 0%, transparent 65%); }
@@ -265,7 +391,6 @@
   #slideshow-page.somber .nav-arrow:hover:not(:disabled) { border-color: #E8889A; color: #E8889A; }
   #slideshow-page.somber .close-btn:hover { border-color: #E8889A; color: #E8889A; }
 
-  /* Header */
   .slide-header {
     position: relative; z-index: 10;
     display: flex;
@@ -278,7 +403,6 @@
     flex-shrink: 0;
   }
   .slide-song-info { display: flex; flex-direction: column; gap: 3px; }
-
   .slide-song-title {
     font-size: 0.9rem;
     font-weight: 800;
@@ -308,7 +432,6 @@
   }
   .close-btn:hover { background: rgba(255,255,255,0.08); }
 
-  /* Stage */
   .slide-stage {
     flex: 1;
     position: relative; z-index: 10;
@@ -318,7 +441,6 @@
     padding: 28px 90px;
     overflow: hidden;
   }
-
   .slide-content {
     text-align: center;
     max-width: 860px;
@@ -327,7 +449,6 @@
   }
   .slide-content.fade-out { opacity: 0; transform: translateY(8px); }
 
-  /* Section label */
   .slide-label {
     font-size: 9px;
     font-weight: 700;
@@ -336,8 +457,6 @@
     opacity: 0.65;
     margin-bottom: 28px;
   }
-
-  /* THE LYRICS — Hillsong/Passion style: bold, clean, uppercase, massive */
   .slide-lyrics {
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 800;
@@ -349,11 +468,9 @@
     text-transform: uppercase;
   }
 
-  /* Nav arrows */
   .nav-arrow {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 50%; transform: translateY(-50%);
     background: rgba(0,0,0,0.25);
     border: 1px solid rgba(255,255,255,0.09);
     color: rgba(255,255,255,0.3);
@@ -361,63 +478,39 @@
     cursor: pointer;
     width: 46px; height: 46px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
     z-index: 20;
     user-select: none;
     backdrop-filter: blur(6px);
   }
-  .nav-arrow:hover:not(:disabled) {
-    background: rgba(255,255,255,0.1);
-    transform: translateY(-50%) scale(1.1);
-  }
+  .nav-arrow:hover:not(:disabled) { background: rgba(255,255,255,0.1); transform: translateY(-50%) scale(1.1); }
   .nav-arrow:disabled { opacity: 0.1; cursor: default; }
   .nav-arrow.prev { left: 18px; }
   .nav-arrow.next { right: 18px; }
 
-  /* Footer */
   .slide-footer {
     position: relative; z-index: 10;
     padding: 12px 24px 22px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
     background: rgba(0,0,0,0.35);
     backdrop-filter: blur(14px);
     border-top: 1px solid rgba(255,255,255,0.05);
     flex-shrink: 0;
   }
-
   .dot-nav {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 540px;
+    display: flex; gap: 7px; flex-wrap: wrap; justify-content: center; max-width: 540px;
   }
   .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
+    width: 6px; height: 6px; border-radius: 50%;
     background: rgba(255,255,255,0.16);
-    cursor: pointer;
-    border: none; padding: 0;
+    cursor: pointer; border: none; padding: 0;
     transition: background 0.2s, transform 0.22s, width 0.25s, border-radius 0.25s;
   }
-  .dot.active {
-    transform: scale(1.2);
-    width: 20px;
-    border-radius: 3px;
-  }
+  .dot.active { transform: scale(1.2); width: 20px; border-radius: 3px; }
   .dot:hover:not(.active) { background: rgba(255,255,255,0.35); }
-
   .slide-counter {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.2);
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; color: rgba(255,255,255,0.2);
   }
 </style>
 </head>
@@ -429,6 +522,23 @@
     <h1 class="site-title"><span>Worship Songs</span></h1>
     <p class="site-sub">Select a song to open lyrics</p>
   </header>
+
+  <!-- THIS WEEK -->
+  <div class="this-week-section" id="this-week-section" style="display:none">
+    <div class="this-week-header">
+      <div class="this-week-label">This Week</div>
+      <button class="clear-btn" id="clear-all-btn">Clear All</button>
+    </div>
+    <div class="this-week-grid" id="this-week-grid"></div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" id="all-songs-divider" style="display:none">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">All Songs</div>
+    <div class="section-divider-line"></div>
+  </div>
+
   <div class="song-grid" id="song-grid"></div>
 </div>
 
@@ -463,6 +573,18 @@
 
 <script>
 const SONGS = [
+  {
+    title: "We Will Feast in the House of Zion", artist: "Sandra McCracken", mood: "upbeat",
+    slides: [
+      { label: "Chorus", lyrics: "We will feast in the house of Zion\nWe will sing with our hearts restored\nHe has done great things, we will say together\nWe will feast and weep no more" },
+      { label: "Verse 1", lyrics: "We will not be burned by the fire\nHe is the Lord our God\nWe are not consumed by the flood\nUpheld, protected, gathered up" },
+      { label: "Chorus", lyrics: "We will feast in the house of Zion\nWe will sing with our hearts restored\nHe has done great things, we will say together\nWe will feast and weep no more" },
+      { label: "Verse 2", lyrics: "In the dark of night before the dawn\nMy soul be not afraid\nFor the promised morning, oh how long?\nO God of Jacob, be my strength" },
+      { label: "Chorus", lyrics: "We will feast in the house of Zion\nWe will sing with our hearts restored\nHe has done great things, we will say together\nWe will feast and weep no more" },
+      { label: "Verse 3", lyrics: "Every vow we've broken and betrayed\nYou are the faithful one\nAnd from the garden to the grave\nBind us together, bring shalom" },
+      { label: "Chorus", lyrics: "We will feast in the house of Zion\nWe will sing with our hearts restored\nHe has done great things, we will say together\nWe will feast and weep no more" },
+    ]
+  },
   {
     title: "Jesus Strong and Kind", artist: "CityAlight", mood: "gentle",
     slides: [
@@ -561,8 +683,6 @@ const SONGS = [
       { label: "Verse 1", lyrics: "Well a burnin' bush told me\nJust the other day\nThat I should go back to Egypt\nFree my people away\nWell I picked up my staff\nAnd I walked across the sand\nAnd I told old Pharaoh:\nLet my people go!" },
       { label: "Chorus", lyrics: "Pharaoh Pharaoh\nOh baby let my people go!\nWhoa-oa-oa yeah!" },
       { label: "Verse 2", lyrics: "Well the Lord told Moses\nI'll send locusts on this land\nSend frogs and flies and darkness too\nAnd Pharaoh wouldn't listen\nSo I hardened his heart\nAnd said Pharaoh:\nLet my people go!" },
-      { label: "Chorus", lyrics: "Pharaoh Pharaoh\nOh baby let my people go!\nWhoa-oa-oa yeah!" },
-      { label: "Verse 3", lyrics: "Well Moses took his staff\nAnd he walked to the sea\nAnd the people walked across\nOn dry and dusty ground\nAnd Pharaoh's army\nCame a-followin' down" },
       { label: "Outro", lyrics: "The sea came down\nAnd covered them over\nPharaoh's army drowned!\nHallelujah!" },
     ]
   },
@@ -570,10 +690,10 @@ const SONGS = [
     title: "This Is the Day", artist: "CityAlight (2022)", mood: "upbeat",
     slides: [
       { label: "Verse 1", lyrics: "Morning has broken\nOver the mountains\nThe sun on the water\nIs shining so bright\nThis is the day\nThat my Lord has made\nI will rejoice\nAnd be glad in it" },
-      { label: "Chorus", lyrics: "This is the day, this is the day\nThat the Lord has made\nI will rejoice, I will rejoice\nAnd be glad in it\nThis is the day that the Lord has made\nI will rejoice and be glad in it\nThis is the day, this is the day\nThat the Lord has made" },
+      { label: "Chorus", lyrics: "This is the day, this is the day\nThat the Lord has made\nI will rejoice, I will rejoice\nAnd be glad in it\nThis is the day that the Lord has made\nI will rejoice and be glad in it" },
       { label: "Verse 2", lyrics: "Open my eyes\nTo the hope You have given\nA mercy renewed\nWith the coming of dawn\nThis is the day\nThat my Lord has made\nI will rejoice\nAnd be glad in it" },
       { label: "Bridge", lyrics: "Sing to the Lord\nA song of thanksgiving\nLift up your voice and sing\nPraise to the God of our salvation\nHonor and glory to the King" },
-      { label: "Chorus", lyrics: "This is the day, this is the day\nThat the Lord has made\nI will rejoice, I will rejoice\nAnd be glad in it\nThis is the day that the Lord has made\nI will rejoice and be glad in it\nThis is the day, this is the day\nThat the Lord has made" },
+      { label: "Chorus", lyrics: "This is the day, this is the day\nThat the Lord has made\nI will rejoice, I will rejoice\nAnd be glad in it\nThis is the day that the Lord has made\nI will rejoice and be glad in it" },
     ]
   },
   {
@@ -598,12 +718,11 @@ const SONGS = [
     ]
   },
   {
-    title: "Goodness of God", artist: "Bethel / Jenn Johnson", mood: "gentle",
+    title: "Goodness of God", artist: "Jenn Johnson", mood: "gentle",
     slides: [
       { label: "Verse 1", lyrics: "I love You Lord\nFor Your mercy never fails me\nAll my days\nI've been held in Your hands\nFrom the moment that I wake up\nUntil I lay my head\nI will sing of the goodness of God" },
       { label: "Chorus", lyrics: "All my life You have been faithful\nAll my life You have been so, so good\nWith every breath that I am able\nI will sing of the goodness of God" },
       { label: "Verse 2", lyrics: "I love Your voice\nYou have led me through the fire\nIn darkest night\nYou are close like no other\nI've known You as a Father\nI've known You as a Friend\nI have lived in the goodness of God" },
-      { label: "Chorus", lyrics: "All my life You have been faithful\nAll my life You have been so, so good\nWith every breath that I am able\nI will sing of the goodness of God" },
       { label: "Bridge", lyrics: "Your goodness is running after\nIt's running after me\nWith my life laid down\nI'm surrendered now\nI give You everything\nYour goodness is running after\nIt's running after me" },
       { label: "Chorus", lyrics: "All my life You have been faithful\nAll my life You have been so, so good\nWith every breath that I am able\nI will sing of the goodness of God" },
     ]
@@ -615,31 +734,109 @@ const SONGS = [
       { label: "Verse 2", lyrics: "I could sing a thousand songs\nA trillion still too few\nI want to pour out my praise\nI'm giving everything to You" },
       { label: "Chorus", lyrics: "Thank You Lord\nThank You Lord\nThank You Lord\nI just want to thank You Lord" },
       { label: "Verse 3", lyrics: "I've got nothing to offer\nNothing I call mine\nBut I'll give You all that I am\nEvery single time" },
-      { label: "Chorus", lyrics: "Thank You Lord\nThank You Lord\nThank You Lord\nI just want to thank You Lord" },
       { label: "Bridge", lyrics: "So I'll shout out Your name\nFrom the rooftops I'll proclaim\nThat I am Yours and You are mine\nYou have saved my soul\nAnd I'll thank You for it all\nForever I am Yours\nAnd that is enough" },
       { label: "Chorus", lyrics: "Thank You Lord\nThank You Lord\nThank You Lord\nI just want to thank You Lord" },
     ]
   },
 ];
 
-// Build uniform grid
-const grid = document.getElementById('song-grid');
-SONGS.forEach((song, i) => {
+// ── Pinned state (localStorage) ──
+const STORAGE_KEY = 'fellowship_pinned';
+
+function loadPinned() {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []); }
+  catch { return new Set(); }
+}
+function savePinned(set) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}
+
+let pinned = loadPinned();
+
+// ── Render everything ──
+function renderAll() {
+  renderThisWeek();
+  renderGrid();
+}
+
+function makeCard(songIndex, inThisWeek = false) {
+  const song = SONGS[songIndex];
+  const isPinned = pinned.has(songIndex);
   const card = document.createElement('div');
-  card.className = 'song-card';
-  card.style.animationDelay = `${i * 0.035}s`;
+  card.className = 'song-card' + (isPinned ? ' pinned' : '');
+  card.style.animationDelay = `${songIndex * 0.035}s`;
+  card.dataset.index = songIndex;
+
   card.innerHTML = `
     <div class="card-inner">
-      <div class="card-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="card-top">
+        <div class="card-num">${String(songIndex + 1).padStart(2,'0')}</div>
+        <button class="pin-btn ${isPinned ? 'checked' : ''}" title="${isPinned ? 'Remove from This Week' : 'Add to This Week'}">
+          <span class="check-icon">✓</span>
+        </button>
+      </div>
       <div class="card-title">${song.title}</div>
       <div class="card-artist">${song.artist}</div>
     </div>
   `;
-  card.addEventListener('click', () => openSlideshow(i));
-  grid.appendChild(card);
+
+  // Pin button — toggle, don't open slideshow
+  card.querySelector('.pin-btn').addEventListener('click', e => {
+    e.stopPropagation();
+    togglePin(songIndex);
+  });
+
+  // Card body — open slideshow
+  card.addEventListener('click', () => openSlideshow(songIndex));
+
+  return card;
+}
+
+function renderThisWeek() {
+  const section   = document.getElementById('this-week-section');
+  const twGrid    = document.getElementById('this-week-grid');
+  const divider   = document.getElementById('all-songs-divider');
+  twGrid.innerHTML = '';
+
+  if (pinned.size === 0) {
+    section.style.display = 'none';
+    divider.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  divider.style.display = 'flex';
+
+  [...pinned].forEach(idx => {
+    twGrid.appendChild(makeCard(idx, true));
+  });
+}
+
+function renderGrid() {
+  const grid = document.getElementById('song-grid');
+  grid.innerHTML = '';
+  SONGS.forEach((_, i) => {
+    grid.appendChild(makeCard(i, false));
+  });
+}
+
+function togglePin(idx) {
+  if (pinned.has(idx)) {
+    pinned.delete(idx);
+  } else {
+    pinned.add(idx);
+  }
+  savePinned(pinned);
+  renderAll();
+}
+
+document.getElementById('clear-all-btn').addEventListener('click', () => {
+  pinned.clear();
+  savePinned(pinned);
+  renderAll();
 });
 
-// Slideshow
+// ── Slideshow ──
 let currentSong = 0, currentSlide = 0;
 const slideshowPage = document.getElementById('slideshow-page');
 const ssTitle      = document.getElementById('ss-title');
@@ -708,6 +905,9 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goToSlide(currentSlide - 1);
   if (e.key === 'Escape') closeSlideshow();
 });
+
+// Init
+renderAll();
 </script>
 </body>
 </html>
