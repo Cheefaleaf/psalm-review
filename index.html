@@ -90,7 +90,22 @@ section{padding:4.5rem 2rem}
 .h-dot.active{background:rgba(232,184,75,0.25);border-color:var(--gold);box-shadow:0 0 6px rgba(232,184,75,0.2)}
 .h-dot-count{font-size:10px;color:var(--muted);margin-left:16px}
 .sword-loading{font-size:11px;color:var(--muted);font-style:italic}
-/* all-heroes list on the right side */
+/* LOTR location block */
+.lotr-location-block{background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,rgba(10,8,4,0.4) 100%);border:1px solid rgba(201,168,76,0.2);border-radius:3px;padding:10px 12px;margin-bottom:12px;}
+.lotr-loc-eyebrow{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:4px;}
+.lotr-loc-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--gold);line-height:1;margin-bottom:3px;}
+.lotr-loc-desc{font-size:10px;color:rgba(245,242,236,0.4);font-style:italic;margin-bottom:10px;line-height:1.4;}
+.lotr-waypoints-strip{display:flex;align-items:center;gap:0;margin-bottom:8px;flex-wrap:nowrap;overflow:hidden;}
+.lotr-wp{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:all 0.3s;}
+.lotr-wp.done{background:var(--gold);}
+.lotr-wp.current{background:var(--gold);box-shadow:0 0 6px rgba(232,184,75,0.6);width:11px;height:11px;}
+.lotr-wp.locked{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);}
+.lotr-wp-line{flex:1;height:2px;min-width:8px;max-width:28px;}
+.lotr-wp-line.done{background:rgba(232,184,75,0.5);}
+.lotr-wp-line.locked{background:rgba(255,255,255,0.06);}
+.lotr-wp-label{font-size:8px;font-family:'DM Sans',sans-serif;color:rgba(245,242,236,0.3);letter-spacing:0.5px;margin-top:1px;}
+.lotr-next-row{font-size:10px;color:rgba(245,242,236,0.38);line-height:1.4;}
+.lotr-next-row span{color:rgba(232,184,75,0.7);font-weight:700;}
 .heroes-list{display:flex;flex-direction:column;gap:6px}
 .hero-list-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;background:rgba(255,255,255,0.025);border-radius:2px}
 .hero-list-name{font-size:12px;font-weight:700;color:rgba(245,242,236,0.8)}
@@ -301,20 +316,22 @@ footer p{font-size:11px;color:var(--muted)}
       <div class="sword-left">
         <div class="sword-journey-label">⚔ Sword of the Spirit</div>
 
+        <!-- LOTR Location -->
+        <div class="lotr-location-block" id="lotr-location-block">
+          <div class="lotr-loc-eyebrow">Fellowship Location</div>
+          <div class="lotr-loc-name sword-loading" id="lotr-loc-name">Loading...</div>
+          <div class="lotr-loc-desc" id="lotr-loc-desc"></div>
+          <!-- Waypoint dots strip -->
+          <div class="lotr-waypoints-strip" id="lotr-waypoints-strip"></div>
+          <!-- To next waypoint -->
+          <div class="lotr-next-row" id="lotr-next-row"></div>
+        </div>
+
         <!-- Hero spotlight -->
         <div class="sword-spotlight" id="sword-spotlight">
           <div class="spotlight-eyebrow">Hero in the Field</div>
           <div class="spotlight-name sword-loading">Loading...</div>
           <div class="spotlight-status"></div>
-        </div>
-
-        <!-- Journey progress -->
-        <div class="journey-row">
-          <span>Fellowship Journey</span>
-          <span id="sword-mastered-count">—</span>
-        </div>
-        <div class="journey-bar-track">
-          <div class="journey-bar-fill" id="sword-bar" style="width:0%"></div>
         </div>
 
         <!-- Hero dots -->
@@ -475,7 +492,69 @@ try {
   showSwordFallback();
 }
 
-function loadSwordData() {
+// LOTR waypoints — matches sword.html exactly
+const LOTR_WAYPOINTS = [
+  { name:'The Shire',    verses:0,  desc:'The journey begins' },
+  { name:'Bree',         verses:2,  desc:'First steps into the wider world' },
+  { name:'Weathertop',   verses:4,  desc:'The watchtower of the north' },
+  { name:'Rivendell',    verses:6,  desc:'Council of Elrond' },
+  { name:'Moria',        verses:8,  desc:'Through darkness into light' },
+  { name:'Lothlórien',   verses:10, desc:'Refuge of the Fellowship' },
+  { name:'Helm\'s Deep', verses:13, desc:'A fortress in the storm' },
+  { name:'Minas Tirith', verses:16, desc:'Bastion of the West' },
+  { name:'Mount Doom',   verses:20, desc:'Destroy the Ring!' }
+];
+const LOTR_GOAL = 20;
+
+function updateLotrLocation(invCount) {
+  const count = Math.min(invCount, LOTR_GOAL);
+
+  // Find current and next waypoint
+  let currentWP = LOTR_WAYPOINTS[0], nextWP = null;
+  for (let i = LOTR_WAYPOINTS.length - 1; i >= 0; i--) {
+    if (count >= LOTR_WAYPOINTS[i].verses) {
+      currentWP = LOTR_WAYPOINTS[i];
+      nextWP = LOTR_WAYPOINTS[i + 1] || null;
+      break;
+    }
+  }
+
+  // Name + desc
+  const nameEl = document.getElementById('lotr-loc-name');
+  const descEl = document.getElementById('lotr-loc-desc');
+  if (nameEl) {
+    nameEl.classList.remove('sword-loading');
+    nameEl.textContent = count >= LOTR_GOAL ? '🔥 Mount Doom' : currentWP.name;
+  }
+  if (descEl) descEl.textContent = count >= LOTR_GOAL ? 'The Ring is destroyed — journey complete!' : currentWP.desc;
+
+  // Waypoint dots strip
+  const stripEl = document.getElementById('lotr-waypoints-strip');
+  if (stripEl) {
+    stripEl.innerHTML = LOTR_WAYPOINTS.map((wp, i) => {
+      const done = count >= wp.verses;
+      const isCurrent = wp === currentWP && count < LOTR_GOAL;
+      const lineClass = i < LOTR_WAYPOINTS.length - 1 ? `<div class="lotr-wp-line ${done ? 'done' : 'locked'}"></div>` : '';
+      const dotClass = isCurrent ? 'current' : done ? 'done' : 'locked';
+      return `<div class="lotr-wp ${dotClass}" title="${wp.name} · ${wp.verses} verses"></div>${lineClass}`;
+    }).join('');
+  }
+
+  // Next waypoint row
+  const nextEl = document.getElementById('lotr-next-row');
+  if (nextEl) {
+    if (count >= LOTR_GOAL) {
+      nextEl.innerHTML = `<span>${count}</span> / ${LOTR_GOAL} verses — fellowship complete`;
+    } else if (nextWP) {
+      const needed = nextWP.verses - count;
+      nextEl.innerHTML = `<span>${count}</span> / ${LOTR_GOAL} verses · <span>${needed}</span> more to reach ${nextWP.name}`;
+    } else {
+      nextEl.innerHTML = `<span>${count}</span> / ${LOTR_GOAL} verses`;
+    }
+  }
+}
+
+
   const versesRef = ref(db, 'sword/verses');
   onValue(versesRef, (snapshot) => {
     const data = snapshot.val();
@@ -504,6 +583,10 @@ function loadSwordData() {
     const totalMastered = heroes.reduce((s, h) => s + h.mastered, 0);
     const totalVerses = heroes.reduce((s, h) => s + h.total, 0);
     const pct = totalVerses > 0 ? Math.round((totalMastered / totalVerses) * 100) : 0;
+
+    // Count inventory verses (status === 'inv') for LOTR map
+    const invCount = verses.filter(v => v.mastered).length;
+    updateLotrLocation(invCount);
 
     // Journey progress bar
     document.getElementById('sword-bar').style.width = pct + '%';
@@ -572,8 +655,9 @@ function showSwordFallback() {
   document.getElementById('sword-spotlight').querySelector('.spotlight-name').textContent = 'Join the quest';
   document.getElementById('sword-spotlight').querySelector('.spotlight-name').classList.remove('sword-loading');
   document.getElementById('sword-spotlight').querySelector('.spotlight-status').textContent = 'Start your verse journey';
-  document.getElementById('sword-mastered-count').textContent = 'Visit sword.html to begin';
   document.getElementById('sword-hero-dots').innerHTML = '';
+  document.getElementById('sword-heroes-list').innerHTML = '<span class="sword-loading">No heroes yet — be the first!</span>';
+  updateLotrLocation(0);
 }
 
 // ============================================================
