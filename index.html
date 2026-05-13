@@ -470,8 +470,8 @@ footer p{font-size:11px;color:var(--muted)}
 // ============================================================
 // FIREBASE: Sword of the Spirit live data
 // ============================================================
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCeNzMSGSjKJyE8i3sugDYd_kaLeU6fMBc",
@@ -482,19 +482,6 @@ const firebaseConfig = {
   messagingSenderId: "886474552762",
   appId: "1:886474552762:web:db68add41a7240748d5983"
 };
-
-// ---- NOTE: Replace apiKey above with the real one from sword.html ----
-// The rest of the Firebase config fields should also be copied from sword.html.
-// The databaseURL and projectId above are correct based on project ID youth-262fc.
-
-let app, db;
-try {
-  app = initializeApp(firebaseConfig, 'homepage');
-  db = getDatabase(app);
-  loadSwordData();
-} catch(e) {
-  showSwordFallback();
-}
 
 // LOTR waypoints — matches sword.html exactly
 const LOTR_WAYPOINTS = [
@@ -559,6 +546,7 @@ function updateLotrLocation(invCount) {
 }
 
 
+function loadSwordData() {
   const versesRef = ref(db, 'sword/verses');
   onValue(versesRef, (snapshot) => {
     const data = snapshot.val();
@@ -566,7 +554,11 @@ function updateLotrLocation(invCount) {
 
     const verses = Object.values(data);
 
-    // Build hero roster from verse records
+    // LOTR location
+    const invCount = verses.filter(v => v.status === 'inv').length;
+    updateLotrLocation(invCount);
+
+    // Build hero roster
     const heroMap = {};
     verses.forEach(v => {
       if (!v.name) return;
@@ -577,27 +569,13 @@ function updateLotrLocation(invCount) {
     });
 
     const heroes = Object.values(heroMap).filter(h => h.total > 0);
-    // Sort: in-progress first, then by mastered count desc
     heroes.sort((a, b) => {
       if (a.inProgress && !b.inProgress) return -1;
       if (!a.inProgress && b.inProgress) return 1;
       return b.mastered - a.mastered;
     });
 
-    const totalMastered = heroes.reduce((s, h) => s + h.mastered, 0);
-    const totalVerses = heroes.reduce((s, h) => s + h.total, 0);
-    const pct = totalVerses > 0 ? Math.round((totalMastered / totalVerses) * 100) : 0;
-
-    // Count inventory verses (status === 'inv') for LOTR map — matches sword.html
-    const invCount = verses.filter(v => v.status === 'inv').length;
-    updateLotrLocation(invCount);
-
-    // Journey progress bar
-    document.getElementById('sword-bar').style.width = pct + '%';
-    document.getElementById('sword-mastered-count').textContent =
-      totalMastered + ' verse' + (totalMastered !== 1 ? 's' : '') + ' mastered · ' + pct + '%';
-
-    // Hero spotlight: first in-progress hero
+    // Hero spotlight
     const spotlight = heroes.find(h => h.inProgress) || heroes[0];
     if (spotlight) {
       const el = document.getElementById('sword-spotlight');
@@ -611,7 +589,7 @@ function updateLotrLocation(invCount) {
           : ' &middot; <span style="color:#5ecf7e">All complete! ⚔</span>');
     }
 
-    // Hero dots (overlapping circles)
+    // Hero dots
     const dotsEl = document.getElementById('sword-hero-dots');
     dotsEl.innerHTML = '';
     const MAX_DOTS = 8;
@@ -622,21 +600,15 @@ function updateLotrLocation(invCount) {
       d.textContent = h.name.charAt(0).toUpperCase();
       dotsEl.appendChild(d);
     });
-    if (heroes.length > MAX_DOTS) {
-      const more = document.createElement('span');
-      more.className = 'h-dot-count';
-      more.style.marginLeft = '16px';
-      more.textContent = '+' + (heroes.length - MAX_DOTS) + ' more';
-      dotsEl.appendChild(more);
-    } else if (heroes.length > 0) {
-      const lbl = document.createElement('span');
-      lbl.className = 'h-dot-count';
-      lbl.style.marginLeft = '16px';
-      lbl.textContent = heroes.length + ' hero' + (heroes.length !== 1 ? 'es' : '') + ' on the journey';
-      dotsEl.appendChild(lbl);
-    }
+    const lbl = document.createElement('span');
+    lbl.className = 'h-dot-count';
+    lbl.style.marginLeft = '16px';
+    lbl.textContent = heroes.length > MAX_DOTS
+      ? '+' + (heroes.length - MAX_DOTS) + ' more'
+      : heroes.length + ' hero' + (heroes.length !== 1 ? 'es' : '') + ' on the journey';
+    dotsEl.appendChild(lbl);
 
-    // All-heroes list (right column of sword tile)
+    // All-heroes list
     const listEl = document.getElementById('sword-heroes-list');
     if (heroes.length === 0) {
       listEl.innerHTML = '<span class="sword-loading">No heroes yet — be the first!</span>';
@@ -655,12 +627,27 @@ function updateLotrLocation(invCount) {
   }, { onlyOnce: true });
 }
 
+// Init Firebase
+try {
+  const app = initializeApp(firebaseConfig, 'homepage-' + Date.now());
+  const db = getDatabase(app);
+  loadSwordData();
+} catch(e) {
+  console.error('Firebase init:', e);
+  showSwordFallback();
+}
+
 function showSwordFallback() {
-  document.getElementById('sword-spotlight').querySelector('.spotlight-name').textContent = 'Join the quest';
-  document.getElementById('sword-spotlight').querySelector('.spotlight-name').classList.remove('sword-loading');
-  document.getElementById('sword-spotlight').querySelector('.spotlight-status').textContent = 'Start your verse journey';
-  document.getElementById('sword-hero-dots').innerHTML = '';
-  document.getElementById('sword-heroes-list').innerHTML = '<span class="sword-loading">No heroes yet — be the first!</span>';
+  const spotEl = document.getElementById('sword-spotlight');
+  if (spotEl) {
+    spotEl.querySelector('.spotlight-name').textContent = 'Join the quest';
+    spotEl.querySelector('.spotlight-name').classList.remove('sword-loading');
+    spotEl.querySelector('.spotlight-status').textContent = 'Visit sword.html to begin';
+  }
+  const dotsEl = document.getElementById('sword-hero-dots');
+  if (dotsEl) dotsEl.innerHTML = '';
+  const listEl = document.getElementById('sword-heroes-list');
+  if (listEl) listEl.innerHTML = '<span class="sword-loading">No heroes yet — be the first!</span>';
   updateLotrLocation(0);
 }
 
