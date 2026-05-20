@@ -68,9 +68,7 @@
     padding: 0 24px;
   }
 
-  .psalm-carousel {
-    position: relative;
-  }
+  .psalm-carousel { position: relative; }
 
   .psalm-card {
     background: var(--teal);
@@ -265,26 +263,23 @@
   <a href="sword.html" class="memory-verse-link">⚔ Memory Verse</a>
 </div>
 
-<!-- PSALM CAROUSEL -->
+<!-- PSALM CAROUSEL (all 4 psalms in the series) -->
 <div class="psalm-highlight" style="padding-top: 64px;">
   <div class="psalm-carousel">
     <div class="psalm-card" id="psalm-card">
-      <div class="psalm-watermark" id="psalm-watermark">121</div>
+      <div class="psalm-watermark" id="psalm-watermark">136</div>
       <div class="psalm-label" id="psalm-label">This Week's Psalm</div>
-      <h2 id="psalm-title">Psalm 121 — I Lift Up My Eyes</h2>
-      <p id="psalm-desc">A song of ascents. Written for pilgrims on the road — a reminder that the God who made heaven and earth is also the God who watches over every step.</p>
-      <a class="read-btn" id="psalm-link" href="https://biblehub.com/esv/psalms/121.htm" target="_blank">Read Psalm 121 →</a>
+      <h2 id="psalm-title">Psalm 136 — His Love Endures Forever</h2>
+      <p id="psalm-desc">A great call-and-response hymn. Twenty-six times the chorus answers: "His love endures forever." Written to be sung together — a reminder that God's hesed, his loyal covenant love, never stops.</p>
+      <a class="read-btn" id="psalm-link" href="https://biblehub.com/esv/psalms/136.htm" target="_blank">Read Psalm 136 →</a>
     </div>
 
     <div class="carousel-nav">
       <button class="carousel-arrow" id="prev-psalm" onclick="shiftPsalm(-1)" disabled>‹</button>
-      <div class="carousel-dots">
-        <button class="carousel-dot active" onclick="goToPsalm(0)"></button>
-        <button class="carousel-dot" onclick="goToPsalm(1)"></button>
-      </div>
+      <div class="carousel-dots" id="carousel-dots"></div>
       <button class="carousel-arrow" id="next-psalm" onclick="shiftPsalm(1)">›</button>
     </div>
-    <div class="carousel-label" id="carousel-label">This week</div>
+    <div class="carousel-label" id="carousel-label">This week · May 20</div>
   </div>
 </div>
 
@@ -315,7 +310,7 @@
       <div class="card-face card-back">
         <div class="verse-text" id="verseText">"As far as the east is from the west, so far has he removed our transgressions from us."</div>
         <div class="verse-ref" id="verseRef">Psalm 103:12</div>
-        <div class="meaning" id="verseMeaning">The God who removes guilt completely is the same God who holds every relationship in His hands. He doesn't leave. He doesn't drift. His love toward you is not subject to the social dynamics of middle school.</div>
+        <div class="meaning" id="verseMeaning">East and west never meet. That's not poetry — that's the point. The distance between you and your sin, in God's hands, is infinite. You are not what you've done.</div>
       </div>
     </div>
   </div>
@@ -354,21 +349,21 @@
   </div>
 
   <div class="drill-card" onclick="toggleDrill(this)">
-    <div class="drill-situation">When you feel worthless, like you don't measure up…</div>
+    <div class="drill-situation">When you feel worthless — like you don't matter or weren't made for anything good…</div>
     <div class="drill-blank">"I praise you because…"</div>
     <div class="drill-ref">Psalm 139:14 — tap to reveal full verse</div>
     <div class="drill-tap">tap to reveal</div>
   </div>
 
   <div class="drill-card" onclick="toggleDrill(this)">
-    <div class="drill-situation">When you feel completely alone and like no one cares…</div>
+    <div class="drill-situation">When you feel like no one sticks around — like relationships always let you down…</div>
     <div class="drill-blank">"Give thanks to the LORD, for…"</div>
     <div class="drill-ref">Psalm 136:1 — tap to reveal full verse</div>
     <div class="drill-tap">tap to reveal</div>
   </div>
 
   <div class="drill-card" onclick="toggleDrill(this)">
-    <div class="drill-situation">When life feels like too much and you don't know where to turn…</div>
+    <div class="drill-situation">When life feels overwhelming and you don't know where to turn…</div>
     <div class="drill-blank">"I lift my eyes…"</div>
     <div class="drill-ref">Psalm 121:1-2 — tap to reveal full verse</div>
     <div class="drill-tap">tap to reveal</div>
@@ -380,27 +375,50 @@
 </footer>
 
 <script>
-  // ── PSALM CAROUSEL ────────────────────────────────────
+  // ── PSALM CAROUSEL (all 4 in the series) ─────────────────────────
   const psalms = [
     {
-      num: '121',
-      label: 'This Week\'s Psalm',
-      title: 'Psalm 121 — I Lift Up My Eyes',
-      desc: 'A song of ascents. Written for pilgrims on the road — a reminder that the God who made heaven and earth is also the God who watches over every step.',
-      link: 'https://biblehub.com/esv/psalms/121.htm',
-      carouselLabel: 'This week'
+      num: '136',
+      label: "This Week's Psalm",
+      title: 'Psalm 136 — His Love Endures Forever',
+      desc: "A great call-and-response hymn. Twenty-six times the chorus answers: \"His love endures forever.\" Written to be sung together — a reminder that God's hesed, his loyal covenant love, never stops.",
+      link: 'https://biblehub.com/esv/psalms/136.htm',
+      carouselLabel: 'This week · May 20'
     },
     {
-      num: '130',
-      label: 'Last Week\'s Psalm',
-      title: 'Psalm 130 — Out of the Depths',
-      desc: 'A song of ascents. A cry from the depths — honest, raw, and still full of hope. One of the great penitential psalms of the church.',
-      link: 'https://biblehub.com/esv/psalms/130.htm',
-      carouselLabel: 'Last week'
+      num: '139',
+      label: 'Last Week',
+      title: 'Psalm 139 — You Have Searched Me and Known Me',
+      desc: "God's intimate knowledge of us — where we go, what we think before we think it. To be fully known and still fully loved.",
+      link: 'https://biblehub.com/esv/psalms/139.htm',
+      carouselLabel: 'Last week · May 13'
+    },
+    {
+      num: '121',
+      label: 'Week 12',
+      title: 'Psalm 121 — I Lift Up My Eyes',
+      desc: 'A song of ascents. Written for pilgrims on the road — a reminder that the God who made heaven and earth watches over every step.',
+      link: 'https://biblehub.com/esv/psalms/121.htm',
+      carouselLabel: 'Week 12 · May 6'
+    },
+    {
+      num: '103',
+      label: 'Week 11',
+      title: 'Psalm 103 — Bless the Lord, O My Soul',
+      desc: "A hymn of praise that catalogues God's benefits — forgiveness, healing, redemption, steadfast love. Written to remind the soul of what it tends to forget.",
+      link: 'https://biblehub.com/esv/psalms/103.htm',
+      carouselLabel: 'Week 11 · Apr 29'
     }
   ];
 
   let psalmIndex = 0;
+
+  function buildDots() {
+    const container = document.getElementById('carousel-dots');
+    container.innerHTML = psalms.map((_, i) =>
+      `<button class="carousel-dot${i === 0 ? ' active' : ''}" onclick="goToPsalm(${i})"></button>`
+    ).join('');
+  }
 
   function renderPsalm() {
     const p = psalms[psalmIndex];
@@ -415,14 +433,9 @@
       link.href = p.link;
       link.textContent = 'Read Psalm ' + p.num + ' →';
       document.getElementById('carousel-label').textContent = p.carouselLabel;
-
-      // dots
       document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === psalmIndex));
-
-      // arrows
       document.getElementById('prev-psalm').disabled = psalmIndex === 0;
       document.getElementById('next-psalm').disabled = psalmIndex === psalms.length - 1;
-
       card.style.opacity = '1';
     }, 150);
   }
@@ -437,6 +450,8 @@
     renderPsalm();
   }
 
+  buildDots();
+
   // ── FLASHCARDS ────────────────────────────────────────
   const cards = [
     {
@@ -447,18 +462,18 @@
       meaning: "East and west never meet. That's not poetry — that's the point. The distance between you and your sin, in God's hands, is infinite. You are not what you've done."
     },
     {
-      felt: "Expectations",
-      situation: "When you feel like you're not enough — not smart enough, not good enough, not measuring up…",
+      felt: "Self-Worth",
+      situation: "When you feel worthless — like you don't matter, weren't made for anything good, or keep measuring yourself against everyone else…",
       verse: '"I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well."',
       ref: "Psalm 139:14",
-      meaning: "God's assessment of you was settled before you took a single test or made a single mistake. You are not defined by your performance. You were made on purpose, by a God who called His work wonderful."
+      meaning: "God's assessment of you was settled before you took a single test or made a single mistake. You are not defined by your performance or anyone else's opinion. You were made on purpose, by a God who called His work wonderful."
     },
     {
-      felt: "Loneliness",
-      situation: "When you feel invisible, forgotten, or like no one actually cares…",
+      felt: "Companionship",
+      situation: "When you feel like no one sticks around — like people always leave, relationships let you down, or you're just hard to love…",
       verse: '"Give thanks to the LORD, for he is good. His love endures forever."',
       ref: "Psalm 136:1",
-      meaning: "The Israelites sang this in a call-and-response — someone leading, everyone answering 'His love endures forever.' 26 times. They were reminding each other: this love does not run out. Not for you, not today, not ever."
+      meaning: "The Israelites sang this in call-and-response — 26 times, everyone answering together: His love endures forever. The word for love here is hesed — loyal, covenant love that doesn't walk away. Unlike people, this love has no conditions and no expiration date."
     },
     {
       felt: "Future Fear",
@@ -475,8 +490,13 @@
     '"Give thanks to the LORD, for he is good. His love endures forever." — Psalm 136:1',
     '"I lift my eyes to the hills — where does my help come from? My help comes from the LORD, the Maker of heaven and earth." — Psalm 121:1-2'
   ];
-  const shortVerses = ['"As far as…"','"I praise you because…"','"Give thanks to the LORD, for…"','"I lift my eyes…"'];
-  const refs = ['Psalm 103:12 — tap to reveal full verse','Psalm 139:14 — tap to reveal full verse','Psalm 136:1 — tap to reveal full verse','Psalm 121:1-2 — tap to reveal full verse'];
+  const shortVerses = ['"As far as…"', '"I praise you because…"', '"Give thanks to the LORD, for…"', '"I lift my eyes…"'];
+  const refs = [
+    'Psalm 103:12 — tap to reveal full verse',
+    'Psalm 139:14 — tap to reveal full verse',
+    'Psalm 136:1 — tap to reveal full verse',
+    'Psalm 121:1-2 — tap to reveal full verse'
+  ];
 
   let current = 0;
   let flipped = false;
