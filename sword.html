@@ -975,15 +975,15 @@ function chunkLabel(){if(trainChunks.length<=1)return'';if(isFullReview())return
 // Coordinates expressed as percentages (0-100) of image width/height
 // so they stay correct regardless of display size
 const LOTR_WP_PCT=[
-  {name:"The Shire",   verses:0,  px:56.5, py:43.5},
-  {name:"Bree",        verses:2,  px:60.5, py:40.5},
-  {name:"Weathertop",  verses:4,  px:64.0, py:36.0},
-  {name:"Rivendell",   verses:6,  px:70.0, py:33.0},
-  {name:"Moria",       verses:8,  px:72.0, py:42.0},
-  {name:"Lothlórien",  verses:10, px:75.0, py:46.0},
-  {name:"Helm's Deep", verses:13, px:68.0, py:60.0},
-  {name:"Minas Tirith",verses:16, px:83.0, py:68.0},
-  {name:"Mount Doom",  verses:20, px:91.0, py:63.0},
+  {name:"The Shire",   verses:0,  px:38.0, py:34.0},
+  {name:"Bree",        verses:2,  px:43.5, py:31.5},
+  {name:"Weathertop",  verses:4,  px:47.5, py:27.0},
+  {name:"Rivendell",   verses:6,  px:53.0, py:24.5},
+  {name:"Moria",       verses:8,  px:55.0, py:33.0},
+  {name:"Lothlórien",  verses:10, px:57.5, py:38.0},
+  {name:"Helm's Deep", verses:13, px:52.0, py:50.0},
+  {name:"Minas Tirith",verses:16, px:65.0, py:56.0},
+  {name:"Mount Doom",  verses:20, px:72.0, py:52.0},
 ];
 // Keep LOTR_WP as alias (used nowhere else but keeps any stale refs safe)
 const LOTR_WP=LOTR_WP_PCT;
@@ -1393,7 +1393,7 @@ document.addEventListener('keydown',e=>{
 });
 
 loadAll();
-// v2.1 — map fix
+// v2.2 — map coord calibration
 </script>
 </body>
 </html>
