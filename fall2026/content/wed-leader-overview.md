@@ -16,20 +16,16 @@ Curriculum is **The Journey** (Life on Life Ministries). On Wednesday the Journe
 |---|---|---|---|---|
 | 1 | Sep 16 | Kickoff party — no study | — | — |
 | 2 | Sep 23 | Grace — the performance trap | Blue · Gospel Living U3 | 45–56 |
-| 3 | Sep 30 | Do or Done — Paul, James, the three beliefs | Blue · Gospel Living U3 (back half) | 50–56 |
-| 4 | Oct 7 | Reading & prayer — PRAISE + Five Targets | Blue · Gospel Living U5–6 + Appendix A | 69–91 |
-| 5 | Oct 14 | Justification & Adoption | Red · Biblical Worldview U1 | 245 |
-| 6 | Oct 21 | Assurance of Salvation | Red · Biblical Worldview U2 | 261 |
-| 7 | Oct 28 | Sanctification *(alt: Why are we Presbyterian?)* | Red · Biblical Worldview U3 | 275 |
-| 8 | Nov 4 | The Spirit *(alt: Charismatic friends — gifts & cessationism)* | Green · Knowing God U3 | 167 |
-| 9 | Nov 11 | God's Forgiveness *(alt: Catholic friends)* | Red · Knowing God U3 | 175 |
+| 3 | Sep 30 | Faith — Do or Done | Blue · Gospel Living U3 (back half) | 50–56 |
+| 4 | Oct 7 | Personal worship — building the habit | Blue · Gospel Living U2 | 33–44 |
+| 5 | Oct 14 | Reading — abide in my word | Blue · Gospel Living U2 + U5 | 33–44, 69–80 |
+| 6 | Oct 21 | Prayer — the Five Targets | Blue · Gospel Living U2 + Matthew 6 | 33–44 |
+| 7 | Oct 28 | Walking by the Spirit | Blue · Gospel Living U4 | 57–68 |
+| 8 | Nov 4 | Assurance of Salvation | Red · Biblical Worldview U2 | 261 |
+| 9 | Nov 11 | Ambassadors | Blue · Gospel Living U6 | 81–91 |
 | 10 | Nov 18 | Party — no study | — | — |
 
 Sunday week 1 teaches Glory (Blue U1) — Wednesday picks up at Grace, so the two tracks run the Gospel Living section in sequence.
-
-Weeks 5, 6 and 8 land the same week Sunday covers baptism, the Table, and spiritual gifts.
-
-**Weeks 7–9 alternates** are original content, not Journey. If written by late October, swap them in. Each Journey unit listed feeds its alternate.
 
 **Skip all unit assignments** — readings, audio, assessments. No homework. The weekly "one practice" replaces them.
 
@@ -37,11 +33,11 @@ Weeks 5, 6 and 8 land the same week Sunday covers baptism, the Table, and spirit
 
 ## The night
 
-1. **Dinner & fellowship — ~30 min.** All three groups together.
-2. **Prayer wall — ~10 min.** Everyone, before the split. Every week without exception.
+1. **Dinner with families — 6:00–6:30.** All groups together.
+2. **Prayer wall — 6:30–6:45.** Youth room, everyone, before the split. Every week without exception.
 3. **Split.**
-   - **Jr high** stays: study ~10 min, then games (trivia, Kahoot, prizes) ~30 min.
-   - **High school** walks to Black Rock ~10 min, then small group ~30 min.
+   - **Jr high** stays in the youth room: handout and study ~20 min, then snacks and games ~40 min.
+   - **High school** walks to Black Rock ~10 min, then discipleship group 45 min.
 
 The walk lands inside jr high's study block. Both tracks finish together — one pickup.
 
@@ -53,15 +49,15 @@ The walk lands inside jr high's study block. Both tracks finish together — one
 
 Same topic, same Journey unit, two depths.
 
-**High school — ~30 min at Black Rock.** Work the unit close to as printed:
-- Opener: last week's one practice — what'd you notice? (~5)
-- The unit's core idea, briefly (~5)
+**High school — 45 min at Black Rock.** Work the unit close to as printed:
+- Opener: last week's one practice — what'd you notice? (~6)
+- The unit's core idea, briefly (~7)
 - Equipping passages and questions from the handout (~15)
-- Mission — one name each (~2)
-- Pray for each other by name (~3)
+- Mission — one name each (~3)
+- Accountability, then pray for each other by name (~14)
 - Assign this week's one practice before they leave
 
-**Jr high — ~10 min at church.** One passage, one question, then games. Don't compress the high school session; pick the single thing that matters.
+**Jr high — ~20 min in the youth room.** One passage, one question, then games. Don't compress the high school session; pick the single thing that matters.
 
 ---
 

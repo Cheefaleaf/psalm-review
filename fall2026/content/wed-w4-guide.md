@@ -1,4 +1,4 @@
-# Wednesday · Week 4 — Reading & Prayer
+# Wednesday · Week 4 — Personal Worship
 
 **Leader prep.** A deeper dive into the content the study is based on. Read it to prepare to lead Wednesday with jr high and/or high school. The study guide has the teaching outline for the room; the handout has the questions the students answer.
 
@@ -8,9 +8,9 @@
 
 Sunday school dives deep into study and theology. Wednesday's focus is more comprehensive discipleship. Prayer is the common thread connecting both groups.
 
-On Wednesday, high school works through the Journey curriculum — the sections are **Truth, Equipping, Accountability, Mission** and **Supplication**. We try to hit each one for a well-rounded, formative discipleship time.
+On Wednesday, high school works through the Journey curriculum at Black Rock for 45 minutes — the sections are **Truth, Equipping, Accountability, Mission** and **Supplication**. We try to hit each one for a well-rounded, formative discipleship time.
 
-Jr high takes one passage or concept from the same Journey unit and works through a few questions together in ten minutes, then jumps to fellowship and games.
+Jr high fills out the handout first, then works through a brief teaching and discussion on one passage or concept from the same Journey unit — about twenty minutes — then snacks and games.
 
 Sunday and Wednesday attendance barely overlaps, so each night stands on its own — questions are always about what's taught that night.
 
@@ -18,11 +18,13 @@ Sunday and Wednesday attendance barely overlaps, so each night stands on its own
 
 **Oct 7 · The tools week**
 
-**Journey:** Blue Year, Gospel Living Units 5–6 ("Truth — Why / How We Embrace the Word") + **Appendix A**, pp. 69–91, 385–388
+**Journey:** Blue Year · Gospel Living U2, pp. 33–44
 **Memory verse:** John 8:31–32
 **In Bible:** John 8:25–47 · John 14:1–11 · John 17:1–19
 
 ---
+
+> **Needs rewrite.** This was written as a single Reading & Prayer night. It is now three weeks: 4 the habit, 5 reading, 6 prayer.
 
 ## Big idea
 

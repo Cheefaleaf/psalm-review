@@ -2,17 +2,17 @@
 
 **Live in the room.** Read the leader prep doc beforehand if you can; this sheet works without it.
 
-**Sep 23 · Black Rock · 30 min after the walk**
+**Sep 23 · Black Rock · 45 min**
 
 One leader per five students. Six or more, split boy/girl. Five or fewer, stay whole.
 
 **Bring:** handouts, pens.
 
-**4 · 5 · 10 · 4 · 2 · 5.** Not into the handout by minute ten means you're behind. Take the time back from section 3, never from 4, 5 or 6.
+**6 · 7 · 15 · 7 · 3 · 7.** Not into the handout by minute fifteen means you're behind. Take the time back from section 3, never from 4, 5 or 6.
 
 ---
 
-## 1 · Land the room — 4 min
+## 1 · Land the room — 6 min
 
 Drinks in hand, phones down, everyone sitting. Don't start over the ordering.
 
@@ -28,7 +28,7 @@ If it's flat: *what's something you've done purely so somebody would notice?*
 
 ---
 
-## 2 · Truth — 5 min
+## 2 · Truth — 7 min
 
 Point back at what they just said.
 
@@ -45,15 +45,21 @@ Every religion picks one of those two. Read 2 Corinthians 5:21 and name it: the 
 
 Performance. Let them say it.
 
+Then the second question, and let it sit:
+
+> If performance is the natural one — what's the tell? How would you know if you were running on it?
+
+Take two or three answers. Don't resolve them; the handout does that.
+
 Then stop.
 
 ---
 
-## 3 · Equipping — 10 min
+## 3 · Equipping — 15 min
 
 Read **Ephesians 2:1–13** together, split by verse.
 
-Handout. Q1 warms up; **Q2 and Q3 are the night.**
+Handout. Q1 warms up; **Q2 and Q3 are the night.** Q4 closes.
 
 - Ask, then wait. Count to ten.
 - Sunday-school answer: *"what does that look like on a Tuesday?"*
@@ -68,17 +74,19 @@ Handout. Q1 warms up; **Q2 and Q3 are the night.**
 
 Then re-ask Q3.
 
+**With fifteen minutes you can go around twice.** First pass, everyone answers Q2 briefly. Second pass, pick the two or three that had something underneath them and push. Better than one long thread from whoever talks most.
+
 **Cut from here if you're behind.** Drop Q1, go to Q2.
 
 ---
 
-## 4 · Accountability — 4 min
+## 4 · Accountability — 7 min
 
 They've written about where they run on performance. Don't ask it a third time. Ask what it costs:
 
 > If there's nothing left to earn — what would you stop doing this week?
 
-Everyone answers, including you. One sentence each.
+Everyone answers, including you. One sentence each, then go back around for anyone who wants to say more.
 
 When someone says something real, respond with a question about it, not a comment. *"How long has that been going on?" "Who else knows that?"* No advice, no verse.
 
@@ -86,19 +94,21 @@ When someone says something real, respond with a question about it, not a commen
 
 ---
 
-## 5 · Mission — 2 min
+## 5 · Mission — 3 min
 
 > One name each. Somebody wearing themselves out trying to be good enough.
 
-No plan, no commitment. Say the name. We'll ask again next week.
+No plan, no commitment. Say the name, and one line on why they came to mind. We'll ask again next week.
 
 ---
 
-## 6 · Supplication — 5 min
+## 6 · Supplication — 7 min
 
 Pray for each other by name, for what they said in section 4. Then the mission names.
 
 Students pray if they want to. Nobody's called on. If nobody volunteers, you pray for each of them by name.
+
+Seven minutes is longer than it sounds. Let the silences run — they're where students decide to pray out loud.
 
 Night ends here. High school does not walk back.
 
@@ -117,5 +127,5 @@ Nothing to write, nothing to turn in.
 ## Notes
 
 - "Grace" is a word they'll nod at. Force the contrast — *what I do* vs. *what He did* — and make them say which one they run on.
-- Don't rush to Do-or-Done; that's next week. If someone asks "so what do I do?", tonight's answer is *nothing.* Let it sit.
-- Leave church on time.
+- Don't rush to faith and Do-or-Done; that's next week. If someone asks "so what do I do?", tonight's answer is *nothing.* Let it sit.
+- Leave church on time. The walk is ten minutes and it comes out of your forty-five.

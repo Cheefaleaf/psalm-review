@@ -2,7 +2,7 @@
 
 **Live in the room.** Read the leader prep doc beforehand if you can; this sheet works without it.
 
-**Sep 23 · Main room · 10 min, then games**
+**Sep 23 · Youth room · 20 min, then snacks and games**
 
 **The one thing:** you can't earn it, and you don't have to.
 
@@ -22,29 +22,33 @@ Paul's word is *justification*: God treats you as if you'd never sinned, because
 
 ## Run of it
 
-**2 · 3 · 4 · 1**
+**5 · 3 · 10 · 2**
 
-### 1 · Read — 2 min
+### 1 · They write — 5 min
 
-Read **Ephesians 2:8–9** aloud. Then a student reads it again.
+Hand out sheets and pens before you say anything else. The handout comes first — it gets them thinking before the teaching, not after.
 
-Hand out sheets and pens.
-
-### 2 · They write — 3 min, silent
-
-Tell them Q1 has no correct answer before they start.
+Tell them Q1 has no correct answer.
 
 Sit down while they write.
 
-### 3 · Go through it — 4 min
+### 2 · Read — 3 min
+
+Read **Ephesians 2:8–9** aloud. Then a student reads it again.
+
+Ask what word in there means *you didn't do it.* (Gift.)
+
+### 3 · Teach and discuss — 10 min
 
 Work in order, from what they wrote.
 
-- **Q1 — 1 min.** Four or five answers out loud. Be good, go to church, don't swear, help old people, become a missionary.
-- **Q2 — 2 min. The one to protect.** *Do any of them work?* Push past the first "no" — ask which one felt closest, and why it still doesn't. Land: it's a gift, and a gift isn't something you were owed.
-- **Q3 — 1 min.** Two answers. Don't resolve it — next week does.
+- **Q1 — 2 min.** Four or five answers out loud. Be good, go to church, don't swear, help old people, become a missionary.
+- **Q2 — 5 min. The one to protect.** *Do any of them work?* Push past the first "no" — ask which one felt closest, and why it still doesn't.
 
-### 4 · Conclusion — 1 min
+  Then teach it, briefly: there are only two ways to get right with God. Doing enough, or being given it. Every other religion is a to-do list. Christianity says the list is finished, and not by you. That's what *grace* means — a gift, and a gift isn't something you were owed.
+- **Q3 — 3 min.** Take three or four answers. Don't resolve it — next week does.
+
+### 4 · Conclusion — 2 min
 
 The punchline:
 
@@ -56,7 +60,7 @@ Then the memory verse, once, with the gloss:
 >
 > Jesus took what was yours. You got what was His.
 
-Games.
+Snacks and games.
 
 ---
 
@@ -64,4 +68,4 @@ Games.
 
 - "So it doesn't matter what I do" is a good answer. *"Hold that — it's next week."*
 - Handouts go home. Don't collect them.
-- Behind at minute six: Q1 down to two answers, Q3 to one. Protect Q2.
+- Behind at minute twelve: Q1 down to two answers, Q3 to one. Protect Q2.

@@ -18,8 +18,8 @@ No homework, ever. Everything happens in the room. The only thing you take with 
 - **Dinner** — everyone, all three groups.
 - **Prayer wall** — everyone, every week. Same wall as Sunday.
 - **Split**
-  - *Jr high* — ten minutes on one question, then trivia, Kahoot, prizes.
-  - *High school* — walk to Black Rock, grab a drink, thirty minutes of actual conversation. We pray for each other before we leave.
+  - *Jr high* — about twenty minutes on the handout and one passage, then snacks, trivia, Kahoot, prizes.
+  - *High school* — walk to Black Rock, grab a drink, forty-five minutes of actual conversation. We pray for each other before we leave.
 
 Both groups finish at the same time.
 
@@ -33,13 +33,13 @@ Both groups finish at the same time.
 |---|---|
 | Sep 16 | Kickoff — no study, just food and hanging out |
 | Sep 23 | Grace — are you trying to earn it? |
-| Sep 30 | Do, or Done? |
+| Sep 30 | Faith — Do, or Done? |
 | Oct 7 | How to actually read the Bible and pray |
-| Oct 14 | What happened to you when you believed |
-| Oct 21 | How do you know you're really a Christian? |
-| Oct 28 | Why growing is slow |
-| Nov 4 | The Holy Spirit |
-| Nov 11 | Forgiveness |
+| Oct 14 | Why the Bible is worth your time |
+| Oct 21 | How to pray when you don't know how |
+| Oct 28 | Why growing feels slow |
+| Nov 4 | How do you know you're really a Christian? |
+| Nov 11 | Being sent out |
 | Nov 18 | Party |
 
 ---
