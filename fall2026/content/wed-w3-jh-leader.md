@@ -1,10 +1,22 @@
-# Jr High Leader Sheet · Week 3 — Do or Done
+# Jr High Study Guide · Week 3 — Do or Done
+
+**Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 
 **Sep 30 · Main room · ~10 min, then games**
 
 **The one thing:** every other religion says *do*. Jesus says *done*.
 
 Last week landed "you can't earn it." A kid almost certainly asked some version of "then why be good?" This week answers that.
+
+---
+
+## What you need to know
+
+Last week: you can't earn God's love. This week answers the obvious follow-up — *then why be good?*
+
+Paul says we're saved by faith, not works. James says faith without works is dead. They agree: God declares you righteous because of Christ, and a person who's actually received that starts to look different. The change is the *result*, never the price.
+
+For jr high, the whole thing fits in one picture: how you treat someone who's already forgiven you.
 
 ---
 

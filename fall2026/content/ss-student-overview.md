@@ -9,7 +9,7 @@ Sundays · 9:15–10:15 · Sep 13 – Nov 15
 
 This fall we're asking one question on Sunday mornings: **why do we worship?** Not just "why go to church," but what all of it actually is — the Lord's Day, baptism, communion, the church — and why any of it matters.
 
-We're using a curriculum called **The Journey**. You won't get homework from it. Everything happens in the room.
+No homework, ever. Everything happens in the room.
 
 ---
 

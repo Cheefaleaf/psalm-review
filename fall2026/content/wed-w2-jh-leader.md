@@ -1,10 +1,22 @@
-# Jr High Leader Sheet · Week 2 — Grace
+# Jr High Study Guide · Week 2 — Grace
+
+**Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 
 **Sep 23 · Main room · ~10 min, then games**
 
 Ten minutes is the whole study. Don't run a compressed version of the high school session — pick the one thing and land it.
 
 **The one thing:** you can't earn it, and you don't have to.
+
+---
+
+## What you need to know
+
+There are only two ways to relate to God. **Performance** — I do things so God will approve of me. **Grace** — God already did everything, at the cross. Every religion on earth picks the first one; Christianity is the only one that picks the second.
+
+Paul's word for it is *justification* — God treats you as if you'd never sinned, not because you cleaned up, but because Christ traded with you.
+
+Jr high will hear "you can't earn it" as either good news or a loophole. Both reactions are normal. Don't shut the loophole down — next week answers it.
 
 ---
 

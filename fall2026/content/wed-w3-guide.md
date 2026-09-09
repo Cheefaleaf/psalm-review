@@ -1,5 +1,7 @@
 # Wednesday · Week 3 — Do or Done
 
+**Leader prep — read ahead of time.** Background for both rooms. What you run in the room is the jr high or high school study guide.
+
 **Sep 30**
 
 **Journey:** Blue Year, Gospel Living Unit 3, "Grace — Why We Embrace the Cross," pp. 50–56 *(the back half — week 2 covered pp. 46–50)*

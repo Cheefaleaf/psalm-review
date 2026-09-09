@@ -1,5 +1,8 @@
 # Wednesday Night — Fall Overview for Leaders
 
+> **Never name the curriculum to students.** The Journey is leader material — it tells us where this comes from. In the room, ideas are attributed to Scripture or to nobody, never to a book they've never seen.
+
+
 **Fall · Discipleship (Grow)**
 Jr high at church · High school at Black Rock · Sep 16 – Nov 18
 

@@ -1,10 +1,22 @@
-# Jr High Leader Sheet · Week 4 — Reading & Prayer
+# Jr High Study Guide · Week 4 — Reading & Prayer
+
+**Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 
 **Oct 7 · Main room · ~10 min, then games**
 
 **The one thing:** you can read the Bible yourself, and here's how to start when you don't know how to pray.
 
 **Bring pens.** Tonight they write.
+
+---
+
+## What you need to know
+
+Three weeks of being told what's true. Tonight they get the two skills to find it themselves — reading and praying without an adult in the room.
+
+Jesus in John 8: *abide in my word* comes first, and knowing the truth follows from it. The habit is the doorway, not the reward.
+
+Jr high doesn't need a method with an acronym. Two questions and five fingers is the whole thing, and they'll still have it in November.
 
 ---
 

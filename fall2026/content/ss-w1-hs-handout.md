@@ -14,7 +14,7 @@
 
 &nbsp;
 
-**3.** Journey says a Christian who isn't "born again" is like being semi-married — not a real category. Which would you click, and why?
+**3.** Jesus says a person has to be born again (John 3:3). So "Christian, but not born again" isn't really a category — like being semi-married. Which would you click, and why?
 
 ☐ Not a Christian  ☐ Christian  ☐ Born-again Christian
 

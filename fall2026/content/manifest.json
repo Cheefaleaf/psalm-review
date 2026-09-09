@@ -1,0 +1,637 @@
+{
+ "term": {
+  "name": "CPC Youth — Fall 2026",
+  "start": "2026-09-13",
+  "end": "2026-11-18",
+  "overview": "term-overview.md",
+  "schedule": "schedule.md"
+ },
+ "tracks": [
+  {
+   "key": "ss",
+   "name": "Sunday School",
+   "tag": "Gather",
+   "when": "Sundays 9:15–10:15",
+   "leader": "ss-leader-overview.md",
+   "student": "ss-student-overview.md",
+   "extras": [
+    {
+     "label": "Song exercise — giving glory",
+     "file": "ss-song-exercise.md"
+    }
+   ],
+   "weeks": [
+    {
+     "week": 1,
+     "date": "Sep 13",
+     "title": "Glory",
+     "source": "Blue Year · Gospel Living U1 · pp. 21–32",
+     "written": true,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w1-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w1-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w1-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 2,
+     "date": "Sep 20",
+     "title": "God's Character",
+     "source": "Red Year · Knowing God U1 · pp. 149",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w2-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w2-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w2-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 3,
+     "date": "Sep 27",
+     "title": "The Gospel Arc",
+     "source": "Blue Year · Gospel Living U1–6, compressed · pp. 21–91",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w3-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w3-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w3-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 4,
+     "date": "Oct 4",
+     "title": "The Lord's Day & Sabbath",
+     "source": "Red Year · Grace Commitments U1–2 · pp. 93, 107",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w4-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w4-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w4-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 5,
+     "date": "Oct 11",
+     "title": "Baptism",
+     "source": "Red Year · Grace Commitments U3 · pp. 121",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w5-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w5-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w5-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 6,
+     "date": "Oct 18",
+     "title": "The Lord's Table",
+     "source": "Red Year · Grace Commitments U4 · pp. 135",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w6-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w6-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w6-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 7,
+     "date": "Oct 25",
+     "title": "The Church as Family",
+     "source": "Blue Year · Local Church Pt 1–2 · pp. 93, 107",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w7-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w7-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w7-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 8,
+     "date": "Nov 1",
+     "title": "Spiritual Gifts",
+     "source": "Blue Year · Local Church Pt 4 · pp. 129",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w8-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w8-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w8-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 9,
+     "date": "Nov 8",
+     "title": "Serving & Sent",
+     "source": "Blue Year · Local Church Pt 3 · pp. 117",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w9-guide.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "ss-w9-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "ss-w9-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 10,
+     "date": "Nov 15",
+     "title": "Party",
+     "source": null,
+     "written": true,
+     "party": true,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Teacher guide (prep + in the room)",
+       "file": "ss-w10-guide.md"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "wed",
+   "name": "Wednesday Night",
+   "tag": "Grow",
+   "when": "Wednesdays, dinner then split",
+   "leader": "wed-leader-overview.md",
+   "student": "wed-student-overview.md",
+   "extras": [],
+   "weeks": [
+    {
+     "week": 1,
+     "date": "Sep 16",
+     "title": "Kickoff Party",
+     "source": null,
+     "alt": null,
+     "written": true,
+     "party": true,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w1-guide.md"
+      }
+     ]
+    },
+    {
+     "week": 2,
+     "date": "Sep 23",
+     "title": "Grace",
+     "source": "Blue Year · Gospel Living U3 · pp. 45–56",
+     "alt": null,
+     "written": true,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w2-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w2-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w2-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w2-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w2-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 3,
+     "date": "Sep 30",
+     "title": "Do or Done",
+     "source": "Blue Year · Gospel Living U3 (back half) · pp. 50–56",
+     "alt": null,
+     "written": true,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w3-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w3-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w3-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w3-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w3-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 4,
+     "date": "Oct 7",
+     "title": "Reading & Prayer",
+     "source": "Blue Year · Gospel Living U5–6 + Appendix A · pp. 69–91, 385–388",
+     "alt": null,
+     "written": true,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w4-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w4-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w4-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w4-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w4-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 5,
+     "date": "Oct 14",
+     "title": "Justification & Adoption",
+     "source": "Red Year · Biblical Worldview U1 · pp. 245",
+     "alt": null,
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w5-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w5-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w5-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w5-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w5-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 6,
+     "date": "Oct 21",
+     "title": "Assurance of Salvation",
+     "source": "Red Year · Biblical Worldview U2 · pp. 261",
+     "alt": null,
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w6-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w6-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w6-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w6-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w6-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 7,
+     "date": "Oct 28",
+     "title": "Sanctification",
+     "source": "Red Year · Biblical Worldview U3 · pp. 275",
+     "alt": "Why are we Presbyterian?",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w7-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w7-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w7-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w7-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w7-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 8,
+     "date": "Nov 4",
+     "title": "The Spirit",
+     "source": "Green Year · Knowing God U3 · pp. 167",
+     "alt": "Charismatic friends — gifts & cessationism",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w8-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w8-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w8-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w8-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w8-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 9,
+     "date": "Nov 11",
+     "title": "God's Forgiveness",
+     "source": "Red Year · Knowing God U3 · pp. 175",
+     "alt": "Catholic friends",
+     "written": false,
+     "party": false,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w9-guide.md"
+      },
+      {
+       "role": "jh-leader",
+       "label": "Jr high study guide (live)",
+       "file": "wed-w9-jh-leader.md"
+      },
+      {
+       "role": "jh-handout",
+       "label": "Jr high handout",
+       "file": "wed-w9-jh-handout.md",
+       "print": true
+      },
+      {
+       "role": "hs-leader",
+       "label": "High school study guide (live)",
+       "file": "wed-w9-hs-leader.md"
+      },
+      {
+       "role": "hs-handout",
+       "label": "High school handout",
+       "file": "wed-w9-hs-handout.md",
+       "print": true
+      }
+     ]
+    },
+    {
+     "week": 10,
+     "date": "Nov 18",
+     "title": "Party",
+     "source": null,
+     "alt": null,
+     "written": true,
+     "party": true,
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader prep (read ahead)",
+       "file": "wed-w10-guide.md"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "paired": [
+  5,
+  6,
+  8
+ ]
+}

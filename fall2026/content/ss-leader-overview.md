@@ -1,5 +1,8 @@
 # Sunday School — Fall Overview for Leaders
 
+> **Never name the curriculum to students.** The Journey is leader material — it tells us where this comes from. In the room, ideas are attributed to Scripture or to nobody, never to a book they've never seen.
+
+
 **Fall · Worship (Gather)**
 Jr high + high school combined · Sundays 9:15–10:15 · Sep 13 – Nov 15
 

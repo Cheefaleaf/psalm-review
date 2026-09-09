@@ -1,5 +1,7 @@
 # Wednesday · Week 2 — Grace
 
+**Leader prep — read ahead of time.** Background for both rooms. What you run in the room is the jr high or high school study guide.
+
 **Sep 23 · First study of the term**
 
 **Journey:** Blue Year, Gospel Living Unit 3, "Grace — Why We Embrace the Cross," pp. 45–56
@@ -12,13 +14,15 @@
 
 ## Big idea
 
-There are only two ways to relate to God, and every religion picks one. **Performance** — what I do for God. **Grace** — what God has done for me. Performance feels natural and produces self-righteousness. Grace is the cross: God swapped our sin for Christ's righteousness. Sunday named the counterfeits we chase. Tonight names the deeper trap — chasing God's approval the same way.
+There are only two ways to relate to God, and every religion picks one. **Performance** — what I do for God. **Grace** — what God has done for me. Performance feels natural and produces self-righteousness. Grace is the cross: God swapped our sin for Christ's righteousness. Everyone already performs for somebody. The trap is doing it with God and calling it faith.
 
 ---
 
 ## What Wednesday is for
 
-Sunday is the teaching day. Wednesday is not a shorter version of it.
+**Wednesday stands on its own.** Assume nobody in the room was at Sunday school — the two rosters barely overlap. Every question tonight is about what's taught tonight. Never open with "remember Sunday."
+
+Wednesday is also not a shorter version of a Sunday lesson.
 
 The Journey unit has four parts after Truth — **Equipping, Accountability, Mission, Supplication** — and those are the point on Wednesday. Teaching is under a third of the high school session by design. If you finish the night having explained grace clearly and nobody said anything true about themselves, the night didn't work.
 

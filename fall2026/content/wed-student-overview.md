@@ -9,7 +9,7 @@ Wednesdays · Sep 16 – Nov 18
 
 Wednesdays are smaller, deeper, and more honest than Sunday. We eat together, pray together, then split up. Jr high stays for a quick study and games. High school walks to Black Rock for a real conversation — five or six of you and a leader, thirty minutes, no lecture.
 
-We're using **The Journey**. No homework. Everything happens in the room. The only thing you take with you each week is one thing to notice — and we'll ask you about it next time.
+No homework, ever. Everything happens in the room. The only thing you take with you each week is one thing to notice — and we'll ask you about it next time.
 
 ---
 

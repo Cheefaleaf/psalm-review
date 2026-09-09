@@ -1,5 +1,7 @@
 # Wednesday · Week 4 — Reading & Prayer
 
+**Leader prep — read ahead of time.** Background for both rooms. What you run in the room is the jr high or high school study guide.
+
 **Oct 7 · The tools week**
 
 **Journey:** Blue Year, Gospel Living Units 5–6 ("Truth — Why / How We Embrace the Word") + **Appendix A**, pp. 69–91, 385–388

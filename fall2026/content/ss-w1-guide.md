@@ -13,7 +13,7 @@
 
 Everyone is searching for the one thing that will finally satisfy. The Bible's name for that missing piece is **glory** — not God's majesty, not praising God, but the glory God *gives* to people. We were made to be crowned with it. We traded it away. Now we chase counterfeits. Jesus is where it's found again: *Christ in you, the hope of glory.*
 
-**The mission tie-in:** Journey says what gives glory to God is renouncing counterfeit glories and placing our hope of satisfaction in Him alone. That is our mission statement in one sentence.
+**The mission tie-in:** giving glory to God means renouncing counterfeit glories and placing our hope of satisfaction in Him alone. That is our mission statement in one sentence. *(Source: Journey p. 25 — for your understanding, not to cite in the room.)*
 
 ---
 
