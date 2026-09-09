@@ -4,7 +4,7 @@
 
 **Memory verse:** *"For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God."* — 2 Corinthians 5:21
 
-**1.** Verses 1–3 describe where everyone starts, then verses 4–9 turn. In verses 4–9, what did God do? Circle every verb that has God as the subject.
+**1.** Verses 1–3 describe where everyone starts, then verses 4–9 turn. In verses 4–9, what did God do? Write every verb that has God as the subject.
 
 &nbsp;
 
@@ -20,7 +20,7 @@
 
 &nbsp;
 
-**4.** Justification means *just-as-if-I'd-never-sinned.* If that's true of you, what changes tomorrow? If you're not sure it's true of you, what would you need to know?
+**4.** Does thinking about the definition of Justification as *just-as-if-I'd-never-sinned* helpful? Is that biblically accurate or an oversimplification?
 
 &nbsp;
 
@@ -28,4 +28,4 @@
 
 ---
 
-**This week:** notice when you do something for God to get Him to like you. Don't try to stop. Just catch the motive. We'll ask next week.
+**This week:** notice when you do something for God to get Him to like you. Don't try to stop. Just catch the motive.
