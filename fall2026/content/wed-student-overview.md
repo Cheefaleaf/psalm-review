@@ -33,7 +33,7 @@ Both groups finish at the same time.
 |---|---|
 | Sep 16 | Kickoff — no study, just food and hanging out |
 | Sep 23 | Grace — are you trying to earn it? |
-| Sep 30 | Faith — Do, or Done? |
+| Sep 30 | Do, or Done? |
 | Oct 7 | How to actually read the Bible and pray |
 | Oct 14 | What happened to you when you believed |
 | Oct 21 | How do you know you're really a Christian? |

@@ -101,5 +101,5 @@ Say it plainly: **next week I'm going to open by asking what you noticed.** Then
 ## Watch-outs
 
 - "Grace" is a word they'll nod at. Force the contrast — *what I do* vs. *what He did* — and make them say which one they actually run on.
-- Don't rush to faith; it's next week. If someone asks "so what do I do?", the answer tonight is *nothing — that's the point.* Let it sit.
+- Don't rush to Do-or-Done; it's next week. If someone asks "so what do I do?", the answer tonight is *nothing — that's the point.* Let it sit.
 - Don't let the walk over eat the session. Leave on time.

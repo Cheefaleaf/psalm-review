@@ -13,7 +13,7 @@ Curriculum is **The Journey** (Life on Life Ministries). On Wednesday the Journe
 |---|---|---|---|---|
 | 1 | Sep 16 | Kickoff party — no study | — | — |
 | 2 | Sep 23 | Grace — the performance trap | Blue · Gospel Living U3 | 45–56 |
-| 3 | Sep 30 | Faith — Do or Done | Blue · Gospel Living U4 | 57–68 |
+| 3 | Sep 30 | Do or Done — Paul, James, the three beliefs | Blue · Gospel Living U3 (back half) | 50–56 |
 | 4 | Oct 7 | Reading & prayer — PRAISE + Five Targets | Blue · Gospel Living U5–6 + Appendix A | 69–91 |
 | 5 | Oct 14 | Justification & Adoption | Red · Biblical Worldview U1 | 245 |
 | 6 | Oct 21 | Assurance of Salvation | Red · Biblical Worldview U2 | 261 |

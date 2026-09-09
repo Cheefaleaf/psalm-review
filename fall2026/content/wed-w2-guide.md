@@ -6,7 +6,7 @@
 **Memory verse:** 2 Corinthians 5:21
 **In Bible:** Galatians 5:1–8 · Ephesians 2:1–13 · Colossians 2:13–23
 
-*Faith is next week (Unit 4). This week stays on performance vs. grace and the great swap. Hold Paul/James and the three beliefs for week 3.*
+*Do or Done is next week — the back half of this same unit. This week stays on performance vs. grace and the great swap. Hold Paul/James and the three beliefs for week 3.*
 
 ---
 
