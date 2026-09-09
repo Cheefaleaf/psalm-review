@@ -1,4 +1,6 @@
-# High School Leader Sheet · Week 7 — Sanctification
+# High School Study Guide · Week 7 — Sanctification
+
+**Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 
 **Oct 28 · Black Rock · ~30 min after the walk**
 
@@ -32,7 +34,7 @@ Ask, then wait. Follow one thread deep instead of collecting one answer from eve
 
 ## 4 · Accountability — the honest turn — 5 min
 
-*The week's honest question. Everyone answers, including you. Don't fix anything anyone says.*
+*The week's honest question. Everyone answers, including you. Respond with a question about what they said, not a comment.*
 
 ---
 

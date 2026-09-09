@@ -1,6 +1,20 @@
 # Wednesday · Week 2 — Grace
 
-**Leader prep — read ahead of time.** Background for both rooms. What you run in the room is the jr high or high school study guide.
+**Leader prep.** A deeper dive into the content the study is based on. Read it to prepare to lead Wednesday with jr high and/or high school. The study guide has the teaching outline for the room; the handout has the questions the students answer.
+
+---
+
+## Weekly structure
+
+Sunday school dives deep into study and theology. Wednesday's focus is more comprehensive discipleship. Prayer is the common thread connecting both groups.
+
+On Wednesday, high school works through the Journey curriculum — the sections are **Truth, Equipping, Accountability, Mission** and **Supplication**. We try to hit each one for a well-rounded, formative discipleship time.
+
+Jr high takes one passage or concept from the same Journey unit and works through a few questions together in ten minutes, then jumps to fellowship and games.
+
+Sunday and Wednesday attendance barely overlaps, so each night stands on its own — questions are always about what's taught that night.
+
+---
 
 **Sep 23 · First study of the term**
 
@@ -17,16 +31,6 @@
 There are only two ways to relate to God, and every religion picks one. **Performance** — what I do for God. **Grace** — what God has done for me. Performance feels natural and produces self-righteousness. Grace is the cross: God swapped our sin for Christ's righteousness. Everyone already performs for somebody. The trap is doing it with God and calling it faith.
 
 ---
-
-## What Wednesday is for
-
-**Wednesday stands on its own.** Assume nobody in the room was at Sunday school — the two rosters barely overlap. Every question tonight is about what's taught tonight. Never open with "remember Sunday."
-
-Wednesday is also not a shorter version of a Sunday lesson.
-
-The Journey unit has four parts after Truth — **Equipping, Accountability, Mission, Supplication** — and those are the point on Wednesday. Teaching is under a third of the high school session by design. If you finish the night having explained grace clearly and nobody said anything true about themselves, the night didn't work.
-
-The measure: **did each of them say something out loud they wouldn't have said in a room of thirty?**
 
 ---
 

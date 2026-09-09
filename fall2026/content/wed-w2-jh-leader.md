@@ -1,50 +1,67 @@
 # Jr High Study Guide · Week 2 — Grace
 
-**Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
+**Live in the room.** Read the leader prep doc beforehand if you can; this sheet works without it.
 
-**Sep 23 · Main room · ~10 min, then games**
-
-Ten minutes is the whole study. Don't run a compressed version of the high school session — pick the one thing and land it.
+**Sep 23 · Main room · 10 min, then games**
 
 **The one thing:** you can't earn it, and you don't have to.
+
+**Bring:** handouts, pens.
 
 ---
 
 ## What you need to know
 
-There are only two ways to relate to God. **Performance** — I do things so God will approve of me. **Grace** — God already did everything, at the cross. Every religion on earth picks the first one; Christianity is the only one that picks the second.
+Two ways to relate to God. **Performance** — I do things so God will approve of me. **Grace** — God already did everything, at the cross. Every religion picks the first. Christianity picks the second.
 
-Paul's word for it is *justification* — God treats you as if you'd never sinned, not because you cleaned up, but because Christ traded with you.
+Paul's word is *justification*: God treats you as if you'd never sinned, because Christ traded with you.
 
-Jr high will hear "you can't earn it" as either good news or a loophole. Both reactions are normal. Don't shut the loophole down — next week answers it.
+"You can't earn it" lands as either good news or a loophole. Both are normal. Leave the loophole open — next week answers it.
 
 ---
 
 ## Run of it
 
-**Read it — 2 min.** Read **Ephesians 2:8–9** aloud yourself. Then have a student read it again. Twice, because the second time they actually hear it.
+**2 · 3 · 4 · 1**
 
-**Ask it — 5 min.**
+### 1 · Read — 2 min
 
-> If you had to convince God to like you, what would you do?
+Read **Ephesians 2:8–9** aloud. Then a student reads it again.
 
-Let them be funny. Be good, go to church, don't swear, help old people, become a missionary. Get four or five answers up.
+Hand out sheets and pens.
 
-Then:
+### 2 · They write — 3 min, silent
 
-> Okay — now what does this verse say about all of that?
+Tell them Q1 has no correct answer before they start.
 
-**Land it — 2 min.** One sentence, said plainly, no elaboration:
+Sit down while they write.
+
+### 3 · Go through it — 4 min
+
+Work in order, from what they wrote.
+
+- **Q1 — 1 min.** Four or five answers out loud. Be good, go to church, don't swear, help old people, become a missionary.
+- **Q2 — 2 min. The one to protect.** *Do any of them work?* Push past the first "no" — ask which one felt closest, and why it still doesn't. Land: it's a gift, and a gift isn't something you were owed.
+- **Q3 — 1 min.** Two answers. Don't resolve it — next week does.
+
+### 4 · Conclusion — 1 min
+
+The punchline:
 
 > It's a gift. You can't earn it, and you don't have to.
 
-**Ask one more — 1 min.** *Does that make you want to do more good stuff, or less?* Take a couple of answers. Don't resolve it — that's next week's question. Then games.
+Then the memory verse, once, with the gloss:
+
+> *"For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God."* — 2 Corinthians 5:21
+>
+> Jesus took what was yours. You got what was His.
+
+Games.
 
 ---
 
 ## Notes
 
-- Jr high will try to be right. There's no right answer to the first question — say so before you ask it.
-- If a kid says "so it doesn't matter what I do," that's a good answer, not a problem. Say "hold that — that's exactly what we're doing next week."
-- The handout is one page. They can finish it in three minutes and take it home; it's not a worksheet you collect.
-- Games start on time. Ten minutes means ten.
+- "So it doesn't matter what I do" is a good answer. *"Hold that — it's next week."*
+- Handouts go home. Don't collect them.
+- Behind at minute six: Q1 down to two answers, Q3 to one. Protect Q2.

@@ -1,4 +1,6 @@
-# Jr High Leader Sheet · Week 8 — The Spirit
+# Jr High Study Guide · Week 8 — The Spirit
+
+**Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 
 **Nov 4 · Main room · ~10 min, then games**
 
@@ -16,8 +18,8 @@ Ten minutes is the whole study. Pick the one thing and land it.
 
 **Ask it — 5 min.** *to add*
 
-**Land it — 2 min.** One sentence, plainly, no elaboration.
+**Conclusion — 2 min.** The punchline:
 
 **Ask one more — 1 min.** *to add*
 
-Then games. Ten minutes means ten.
+Games.

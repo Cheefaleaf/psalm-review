@@ -1,12 +1,12 @@
 # Jr High Study Guide · Week 3 — Do or Done
 
-**Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
+**Live in the room.** Read the leader prep doc beforehand if you can; this sheet works without it.
 
 **Sep 30 · Main room · ~10 min, then games**
 
 **The one thing:** every other religion says *do*. Jesus says *done*.
 
-Last week landed "you can't earn it." A kid almost certainly asked some version of "then why be good?" This week answers that.
+Last week landed "you can't earn it." This week answers the follow-up: then why be good?
 
 ---
 
@@ -38,16 +38,16 @@ Then hand them the better one:
 
 > Think about somebody who's already forgiven you for something big. Do you treat them worse after, or better?
 
-**Land it — 2 min.** One sentence, plainly:
+**Conclusion — 2 min.** The punchline:
 
 > You're not being good to get God to love you. You're being good because He already does.
 
-Then games. Ten minutes means ten.
+Games.
 
 ---
 
 ## Notes
 
-- Jr high hears "you don't have to be good" as permission. Get to the forgiven-friend picture before that hardens — it does the work faster than any explanation.
-- If a kid asks "so I could do whatever I want?" say yes, technically — and then ask the friend question again. Don't panic and add rules.
-- Keep DO/DONE up on the board through games if you can. They'll read it twenty more times.
+- "You don't have to be good" lands as permission. Get to the forgiven-friend picture before that hardens.
+- "So I could do whatever I want?" — yes, technically. Then ask the friend question again. Don't add rules.
+- Leave DO/DONE on the board through games.
