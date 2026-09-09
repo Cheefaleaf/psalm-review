@@ -1,4 +1,4 @@
-# High School · Week 2 — Grace
+# High School Handout · Week 2 — Grace
 
 **Sep 23** · Ephesians 2:1–13
 

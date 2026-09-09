@@ -1,4 +1,4 @@
-# Jr High · Week 8 — The Spirit
+# Jr High Handout · Week 8 — Assurance of Salvation
 
 **Nov 4** · *passage to add*
 

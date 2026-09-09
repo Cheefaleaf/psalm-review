@@ -1,4 +1,4 @@
-# Jr High · Week 7 — Sanctification
+# Jr High Handout · Week 7 — Walking by the Spirit
 
 **Oct 28** · *passage to add*
 

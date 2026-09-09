@@ -1,4 +1,4 @@
-# Jr High Study Guide · Week 8 — The Spirit
+# Jr High Study Guide · Week 8 — Assurance of Salvation
 
 **Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 

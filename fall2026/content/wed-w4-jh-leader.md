@@ -1,6 +1,6 @@
-# Jr High Study Guide · Week 4 — Reading & Prayer
+# Jr High Study Guide · Week 4 — Personal Worship
 
-**Live in the room.** Read the leader prep doc beforehand if you can; this sheet works without it.
+**Live in the room.** Read the leader prep document beforehand if you can; this guide works without it.
 
 **Oct 7 · Main room · ~10 min, then games**
 

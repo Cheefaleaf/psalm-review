@@ -1,4 +1,4 @@
-# High School · Week 4 — Reading & Prayer
+# High School Handout · Week 4 — Personal Worship
 
 **Oct 7** · John 14:1–11 · **Keep this one.** It's your reference card for the rest of the term.
 

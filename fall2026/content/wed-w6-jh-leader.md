@@ -1,4 +1,4 @@
-# Jr High Study Guide · Week 6 — Assurance of Salvation
+# Jr High Study Guide · Week 6 — Prayer — The Five Targets
 
 **Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 

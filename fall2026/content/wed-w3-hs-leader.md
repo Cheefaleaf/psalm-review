@@ -1,6 +1,6 @@
-# High School Study Guide · Week 3 — Do or Done
+# High School Study Guide · Week 3 — Faith
 
-**Live in the room.** Read the leader prep doc beforehand if you can; this sheet works without it.
+**Live in the room.** Read the leader prep document beforehand if you can; this guide works without it.
 
 **Sep 30 · Black Rock · ~30 min after the walk**
 

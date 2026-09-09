@@ -1,4 +1,4 @@
-# High School · Week 8 — The Spirit
+# High School Handout · Week 8 — Assurance of Salvation
 
 **Nov 4** · *passage to add*
 

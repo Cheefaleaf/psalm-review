@@ -1,4 +1,4 @@
-# Jr High · Week 6 — Assurance of Salvation
+# Jr High Handout · Week 6 — Prayer — The Five Targets
 
 **Oct 21** · *passage to add*
 

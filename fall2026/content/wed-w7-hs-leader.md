@@ -1,4 +1,4 @@
-# High School Study Guide · Week 7 — Sanctification
+# High School Study Guide · Week 7 — Walking by the Spirit
 
 **Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 

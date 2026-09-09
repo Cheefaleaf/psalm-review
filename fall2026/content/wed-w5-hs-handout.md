@@ -1,4 +1,4 @@
-# High School · Week 5 — Justification & Adoption
+# High School Handout · Week 5 — Reading — Abide in My Word
 
 **Oct 14** · *passage to add*
 

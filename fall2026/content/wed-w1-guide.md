@@ -1,6 +1,8 @@
 # Wednesday · Week 1 — Kickoff Party
 
-**Leader prep.** A deeper dive into the content the study is based on. Read it to prepare to lead Wednesday with jr high and/or high school. The study guide has the teaching outline for the room; the handout has the questions the students answer.
+**Leader prep.** This document is a deeper dive into the study content that this week is based on. Read it to prepare to lead Wednesday with jr high and/or high school.
+
+No study this week, so there are no supplemental documents.
 
 ---
 

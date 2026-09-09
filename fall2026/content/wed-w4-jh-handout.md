@@ -1,4 +1,4 @@
-# Jr High · Week 4 — Reading & Prayer
+# Jr High Handout · Week 4 — Personal Worship
 
 **Oct 7** · John 15:1–5 · **Keep this one.** Stick it somewhere you'll see it.
 

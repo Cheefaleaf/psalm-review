@@ -1,4 +1,4 @@
-# High School · Week 6 — Assurance of Salvation
+# High School Handout · Week 6 — Prayer — The Five Targets
 
 **Oct 21** · *passage to add*
 

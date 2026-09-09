@@ -1,4 +1,4 @@
-# High School · Week 3 — Do or Done
+# High School Handout · Week 3 — Faith
 
 **Sep 30** · Ephesians 2:1–13
 

@@ -1,4 +1,4 @@
-# Jr High · Week 9 — God's Forgiveness
+# Jr High Handout · Week 9 — Ambassadors
 
 **Nov 11** · *passage to add*
 

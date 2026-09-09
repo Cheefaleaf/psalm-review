@@ -1,4 +1,4 @@
-# High School · Week 7 — Sanctification
+# High School Handout · Week 7 — Walking by the Spirit
 
 **Oct 28** · *passage to add*
 

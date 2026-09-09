@@ -1,4 +1,4 @@
-# Jr High · Week 2 — Grace
+# Jr High Handout · Week 2 — Grace
 
 **Sep 23** · Ephesians 2:8–9
 

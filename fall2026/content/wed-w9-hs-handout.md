@@ -1,4 +1,4 @@
-# High School · Week 9 — God's Forgiveness
+# High School Handout · Week 9 — Ambassadors
 
 **Nov 11** · *passage to add*
 

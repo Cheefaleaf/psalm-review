@@ -1,4 +1,4 @@
-# High School Study Guide · Week 5 — Justification & Adoption
+# High School Study Guide · Week 5 — Reading — Abide in My Word
 
 **Live in the room.** Have this out in front of you. Read the leader prep doc beforehand if you can — this sheet works without it.
 

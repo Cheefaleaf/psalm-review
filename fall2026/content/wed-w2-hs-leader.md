@@ -1,6 +1,6 @@
 # High School Study Guide · Week 2 — Grace
 
-**Live in the room.** Read the leader prep doc beforehand if you can; this sheet works without it.
+**Live in the room.** Read the leader prep document beforehand if you can; this guide works without it.
 
 **Sep 23 · Black Rock · 45 min**
 

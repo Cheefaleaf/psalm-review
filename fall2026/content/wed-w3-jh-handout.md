@@ -1,4 +1,4 @@
-# Jr High · Week 3 — Do or Done
+# Jr High Handout · Week 3 — Faith
 
 **Sep 30** · Ephesians 2:8–9
 
