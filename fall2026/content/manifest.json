@@ -11,7 +11,7 @@
    "key": "ss",
    "name": "Sunday School",
    "tag": "Gather",
-   "when": "Sundays 9:15–10:15",
+   "when": "Sundays 9:15–10:10",
    "leader": "ss-leader-overview.md",
    "student": "ss-student-overview.md",
    "extras": [
@@ -31,7 +31,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w1-guide.md"
       },
       {
@@ -51,68 +51,32 @@
     {
      "week": 2,
      "date": "Sep 20",
-     "title": "God's Character",
-     "source": "Red Year · Knowing God U1 · pp. 149",
-     "written": false,
+     "title": "Glory, Part II",
+     "source": "Blue Year · Gospel Living U1 (revisited)",
+     "written": true,
      "party": false,
-     "docs": [
-      {
-       "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
-       "file": "ss-w2-guide.md"
-      },
-      {
-       "role": "jh-handout",
-       "label": "Jr high handout",
-       "file": "ss-w2-jh-handout.md",
-       "print": true
-      },
-      {
-       "role": "hs-handout",
-       "label": "High school handout",
-       "file": "ss-w2-hs-handout.md",
-       "print": true
-      }
-     ]
+     "docs": []
     },
     {
      "week": 3,
      "date": "Sep 27",
-     "title": "The Gospel Arc",
-     "source": "Blue Year · Gospel Living U1–6, compressed · pp. 21–91",
-     "written": false,
+     "title": "Holy",
+     "source": "Isaiah 6 · Hebrews 12:18–24 · memory verse Isaiah 6:3",
+     "written": true,
      "party": false,
-     "docs": [
-      {
-       "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
-       "file": "ss-w3-guide.md"
-      },
-      {
-       "role": "jh-handout",
-       "label": "Jr high handout",
-       "file": "ss-w3-jh-handout.md",
-       "print": true
-      },
-      {
-       "role": "hs-handout",
-       "label": "High school handout",
-       "file": "ss-w3-hs-handout.md",
-       "print": true
-      }
-     ]
+     "docs": []
     },
     {
      "week": 4,
      "date": "Oct 4",
-     "title": "The Lord's Day & Sabbath",
+     "title": "The Lord's Day",
      "source": "Red Year · Grace Commitments U1–2 · pp. 93, 107",
      "written": false,
      "party": false,
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w4-guide.md"
       },
       {
@@ -139,7 +103,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w5-guide.md"
       },
       {
@@ -166,7 +130,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w6-guide.md"
       },
       {
@@ -193,7 +157,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w7-guide.md"
       },
       {
@@ -220,7 +184,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w8-guide.md"
       },
       {
@@ -247,7 +211,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w9-guide.md"
       },
       {
@@ -274,7 +238,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Teacher guide (prep + in the room)",
+       "label": "Teacher guide",
        "file": "ss-w10-guide.md"
       }
      ]
@@ -285,7 +249,7 @@
    "key": "wed",
    "name": "Wednesday Night",
    "tag": "Grow",
-   "when": "Wednesdays, dinner then split",
+   "when": "Wednesdays 6:30–7:45 · prayer wall, then C Group / D Group",
    "leader": "wed-leader-overview.md",
    "student": "wed-student-overview.md",
    "extras": [],
@@ -301,7 +265,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w1-guide.md"
       }
      ]
@@ -309,6 +273,15 @@
     {
      "week": 2,
      "date": "Sep 23",
+     "title": "Intro to Discipleship",
+     "source": "Prayer lists started",
+     "written": true,
+     "party": false,
+     "docs": []
+    },
+    {
+     "week": 3,
+     "date": "Sep 30",
      "title": "Grace",
      "source": "Blue Year · Gospel Living U3 · pp. 45–56",
      "alt": null,
@@ -317,67 +290,29 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w2-guide.md"
       },
       {
        "role": "jh-leader",
-       "label": "Jr high study guide (live)",
+       "label": "C Group leader sheet",
        "file": "wed-w2-jh-leader.md"
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "wed-w2-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-leader",
-       "label": "High school study guide (live)",
+       "label": "D Group leader sheet",
        "file": "wed-w2-hs-leader.md"
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "wed-w2-hs-handout.md",
-       "print": true
-      }
-     ]
-    },
-    {
-     "week": 3,
-     "date": "Sep 30",
-     "title": "Do or Done",
-     "source": "Blue Year · Gospel Living U3 (back half) · pp. 50–56",
-     "alt": null,
-     "written": true,
-     "party": false,
-     "docs": [
-      {
-       "role": "guide",
-       "label": "Leader prep (read ahead)",
-       "file": "wed-w3-guide.md"
-      },
-      {
-       "role": "jh-leader",
-       "label": "Jr high study guide (live)",
-       "file": "wed-w3-jh-leader.md"
-      },
-      {
-       "role": "jh-handout",
-       "label": "Jr high handout",
-       "file": "wed-w3-jh-handout.md",
-       "print": true
-      },
-      {
-       "role": "hs-leader",
-       "label": "High school study guide (live)",
-       "file": "wed-w3-hs-leader.md"
-      },
-      {
-       "role": "hs-handout",
-       "label": "High school handout",
-       "file": "wed-w3-hs-handout.md",
        "print": true
       }
      ]
@@ -385,37 +320,37 @@
     {
      "week": 4,
      "date": "Oct 7",
-     "title": "Reading & Prayer",
-     "source": "Blue Year · Gospel Living U5–6 + Appendix A · pp. 69–91, 385–388",
+     "title": "Faith: Without Works?",
+     "source": "Blue Year · Gospel Living U3 (back half) · pp. 50–56",
      "alt": null,
      "written": true,
      "party": false,
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
-       "file": "wed-w4-guide.md"
+       "label": "Week overview",
+       "file": "wed-w3-guide.md"
       },
       {
        "role": "jh-leader",
-       "label": "Jr high study guide (live)",
-       "file": "wed-w4-jh-leader.md"
+       "label": "C Group leader sheet",
+       "file": "wed-w3-jh-leader.md"
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
-       "file": "wed-w4-jh-handout.md",
+       "label": "C Group handout",
+       "file": "wed-w3-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-leader",
-       "label": "High school study guide (live)",
-       "file": "wed-w4-hs-leader.md"
+       "label": "D Group leader sheet",
+       "file": "wed-w3-hs-leader.md"
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
-       "file": "wed-w4-hs-handout.md",
+       "label": "D Group handout",
+       "file": "wed-w3-hs-handout.md",
        "print": true
       }
      ]
@@ -423,36 +358,36 @@
     {
      "week": 5,
      "date": "Oct 14",
-     "title": "Justification & Adoption",
-     "source": "Red Year · Biblical Worldview U1 · pp. 245",
+     "title": "Reading — Abide in My Word",
+     "source": "Blue Year · Gospel Living",
      "alt": null,
      "written": false,
      "party": false,
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w5-guide.md"
       },
       {
        "role": "jh-leader",
-       "label": "Jr high study guide (live)",
+       "label": "C Group leader sheet",
        "file": "wed-w5-jh-leader.md"
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "wed-w5-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-leader",
-       "label": "High school study guide (live)",
+       "label": "D Group leader sheet",
        "file": "wed-w5-hs-leader.md"
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "wed-w5-hs-handout.md",
        "print": true
       }
@@ -461,36 +396,36 @@
     {
      "week": 6,
      "date": "Oct 21",
-     "title": "Assurance of Salvation",
-     "source": "Red Year · Biblical Worldview U2 · pp. 261",
+     "title": "Prayer — The Five Targets",
+     "source": "Blue Year · Gospel Living",
      "alt": null,
      "written": false,
      "party": false,
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w6-guide.md"
       },
       {
        "role": "jh-leader",
-       "label": "Jr high study guide (live)",
+       "label": "C Group leader sheet",
        "file": "wed-w6-jh-leader.md"
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "wed-w6-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-leader",
-       "label": "High school study guide (live)",
+       "label": "D Group leader sheet",
        "file": "wed-w6-hs-leader.md"
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "wed-w6-hs-handout.md",
        "print": true
       }
@@ -499,36 +434,36 @@
     {
      "week": 7,
      "date": "Oct 28",
-     "title": "Sanctification",
-     "source": "Red Year · Biblical Worldview U3 · pp. 275",
-     "alt": "Why are we Presbyterian?",
+     "title": "Walking by the Spirit",
+     "source": "Blue Year · Gospel Living",
+     "alt": null,
      "written": false,
      "party": false,
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w7-guide.md"
       },
       {
        "role": "jh-leader",
-       "label": "Jr high study guide (live)",
+       "label": "C Group leader sheet",
        "file": "wed-w7-jh-leader.md"
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "wed-w7-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-leader",
-       "label": "High school study guide (live)",
+       "label": "D Group leader sheet",
        "file": "wed-w7-hs-leader.md"
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "wed-w7-hs-handout.md",
        "print": true
       }
@@ -537,36 +472,36 @@
     {
      "week": 8,
      "date": "Nov 4",
-     "title": "The Spirit",
-     "source": "Green Year · Knowing God U3 · pp. 167",
-     "alt": "Charismatic friends — gifts & cessationism",
+     "title": "Assurance of Salvation",
+     "source": "Blue Year · Gospel Living",
+     "alt": null,
      "written": false,
      "party": false,
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w8-guide.md"
       },
       {
        "role": "jh-leader",
-       "label": "Jr high study guide (live)",
+       "label": "C Group leader sheet",
        "file": "wed-w8-jh-leader.md"
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "wed-w8-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-leader",
-       "label": "High school study guide (live)",
+       "label": "D Group leader sheet",
        "file": "wed-w8-hs-leader.md"
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "wed-w8-hs-handout.md",
        "print": true
       }
@@ -575,36 +510,36 @@
     {
      "week": 9,
      "date": "Nov 11",
-     "title": "God's Forgiveness",
-     "source": "Red Year · Knowing God U3 · pp. 175",
-     "alt": "Catholic friends",
+     "title": "Ambassadors",
+     "source": "Blue Year · Gospel Living",
+     "alt": null,
      "written": false,
      "party": false,
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w9-guide.md"
       },
       {
        "role": "jh-leader",
-       "label": "Jr high study guide (live)",
+       "label": "C Group leader sheet",
        "file": "wed-w9-jh-leader.md"
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "wed-w9-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-leader",
-       "label": "High school study guide (live)",
+       "label": "D Group leader sheet",
        "file": "wed-w9-hs-leader.md"
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "wed-w9-hs-handout.md",
        "print": true
       }
@@ -621,7 +556,7 @@
      "docs": [
       {
        "role": "guide",
-       "label": "Leader prep (read ahead)",
+       "label": "Week overview",
        "file": "wed-w10-guide.md"
       }
      ]
@@ -629,9 +564,5 @@
    ]
   }
  ],
- "paired": [
-  5,
-  6,
-  8
- ]
+ "paired": []
 }
