@@ -71,7 +71,20 @@
      "source": "Isaiah 6 · Hebrews 12:18–24 · memory verse Isaiah 6:3",
      "written": true,
      "party": false,
-     "docs": []
+     "docs": [
+      {
+       "role": "guide",
+       "label": "Leader guide",
+       "file": "Holy_Leader_Guide.pdf",
+       "pdf": true
+      },
+      {
+       "role": "handout",
+       "label": "Student handout (C & D Group)",
+       "file": "Holy_Student_Handout.pdf",
+       "pdf": true
+      }
+     ]
     },
     {
      "week": 4,
