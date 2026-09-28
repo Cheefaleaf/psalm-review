@@ -10,7 +10,7 @@
 :root{
   --black:#0a0a0a;--white:#f5f2ec;--gold:#e8b84b;--gold-dark:#c49a2a;
   --card-bg:#141414;--border:rgba(255,255,255,0.08);--muted:#777;
-  --raise:#1b1b1b;
+  --raise:#1b1b1b;--wed:#7fb7d9;--wed-dark:#4f8fb8;
   --display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;
 }
 body{background:var(--black);color:var(--white);font-family:var(--body);
@@ -69,6 +69,21 @@ main{padding-top:60px;min-height:100vh}
 .draft{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--gold-dark);
   border:1px solid var(--gold-dark);border-radius:2px;padding:1px 5px}
 .party{color:var(--muted);font-size:14px;padding:10px 0}
+/* two-column identity: Sunday gold, Wednesday blue */
+.colhead{position:sticky;top:60px;z-index:100;display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:14px 0 10px;margin-top:34px;background:var(--black)}
+.colhead .ch{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:0 4px 8px;border-bottom:3px solid var(--gold)}
+.colhead .ch.wed{border-bottom-color:var(--wed)}
+.colhead b{font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:2px;color:var(--gold)}
+.colhead .ch.wed b{color:var(--wed)}
+.colhead span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.room.ss{border-top:3px solid var(--gold)}
+.room.wed{border-top:3px solid var(--wed)}
+.room.wed .kicker,.room.wed .dgroup .gname{color:var(--wed)}
+.room.wed .gbtn.handout{box-shadow:inset 0 -2px 0 var(--wed-dark)}
+.ghd div:nth-child(2){color:var(--gold)}
+.ghd div:nth-child(3){color:var(--wed)}
+.grow .gcell.pairc{border-left:2px solid rgba(127,183,217,.25)}
+.grow .gcell:not(.pairc){border-left:2px solid rgba(232,184,75,.25)}
 a.docrow{text-decoration:none;color:inherit}
 .dgroup{margin-top:12px}
 .dgroup .gname{display:block;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
@@ -157,6 +172,7 @@ a.docrow{text-decoration:none;color:inherit}
 .err h3{color:var(--gold);margin-bottom:6px}
 
 @media (max-width:820px){
+  .colhead{display:none}
   nav{padding:0 1.1rem}
   .pad{padding:0 1.1rem}
   .rooms,.soonrow{grid-template-columns:1fr}
@@ -378,7 +394,7 @@ function home(){
       var w = weekOf(t.key,num);
       if(!w) return;
       var past = dateObj(w) < today;
-      b += '<article class="room'+(past?" past":"")+'">';
+      b += '<article class="room '+t.key+(past?" past":"")+'">';
       b += '<span class="kicker">'+esc(t.name)+' · '+esc(t.tag)+'</span>';
       b += '<h3>'+esc(w.title)+(w.written?"":' <span class="draft">Draft</span>')+'</h3>';
       b += '<p class="meta">'+esc(w.date)+(past?" · done":"")+'</p>';
@@ -388,6 +404,8 @@ function home(){
     });
     return b+'</div></section>';
   }
+  h += '<div class="colhead"><div class="ch ss"><b>Sunday School</b><span>Gather · 9:15–10:10</span></div>'+
+       '<div class="ch wed"><b>Wednesday Night</b><span>Grow · 6:30–7:45</span></div></div>';
   if(n < 10) h += block(n+1, "Next week", "next");
   h += block(n, "This week", "cur");
   if(n > 1) h += '<h2 class="earlier-hd">Earlier weeks</h2>';
