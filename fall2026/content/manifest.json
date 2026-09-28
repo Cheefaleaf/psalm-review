@@ -55,7 +55,14 @@
      "source": "Blue Year · Gospel Living U1 (revisited)",
      "written": true,
      "party": false,
-     "docs": []
+     "docs": [
+      {
+       "role": "glory-handout",
+       "label": "Glory definition handout",
+       "file": "Glory_definition_handout.pdf",
+       "pdf": true
+      }
+     ]
     },
     {
      "week": 3,
