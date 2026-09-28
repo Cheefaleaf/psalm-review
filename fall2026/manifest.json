@@ -36,13 +36,13 @@
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "ss-w1-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "ss-w1-hs-handout.md",
        "print": true
       }
@@ -88,13 +88,13 @@
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "ss-w4-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "ss-w4-hs-handout.md",
        "print": true
       }
@@ -115,13 +115,13 @@
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "ss-w5-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "ss-w5-hs-handout.md",
        "print": true
       }
@@ -142,13 +142,13 @@
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "ss-w6-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "ss-w6-hs-handout.md",
        "print": true
       }
@@ -169,13 +169,13 @@
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "ss-w7-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "ss-w7-hs-handout.md",
        "print": true
       }
@@ -196,13 +196,13 @@
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "ss-w8-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "ss-w8-hs-handout.md",
        "print": true
       }
@@ -223,13 +223,13 @@
       },
       {
        "role": "jh-handout",
-       "label": "Jr high handout",
+       "label": "C Group handout",
        "file": "ss-w9-jh-handout.md",
        "print": true
       },
       {
        "role": "hs-handout",
-       "label": "High school handout",
+       "label": "D Group handout",
        "file": "ss-w9-hs-handout.md",
        "print": true
       }
