@@ -313,8 +313,8 @@ function currentWeek(){
 /* ---------------- views ---------------- */
 function roleKind(role, tk){
   var wed = tk==="wed";
-  if(role.indexOf("jh")===0) return wed ? "C Group" : "Jr high";
-  if(role.indexOf("hs")===0) return wed ? "D Group" : "High school";
+  if(role.indexOf("jh")===0) return "C Group";
+  if(role.indexOf("hs")===0) return "D Group";
   return "";
 }
 function docRows(tk, w){
