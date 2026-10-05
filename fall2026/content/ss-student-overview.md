@@ -31,11 +31,11 @@ No homework, ever. Everything happens in the room.
 | Sep 20 | Who God is |
 | Sep 27 | The gospel — the whole thing in one morning |
 | Oct 4 | The Lord's Day — why Sunday |
-| Oct 11 | Baptism |
-| Oct 18 | Communion |
-| Oct 25 | The church as a family |
-| Nov 1 | Your place in it — spiritual gifts |
-| Nov 8 | Being sent out |
+| Oct 11 | The Lord's Day, part two — rest |
+| Oct 18 | Baptism |
+| Oct 25 | Communion |
+| Nov 1 | The church as a family |
+| Nov 8 | Your place in it — spiritual gifts |
 | Nov 15 | Party |
 
 ---

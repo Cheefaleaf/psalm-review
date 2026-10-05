@@ -18,14 +18,12 @@ Curriculum is **The Journey** (Life on Life Ministries). Journey pages will be s
 | 2 | Sep 20 | God's character | Red · Knowing God U1 | 149 |
 | 3 | Sep 27 | The gospel arc | Blue · Gospel Living U1–6, compressed | 21–91 |
 | 4 | Oct 4 | The Lord's Day & Sabbath | Red · Grace Commitments U1–2 | 93, 107 |
-| 5 | Oct 11 | Baptism | Red · Grace Commitments U3 | 121 |
-| 6 | Oct 18 | The Lord's Table | Red · Grace Commitments U4 | 135 |
-| 7 | Oct 25 | The church as family | Blue · Local Church Pt 1–2 | 93, 107 |
-| 8 | Nov 1 | Spiritual gifts | Blue · Local Church Pt 4 | 129 |
-| 9 | Nov 8 | Serving & sent | Blue · Local Church Pt 3 | 117 |
+| 5 | Oct 11 | The Lord's Day & Sabbath, Part II | Red · Grace Commitments U1–2 | 93, 107 |
+| 6 | Oct 18 | Baptism | Red · Grace Commitments U3 | 121 |
+| 7 | Oct 25 | The Lord's Table | Red · Grace Commitments U4 | 135 |
+| 8 | Nov 1 | The church as family | Blue · Local Church Pt 1–2 | 93, 107 |
+| 9 | Nov 8 | Spiritual gifts | Blue · Local Church Pt 4 | 129 |
 | 10 | Nov 15 | Party — no study | — | — |
-
-Weeks 5, 6 and 8 are taught the same week Wednesday covers the matching topic (adoption, assurance, the Spirit).
 
 ---
 

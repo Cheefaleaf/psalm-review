@@ -1,8 +1,8 @@
-# Sunday · Week 9 — Serving & Sent
+# Sunday · Week 9 — Spiritual Gifts
 
 **Nov 8 · 9:15–10:15 · Jr high + high school combined**
 
-**Prep:** Journey Blue Year · Local Church Pt 3, pp. 117. Read before Sunday. Not used in class.
+**Prep:** Journey Blue Year · Local Church Pt 4, pp. 129. Read before Sunday. Not used in class.
 **Memory verse:** *to add*
 **Readers needed:** *to add*
 **Materials:** both handouts printed · Bibles (ESV) · prayer wall supplies before 9:15 · whiteboard

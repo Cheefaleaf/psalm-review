@@ -1,4 +1,4 @@
-# High School · Week 6 — The Lord's Table
+# High School · Week 6 — Baptism
 
 **Oct 18** · *passage to add*
 

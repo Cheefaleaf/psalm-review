@@ -1,4 +1,4 @@
-# High School · Week 7 — The Church as Family
+# High School · Week 7 — The Lord's Table
 
 **Oct 25** · *passage to add*
 

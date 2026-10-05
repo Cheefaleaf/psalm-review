@@ -1,8 +1,8 @@
-# Sunday · Week 5 — Baptism
+# Sunday · Week 5 — The Lord's Day & Sabbath, Part II
 
 **Oct 11 · 9:15–10:15 · Jr high + high school combined**
 
-**Prep:** Journey Red Year · Grace Commitments U3, pp. 121. Read before Sunday. Not used in class.
+**Prep:** Journey Red Year · Grace Commitments U1–2, pp. 93, 107. Read before Sunday. Not used in class.
 **Memory verse:** *to add*
 **Readers needed:** *to add*
 **Materials:** both handouts printed · Bibles (ESV) · prayer wall supplies before 9:15 · whiteboard

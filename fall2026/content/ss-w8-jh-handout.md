@@ -1,4 +1,4 @@
-# Jr High · Week 8 — Spiritual Gifts
+# Jr High · Week 8 — The Church as Family
 
 **Nov 1** · *passage to add*
 

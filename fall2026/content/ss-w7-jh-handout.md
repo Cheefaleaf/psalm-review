@@ -1,4 +1,4 @@
-# Jr High · Week 7 — The Church as Family
+# Jr High · Week 7 — The Lord's Table
 
 **Oct 25** · *passage to add*
 

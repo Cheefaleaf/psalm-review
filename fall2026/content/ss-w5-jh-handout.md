@@ -1,4 +1,4 @@
-# Jr High · Week 5 — Baptism
+# Jr High · Week 5 — The Lord's Day & Sabbath, Part II
 
 **Oct 11** · *passage to add*
 

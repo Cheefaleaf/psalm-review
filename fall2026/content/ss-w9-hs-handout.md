@@ -1,4 +1,4 @@
-# High School · Week 9 — Serving & Sent
+# High School · Week 9 — Spiritual Gifts
 
 **Nov 8** · *passage to add*
 

@@ -1,8 +1,8 @@
-# Sunday · Week 6 — The Lord's Table
+# Sunday · Week 6 — Baptism
 
 **Oct 18 · 9:15–10:15 · Jr high + high school combined**
 
-**Prep:** Journey Red Year · Grace Commitments U4, pp. 135. Read before Sunday. Not used in class.
+**Prep:** Journey Red Year · Grace Commitments U3, pp. 121. Read before Sunday. Not used in class.
 **Memory verse:** *to add*
 **Readers needed:** *to add*
 **Materials:** both handouts printed · Bibles (ESV) · prayer wall supplies before 9:15 · whiteboard

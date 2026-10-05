@@ -1,8 +1,8 @@
-# Sunday · Week 7 — The Church as Family
+# Sunday · Week 7 — The Lord's Table
 
 **Oct 25 · 9:15–10:15 · Jr high + high school combined**
 
-**Prep:** Journey Blue Year · Local Church Pt 1–2, pp. 93, 107. Read before Sunday. Not used in class.
+**Prep:** Journey Red Year · Grace Commitments U4, pp. 135. Read before Sunday. Not used in class.
 **Memory verse:** *to add*
 **Readers needed:** *to add*
 **Materials:** both handouts printed · Bibles (ESV) · prayer wall supplies before 9:15 · whiteboard

@@ -1,4 +1,4 @@
-# Jr High · Week 9 — Serving & Sent
+# Jr High · Week 9 — Spiritual Gifts
 
 **Nov 8** · *passage to add*
 
